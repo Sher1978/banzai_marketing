@@ -10,10 +10,9 @@ const FRAME_COUNT = END_FRAME - START_FRAME + 1; // 34 frames
 
 interface HeroMaskCanvasProps {
     targetRef?: React.RefObject<HTMLDivElement | null>;
-    isScrollActive?: boolean;
 }
 
-export const HeroMaskCanvas: React.FC<HeroMaskCanvasProps> = ({ targetRef, isScrollActive = true }) => {
+export const HeroMaskCanvas: React.FC<HeroMaskCanvasProps> = ({ targetRef }) => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const [images, setImages] = useState<HTMLImageElement[]>([]);
     const [isLoaded, setIsLoaded] = useState(false);
@@ -63,11 +62,7 @@ export const HeroMaskCanvas: React.FC<HeroMaskCanvasProps> = ({ targetRef, isScr
     });
 
     // Map scroll 0 -> 1 to frame 7 -> 40
-    const rawFrame = useTransform(
-        scrollYProgress,
-        [0, 1],
-        [START_FRAME, isScrollActive ? END_FRAME : START_FRAME]
-    );
+    const rawFrame = useTransform(scrollYProgress, [0, 1], [START_FRAME, END_FRAME]);
 
     // Physics config for inertia and slowdown on direction change
     const smoothFrame = useSpring(rawFrame, {
@@ -144,16 +139,19 @@ export const HeroMaskCanvas: React.FC<HeroMaskCanvasProps> = ({ targetRef, isScr
 
     return (
         <div className="w-full h-full relative flex flex-col items-center justify-center overflow-hidden">
-            {/* Top HUD Block */}
-            {currentFrame >= 31 && (
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    className="absolute top-10 md:top-20 w-full text-center z-20 flex flex-col gap-1"
-                >
-                    <span className="text-[10px] md:text-sm hud-text font-bold">NEURAL LINK: ACTIVE | STATUS: OPTIMAL</span>
-                </motion.div>
-            )}
+            {/* Top HUD Block (Static & Animated) */}
+            <div className="absolute top-10 md:top-20 w-full text-center z-20 flex flex-col gap-1 items-center">
+                <span className="font-mono text-xs text-secondary/60 tracking-[0.3em] uppercase mb-4 opacity-50">INITIALIZING NEURAL CORE</span>
+                {currentFrame >= 31 && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        className="flex flex-col gap-1"
+                    >
+                        <span className="text-[10px] md:text-sm hud-text font-bold">NEURAL LINK: ACTIVE | STATUS: OPTIMAL</span>
+                    </motion.div>
+                )}
+            </div>
 
             <canvas
                 ref={canvasRef}
@@ -164,16 +162,22 @@ export const HeroMaskCanvas: React.FC<HeroMaskCanvasProps> = ({ targetRef, isScr
                 }}
             />
 
-            {/* Bottom HUD Block */}
-            {currentFrame >= 31 && (
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    className="absolute bottom-10 md:bottom-20 w-full text-center z-20 flex flex-col gap-1"
-                >
-                    <span className="text-[10px] md:text-sm hud-text font-bold">+300% REACH_ACCELERATION | +130% SALES_GROWTH</span>
-                </motion.div>
-            )}
+            {/* Bottom HUD Block (Static & Animated) */}
+            <div className="absolute bottom-10 md:bottom-20 w-full text-center z-20 flex flex-col gap-1 items-center">
+                {currentFrame >= 31 && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        className="flex flex-col gap-1 mb-4"
+                    >
+                        <span className="text-[10px] md:text-sm hud-text font-bold">+300% REACH_ACCELERATION | +130% SALES_GROWTH</span>
+                    </motion.div>
+                )}
+                <div className="flex justify-center gap-4 text-glow font-mono text-[10px] text-primary/80">
+                    <span>SYSTEM</span>
+                    <span>ONLINE</span>
+                </div>
+            </div>
 
             {!isLoaded && (
                 <div className="absolute inset-0 flex items-center justify-center">
