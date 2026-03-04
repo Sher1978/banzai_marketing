@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useRef, useEffect, useState } from 'react';
-import { useScroll, useMotionValue, useSpring, animate } from 'framer-motion';
+import { useScroll, useMotionValue, useSpring } from 'framer-motion';
 
 const START_FRAME = 7;
 const END_FRAME = 39;
@@ -49,55 +49,36 @@ export const HeroMaskCanvas: React.FC<HeroMaskCanvasProps> = ({ targetRef }) => 
         return () => { isMounted = false; };
     }, []);
 
-    // 2. Scroll Logic - Using targetRef for pinpoint accuracy
-    const { scrollYProgress } = useScroll({
-        target: targetRef,
-        offset: ["start start", "end end"]
-    });
-
+    // 2. Scroll Direction Logic
+    const { scrollY } = useScroll();
     const targetFrame = useMotionValue(START_FRAME);
+
+    // Physics config for inertia and slowdown on direction change
     const smoothFrame = useSpring(targetFrame, {
-        stiffness: 100,
-        damping: 30,
-        mass: 1.2
+        stiffness: 40,
+        damping: 25,
+        mass: 3
     });
-    const isAutoPlaying = useRef(false);
-    const animationControls = useRef<any>(null);
 
-    // Watch scroll progress to determine whether to map exactly to frame or trigger autoplay
+    const lastScrollY = useRef(0);
+
     useEffect(() => {
-        const unsubscribe = scrollYProgress.on("change", (p) => {
-            const SCROLL_THRESHOLD = 0.3; // autoplay starts at 30% scroll depth of sticky area
+        const unsubscribe = scrollY.on("change", (latest) => {
+            const delta = latest - lastScrollY.current;
 
-            if (p < SCROLL_THRESHOLD) {
-                // Manual scroll control area
-                if (isAutoPlaying.current) {
-                    isAutoPlaying.current = false;
-                    if (animationControls.current) {
-                        animationControls.current.stop();
-                    }
-                }
-                const mappedFrame = START_FRAME + (p / SCROLL_THRESHOLD) * (SCROLL_END_FRAME - START_FRAME);
-                targetFrame.set(mappedFrame);
-            } else {
-                // Autoplay area
-                if (!isAutoPlaying.current) {
-                    isAutoPlaying.current = true;
-                    animationControls.current = animate(targetFrame, END_FRAME, {
-                        duration: 0.8, // Play the rest of the frames (20->39) over 0.8 seconds
-                        ease: "easeOut"
-                    });
-                }
+            // If scrolling down (positive delta), play forward. 
+            // If up (negative delta), play backward.
+            if (delta > 5) {
+                targetFrame.set(END_FRAME);
+                lastScrollY.current = latest;
+            } else if (delta < -5) {
+                targetFrame.set(START_FRAME);
+                lastScrollY.current = latest;
             }
         });
 
-        return () => {
-            unsubscribe();
-            if (animationControls.current) {
-                animationControls.current.stop();
-            }
-        };
-    }, [scrollYProgress, targetFrame]);
+        return () => unsubscribe();
+    }, [scrollY, targetFrame]);
 
     // 3. Render Loop with "Object-Fit: Contain" Logic
     useEffect(() => {
