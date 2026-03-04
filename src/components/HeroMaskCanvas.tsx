@@ -9,18 +9,18 @@ const SCROLL_END_FRAME = 27;
 const FRAME_COUNT = END_FRAME - START_FRAME + 1; // 33 frames
 
 const FLOATING_TEXTS = [
-    { id: 1, text: "Parsing environment...", top: "15%", left: "15%", start: 8, color: "text-primary/70" },
-    { id: 2, text: "Requesting data streams [OK]", top: "30%", left: "75%", start: 10, color: "text-secondary/70" },
-    { id: 3, text: "INITIALIZING AI CORE...", top: "60%", left: "10%", start: 12, color: "text-white/50" },
-    { id: 4, text: "Scanning biometrics [99%]", top: "75%", left: "80%", start: 14, color: "text-primary/70" },
-    { id: 5, text: "Calibrating neural link", top: "25%", left: "10%", start: 16, color: "text-secondary/60" },
-    { id: 6, text: "Bypass firewall: SUCCESS", top: "85%", left: "25%", start: 18, color: "text-primary/50" },
-    { id: 7, text: "Injecting payloads...", top: "45%", left: "80%", start: 20, color: "text-white/60" },
-    { id: 8, text: "Synapse aligned [100%]", top: "10%", left: "60%", start: 22, color: "text-secondary/80" },
-    { id: 9, text: "Overriding manual control", top: "65%", left: "20%", start: 24, color: "text-primary/60" },
-    { id: 10, text: "Compiling protocol [BANZAI]", top: "40%", left: "15%", start: 26, color: "text-white/70" },
-    { id: 11, text: "Sensory input: MAXIMUM", top: "80%", left: "65%", start: 28, color: "text-secondary/70" },
-    { id: 12, text: "System ready.", top: "55%", left: "70%", start: 30, color: "text-primary/80" },
+    { id: 1, text: "Parsing environment...", top: "15%", left: "15%", start: 8, color: "text-primary/70", scale: 1.4, drift: { x: 60, y: 30 } },
+    { id: 2, text: "Requesting data streams [OK]", top: "30%", left: "75%", start: 10, color: "text-secondary/70", scale: 0.6, drift: { x: -80, y: -40 } },
+    { id: 3, text: "INITIALIZING AI CORE...", top: "60%", left: "10%", start: 12, color: "text-white/50", scale: 1.3, drift: { x: 40, y: 80 } },
+    { id: 4, text: "Scanning biometrics [99%]", top: "75%", left: "80%", start: 14, color: "text-primary/70", scale: 0.8, drift: { x: -100, y: 20 } },
+    { id: 5, text: "Calibrating neural link...", top: "25%", left: "10%", start: 16, color: "text-secondary/60", scale: 1.1, drift: { x: 50, y: -60 } },
+    { id: 6, text: "Bypass firewall: SUCCESS", top: "85%", left: "25%", start: 18, color: "text-primary/50", scale: 1.4, drift: { x: 20, y: -90 } },
+    { id: 7, text: "Injecting payloads...", top: "45%", left: "80%", start: 20, color: "text-white/60", scale: 0.7, drift: { x: -50, y: 60 } },
+    { id: 8, text: "Synapse aligned [100%]", top: "10%", left: "60%", start: 22, color: "text-secondary/80", scale: 1.0, drift: { x: 70, y: 40 } },
+    { id: 9, text: "Overriding manual control", top: "65%", left: "20%", start: 24, color: "text-primary/60", scale: 1.2, drift: { x: -30, y: -100 } },
+    { id: 10, text: "Compiling protocol [BANZAI]", top: "40%", left: "15%", start: 26, color: "text-white/70", scale: 0.9, drift: { x: 80, y: -20 } },
+    { id: 11, text: "Sensory input: MAXIMUM", top: "80%", left: "65%", start: 28, color: "text-secondary/70", scale: 1.4, drift: { x: -60, y: -50 } },
+    { id: 12, text: "System ready.", top: "55%", left: "70%", start: 30, color: "text-primary/80", scale: 1.1, drift: { x: 40, y: 70 } },
 ];
 
 interface HeroMaskCanvasProps {
@@ -176,14 +176,23 @@ export const HeroMaskCanvas: React.FC<HeroMaskCanvasProps> = ({ targetRef }) => 
                     {/* 12 Floating Text Elements */}
                     <AnimatePresence>
                         {FLOATING_TEXTS.map((item) => (
-                            currentFrame >= item.start && currentFrame < 33 && (
+                            currentFrame >= item.start && (
                                 <motion.div
                                     key={item.id}
-                                    initial={{ opacity: 0, x: -20, filter: "blur(4px)" }}
-                                    animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
-                                    exit={{ opacity: 0, scale: 1.1, filter: "blur(10px)" }}
-                                    transition={{ duration: 0.8 }}
-                                    className={`absolute font-mono text-[8px] md:text-xs z-0 ${item.color}`}
+                                    initial={{ opacity: 0, x: -50, filter: "blur(8px)", scale: 0.5 }}
+                                    animate={{
+                                        opacity: [0, 1, 0.8, 1],
+                                        x: (currentFrame - item.start) * (item.drift.x / 10),
+                                        y: (currentFrame - item.start) * (item.drift.y / 10),
+                                        filter: "blur(0px)",
+                                        scale: item.scale
+                                    }}
+                                    transition={{
+                                        opacity: { duration: 1 },
+                                        x: { type: "spring", stiffness: 20, damping: 10 },
+                                        y: { type: "spring", stiffness: 20, damping: 10 }
+                                    }}
+                                    className={`absolute font-mono text-[10px] md:text-sm z-0 ${item.color} drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]`}
                                     style={{ top: item.top, left: item.left }}
                                 >
                                     {item.text}
