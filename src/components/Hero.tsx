@@ -24,7 +24,7 @@ export const Hero: React.FC = () => {
         <section className="relative w-full min-h-[90vh] py-20 lg:py-32 px-6 flex items-center bg-[#050505] overflow-hidden border-b border-primary/20">
             {/* Fixed Background Image */}
             <div
-                className="absolute inset-0 bg-[url('/assets/dubai-bg.jpg')] bg-cover bg-center bg-fixed pointer-events-none opacity-100"
+                className="absolute inset-0 bg-[url('/assets/dubai-bg.jpg')] bg-cover bg-right lg:bg-center bg-fixed pointer-events-none opacity-100"
                 aria-hidden="true"
             />
 
@@ -59,12 +59,12 @@ export const Hero: React.FC = () => {
 
             <div className="max-w-[1440px] mx-auto w-full relative z-10 flex flex-col justify-center">
                 {/* Content Column (Main focus) */}
-                <div className="flex flex-col gap-8 max-w-2xl">
-                    <div className="inline-flex items-center gap-2 text-secondary uppercase tracking-[0.2em] text-xs font-bold border-l-2 border-secondary pl-3 shadow-[0_0_10px_rgba(6,182,212,0.3)] bg-black/40 py-1 pr-4 w-fit">
+                <div className="flex flex-col gap-6 md:gap-8 max-w-2xl">
+                    <div className="inline-flex items-center gap-2 text-secondary uppercase tracking-[0.2em] text-[10px] md:text-xs font-bold border-l-2 border-secondary pl-3 shadow-[0_0_10px_rgba(6,182,212,0.3)] bg-black/40 py-1 pr-4 w-fit">
                         {t('hero.badge')}
                     </div>
 
-                    <h1 className="text-5xl lg:text-8xl font-black leading-[0.85] text-white tracking-tighter drop-shadow-2xl">
+                    <h1 className="text-4xl md:text-5xl lg:text-8xl font-black leading-[0.85] text-white tracking-tighter drop-shadow-2xl">
                         {t('hero.title').split(' ').map((word: string, i: number) => (
                             <span key={i} className={i % 2 !== 0 ? 'text-secondary brightness-125' : ''}>
                                 {word}{' '}
@@ -72,13 +72,13 @@ export const Hero: React.FC = () => {
                         ))}
                     </h1>
 
-                    <div className="space-y-6 max-w-xl">
+                    <div className="space-y-4 md:space-y-6 max-w-xl">
                         {bullets.map((bullet, idx) => (
-                            <div key={idx} className="border-l border-primary/30 pl-6 ml-1 group hover:border-secondary transition-colors text-balance">
-                                <p className="text-white/95 text-xl font-bold mb-1 tracking-tight">
+                            <div key={idx} className="border-l border-primary/30 pl-4 md:pl-6 ml-1 group hover:border-secondary transition-colors text-balance">
+                                <p className="text-white/95 text-base md:text-xl font-bold mb-1 tracking-tight">
                                     {bullet.bold}
                                 </p>
-                                <p className="text-white/50 text-xs lg:text-sm leading-relaxed uppercase tracking-widest font-medium">
+                                <p className="text-white/50 text-[10px] md:text-xs lg:text-sm leading-relaxed uppercase tracking-widest font-medium">
                                     {bullet.subtext}
                                 </p>
                             </div>

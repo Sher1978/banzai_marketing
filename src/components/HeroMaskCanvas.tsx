@@ -102,7 +102,7 @@ export const HeroMaskCanvas: React.FC<HeroMaskCanvasProps> = ({ targetRef }) => 
                 setHasTriggered(true);
                 animate(targetFrame, END_FRAME, {
                     duration: 8.0, // 8 seconds total
-                    ease: "easeOut"
+                    ease: "easeInOut" // Accelerates at start, decelerates at end
                 });
             }
         }, { threshold: 0.8 }); // Trigger when 80% visible
