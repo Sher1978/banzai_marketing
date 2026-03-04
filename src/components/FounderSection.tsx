@@ -42,9 +42,10 @@ const FounderSection: React.FC = () => {
                             viewport={{ once: true, margin: "-20%" }}
                         >
                             <Image
-                                src="/assets/sher-profile.jpg"
+                                src="/assets/sher-profile.webp"
                                 alt="Founder"
                                 fill
+                                priority={true}
                                 className="object-cover"
                             />
                         </motion.div>

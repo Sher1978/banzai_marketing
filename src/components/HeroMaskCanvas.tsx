@@ -24,9 +24,15 @@ export const HeroMaskCanvas: React.FC<HeroMaskCanvasProps> = ({ targetRef }) => 
             const loadedImages: HTMLImageElement[] = [];
             let count = 0;
 
+            const isMobile = window.innerWidth < 768;
+            const basePath = isMobile ? '/assets/mask/mobile/' : '/assets/mask/desktop/';
+
             for (let i = START_FRAME; i <= END_FRAME; i++) {
                 const img = new Image();
-                img.src = `/assets/cybermask_sequence/frame_${i}.png`;
+                if (i === START_FRAME) {
+                    img.fetchPriority = "high";
+                }
+                img.src = `${basePath}frame_${i}.webp`;
                 img.onload = () => {
                     count++;
                     if (count === FRAME_COUNT && isMounted) {
