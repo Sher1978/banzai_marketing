@@ -85,15 +85,15 @@ export const Hero: React.FC = () => {
                         ))}
                     </div>
 
-                    <div className="flex flex-wrap gap-5 mt-4">
+                    <div className="flex flex-wrap gap-3 md:gap-5 mt-4">
                         <button
                             onClick={openLeadModal}
-                            className="group flex items-center justify-center bg-secondary hover:bg-cyan-400 text-black font-black text-base px-12 py-5 rounded-none transition-all uppercase tracking-wider sharp-border shadow-neon-glow"
+                            className="group flex items-center justify-center bg-secondary hover:bg-cyan-400 text-black font-black text-xs md:text-base px-6 py-3 md:px-12 md:py-5 rounded-none transition-all uppercase tracking-wider sharp-border shadow-neon-glow"
                         >
                             <span className="mr-2">{t('hero.button_primary')}</span>
-                            <ArrowRight size={20} className="transition-transform group-hover:translate-x-1" />
+                            <ArrowRight size={16} className="md:w-5 md:h-5 transition-transform group-hover:translate-x-1" />
                         </button>
-                        <button className="flex items-center justify-center border border-white/20 hover:border-white/40 text-white hover:bg-white/5 backdrop-blur-md font-bold text-base px-10 py-5 rounded-none transition-all uppercase tracking-wider">
+                        <button className="flex items-center justify-center border border-white/20 hover:border-white/40 text-white hover:bg-white/5 backdrop-blur-md font-bold text-xs md:text-base px-6 py-3 md:px-10 md:py-5 ">
                             {t('hero.button_secondary')}
                         </button>
                     </div>

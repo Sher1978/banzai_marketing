@@ -46,10 +46,10 @@ const FooterCTA: React.FC = () => {
                     <div className="pt-12">
                         <button
                             onClick={openLeadModal}
-                            className="group relative inline-flex items-center justify-center px-12 py-6 bg-white text-black font-black text-xl uppercase tracking-widest transition-all hover:bg-secondary hover:text-white sharp-border hover:shadow-[0_0_50px_rgba(6,182,212,0.8)]"
+                            className="group relative inline-flex items-center justify-center px-6 py-4 md:px-12 md:py-6 bg-white text-black font-black text-sm md:text-xl uppercase tracking-widest transition-all hover:bg-secondary hover:text-white sharp-border hover:shadow-[0_0_50px_rgba(6,182,212,0.8)]"
                         >
-                            <span className="relative z-10 mr-4">{t('footer_cta.button')}</span>
-                            <ArrowRight size={24} className="relative z-10 transition-transform group-hover:translate-x-2" />
+                            <span className="relative z-10 mr-2 md:mr-4">{t('footer_cta.button')}</span>
+                            <ArrowRight size={24} className="relative z-10 md:w-6 md:h-6 w-4 h-4 transition-transform group-hover:translate-x-2" />
                             <div className="absolute inset-0 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
                         </button>
                     </div>

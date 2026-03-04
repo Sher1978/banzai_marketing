@@ -96,10 +96,10 @@ const ComparisonSection: React.FC = () => {
     );
 
     return (
-        <section ref={sectionRef} className="relative py-32 px-6 bg-black overflow-hidden select-none">
+        <section ref={sectionRef} className="relative py-16 md:py-32 px-6 bg-black overflow-hidden select-none">
             <div className="max-w-[1280px] mx-auto relative z-10">
 
-                <div className="text-center mb-16 px-4">
+                <div className="text-center mb-8 md:mb-16 px-4">
                     <AdaptiveOverlay>
                         <motion.h2
                             initial={{ opacity: 0, y: 20 }}
@@ -118,7 +118,7 @@ const ComparisonSection: React.FC = () => {
                     onMouseLeave={() => setIsInteracting(false)}
                     onTouchMove={handleMove}
                     onTouchEnd={() => setIsInteracting(false)}
-                    className="relative aspect-video md:aspect-[21/9] w-full bg-zinc-900 border border-white/5 overflow-hidden cursor-ew-resize group shadow-[0_0_50px_rgba(0,0,0,0.8)]"
+                    className="relative aspect-video md:aspect-[21/9] -mx-6 w-[calc(100%+3rem)] md:mx-0 md:w-full bg-zinc-900 border border-white/5 overflow-hidden cursor-ew-resize group shadow-[0_0_50px_rgba(0,0,0,0.8)]"
                 >
                     {/* BASE LAYER: Old School (Original brightness) */}
                     <div
@@ -132,7 +132,7 @@ const ComparisonSection: React.FC = () => {
                         {/* HUD Content Overlay for Left Side */}
                         <motion.div
                             style={{ x: oldSchoolParallaxX }}
-                            className="absolute inset-0 flex items-center justify-start p-6 md:p-12"
+                            className="absolute inset-0 hidden md:flex items-center justify-start p-6 md:p-12"
                         >
                             <div className="max-w-[280px] md:max-w-md space-y-8 relative z-10 text-left">
                                 <AdaptiveOverlay>
@@ -172,7 +172,7 @@ const ComparisonSection: React.FC = () => {
                         {/* HUD Content Overlay for Right Side */}
                         <motion.div
                             style={{ x: banzaiParallaxX }}
-                            className="absolute inset-0 flex items-center justify-end p-6 md:p-12 bg-primary/5"
+                            className="absolute inset-0 hidden md:flex items-center justify-end p-6 md:p-12 bg-primary/5"
                         >
                             <div className="max-w-[280px] md:max-w-md space-y-8 relative z-10 text-right">
                                 <AdaptiveOverlay>
@@ -220,6 +220,49 @@ const ComparisonSection: React.FC = () => {
                     {/* Interaction Guide */}
                     <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-40 text-[8px] md:text-[10px] font-mono text-white/20 uppercase tracking-[0.8em] pointer-events-none">
                         Analyze_Transformation
+                    </div>
+                </div>
+
+                {/* Mobile Text Blocks (Below Slider) */}
+                <div className="flex md:hidden flex-col gap-12 mt-12 px-2">
+                    {/* Old School Mobile */}
+                    <div className="space-y-6">
+                        <h3 className="text-2xl font-black text-white/50 uppercase tracking-[0.2em] italic border-l-2 border-white/20 pl-3">
+                            {t('comparison.old_school.title')}
+                        </h3>
+                        <div className="space-y-6">
+                            {oldSchoolBullets.map((bullet, idx) => (
+                                <div key={idx} className="space-y-1">
+                                    <p className="text-base font-bold text-white/80 uppercase line-through decoration-white/40">
+                                        {bullet.bold}
+                                    </p>
+                                    <p className="text-xs text-white/50 uppercase tracking-widest leading-relaxed">
+                                        {bullet.subtext}
+                                    </p>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* BanzAI Mobile */}
+                    <div className="space-y-6 text-right">
+                        <div className="flex justify-end">
+                            <h3 className="text-2xl font-black text-secondary tracking-[0.2em] uppercase border-r-2 border-secondary/40 pr-3 text-glow-cyan inline-block">
+                                {t('comparison.banzai.title')}
+                            </h3>
+                        </div>
+                        <div className="space-y-6">
+                            {banzaiBullets.map((bullet, idx) => (
+                                <div key={idx} className="space-y-1">
+                                    <p className="text-base font-black text-white uppercase text-glow">
+                                        {highlightText(bullet.bold)}
+                                    </p>
+                                    <p className="text-xs text-white/70 uppercase tracking-widest font-semibold leading-relaxed">
+                                        {highlightText(bullet.subtext)}
+                                    </p>
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 </div>
             </div>

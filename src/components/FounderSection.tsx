@@ -32,7 +32,7 @@ const FounderSection: React.FC = () => {
                         setTimeout(() => setIsUnlocked(true), 600);
                     }}
                     viewport={{ once: true, margin: "-20%" }}
-                    className="relative aspect-square max-w-sm md:max-w-md mx-auto lg:mx-0 order-2 lg:order-1 cursor-pointer group"
+                    className="relative aspect-square w-full max-w-[280px] sm:max-w-sm md:max-w-md mx-auto lg:mx-0 order-2 lg:order-1 cursor-pointer group"
                     onClick={() => setIsUnlocked(true)}
                 >
                     {/* Ring Glow Background */}
