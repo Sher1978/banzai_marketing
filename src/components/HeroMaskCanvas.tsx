@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useRef, useEffect, useState } from 'react';
-import { useScroll, useMotionValue, animate } from 'framer-motion';
+import { useScroll, useMotionValue, useSpring, animate } from 'framer-motion';
 
 const START_FRAME = 7;
 const END_FRAME = 39;
@@ -55,7 +55,12 @@ export const HeroMaskCanvas: React.FC<HeroMaskCanvasProps> = ({ targetRef }) => 
         offset: ["start start", "end end"]
     });
 
-    const activeFrame = useMotionValue(START_FRAME);
+    const targetFrame = useMotionValue(START_FRAME);
+    const smoothFrame = useSpring(targetFrame, {
+        stiffness: 100,
+        damping: 30,
+        mass: 1.2
+    });
     const isAutoPlaying = useRef(false);
     const animationControls = useRef<any>(null);
 
@@ -73,12 +78,12 @@ export const HeroMaskCanvas: React.FC<HeroMaskCanvasProps> = ({ targetRef }) => 
                     }
                 }
                 const mappedFrame = START_FRAME + (p / SCROLL_THRESHOLD) * (SCROLL_END_FRAME - START_FRAME);
-                activeFrame.set(mappedFrame);
+                targetFrame.set(mappedFrame);
             } else {
                 // Autoplay area
                 if (!isAutoPlaying.current) {
                     isAutoPlaying.current = true;
-                    animationControls.current = animate(activeFrame, END_FRAME, {
+                    animationControls.current = animate(targetFrame, END_FRAME, {
                         duration: 0.8, // Play the rest of the frames (20->39) over 0.8 seconds
                         ease: "easeOut"
                     });
@@ -92,7 +97,7 @@ export const HeroMaskCanvas: React.FC<HeroMaskCanvasProps> = ({ targetRef }) => 
                 animationControls.current.stop();
             }
         };
-    }, [scrollYProgress, activeFrame]);
+    }, [scrollYProgress, targetFrame]);
 
     // 3. Render Loop with "Object-Fit: Contain" Logic
     useEffect(() => {
@@ -106,7 +111,7 @@ export const HeroMaskCanvas: React.FC<HeroMaskCanvasProps> = ({ targetRef }) => 
             const ctx = canvas.getContext('2d');
             if (!ctx) return;
 
-            const f = activeFrame.get();
+            const f = smoothFrame.get();
             const localIndex = Math.max(0, Math.min(Math.floor(f) - START_FRAME, FRAME_COUNT - 1));
             const currentImage = images[localIndex];
 
@@ -131,7 +136,7 @@ export const HeroMaskCanvas: React.FC<HeroMaskCanvasProps> = ({ targetRef }) => 
 
         render();
         return () => cancelAnimationFrame(animationFrameId);
-    }, [isLoaded, images, activeFrame]);
+    }, [isLoaded, images, smoothFrame]);
 
     // 4. Handle Canvas Resize (HDPI)
     useEffect(() => {
