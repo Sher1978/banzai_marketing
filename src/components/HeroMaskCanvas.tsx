@@ -10,9 +10,10 @@ const FRAME_COUNT = END_FRAME - START_FRAME + 1; // 34 frames
 
 interface HeroMaskCanvasProps {
     targetRef?: React.RefObject<HTMLDivElement | null>;
+    isScrollActive?: boolean;
 }
 
-export const HeroMaskCanvas: React.FC<HeroMaskCanvasProps> = ({ targetRef }) => {
+export const HeroMaskCanvas: React.FC<HeroMaskCanvasProps> = ({ targetRef, isScrollActive = true }) => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const [images, setImages] = useState<HTMLImageElement[]>([]);
     const [isLoaded, setIsLoaded] = useState(false);
@@ -62,7 +63,11 @@ export const HeroMaskCanvas: React.FC<HeroMaskCanvasProps> = ({ targetRef }) => 
     });
 
     // Map scroll 0 -> 1 to frame 7 -> 40
-    const rawFrame = useTransform(scrollYProgress, [0, 1], [START_FRAME, END_FRAME]);
+    const rawFrame = useTransform(
+        scrollYProgress,
+        [0, 1],
+        [START_FRAME, isScrollActive ? END_FRAME : START_FRAME]
+    );
 
     // Physics config for inertia and slowdown on direction change
     const smoothFrame = useSpring(rawFrame, {
