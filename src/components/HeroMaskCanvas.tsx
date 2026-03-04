@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useRef, useEffect, useState } from 'react';
-import { useScroll, useTransform, useSpring, motion } from 'framer-motion';
+import { motion, useMotionValue, animate } from 'framer-motion';
 
 const START_FRAME = 7;
 const END_FRAME = 39;
@@ -55,30 +55,36 @@ export const HeroMaskCanvas: React.FC<HeroMaskCanvasProps> = ({ targetRef }) => 
         return () => { isMounted = false; };
     }, []);
 
-    // 2. Scroll Direction Logic
-    const { scrollYProgress } = useScroll({
-        target: targetRef,
-        offset: ["start start", "end end"]
-    });
-
-    // Map scroll 0 -> 1 to frame 7 -> 40
-    const rawFrame = useTransform(scrollYProgress, [0, 1], [START_FRAME, END_FRAME]);
-
-    // Physics config for inertia and slowdown on direction change
-    const smoothFrame = useSpring(rawFrame, {
-        stiffness: 100,
-        damping: 30,
-        restDelta: 0.001
-    });
-
+    // 2. Intersection Observer Trigger Logic
+    const containerRef = useRef<HTMLDivElement>(null);
+    const targetFrame = useMotionValue(START_FRAME);
     const [currentFrame, setCurrentFrame] = useState(START_FRAME);
+    const [hasTriggered, setHasTriggered] = useState(false);
 
     useEffect(() => {
-        const unsubscribe = smoothFrame.on("change", (latest) => {
+        const observer = new IntersectionObserver(([entry]) => {
+            if (entry.isIntersecting && !hasTriggered) {
+                setHasTriggered(true);
+                animate(targetFrame, END_FRAME, {
+                    duration: 1.5, // Fixed duration for smooth playback
+                    ease: "easeOut" // Slowly decelerates at the end
+                });
+            }
+        }, { threshold: 0.8 }); // Trigger when 80% visible
+
+        if (containerRef.current) {
+            observer.observe(containerRef.current);
+        }
+
+        return () => observer.disconnect();
+    }, [hasTriggered, targetFrame]);
+
+    useEffect(() => {
+        const unsubscribe = targetFrame.on("change", (latest) => {
             setCurrentFrame(Math.round(latest));
         });
         return () => unsubscribe();
-    }, [smoothFrame]);
+    }, [targetFrame]);
 
     // 3. Render Loop with "Object-Fit: Contain" Logic
     useEffect(() => {
@@ -92,7 +98,7 @@ export const HeroMaskCanvas: React.FC<HeroMaskCanvasProps> = ({ targetRef }) => 
             const ctx = canvas.getContext('2d');
             if (!ctx) return;
 
-            const f = smoothFrame.get();
+            const f = targetFrame.get();
             const localIndex = Math.max(0, Math.min(Math.round(f) - START_FRAME, FRAME_COUNT - 1));
             const currentImage = images[localIndex];
 
@@ -117,7 +123,7 @@ export const HeroMaskCanvas: React.FC<HeroMaskCanvasProps> = ({ targetRef }) => 
 
         render();
         return () => cancelAnimationFrame(animationFrameId);
-    }, [isLoaded, images, smoothFrame]);
+    }, [isLoaded, images, targetFrame]);
 
     // 4. Handle Canvas Resize (HDPI)
     useEffect(() => {
@@ -138,7 +144,7 @@ export const HeroMaskCanvas: React.FC<HeroMaskCanvasProps> = ({ targetRef }) => 
     }, [isLoaded]);
 
     return (
-        <div className="w-full h-full relative flex flex-col items-center justify-center overflow-hidden">
+        <div ref={containerRef} className="w-full h-full relative flex flex-col items-center justify-center overflow-hidden">
             {/* Top HUD Block (Static & Animated) */}
             <div className="absolute top-10 md:top-20 w-full text-center z-20 flex flex-col gap-1 items-center">
                 <span className="font-mono text-xs text-secondary/60 tracking-[0.3em] uppercase mb-4 opacity-50">INITIALIZING NEURAL CORE</span>
