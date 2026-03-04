@@ -4,9 +4,9 @@ import React, { useRef, useEffect, useState } from 'react';
 import { useScroll, useTransform, useSpring, motion } from 'framer-motion';
 
 const START_FRAME = 7;
-const END_FRAME = 40;
+const END_FRAME = 39;
 const SCROLL_END_FRAME = 27;
-const FRAME_COUNT = END_FRAME - START_FRAME + 1; // 34 frames
+const FRAME_COUNT = END_FRAME - START_FRAME + 1; // 33 frames
 
 interface HeroMaskCanvasProps {
     targetRef?: React.RefObject<HTMLDivElement | null>;
@@ -66,8 +66,8 @@ export const HeroMaskCanvas: React.FC<HeroMaskCanvasProps> = ({ targetRef }) => 
 
     // Physics config for inertia and slowdown on direction change
     const smoothFrame = useSpring(rawFrame, {
-        stiffness: 50,
-        damping: 25,
+        stiffness: 100,
+        damping: 30,
         restDelta: 0.001
     });
 
@@ -96,7 +96,7 @@ export const HeroMaskCanvas: React.FC<HeroMaskCanvasProps> = ({ targetRef }) => 
             const localIndex = Math.max(0, Math.min(Math.round(f) - START_FRAME, FRAME_COUNT - 1));
             const currentImage = images[localIndex];
 
-            if (currentImage && currentImage.complete) {
+            if (currentImage && currentImage.complete && currentImage.width > 0) {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
 
                 const imgW = currentImage.width;
