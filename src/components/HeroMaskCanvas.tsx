@@ -199,20 +199,18 @@ export const HeroMaskCanvas: React.FC<HeroMaskCanvasProps> = ({ targetRef }) => 
                             currentFrame >= item.start && (
                                 <motion.div
                                     key={item.id}
-                                    initial={{ opacity: 0, x: -50, filter: "blur(8px)", scale: 0.5 }}
+                                    initial={{ opacity: 0, x: -20, scale: 0.8 }}
                                     animate={{
                                         opacity: [0, 1, 0.8, 1],
-                                        x: (currentFrame - item.start) * (item.drift.x / 30),
-                                        y: (currentFrame - item.start) * (item.drift.y / 30),
-                                        filter: "blur(0px)",
+                                        x: item.drift.x,
+                                        y: item.drift.y,
                                         scale: item.scale
                                     }}
                                     transition={{
-                                        opacity: { duration: 1 },
-                                        x: { type: "spring", stiffness: 20, damping: 10 },
-                                        y: { type: "spring", stiffness: 20, damping: 10 }
+                                        duration: 8 - ((item.start - START_FRAME) * (8 / FRAME_COUNT)),
+                                        ease: "easeOut"
                                     }}
-                                    className={`absolute font-mono text-[10px] md:text-sm z-0 ${item.color} drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]`}
+                                    className={`absolute font-mono text-[8px] md:text-sm z-0 ${item.color} will-change-transform`}
                                     style={{ top: item.top, left: item.left }}
                                 >
                                     {item.text}
@@ -247,10 +245,12 @@ export const HeroMaskCanvas: React.FC<HeroMaskCanvasProps> = ({ targetRef }) => 
                                 initial={{ opacity: 0, scale: 0.8, y: -40 }}
                                 animate={{ opacity: 1, scale: 1, y: 0 }}
                                 transition={{ duration: 1.5, ease: "easeOut" }}
-                                className="flex flex-col gap-1 absolute top-[15%] md:top-[20%] z-40"
+                                className="flex flex-col gap-1 absolute top-[15%] md:top-[20%] z-40 items-center justify-center w-full px-4"
                             >
-                                <span className="text-lg md:text-3xl hud-text font-bold tracking-widest whitespace-nowrap text-glow shadow-primary drop-shadow-[0_0_15px_rgba(6,182,212,0.8)]">NEURAL LINK: ACTIVE | STATUS: OPTIMAL</span>
-                                <span className="text-xs md:text-sm text-secondary/80 font-mono tracking-[0.3em] uppercase drop-shadow-md">SYSTEM.READY</span>
+                                <span className="text-sm md:text-3xl hud-text font-bold tracking-widest text-center text-glow shadow-primary drop-shadow-[0_0_15px_rgba(6,182,212,0.8)]">
+                                    NEURAL LINK: ACTIVE <span className="hidden md:inline">|</span><br className="md:hidden" /> STATUS: OPTIMAL
+                                </span>
+                                <span className="text-[10px] md:text-sm text-secondary/80 font-mono tracking-[0.3em] uppercase drop-shadow-md">SYSTEM.READY</span>
                             </motion.div>
                         )}
 
@@ -281,10 +281,12 @@ export const HeroMaskCanvas: React.FC<HeroMaskCanvasProps> = ({ targetRef }) => 
                                 initial={{ opacity: 0, scale: 0.8, y: 40 }}
                                 animate={{ opacity: 1, scale: 1, y: 0 }}
                                 transition={{ duration: 1.5, ease: "easeOut" }}
-                                className="flex flex-col gap-1 w-full absolute bottom-[15%] md:bottom-[20%] z-40"
+                                className="flex flex-col gap-1 w-full absolute bottom-[22%] md:bottom-[25%] z-40"
                             >
                                 <div className="w-full flex justify-center items-center px-4">
-                                    <span className="text-lg md:text-3xl hud-text font-bold whitespace-nowrap leading-tight text-glow drop-shadow-[0_0_15px_rgba(6,182,212,0.8)]">+300% REACH_ACCELERATION<br className="md:hidden" /> <span className="hidden md:inline">|</span> +130% SALES_GROWTH</span>
+                                    <span className="text-sm md:text-3xl text-center hud-text font-bold leading-tight text-glow drop-shadow-[0_0_15px_rgba(6,182,212,0.8)]">
+                                        +300% REACH_ACCELERATION<br className="md:hidden" /> <span className="hidden md:inline">|</span> +130% SALES_GROWTH
+                                    </span>
                                 </div>
                             </motion.div>
                         )}
