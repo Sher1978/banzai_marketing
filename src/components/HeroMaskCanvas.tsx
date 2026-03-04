@@ -1,12 +1,12 @@
 "use client";
 
 import React, { useRef, useEffect, useState } from 'react';
-import { useScroll, useMotionValue, useSpring } from 'framer-motion';
+import { useScroll, useTransform, useSpring, motion } from 'framer-motion';
 
 const START_FRAME = 7;
-const END_FRAME = 39;
+const END_FRAME = 40;
 const SCROLL_END_FRAME = 27;
-const FRAME_COUNT = END_FRAME - START_FRAME + 1; // 39 frames
+const FRAME_COUNT = END_FRAME - START_FRAME + 1; // 34 frames
 
 interface HeroMaskCanvasProps {
     targetRef?: React.RefObject<HTMLDivElement | null>;
@@ -56,35 +56,29 @@ export const HeroMaskCanvas: React.FC<HeroMaskCanvasProps> = ({ targetRef }) => 
     }, []);
 
     // 2. Scroll Direction Logic
-    const { scrollY } = useScroll();
-    const targetFrame = useMotionValue(START_FRAME);
-
-    // Physics config for inertia and slowdown on direction change
-    const smoothFrame = useSpring(targetFrame, {
-        stiffness: 40,
-        damping: 25,
-        mass: 3
+    const { scrollYProgress } = useScroll({
+        target: targetRef,
+        offset: ["start start", "end end"]
     });
 
-    const lastScrollY = useRef(0);
+    // Map scroll 0 -> 1 to frame 7 -> 40
+    const rawFrame = useTransform(scrollYProgress, [0, 1], [START_FRAME, END_FRAME]);
+
+    // Physics config for inertia and slowdown on direction change
+    const smoothFrame = useSpring(rawFrame, {
+        stiffness: 50,
+        damping: 25,
+        restDelta: 0.001
+    });
+
+    const [currentFrame, setCurrentFrame] = useState(START_FRAME);
 
     useEffect(() => {
-        const unsubscribe = scrollY.on("change", (latest) => {
-            const delta = latest - lastScrollY.current;
-
-            // If scrolling down (positive delta), play forward. 
-            // If up (negative delta), play backward.
-            if (delta > 5) {
-                targetFrame.set(END_FRAME);
-                lastScrollY.current = latest;
-            } else if (delta < -5) {
-                targetFrame.set(START_FRAME);
-                lastScrollY.current = latest;
-            }
+        const unsubscribe = smoothFrame.on("change", (latest) => {
+            setCurrentFrame(Math.round(latest));
         });
-
         return () => unsubscribe();
-    }, [scrollY, targetFrame]);
+    }, [smoothFrame]);
 
     // 3. Render Loop with "Object-Fit: Contain" Logic
     useEffect(() => {
@@ -99,7 +93,7 @@ export const HeroMaskCanvas: React.FC<HeroMaskCanvasProps> = ({ targetRef }) => 
             if (!ctx) return;
 
             const f = smoothFrame.get();
-            const localIndex = Math.max(0, Math.min(Math.floor(f) - START_FRAME, FRAME_COUNT - 1));
+            const localIndex = Math.max(0, Math.min(Math.round(f) - START_FRAME, FRAME_COUNT - 1));
             const currentImage = images[localIndex];
 
             if (currentImage && currentImage.complete) {
@@ -144,7 +138,18 @@ export const HeroMaskCanvas: React.FC<HeroMaskCanvasProps> = ({ targetRef }) => 
     }, [isLoaded]);
 
     return (
-        <div className="w-full h-full relative flex items-center justify-center overflow-hidden">
+        <div className="w-full h-full relative flex flex-col items-center justify-center overflow-hidden">
+            {/* Top HUD Block */}
+            {currentFrame >= 31 && (
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    className="absolute top-10 md:top-20 w-full text-center z-20 flex flex-col gap-1"
+                >
+                    <span className="text-[10px] md:text-sm hud-text font-bold">NEURAL LINK: ACTIVE | STATUS: OPTIMAL</span>
+                </motion.div>
+            )}
+
             <canvas
                 ref={canvasRef}
                 className="w-full h-full transition-opacity duration-700"
@@ -153,6 +158,17 @@ export const HeroMaskCanvas: React.FC<HeroMaskCanvasProps> = ({ targetRef }) => 
                     filter: 'drop-shadow(0 0 50px rgba(6, 182, 212, 0.15))'
                 }}
             />
+
+            {/* Bottom HUD Block */}
+            {currentFrame >= 31 && (
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    className="absolute bottom-10 md:bottom-20 w-full text-center z-20 flex flex-col gap-1"
+                >
+                    <span className="text-[10px] md:text-sm hud-text font-bold">+300% REACH_ACCELERATION | +130% SALES_GROWTH</span>
+                </motion.div>
+            )}
 
             {!isLoaded && (
                 <div className="absolute inset-0 flex items-center justify-center">
