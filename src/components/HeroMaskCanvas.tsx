@@ -9,19 +9,39 @@ const SCROLL_END_FRAME = 27;
 const FRAME_COUNT = END_FRAME - START_FRAME + 1; // 33 frames
 
 const FLOATING_TEXTS = [
-    { id: 1, text: "Parsing environment...", top: "15%", left: "15%", start: 8, color: "text-primary/70", scale: 1.4, drift: { x: 60, y: 30 } },
-    { id: 2, text: "Requesting data streams [OK]", top: "30%", left: "75%", start: 10, color: "text-secondary/70", scale: 0.6, drift: { x: -80, y: -40 } },
-    { id: 3, text: "INITIALIZING AI CORE...", top: "60%", left: "10%", start: 12, color: "text-white/50", scale: 1.3, drift: { x: 40, y: 80 } },
-    { id: 4, text: "Scanning biometrics [99%]", top: "75%", left: "80%", start: 14, color: "text-primary/70", scale: 0.8, drift: { x: -100, y: 20 } },
-    { id: 5, text: "Calibrating neural link...", top: "25%", left: "10%", start: 16, color: "text-secondary/60", scale: 1.1, drift: { x: 50, y: -60 } },
-    { id: 6, text: "Bypass firewall: SUCCESS", top: "85%", left: "25%", start: 18, color: "text-primary/50", scale: 1.4, drift: { x: 20, y: -90 } },
-    { id: 7, text: "Injecting payloads...", top: "45%", left: "80%", start: 20, color: "text-white/60", scale: 0.7, drift: { x: -50, y: 60 } },
-    { id: 8, text: "Synapse aligned [100%]", top: "10%", left: "60%", start: 22, color: "text-secondary/80", scale: 1.0, drift: { x: 70, y: 40 } },
-    { id: 9, text: "Overriding manual control", top: "65%", left: "20%", start: 24, color: "text-primary/60", scale: 1.2, drift: { x: -30, y: -100 } },
-    { id: 10, text: "Compiling protocol [BANZAI]", top: "40%", left: "15%", start: 26, color: "text-white/70", scale: 0.9, drift: { x: 80, y: -20 } },
-    { id: 11, text: "Sensory input: MAXIMUM", top: "80%", left: "65%", start: 28, color: "text-secondary/70", scale: 1.4, drift: { x: -60, y: -50 } },
-    { id: 12, text: "System ready.", top: "55%", left: "70%", start: 30, color: "text-primary/80", scale: 1.1, drift: { x: 40, y: 70 } },
+    { id: 1, text: "Parsing environment...", top: "15%", left: "15%", start: 8, color: "text-primary/70", scale: 1.4, drift: { x: 30, y: 15 } },
+    { id: 2, text: "Requesting data streams [OK]", top: "30%", left: "75%", start: 10, color: "text-secondary/70", scale: 0.6, drift: { x: -40, y: -20 } },
+    { id: 3, text: "INITIALIZING AI CORE...", top: "60%", left: "10%", start: 12, color: "text-white/50", scale: 1.3, drift: { x: 20, y: 40 } },
+    { id: 4, text: "Scanning biometrics [99%]", top: "75%", left: "80%", start: 14, color: "text-primary/70", scale: 0.8, drift: { x: -50, y: 10 } },
+    { id: 5, text: "Calibrating neural link...", top: "25%", left: "10%", start: 16, color: "text-secondary/60", scale: 1.1, drift: { x: 25, y: -30 } },
+    { id: 6, text: "Bypass firewall: SUCCESS", top: "85%", left: "25%", start: 18, color: "text-primary/50", scale: 1.4, drift: { x: 10, y: -45 } },
+    { id: 7, text: "Injecting payloads...", top: "45%", left: "80%", start: 20, color: "text-white/60", scale: 0.7, drift: { x: -25, y: 30 } },
+    { id: 8, text: "Synapse aligned [100%]", top: "10%", left: "60%", start: 22, color: "text-secondary/80", scale: 1.0, drift: { x: 35, y: 20 } },
+    { id: 9, text: "Overriding manual control", top: "65%", left: "20%", start: 24, color: "text-primary/60", scale: 1.2, drift: { x: -15, y: -50 } },
+    { id: 10, text: "Compiling protocol [BANZAI]", top: "40%", left: "15%", start: 26, color: "text-white/70", scale: 0.9, drift: { x: 40, y: -10 } },
+    { id: 11, text: "Sensory input: MAXIMUM", top: "80%", left: "65%", start: 28, color: "text-secondary/70", scale: 1.4, drift: { x: -30, y: -25 } },
+    { id: 12, text: "System ready.", top: "55%", left: "70%", start: 30, color: "text-primary/80", scale: 1.1, drift: { x: 20, y: 35 } },
 ];
+
+const TypingText = ({ text, delay, className, startFrame, currentFrame }: { text: string, delay: number, className: string, startFrame: number, currentFrame: number }) => {
+    if (currentFrame < startFrame) return null;
+    return (
+        <motion.div
+            initial={{ clipPath: "inset(0 100% 0 0)" }}
+            animate={{ clipPath: "inset(0 0 0 0)" }}
+            transition={{ duration: 2, ease: "linear", delay }}
+            className={`font-mono inline-block border-r-2 border-primary pr-1 ${className}`}
+            style={{ whiteSpace: "nowrap" }}
+        >
+            <motion.span
+                animate={{ opacity: [1, 0, 1] }}
+                transition={{ repeat: Infinity, duration: 0.8 }}
+                className="absolute right-0 top-0 bottom-0 w-[2px] bg-primary"
+            />
+            {text}
+        </motion.div>
+    );
+};
 
 interface HeroMaskCanvasProps {
     targetRef?: React.RefObject<HTMLDivElement | null>;
@@ -81,7 +101,7 @@ export const HeroMaskCanvas: React.FC<HeroMaskCanvasProps> = ({ targetRef }) => 
             if (entry.isIntersecting && !hasTriggered) {
                 setHasTriggered(true);
                 animate(targetFrame, END_FRAME, {
-                    duration: 6.0, // 4x slower than 1.5s
+                    duration: 8.0, // 8 seconds total
                     ease: "easeOut"
                 });
             }
@@ -182,8 +202,8 @@ export const HeroMaskCanvas: React.FC<HeroMaskCanvasProps> = ({ targetRef }) => 
                                     initial={{ opacity: 0, x: -50, filter: "blur(8px)", scale: 0.5 }}
                                     animate={{
                                         opacity: [0, 1, 0.8, 1],
-                                        x: (currentFrame - item.start) * (item.drift.x / 10),
-                                        y: (currentFrame - item.start) * (item.drift.y / 10),
+                                        x: (currentFrame - item.start) * (item.drift.x / 30),
+                                        y: (currentFrame - item.start) * (item.drift.y / 30),
                                         filter: "blur(0px)",
                                         scale: item.scale
                                     }}
@@ -201,59 +221,70 @@ export const HeroMaskCanvas: React.FC<HeroMaskCanvasProps> = ({ targetRef }) => 
                         ))}
                     </AnimatePresence>
 
+                    {/* 3 Typing Effect Texts */}
+                    <div className="absolute top-[20%] right-[10%] text-primary/80 text-[8px] md:text-xs z-30">
+                        <TypingText text=">> SECURE_CHANNEL_OPEN" delay={0} startFrame={12} currentFrame={currentFrame} className="" />
+                    </div>
+                    <div className="absolute bottom-[40%] left-[5%] text-secondary/80 text-[8px] md:text-xs z-30">
+                        <TypingText text=">> ANALYZING_MARKET_DATA..." delay={0.5} startFrame={16} currentFrame={currentFrame} className="" />
+                    </div>
+                    <div className="absolute bottom-[20%] right-[15%] text-white/80 text-[8px] md:text-xs z-30">
+                        <TypingText text=">> DEPLOYING_AI_AGENTS" delay={1.0} startFrame={22} currentFrame={currentFrame} className="" />
+                    </div>
+
                     {/* Top HUD */}
-                    <div className="flex flex-col items-center text-center gap-2">
+                    <div className="flex flex-col items-center text-center gap-2 relative h-full">
                         {currentFrame < 25 ? (
                             <motion.div
                                 initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-                                className="font-mono text-[10px] md:text-sm text-secondary/70 tracking-[0.2em]"
+                                className="font-mono text-[10px] md:text-sm text-secondary/70 tracking-[0.2em] absolute top-0"
                             >
                                 <div className="animate-pulse">BOOTING NEURAL PROTOCOLS...</div>
                                 <div className="text-primary/50 mt-1">{`[ 0x${(currentFrame * 1337).toString(16).toUpperCase()} ] SYNCING CORE...`}</div>
                             </motion.div>
                         ) : (
                             <motion.div
-                                initial={{ opacity: 0, scale: 0.95 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                className="flex flex-col gap-1"
+                                initial={{ opacity: 0, scale: 0.8, y: -40 }}
+                                animate={{ opacity: 1, scale: 1, y: 0 }}
+                                transition={{ duration: 1.5, ease: "easeOut" }}
+                                className="flex flex-col gap-1 absolute top-[15%] md:top-[20%] z-40"
                             >
-                                <span className="text-xs md:text-lg hud-text font-bold tracking-widest whitespace-nowrap">NEURAL LINK: ACTIVE | STATUS: OPTIMAL</span>
-                                <span className="text-[10px] md:text-xs text-secondary/60 font-mono tracking-[0.3em] uppercase">SYSTEM.READY</span>
+                                <span className="text-lg md:text-3xl hud-text font-bold tracking-widest whitespace-nowrap text-glow shadow-primary drop-shadow-[0_0_15px_rgba(6,182,212,0.8)]">NEURAL LINK: ACTIVE | STATUS: OPTIMAL</span>
+                                <span className="text-xs md:text-sm text-secondary/80 font-mono tracking-[0.3em] uppercase drop-shadow-md">SYSTEM.READY</span>
                             </motion.div>
                         )}
-                    </div>
 
-                    {/* Middle Left / Right HUD Data (Desktop Only) */}
-                    <div className="hidden md:flex justify-between w-full font-mono text-xs text-primary/40">
-                        <div className="flex flex-col gap-1">
-                            <span>V-SYNC: {currentFrame * 2.5}%</span>
-                            <span>MEM_ALLOC: 0x2A4F</span>
+                        {/* Middle Left / Right HUD Data (Desktop Only) */}
+                        <div className="hidden md:flex justify-between w-full font-mono text-xs text-primary/40 absolute top-1/2 -translate-y-1/2">
+                            <div className="flex flex-col gap-1">
+                                <span>V-SYNC: {currentFrame * 2.5}%</span>
+                                <span>MEM_ALLOC: 0x2A4F</span>
+                            </div>
+                            <div className="flex flex-col gap-1 text-right">
+                                <span>LATENCY: {Math.max(1, 40 - currentFrame)}ms</span>
+                                <span>CPU_LOAD: MINIMAL</span>
+                            </div>
                         </div>
-                        <div className="flex flex-col gap-1 text-right">
-                            <span>LATENCY: {Math.max(1, 40 - currentFrame)}ms</span>
-                            <span>CPU_LOAD: MINIMAL</span>
-                        </div>
-                    </div>
 
-                    {/* Bottom HUD */}
-                    <div className="flex flex-col items-center text-center gap-2">
+                        {/* Bottom HUD */}
                         {currentFrame < 30 ? (
                             <motion.div
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: [0, 1, 0] }}
                                 transition={{ repeat: Infinity, duration: 0.5 }}
-                                className="font-mono text-xs md:text-sm text-primary/80 uppercase tracking-widest"
+                                className="font-mono text-xs md:text-sm text-primary/80 uppercase tracking-widest absolute bottom-0"
                             >
                                 CALCULATING...
                             </motion.div>
                         ) : (
                             <motion.div
-                                initial={{ opacity: 0, y: 10 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                className="flex flex-col gap-1 w-full"
+                                initial={{ opacity: 0, scale: 0.8, y: 40 }}
+                                animate={{ opacity: 1, scale: 1, y: 0 }}
+                                transition={{ duration: 1.5, ease: "easeOut" }}
+                                className="flex flex-col gap-1 w-full absolute bottom-[15%] md:bottom-[20%] z-40"
                             >
                                 <div className="w-full flex justify-center items-center px-4">
-                                    <span className="text-[10px] md:text-[15px] hud-text font-bold whitespace-nowrap leading-tight">+300% REACH_ACCELERATION<br className="md:hidden" /> <span className="hidden md:inline">|</span> +130% SALES_GROWTH</span>
+                                    <span className="text-lg md:text-3xl hud-text font-bold whitespace-nowrap leading-tight text-glow drop-shadow-[0_0_15px_rgba(6,182,212,0.8)]">+300% REACH_ACCELERATION<br className="md:hidden" /> <span className="hidden md:inline">|</span> +130% SALES_GROWTH</span>
                                 </div>
                             </motion.div>
                         )}
