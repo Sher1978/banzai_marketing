@@ -36,8 +36,8 @@ const FounderSection: React.FC = () => {
                     <div className="absolute inset-0 rounded-full overflow-hidden border border-white/10 z-10 bg-black">
                         <motion.div
                             className="w-full h-full relative"
-                            initial={{ opacity: 0 }}
-                            whileInView={{ opacity: 1 }}
+                            initial={{ opacity: 0, scale: 1.1, filter: "brightness(0.2) grayscale(100%)" }}
+                            whileInView={{ opacity: 1, scale: 1, filter: "brightness(1) grayscale(0%)" }}
                             transition={{ duration: 1.2, ease: "easeOut" }}
                             viewport={{ once: true, margin: "-20%" }}
                         >

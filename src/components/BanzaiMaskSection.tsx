@@ -9,7 +9,7 @@ const BanzaiMaskSection: React.FC = () => {
     return (
         <section
             ref={sectionRef}
-            className="relative w-full h-[200vh] bg-[#050505]"
+            className="relative w-full h-[400vh] bg-[#050505]"
         >
             <div className="sticky top-0 w-full h-screen flex flex-col items-center justify-center overflow-hidden">
                 {/* Background glow */}

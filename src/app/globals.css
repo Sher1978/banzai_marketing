@@ -230,49 +230,6 @@
   }
 }
 
-/* Shogun HUD Effects */
-.hud-text {
-  font-family: 'JetBrains Mono', monospace;
-  color: #00ffff;
-  /* Electric Cyan */
-  text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
-  position: relative;
-  overflow: hidden;
-  animation: hud-flicker 0.15s infinite alternate;
-}
-
-.hud-text::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background: rgba(0, 255, 255, 0.4);
-  box-shadow: 0 0 15px #00ffff;
-  animation: hud-scanline 3s linear infinite;
-}
-
-@keyframes hud-scanline {
-  0% {
-    top: -10%;
-  }
-
-  100% {
-    top: 110%;
-  }
-}
-
-@keyframes hud-flicker {
-  0% {
-    opacity: 0.95;
-  }
-
-  100% {
-    opacity: 1;
-  }
-}
-
 body {
   background-color: var(--color-background-dark);
   color: #f1f5f9;
