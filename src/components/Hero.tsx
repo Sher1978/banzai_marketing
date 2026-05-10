@@ -21,15 +21,16 @@ export const Hero: React.FC = () => {
 
     return (
         <section className="relative w-full min-h-[90vh] py-20 lg:py-32 px-6 flex items-center bg-[#050505] overflow-hidden border-b border-primary/20">
-            {/* Fixed Background Image */}
+            {/* Background Image */}
             <div
-                className="absolute inset-0 bg-[url('/assets/dubai-bg.jpg')] bg-cover bg-right lg:bg-center bg-fixed pointer-events-none opacity-100"
+                className="absolute inset-0 bg-cover bg-right lg:bg-center pointer-events-none opacity-100"
+                style={{ backgroundImage: "url('/assets/dubai-bg.jpg')" }}
                 aria-hidden="true"
             />
 
             {/* Dark Overlay with Backdrop Blur */}
             <div
-                className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent pointer-events-none"
+                className="absolute inset-0 bg-gradient-to-r from-black via-black/60 to-transparent pointer-events-none"
                 aria-hidden="true"
             />
 
