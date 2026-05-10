@@ -1,3 +1,0 @@
-module.exports=[72131,(a,b,c)=>{"use strict";b.exports=a.r(42602).vendored["react-ssr"].React},35112,(a,b,c)=>{"use strict";b.exports=a.r(42602).vendored["react-ssr"].ReactDOM},27670,a=>{a.v(b=>Promise.all(["server/chunks/ssr/public_locales_en_common_json_dba64142._.js"].map(b=>a.l(b))).then(()=>b(29646)))},41359,a=>{a.v(b=>Promise.all(["server/chunks/ssr/public_locales_ru_common_json_8b9ab75b._.js"].map(b=>a.l(b))).then(()=>b(92508)))}];
-
-//# sourceMappingURL=_f71dde15._.js.map
