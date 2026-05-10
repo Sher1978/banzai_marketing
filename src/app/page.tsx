@@ -1,5 +1,4 @@
 import Hero from "@/components/Hero";
-import BanzaiMaskSection from "@/components/BanzaiMaskSection";
 import PainSection from "@/components/PainSection";
 import FounderSection from "@/components/FounderSection";
 import ProcessSection from "@/components/ProcessSection";
@@ -13,7 +12,6 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-background-dark">
       <Hero />
-      <BanzaiMaskSection />
       <PainSection />
       <FounderSection />
       <ProcessSection />

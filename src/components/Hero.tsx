@@ -4,11 +4,10 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { ArrowRight, Globe } from 'lucide-react';
 import '@/lib/i18n';
-import { HeroMaskCanvas } from './HeroMaskCanvas';
 import { openLeadModal } from './ModalController';
 
 /**
- * Hero component with "two-level reading" hierarchy and interactive BanzAI Mask.
+ * Hero component with "two-level reading" hierarchy and Dubai background.
  */
 export const Hero: React.FC = () => {
     const { t, i18n } = useTranslation();
