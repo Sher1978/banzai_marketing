@@ -150,6 +150,12 @@ export const HeroSlider: React.FC = () => {
       {/* Background Cyber Grid */}
       <div className="absolute inset-0 cyber-grid opacity-[0.03] pointer-events-none" />
 
+      {/* Premium background visual overlay */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center pointer-events-none opacity-[0.18] mix-blend-screen"
+        style={{ backgroundImage: "url('/assets/dubai_geo_premium.png')" }}
+      />
+
       {/* Decorative Golden Dust/Noise overlay */}
       <div className="absolute inset-0 bg-noise opacity-[0.02] pointer-events-none" />
 

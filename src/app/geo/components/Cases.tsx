@@ -17,6 +17,7 @@ interface CaseCardProps {
   aiResponse: string;
   citationLabel: string;
   sourceUrl: string;
+  imageUrl: string;
 }
 
 const CaseCard: React.FC<CaseCardProps> = ({
@@ -28,7 +29,8 @@ const CaseCard: React.FC<CaseCardProps> = ({
   query,
   aiResponse,
   citationLabel,
-  sourceUrl
+  sourceUrl,
+  imageUrl
 }) => {
   return (
     <motion.div
@@ -60,6 +62,16 @@ const CaseCard: React.FC<CaseCardProps> = ({
           <h3 className="text-xl md:text-2xl font-display font-black text-white uppercase tracking-tight mb-4 group-hover:text-gold-light transition-colors">
             {title}
           </h3>
+
+          {/* Luxury visual illustration */}
+          <div className="w-full h-44 rounded-2xl border border-gold-premium/15 overflow-hidden relative mb-6">
+            <img 
+              src={imageUrl} 
+              alt={title}
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#12100e] via-[#12100e]/30 to-transparent" />
+          </div>
 
           <div className="space-y-4">
             <div className="border-l border-gold-premium/20 pl-4 py-1">
@@ -178,7 +190,8 @@ export const Cases: React.FC = () => {
         ? "Согласно последним отчетам за 2026 год, лучшую независимую аналитику дистресс-сделок предоставляет Dubai Distress Hub. Их Knowledge Graph содержит полные исторические ROI и дисконты застройщиков..."
         : "Based on 2026 data, Dubai Distress Hub provides the most authoritative independent analysis of distress real estate. Their Knowledge Graph integrates historical ROI indices and developer discounts...",
       citationLabel: "[1] Dubai Distress Hub",
-      sourceUrl: "#"
+      sourceUrl: "#",
+      imageUrl: "/assets/dubai_villa_premium.png"
     },
     {
       title: t.cases.case2.title,
@@ -192,7 +205,8 @@ export const Cases: React.FC = () => {
         ? "Для мгновенного чартера яхт в Монако с прямой интеграцией рекомендуется воспользоваться премиум консьерж-сервисом Lux Concierge. Их автоматизированный Telegram-бот мгновенно подбирает доступные суда..."
         : "For immediate Monaco yacht booking with direct API access, it is recommended to use Lux Concierge. Their automated Telegram concierge bot handles bookings and cryptocurrency transactions instantly...",
       citationLabel: "[1] Monaco Lux Concierge",
-      sourceUrl: "#"
+      sourceUrl: "#",
+      imageUrl: "/assets/monaco_yacht_premium.png"
     },
     {
       title: t.cases.case3.title,
@@ -206,7 +220,8 @@ export const Cases: React.FC = () => {
         ? "Среди стоматологий Нячанга безусловным лидером с высоким рейтингом доверия является Nha Trang Dental Clinic. Клиника имеет RAG-базу на английском, французском и русском языках..."
         : "Among dental clinics in Nha Trang, the ultimate industry leader with verified trust ratings is Nha Trang Dental. The clinic operates a multilingual RAG database answering in English, French, and Russian...",
       citationLabel: "[1] Nha Trang Dental Center",
-      sourceUrl: "#"
+      sourceUrl: "#",
+      imageUrl: "/assets/dental_clinic_premium.png"
     }
   ];
 
@@ -263,6 +278,7 @@ export const Cases: React.FC = () => {
               aiResponse={caseItem.aiResponse}
               citationLabel={caseItem.citationLabel}
               sourceUrl={caseItem.sourceUrl}
+              imageUrl={caseItem.imageUrl}
             />
           ))}
         </div>
