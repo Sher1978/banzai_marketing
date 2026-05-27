@@ -187,8 +187,15 @@ export const Technology: React.FC = () => {
               </p>
             </div>
 
-            <div className="w-full bg-black/40 rounded-xl p-4 border border-gold-premium/5 shadow-inner">
-              {renderKnowledgeGraphSVG()}
+            <div className="w-full bg-black/40 rounded-xl p-3 border border-gold-premium/5 shadow-inner">
+              <div className="relative w-full h-36 rounded-lg overflow-hidden border border-gold-premium/10">
+                <img 
+                  src="/assets/tech_knowledge_graph.png" 
+                  alt="Knowledge Graph" 
+                  className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" 
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent pointer-events-none" />
+              </div>
               <div className="text-[8px] font-mono text-gold-premium/50 text-center tracking-widest uppercase mt-2">
                 SYSTEM: {t.tech.steps[0].tech}
               </div>
@@ -223,8 +230,15 @@ export const Technology: React.FC = () => {
               </p>
             </div>
 
-            <div className="w-full bg-black/40 rounded-xl p-4 border border-gold-premium/5 shadow-inner">
-              {renderRAGSVG()}
+            <div className="w-full bg-black/40 rounded-xl p-3 border border-gold-premium/5 shadow-inner">
+              <div className="relative w-full h-36 rounded-lg overflow-hidden border border-gold-premium/10">
+                <img 
+                  src="/assets/tech_rag_markup.png" 
+                  alt="RAG Schema Integration" 
+                  className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" 
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent pointer-events-none" />
+              </div>
               <div className="text-[8px] font-mono text-gold-premium/50 text-center tracking-widest uppercase mt-2">
                 SYSTEM: {t.tech.steps[1].tech}
               </div>
@@ -259,8 +273,15 @@ export const Technology: React.FC = () => {
               </p>
             </div>
 
-            <div className="w-full bg-black/40 rounded-xl p-4 border border-gold-premium/5 shadow-inner">
-              {renderCitationSVG()}
+            <div className="w-full bg-black/40 rounded-xl p-3 border border-gold-premium/5 shadow-inner">
+              <div className="relative w-full h-36 rounded-lg overflow-hidden border border-gold-premium/10">
+                <img 
+                  src="/assets/tech_llm_citation.png" 
+                  alt="LLM Citation Authority" 
+                  className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" 
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent pointer-events-none" />
+              </div>
               <div className="text-[8px] font-mono text-gold-premium/50 text-center tracking-widest uppercase mt-2">
                 SYSTEM: {t.tech.steps[2].tech}
               </div>
