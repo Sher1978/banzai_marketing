@@ -8,19 +8,34 @@
   --color-background-dark: #050507;
   --color-surface-dark: #0a0a0e;
 
+  --color-gold-premium: #c5a880;
+  --color-gold-light: #e6d3b3;
+  --color-gold-dark: #8c714c;
+  --color-sand-muted: #a3957f;
+  --color-bg-dubai: #090807;
+  --color-surface-dubai: #12100e;
+
   --font-display: "Space Grotesk", sans-serif;
   --font-sans: "Space Grotesk", sans-serif;
 
   --background-image-neon-gradient: linear-gradient(135deg, #a855f7 0%, #06b6d4 100%);
   --background-image-night-gradient: linear-gradient(180deg, #050507 0%, #0a0a0e 100%);
   --background-image-dubai-night: radial-gradient(circle at 50% -20%, #1a1033 0%, #050507 70%);
+  --background-image-dubai-gold-radial: radial-gradient(circle at 50% -20%, #211a10 0%, #090807 75%);
+  --background-image-gold-gradient: linear-gradient(135deg, #e6d3b3 0%, #c5a880 50%, #8c714c 100%);
 
   --shadow-neon-glow: 0 0 20px rgba(168, 85, 247, 0.4), 0 0 40px rgba(6, 182, 212, 0.2);
   --shadow-neon-border: 0 0 5px rgba(168, 85, 247, 0.5), inset 0 0 5px rgba(168, 85, 247, 0.2);
   --shadow-neon-red: 0 0 20px rgba(220, 38, 38, 0.6), 0 0 40px rgba(220, 38, 38, 0.3);
+  --shadow-gold-glow: 0 0 20px rgba(197, 168, 128, 0.3), 0 0 40px rgba(140, 113, 76, 0.15);
+  --shadow-gold-border: 0 0 5px rgba(197, 168, 128, 0.4), inset 0 0 5px rgba(197, 168, 128, 0.15);
 }
 
 @layer utilities {
+  .text-glow-gold {
+    text-shadow: 0 0 10px rgba(197, 168, 128, 0.7), 0 0 20px rgba(140, 113, 76, 0.4);
+  }
+
   .text-glow {
     text-shadow: 0 0 10px rgba(168, 85, 247, 0.8), 0 0 20px rgba(6, 182, 212, 0.5);
   }
