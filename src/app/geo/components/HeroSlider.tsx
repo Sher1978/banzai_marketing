@@ -144,6 +144,11 @@ export const HeroSlider: React.FC = () => {
     }
   };
 
+  const tickerText = lang === 'ru'
+    ? "ТРЕНД 2026 Г. ПОЛУЧАЙТЕ КЛИЕНТОВ БЕСПЛАТНО ИЗ НЕЙРОСЕТЕЙ С ПОМОЩЬЮ НОВОГО ГЕНЕРАТИВНОГО AI-SEO: GENERATIVE ENGINE OPTIMIZATION // "
+    : "TREND 2026 // GET CLIENTS FOR FREE FROM NEURAL NETWORKS WITH THE NEW GENERATIVE AI-SEO: GENERATIVE ENGINE OPTIMIZATION // ";
+  const doubleTicker = tickerText + tickerText + tickerText;
+
   return (
     <section className="relative w-full min-h-screen py-24 md:py-36 px-6 flex items-center justify-center bg-bg-dubai bg-dubai-gold-radial overflow-hidden border-b border-gold-premium/20">
       
@@ -176,15 +181,15 @@ export const HeroSlider: React.FC = () => {
           {/* Red Infinite Running Line featuring the H1 Warning Text */}
           <div className="w-full bg-red-600/90 py-3 shadow-[0_0_20px_rgba(220,38,38,0.55)] border-y border-red-500 overflow-hidden select-none rounded-xl relative z-10 flex">
             <motion.div
-              animate={{ x: [0, -1000] }}
+              animate={{ x: [0, -1200] }}
               transition={{
                 ease: "linear",
-                duration: 22,
+                duration: 25,
                 repeat: Infinity,
               }}
               className="whitespace-nowrap flex gap-4 uppercase font-mono text-[9px] md:text-[10px] font-black tracking-[0.2em] text-white"
             >
-              <span>{t.hero.h1 + " // " + t.hero.h1 + " // " + t.hero.h1}</span>
+              <span>{doubleTicker}</span>
             </motion.div>
           </div>
 
