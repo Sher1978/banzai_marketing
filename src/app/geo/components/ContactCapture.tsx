@@ -104,7 +104,7 @@ export const ContactCapture: React.FC = () => {
             <form onSubmit={handleAuditSubmit} className="flex flex-col gap-5">
               
               {/* Form Metadata */}
-              <input type="hidden" name="_subject" value="Banzai Marketing GEO - Express Audit Request" />
+              <input type="hidden" name="_subject" value="Заявка на ГЕО" />
               <input type="text" name="_honey" className="hidden" />
               <input type="hidden" name="_captcha" value="false" />
 
@@ -113,9 +113,8 @@ export const ContactCapture: React.FC = () => {
                 <input
                   type="text"
                   name="name"
-                  required
                   className="w-full bg-black/60 border border-gold-premium/15 focus:border-gold-premium rounded-xl px-4 py-4 text-xs md:text-sm text-white placeholder-sand-muted/30 focus:outline-none focus:ring-1 focus:ring-gold-premium/40 transition-all font-mono"
-                  placeholder={t.contact.form.name.toUpperCase()}
+                  placeholder={`${t.contact.form.name.toUpperCase()} ${lang === 'ru' ? '(НЕОБЯЗАТЕЛЬНО)' : '(OPTIONAL)'}`}
                 />
               </div>
 
@@ -134,12 +133,11 @@ export const ContactCapture: React.FC = () => {
               <div className="relative">
                 <select
                   name="industry"
-                  required
                   className="w-full bg-black/60 border border-gold-premium/15 focus:border-gold-premium rounded-xl px-4 py-4 text-xs md:text-sm text-white placeholder-sand-muted/30 focus:outline-none focus:ring-1 focus:ring-gold-premium/40 transition-all font-mono appearance-none cursor-pointer"
                   defaultValue=""
                 >
                   <option value="" disabled hidden>
-                    {t.contact.form.industryOptions.placeholder.toUpperCase()}
+                    {`${t.contact.form.industryOptions.placeholder.toUpperCase()} ${lang === 'ru' ? '(НЕОБЯЗАТЕЛЬНО)' : '(OPTIONAL)'}`}
                   </option>
                   <option value="realestate">{t.contact.form.industryOptions.realestate}</option>
                   <option value="premium">{t.contact.form.industryOptions.premium}</option>
@@ -156,9 +154,8 @@ export const ContactCapture: React.FC = () => {
                 <input
                   type="url"
                   name="website"
-                  required
                   className="w-full bg-black/60 border border-gold-premium/15 focus:border-gold-premium rounded-xl px-4 py-4 text-xs md:text-sm text-white placeholder-sand-muted/30 focus:outline-none focus:ring-1 focus:ring-gold-premium/40 transition-all font-mono"
-                  placeholder={t.contact.form.website.toUpperCase()}
+                  placeholder={`${t.contact.form.website.toUpperCase()} ${lang === 'ru' ? '(НЕОБЯЗАТЕЛЬНО)' : '(OPTIONAL)'}`}
                 />
               </div>
 
