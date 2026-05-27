@@ -3,6 +3,7 @@
 import React from 'react';
 import Navbar from './components/Navbar';
 import HeroSlider from './components/HeroSlider';
+import SearchRevolution from './components/SearchRevolution';
 import Technology from './components/Technology';
 import Cases from './components/Cases';
 import ContactCapture from './components/ContactCapture';
@@ -17,6 +18,9 @@ export default function GeoLandingPage() {
 
       {/* Hero Section with Interactive FOMO AI Chat typing slider */}
       <HeroSlider />
+
+      {/* Chronological Search Revolution Timeline */}
+      <SearchRevolution />
 
       {/* Explanatory RAG/Knowledge Graph Technology Block */}
       <Technology />
