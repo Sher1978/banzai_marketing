@@ -1,6 +1,7 @@
 import Hero from "@/components/Hero";
 import GeoBanner from "@/components/GeoBanner";
 import PainSection from "@/components/PainSection";
+import SolutionSection from "@/components/SolutionSection";
 import FounderSection from "@/components/FounderSection";
 import ProcessSection from "@/components/ProcessSection";
 import FeatureSection from "@/components/FeatureSection";
@@ -15,6 +16,7 @@ export default function Home() {
       <Hero />
       <GeoBanner />
       <PainSection />
+      <SolutionSection />
       <FounderSection />
       <ProcessSection />
       <FeatureSection />
