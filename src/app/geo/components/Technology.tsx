@@ -134,6 +134,28 @@ export const Technology: React.FC = () => {
           </motion.p>
         </div>
 
+        {/* Expert Trust Highlight Card */}
+        <motion.div
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="max-w-4xl mx-auto mb-16 bg-gold-premium/[0.03] border border-gold-premium/15 rounded-3xl p-6 md:p-8 text-center shadow-gold-glow relative overflow-hidden"
+        >
+          {/* Decorative subtle border line */}
+          <div className="absolute top-0 left-0 right-0 h-[1.5px] bg-gradient-to-r from-transparent via-gold-premium/30 to-transparent" />
+          
+          <h4 className="font-display font-black text-gold-light text-xs md:text-sm uppercase tracking-widest mb-3 text-glow-gold">
+            {lang === 'ru' ? "ИИ НЕ ИЩЕТ САЙТЫ — ОН ИЩЕТ ЭКСПЕРТНЫЕ РЕШЕНИЯ" : "AI DOES NOT LOOK FOR WEBSITES — IT LOOKS FOR SOLUTIONS"}
+          </h4>
+          
+          <p className="text-sand-muted text-xs md:text-sm leading-relaxed font-display font-medium max-w-3xl mx-auto text-pretty">
+            {lang === 'ru'
+              ? "Алгоритмы ИИ-поиска больше не индексируют ссылки ради рекламы. Роботы сканируют интернет, чтобы найти авторитетное готовое решение — и находят его именно на вашем структурированном сайте. Это дает вам 100% доверие пользователя: его персональный ИИ-ассистент уже выбрал вас как лидера отрасли. Клиент не пойдет изучать ваших конкурентов. Он просто обратится напрямую к вам как к признанному эксперту и приобретет предложенное решение."
+              : "AI search engines no longer index links for advertising. Bots scan the web to find an authoritative ready-made solution—and retrieve it directly from your site. This grants you 100% user trust: their personal AI assistant has already handpicked you as the industry leader. The client won't bother browsing your competitors—they will directly reach out to you as the ultimate recommended expert and purchase your solution."}
+          </p>
+        </motion.div>
+
         {/* 3 Step Mechanics Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           
