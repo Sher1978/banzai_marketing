@@ -51,6 +51,13 @@ export const Hero: React.FC = () => {
                     >
                         RU
                     </button>
+                    <span className="text-white/10 text-[10px]">|</span>
+                    <button
+                        onClick={() => toggleLanguage('vi')}
+                        className={`text-[10px] font-bold transition-all hover:text-white ${i18n.language === 'vi' ? 'text-secondary text-glow' : 'text-slate-400'}`}
+                    >
+                        VI
+                    </button>
                 </div>
             </div>
 

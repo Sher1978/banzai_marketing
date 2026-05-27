@@ -88,7 +88,7 @@ export interface TranslationSchema {
   };
 }
 
-export const translations: Record<'ru' | 'en', TranslationSchema> = {
+export const translations: Record<'ru' | 'en' | 'vi', TranslationSchema> = {
   ru: {
     nav: {
       logo: "BanzAI marketing",
@@ -292,6 +292,109 @@ export const translations: Record<'ru' | 'en', TranslationSchema> = {
         input: "Your Telegram or Email Address",
         cta: "Download PDF Report (9.4 MB)",
         success: "Link transmitted! Your PDF report is on its way."
+      }
+    }
+  },
+  vi: {
+    nav: {
+      logo: "BanzAI marketing",
+      tech: "Công nghệ",
+      cases: "Case Study",
+      contact: "Nhận kiểm tra",
+      back: "Về trang chính"
+    },
+    hero: {
+      h1: "40% khách hàng tiềm năng nhất của bạn đang trao tiền cho đối thủ ngay lúc này.",
+      slider: {
+        realestate: {
+          tag: "Bất động sản & Phát triển",
+          quote: "Nhà đầu tư không còn Google tìm căn hộ nữa. Họ nhờ AI so sánh ROI. Nếu mạng nơ-ron không trích dẫn phân tích của bạn — bạn không tồn tại."
+        },
+        premium: {
+          tag: "Dịch vụ Cao cấp & Concierge",
+          quote: "Khách VIP tìm kiếm giải pháp qua Perplexity. Trong khi bạn đốt ngân sách vào Google Ads, AI đang giới thiệu đối thủ của bạn."
+        },
+        medical: {
+          tag: "Du lịch Y tế & Phòng khám",
+          quote: "Người nước ngoài hỏi ChatGPT nên đi chữa răng ở đâu. AI đưa ra một câu trả lời duy nhất không có lựa chọn thay thế. Và đó không phải phòng khám của bạn."
+        }
+      },
+      body: "AI không còn tìm kiếm đường link. Nó tìm kiếm các giải pháp chuyên môn sẵn có — và đưa ra một câu trả lời duy nhất, không có danh sách trang web. Nếu doanh nghiệp của bạn không được tích hợp vào logic tìm kiếm tạo sinh, bạn không tồn tại với 40% khách hàng có giá trị nhất. Doanh nghiệp của bạn phải sẵn sàng cho thực tế mới này ngay bây giờ.",
+      cta: "Kiểm tra xem AI có nhìn thấy doanh nghiệp của tôi không"
+    },
+    tech: {
+      title: "Công nghệ GEO hoạt động như thế nào?",
+      subtitle: "SEO truyền thống đã chết với phân khúc cao cấp. AI không tìm kiếm slogan quảng cáo mà tìm dữ liệu có cấu trúc. Chúng tôi tích hợp thương hiệu của bạn vào Latent Space của các mô hình tạo sinh.",
+      steps: [
+        {
+          num: "01",
+          title: "Thu thập dữ liệu (Knowledge Graph)",
+          text: "Chúng tôi thu thập và tổng hợp tất cả tài sản thương hiệu, hồ sơ case study và số liệu của bạn, chuyển đổi thành Knowledge Graph ngữ nghĩa có tổ chức mà các hệ thống AI có thể truy xuất tức thời.",
+          tech: "Knowledge Graph Engine"
+        },
+        {
+          num: "02",
+          title: "Đánh dấu Schema ngữ nghĩa",
+          text: "Chúng tôi triển khai microdata schema nâng cao được tối ưu hóa riêng cho các thuật toán RAG (Retrieval-Augmented Generation), cho phép các mô hình LLM quét và trích dẫn dữ liệu của bạn.",
+          tech: "RAG Schema Integration"
+        },
+        {
+          num: "03",
+          title: "Độc chiếm tìm kiếm (Ground Truth)",
+          text: "Thương hiệu của bạn được định vị là Ground Truth tối thượng cho các công cụ AI. LLM trích xuất và trích dẫn tài nguyên của bạn như nguồn có thẩm quyền số 1, dẫn hướng người mua có ý định cao thẳng đến bạn.",
+          tech: "LLM Search Authority"
+        }
+      ]
+    },
+    cases: {
+      title: "Case Study GEO của BanzAI marketing",
+      subtitle: "Chúng tôi chứng minh sức mạnh của GEO qua khách hàng tiềm năng thực tế và sự hiện diện tìm kiếm vượt trội, không chỉ là giả thuyết lý thuyết.",
+      case1: {
+        title: "Công ty Bất động sản Dubai — Giao dịch Distress",
+        solution: "Ra mắt hub phân tích web độc lập được lập bản đồ với dữ liệu thị trường distress Dubai sâu rộng. Cấu trúc tất cả thông tin thành tập dữ liệu có thể đọc bằng máy cho LLM.",
+        result: "Các công cụ tìm kiếm tạo sinh coi trang web là nguồn có thẩm quyền tuyệt đối. Công ty nhận được khách hàng tiềm năng là nhà đầu tư chất lượng cao hàng ngày, không tốn xu nào cho quảng cáo trả phí.",
+        stats: "0$ Quảng cáo // Khách hàng tiềm năng Premium hàng ngày"
+      },
+      case2: {
+        title: "Dịch vụ Concierge Cao cấp Quốc tế",
+        solution: "Thiết kế lại cấu trúc trang web, tối ưu hóa dành riêng cho các long-tail prompt phức tạp và mô tả case study, kết nối đầy đủ với bot Telegram tự động.",
+        result: "Khi khách VIP hỏi AI về lối sống phức tạp, công cụ nơ-ron trích xuất case study của chúng tôi từ Latent Space, dẫn khách hàng tiềm năng trực tiếp đến bot concierge.",
+        stats: "0$ Ngân sách quảng cáo // Chiếm lĩnh VIP trực tiếp"
+      },
+      case3: {
+        title: "Phòng khám Nha khoa Việt Nam (Nha Trang)",
+        solution: "Chuyển đổi hồ sơ kỹ thuật số của phòng khám thành hub du lịch y tế có thẩm quyền, với trợ lý AI đa ngôn ngữ RAG (EN, RU, FR, VI).",
+        result: "ChatGPT liệt kê phòng khám của chúng tôi là cơ sở nha khoa cao cấp với điểm tin cậy cao nhất. Chiếm lĩnh thành công lưu lượng khách du lịch tìm kiếm du lịch y tế, dẫn đến doanh số giao dịch kỷ lục.",
+        stats: "+45% Doanh số // 100% Tin tưởng AI"
+      }
+    },
+    contact: {
+      title: "Ngừng để mất những khách hàng giá trị nhất.",
+      subtitle: "Đăng ký Kiểm tra GEO Express miễn phí. Theo thời gian thực, chúng tôi sẽ phân tích cách ChatGPT, Gemini và Perplexity nhận thức về doanh nghiệp của bạn và xây dựng bản đồ khách hàng tiềm năng bị bỏ lỡ.",
+      form: {
+        name: "Tên của bạn",
+        contact: "Liên hệ (Telegram / Điện thoại)",
+        industry: "Lĩnh vực kinh doanh",
+        industryOptions: {
+          placeholder: "Chọn lĩnh vực của bạn",
+          realestate: "Bất động sản & Phát triển",
+          premium: "Dịch vụ cao cấp & Concierge",
+          medical: "Y tế & Du lịch Y tế",
+          other: "Ngành khác"
+        },
+        website: "Liên kết trang web của bạn",
+        cta: "Nhận Kiểm tra GEO & Kế hoạch Chiến lược",
+        footnote: "*Chúng tôi chỉ nhận 5 công ty mỗi tháng do độ phức tạp cao của kiểm tra dữ liệu GEO.*",
+        success: "Dữ liệu đã được gửi! Chuyên gia của chúng tôi sẽ liên hệ với bạn sớm.",
+        error: "Lỗi kết nối. Vui lòng thử lại.",
+        loading: "Đang gửi..."
+      },
+      magnet: {
+        title: "Chưa sẵn sàng cho kiểm tra trực tiếp?",
+        desc: "Tải xuống báo cáo PDF độc quyền: 'Cách AI đang phá hủy phễu bán hàng cổ điển' và khám phá cách điều chỉnh việc thu hút khách hàng trước khi đối thủ của bạn làm điều đó.",
+        input: "Telegram hoặc Email của bạn",
+        cta: "Tải xuống Báo cáo PDF (9.4 MB)",
+        success: "Liên kết đã được gửi! Báo cáo PDF của bạn đang trên đường."
       }
     }
   }

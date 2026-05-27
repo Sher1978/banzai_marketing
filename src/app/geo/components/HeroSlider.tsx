@@ -41,7 +41,7 @@ const TABS: TabData[] = [
 
 export const HeroSlider: React.FC = () => {
   const { i18n } = useTranslation();
-  const lang = (i18n.language === 'ru' ? 'ru' : 'en') as 'ru' | 'en';
+  const lang = (i18n.language === 'ru' ? 'ru' : i18n.language === 'vi' ? 'vi' : 'en') as 'ru' | 'en' | 'vi';
   const t = translations[lang];
 
   const [activeTab, setActiveTab] = useState<'realestate' | 'premium' | 'medical'>('realestate');
@@ -146,6 +146,8 @@ export const HeroSlider: React.FC = () => {
 
   const tickerText = lang === 'ru'
     ? "ТРЕНД 2026 Г. ПОЛУЧАЙТЕ КЛИЕНТОВ БЕСПЛАТНО ИЗ НЕЙРОСЕТЕЙ С ПОМОЩЬЮ НОВОГО ГЕНЕРАТИВНОГО AI-SEO: GENERATIVE ENGINE OPTIMIZATION // "
+    : lang === 'vi'
+    ? "XU HƯỚNG 2026 // NHẬN KHÁCH HÀNG MIỄN PHÍ TỪ MẠNG NƠ-RON VỚI AI-SEO TẠO SINH MỚI: GENERATIVE ENGINE OPTIMIZATION // "
     : "TREND 2026 // GET CLIENTS FOR FREE FROM NEURAL NETWORKS WITH THE NEW GENERATIVE AI-SEO: GENERATIVE ENGINE OPTIMIZATION // ";
   const doubleTicker = tickerText + tickerText + tickerText;
 
@@ -226,7 +228,7 @@ export const HeroSlider: React.FC = () => {
                 transition={{ duration: 1.4, repeat: Infinity }}
                 className="w-1.5 h-1.5 rounded-full bg-red-500 flex-shrink-0"
               />
-              <span>{lang === 'ru' ? 'КРИТИЧЕСКОЕ ПРЕДУПРЕЖДЕНИЕ' : 'CRITICAL ALERT'}</span>
+              <span>{lang === 'ru' ? 'КРИТИЧЕСКОЕ ПРЕДУПРЕЖДЕНИЕ' : lang === 'vi' ? 'CẢNH BÁO QUAN TRỌNG' : 'CRITICAL ALERT'}</span>
             </div>
             <p className="text-red-400/90 text-sm md:text-base leading-relaxed font-display font-semibold">
               {t.hero.body}

@@ -1,0 +1,148 @@
+{
+    "hero": {
+        "badge": "Cyber-Samurai Marketing",
+        "title": "BanzAI Marketing: Katana Kỹ Thuật Số Của Doanh Nghiệp Bạn.",
+        "bullets": [
+            {
+                "bold": "Bộ phận marketing của bạn hoạt động hoàn toàn tự động.",
+                "subtext": "Chúng tôi thay thế một đội ngũ chuyên gia tốn kém bằng một hệ thống tự vận hành 24/7 không nghỉ lễ hay cuối tuần."
+            },
+            {
+                "bold": "Khách hàng tiềm năng rẻ hơn 40% so với thị trường.",
+                "subtext": "Nhờ chất lượng cực cao của nội dung AI, thuật toán mạng quảng cáo giảm chi phí mỗi lần hiển thị cho bạn một cách tự động."
+            }
+        ],
+        "button_primary": "TUỐT GƯƠM",
+        "button_secondary": "XEM SHOWREEL",
+        "stats": {
+            "neural_net": "Mạng_Nơ-ron",
+            "targeting": "Nhắm_mục_tiêu",
+            "active": "Hoạt_động"
+        }
+    },
+    "pain": {
+        "title": "Tại sao bạn trả $100 mỗi lần nhấp chuột?",
+        "bullets": [
+            {
+                "bold": "Nội dung của bạn 'vô hình' với thuật toán.",
+                "subtext": "Creative nhàm chán có CTR thấp. Các nền tảng quảng cáo phạt bạn bằng cách tăng giá đấu thầu. Bạn đang trả tiền cho sự nhàm chán của nhà thầu."
+            },
+            {
+                "bold": "Thiếu hụt khối lượng nội dung trầm trọng.",
+                "subtext": "Một bài đăng mỗi tuần là tự sát. Trong khi bạn chần chừ, mạng nơ-ron của đối thủ đã tạo ra 50 thử nghiệm mỗi ngày, tìm ra công thức rẻ hơn bạn 10 lần."
+            },
+            {
+                "bold": "Du thuyền của Zuckerberg không tự mua được.",
+                "subtext": "Không có tối ưu AI, bạn đang tặng các ông lớn quảng cáo tới 60% ngân sách của mình cho các lần hiển thị kém hiệu quả. Hãy ngừng tài trợ cho xa xỉ của người khác.",
+                "highlight": true
+            }
+        ],
+        "big_number": "$100"
+    },
+    "founder": {
+        "title": "Kiến trúc sư Hệ thống: Sher.",
+        "locked_hud": "SHERLOCK CARS DUBAI",
+        "locked_status": "SYSTEM FOUNDER IDENTITY LOCKED",
+        "unlocked_status": "IDENTITY REVEALED // SHIFT_REALITY_PROTOCOL_ACTIVE",
+        "bullets": [
+            {
+                "bold": "Chuyên gia thị trường Dubai thực thụ từ năm 2015.",
+                "subtext": "Đã xây dựng nhiều doanh nghiệp thành công và tạo ra Sherlock Cars Dubai bằng cách kết hợp kiến thức thị trường địa phương với các hệ thống AI."
+            },
+            {
+                "bold": "Case study Sherlock Cars Dubai (2025).",
+                "subtext": "Đạt mức tăng trưởng doanh số 130% và tăng độ phủ 300% thông qua tự động hóa hoàn toàn hệ thống nội dung bằng AI."
+            },
+            {
+                "bold": "100% tạo bằng AI (0 buổi quay phim trong năm).",
+                "subtext": "Trong suốt cả năm, không có video 'thực' nào được quay — toàn bộ nội dung tạo ra khách hàng tiềm năng đều được tạo hoàn toàn bởi mạng nơ-ron."
+            }
+        ]
+    },
+    "process": {
+        "title": "Tối thiểu thời gian của bạn — tối đa chiếm lĩnh thị trường.",
+        "steps": [
+            {
+                "title": "Quét sâu (Deep Scan).",
+                "subtext": "Chúng tôi tìm ra điểm yếu của đối thủ và các điểm lưu lượng truy cập rẻ nhất. Bạn không cần phải là chuyên gia — chúng tôi làm tất cả cho bạn."
+            },
+            {
+                "title": "Triển khai Nơ-ron (Neural Deployment).",
+                "subtext": "Khởi động 'Dây chuyền Nơ-ron' cá nhân của bạn. Hệ thống bắt đầu tạo ra khách hàng tiềm năng 24/7."
+            },
+            {
+                "title": "Mở rộng thị trường (Market Expansion).",
+                "subtext": "Chi phí khách hàng tiềm năng giảm 40%, doanh số tăng. Bạn chỉ cần theo dõi kết quả qua bảng điều khiển."
+            }
+        ]
+    },
+    "feature": {
+        "title": "Dây chuyền Nơ-ron BanzAI.",
+        "bullets": [
+            {
+                "bold": "Siêu cá nhân hóa nội dung.",
+                "subtext": "Bộ AI của chúng tôi tạo ra hàng nghìn biến thể sáng tạo độc đáo, thích nghi với tâm lý của từng phân khúc đối tượng của bạn theo thời gian thực."
+            },
+            {
+                "bold": "Phá vỡ 'mù quảng cáo'.",
+                "subtext": "Chúng tôi lấp đầy không gian thông tin bằng nội dung có chất lượng và khối lượng mà các đối thủ không thể tái tạo thủ công."
+            }
+        ]
+    },
+    "comparison": {
+        "title": "Bước nhảy lượng tử hay gậy gỗ?",
+        "old_school": {
+            "title": "Cách Cũ",
+            "bullets": [
+                {
+                    "bold": "Lao động thủ công nặng nhọc.",
+                    "subtext": "Trong khi agency của bạn mất một tuần vẽ một banner, bạn mất thị phần."
+                },
+                {
+                    "bold": "Hara-kiri cho ngân sách.",
+                    "subtext": "Bạn trả tiền cho những lần nhấp kém hiệu quả vì nội dung thiếu khối lượng và độ phủ."
+                }
+            ]
+        },
+        "banzai": {
+            "title": "BanzAI",
+            "bullets": [
+                {
+                    "bold": "Ưu thế nơ-ron.",
+                    "subtext": "AI tạo ra hàng trăm biến thể nội dung mỗi giờ, tìm ra con đường rẻ nhất đến khách hàng."
+                },
+                {
+                    "bold": "Kinh nghiệm được chứng minh bằng số liệu.",
+                    "subtext": "Công nghệ mang lại cho Sherlock Cars +300% độ phủ và +130% doanh số năm 2025."
+                }
+            ]
+        }
+    },
+    "contact": {
+        "title": "KHỞI ĐỘNG GIAO THỨC.",
+        "subtitle": "Đặt chỗ ngay. Thuật toán đang chờ.",
+        "form": {
+            "name": "TÊN_CỦA_BẠN",
+            "email": "LIÊN_HỆ (EMAIL)",
+            "message": "NỘI_DUNG (TIN NHẮN)",
+            "submit": "GỬI DỮ LIỆU",
+            "success": "DỮ LIỆU ĐÃ ĐƯỢC GỬI. CHỜ PHẢN HỒI.",
+            "error": "LỖI HỆ THỐNG. THỬ LẠI."
+        }
+    },
+    "footer_cta": {
+        "title": "Tuốt gươm. Bắt đầu thống trị.",
+        "bullets": [
+            {
+                "bold": "Ngừng nuôi béo các nền tảng.",
+                "subtext": "Hãy ngừng là nhà tài trợ cho các ông lớn quảng cáo. Bắt đầu lấy lại lợi nhuận của bạn."
+            }
+        ],
+        "button": "KHỞI ĐỘNG GIAO THỨC BANZAI"
+    },
+    "switcher": {
+        "en": "EN",
+        "ru": "RU",
+        "vi": "VI"
+    }
+}
