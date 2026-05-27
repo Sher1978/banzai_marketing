@@ -70,104 +70,136 @@ const renderStep1Illustration = (isActive: boolean) => (
 const renderStep2Illustration = (isActive: boolean) => (
   <svg className="w-full h-full" viewBox="0 0 200 80" fill="none" xmlns="http://www.w3.org/2000/svg">
     {/* Grid backdrop */}
-    <path d="M 0 40 L 200 40" className="stroke-white/[0.03] stroke-1" />
+    <path d="M 0 40 L 200 40 M 100 0 L 100 80" className="stroke-white/[0.03] stroke-1" />
 
-    {/* Connections */}
-    <motion.path 
-      d="M 55 25 L 100 40 L 145 25 L 125 58 L 75 58 Z" 
-      className="stroke-gold-premium/20 stroke-1 fill-none"
-      strokeDasharray="3 3"
-      animate={{ strokeDashoffset: [0, -20] }}
-      transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
+    {/* Glowing ring/connections in the background */}
+    <motion.circle 
+      cx="100" 
+      cy="40" 
+      r="30" 
+      className={`stroke-[1.5] transition-colors duration-500 fill-none ${
+        isActive ? 'stroke-gold-premium/40' : 'stroke-gold-premium/20'
+      }`} 
     />
-    <line x1="100" y1="40" x2="125" y2="58" className="stroke-gold-premium/15 stroke-0.5" />
-    <line x1="100" y1="40" x2="75" y2="58" className="stroke-gold-premium/15 stroke-0.5" />
+    <circle cx="100" cy="40" r="18" className="stroke-gold-premium/10 stroke-1 fill-none" />
 
-    {/* Connected nodes */}
-    <circle cx="100" cy="40" r="13" className="stroke-gold-premium stroke-1.5 fill-black" />
-    <circle cx="55" cy="25" r="8" className="stroke-gold-dark stroke-1 fill-black" />
-    <circle cx="145" cy="25" r="8" className="stroke-gold-dark stroke-1 fill-black" />
-    <circle cx="75" cy="58" r="9" className="stroke-gold-dark stroke-1 fill-black" />
-    <circle cx="125" cy="58" r="9" className="stroke-gold-dark stroke-1 fill-black" />
-
-    {/* Animated Pulse waves from center */}
-    <motion.circle cx="100" cy="40" r="22" className="stroke-gold-premium/30 stroke-0.5 fill-none" animate={{ scale: [0.8, 1.4], opacity: [1, 0] }} transition={{ duration: 2.5, repeat: Infinity, ease: "easeOut" }} />
-
-    {/* Content Elements */}
-    <g transform="translate(95.5, 36.5)">
-      {/* Heart */}
-      <path d="M 4.5 1.5 A 1.5 1.5 0 0 0 1 1.5 L 1 1.5 A 1.5 1.5 0 0 0 -2.5 1.5 L 1 5 Z" className="fill-red-500/80 animate-pulse" />
+    {/* Dynamic content orbits */}
+    <g style={{ transformOrigin: '100px 40px' }}>
+      <motion.path 
+        d="M 70 40 A 30 15 0 0 1 130 40" 
+        className="stroke-gold-premium/15 stroke-1 fill-none" 
+        animate={{ rotate: 360 }}
+        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+        style={{ transformOrigin: '100px 40px' }}
+      />
     </g>
 
-    <g transform="translate(51.5, 21.5)">
-      {/* SMM Message */}
-      <rect x="0" y="0" width="7" height="5" rx="1" className="fill-gold-premium/45" />
-      <polygon points="2,5 1,7 4,5" className="fill-gold-premium/45" />
+    {/* Sleek Social Network Panel (Foreground Card) */}
+    <g transform="translate(45, 30)">
+      <rect x="0" y="0" width="110" height="20" rx="6" className="stroke-gold-premium/30 fill-black/95 stroke-1 shadow-2xl" />
+      
+      {/* YouTube Icon */}
+      <g transform="translate(18, 10)">
+        <rect x="-6" y="-4" width="12" height="8" rx="1.5" className="fill-red-600/90" />
+        <polygon points="-1.5,-2.5 -1.5,2.5 2,0" className="fill-white" />
+      </g>
+
+      <line x1="30" y1="10" x2="38" y2="10" className="stroke-gold-premium/30 stroke-1" strokeDasharray="2 2" />
+
+      {/* Instagram Icon */}
+      <g transform="translate(46, 10)">
+        <rect x="-5" y="-5" width="10" height="10" rx="2.5" className="stroke-gold-light stroke-[1.2] fill-none" />
+        <circle cx="0" cy="0" r="2.5" className="stroke-gold-light stroke-[1] fill-none" />
+        <circle cx="2" cy="-2" r="0.5" className="fill-gold-light" />
+      </g>
+
+      <line x1="54" y1="10" x2="62" y2="10" className="stroke-gold-premium/30 stroke-1" strokeDasharray="2 2" />
+
+      {/* TikTok Icon */}
+      <g transform="translate(70, 10)">
+        <path d="M -2 -3 C -2 1 -2 3 0 3 C 1 3 1.8 2.2 1.8 1 C 0.8 1 0.5 1.4 0.5 0.2 C 0.5 -1 0.5 -3 0.5 -3 M 0.5 -3 L 2 -3 L 2 -1.8" className="stroke-gold-light stroke-[1.2] fill-none" />
+      </g>
+
+      <line x1="78" y1="10" x2="86" y2="10" className="stroke-gold-premium/30 stroke-1" strokeDasharray="2 2" />
+
+      {/* Telegram Icon */}
+      <g transform="translate(94, 10)">
+        <path d="M -4.5 -1 L 4.5 -4.5 L 1 3.5 L -1 1.5 Z M -1 1.5 L 1 3.5" className="stroke-gold-light stroke-[1.2] fill-none" />
+      </g>
     </g>
 
-    <g transform="translate(141.5, 21.5)">
-      {/* Video clip */}
-      <polygon points="2,1 6,3.5 2,6" className="fill-gold-light" />
-    </g>
-
-    <g transform="translate(71, 54)">
-      {/* Connect node */}
-      <circle cx="4" cy="4" r="1.5" className="fill-gold-premium/70" />
-      <line x1="4" y1="4" x2="7" y2="4" className="stroke-gold-premium/70 stroke-0.5" />
-    </g>
-
-    <g transform="translate(121, 54)">
-      {/* Thumbs up emoji */}
-      <text x="4" y="6.5" className="fill-gold-premium text-[8px]" textAnchor="middle">👍</text>
-    </g>
+    {/* Floating cyber bits */}
+    <motion.circle cx="100" cy="10" r="2" className="fill-gold-light" animate={{ opacity: [0.2, 1, 0.2] }} transition={{ duration: 2.2, repeat: Infinity }} />
+    <motion.circle cx="70" cy="55" r="1.5" className="fill-gold-premium" animate={{ opacity: [0.1, 0.8, 0.1] }} transition={{ duration: 3, delay: 0.3, repeat: Infinity }} />
+    <motion.circle cx="130" cy="25" r="1.5" className="fill-gold-premium" animate={{ opacity: [0.1, 0.8, 0.1] }} transition={{ duration: 3, delay: 0.7, repeat: Infinity }} />
   </svg>
 );
 
 const renderStep3Illustration = (isActive: boolean) => (
   <svg className="w-full h-full" viewBox="0 0 200 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-    {/* Aura rings */}
-    <circle cx="100" cy="40" r="34" className="stroke-gold-premium/5 stroke-[0.5]" strokeDasharray="3 3" />
-    <motion.circle cx="100" cy="40" r="28" className="stroke-gold-premium/15 stroke-1 fill-none" animate={{ scale: [1, 1.06, 1] }} transition={{ duration: 4, repeat: Infinity }} />
+    {/* Grid backdrop */}
+    <path d="M 0 40 L 200 40 M 100 0 L 100 80" className="stroke-white/[0.03] stroke-1" />
 
-    {/* Glowing Intelligence Core */}
-    <circle cx="100" cy="40" r="16" className="stroke-gold-premium stroke-2 fill-black/90 shadow-[0_0_20px_rgba(212,163,89,0.4)]" />
-    <motion.circle cx="100" cy="40" r="10" className="fill-gold-light/20" animate={{ scale: [0.8, 1.5, 0.8], opacity: [0.4, 0.8, 0.4] }} transition={{ duration: 3, repeat: Infinity }} />
-    <circle cx="100" cy="40" r="5" className="fill-gold-light animate-pulse" />
+    {/* Glowing ring/synapse core in the background */}
+    <motion.circle 
+      cx="100" 
+      cy="40" 
+      r="30" 
+      className={`stroke-[1.5] transition-colors duration-500 fill-none ${
+        isActive ? 'stroke-gold-premium/40' : 'stroke-gold-premium/20'
+      }`} 
+    />
+    <circle cx="100" cy="40" r="18" className="stroke-gold-premium/10 stroke-1 fill-none" />
 
-    {/* Rotating Synapses (Framer Motion rotation) */}
+    {/* Synaptic sparks in background */}
     <motion.g
       animate={{ rotate: 360 }}
-      transition={{ duration: 16, repeat: Infinity, ease: "linear" }}
+      transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
       style={{ transformOrigin: "100px 40px" }}
     >
-      <line x1="100" y1="40" x2="100" y2="12" className="stroke-gold-light stroke-[1.5]" />
-      <circle cx="100" cy="12" r="3" className="stroke-gold-light stroke-2 fill-black" />
-      <circle cx="100" cy="12" r="1" className="fill-gold-light" />
-
-      <line x1="100" y1="40" x2="124" y2="54" className="stroke-gold-premium/60 stroke-1" strokeDasharray="2 2" />
-      <circle cx="124" cy="54" r="3" className="stroke-gold-premium fill-black" />
-      
-      <line x1="100" y1="40" x2="76" y2="54" className="stroke-gold-premium/60 stroke-1" strokeDasharray="2 2" />
-      <circle cx="76" cy="54" r="3" className="stroke-gold-premium fill-black" />
+      <circle cx="100" cy="10" r="1.5" className="fill-gold-premium/30" />
+      <circle cx="70" cy="40" r="1.5" className="fill-gold-premium/30" />
+      <circle cx="130" cy="40" r="1.5" className="fill-gold-premium/30" />
     </motion.g>
 
-    {/* Sparks */}
-    <motion.path 
-      d="M 144 26 L 146 31 L 151 33 L 146 35 L 144 40 L 142 35 L 137 33 L 142 31 Z" 
-      className="fill-gold-light" 
-      animate={{ scale: [0.8, 1.2, 0.8], opacity: [0.5, 1, 0.5] }} 
-      transition={{ duration: 2, repeat: Infinity }} 
-    />
-    <motion.path 
-      d="M 58 26 L 59 29 L 62 30 L 59 31 L 58 34 L 57 31 L 54 30 L 57 29 Z" 
-      className="fill-gold-premium" 
-      animate={{ scale: [0.7, 1.1, 0.7], opacity: [0.4, 0.9, 0.4] }} 
-      transition={{ duration: 2.5, delay: 0.5, repeat: Infinity }} 
-    />
+    {/* Sleek AI Neural Brain Panel (Foreground Card) */}
+    <g transform="translate(45, 30)">
+      <rect x="0" y="0" width="110" height="20" rx="6" className="stroke-gold-premium/30 fill-black/95 stroke-1 shadow-2xl" />
+      
+      {/* Detailed Mini Neural Brain shape inside the card */}
+      <g transform="translate(55, 10)">
+        
+        {/* Left Lobe Brain Contour */}
+        <path d="M 0 -7 C -7 -7 -12 -3 -12 1 C -12 5 -8 7 -5 8 C -6 9.5 -3 11 0 11" className="stroke-gold-premium/80 stroke-1 fill-none" />
+        <path d="M -5 -5 C -3 -3 -5 -1 -1 -2" className="stroke-gold-premium/40 stroke-0.5 fill-none" />
+        <path d="M -8 -1 C -10 1 -6 4 -3 3" className="stroke-gold-premium/40 stroke-0.5 fill-none" />
+        
+        {/* Right Lobe Brain Contour */}
+        <path d="M 0 -7 C 7 -7 12 -3 12 1 C 12 5 8 7 5 8 C 6 9.5 3 11 0 11" className="stroke-gold-premium/80 stroke-1 fill-none" />
+        <path d="M 5 -5 C 3 -3 5 -1 1 -2" className="stroke-gold-premium/40 stroke-0.5 fill-none" />
+        <path d="M 8 -1 C 10 1 6 4 3 3" className="stroke-gold-premium/40 stroke-0.5 fill-none" />
+        
+        {/* Central fissure */}
+        <line x1="0" y1="-7" x2="0" y2="11" className="stroke-gold-light/40 stroke-0.5" strokeDasharray="1 1" />
+        
+        {/* Central Core AI Spark */}
+        <polygon points="0,-3 1,-1 3,0 1,1 0,3 -1,1 -3,0 -1,-1" className="fill-gold-light animate-pulse" />
 
-    {/* Generative waves */}
-    <path d="M 12 40 Q 22 30 32 40 T 52 40" className="stroke-gold-premium/15 stroke-1" />
-    <path d="M 188 40 Q 178 50 168 40 T 148 40" className="stroke-gold-premium/15 stroke-1" />
+        {/* Flashing Synaptic Terminals */}
+        <motion.circle cx="-8" cy="-4" r="0.8" className="fill-gold-light" animate={{ opacity: [0.2, 1, 0.2] }} transition={{ duration: 1.2, repeat: Infinity }} />
+        <motion.circle cx="8" cy="-4" r="0.8" className="fill-gold-light" animate={{ opacity: [1, 0.2, 1] }} transition={{ duration: 1.2, repeat: Infinity }} />
+        <motion.circle cx="-10" cy="2" r="0.8" className="fill-gold-light" animate={{ opacity: [0.3, 1, 0.3] }} transition={{ duration: 1.5, repeat: Infinity, delay: 0.2 }} />
+        <motion.circle cx="10" cy="2" r="0.8" className="fill-gold-light" animate={{ opacity: [1, 0.3, 1] }} transition={{ duration: 1.5, repeat: Infinity, delay: 0.2 }} />
+        <motion.circle cx="-4" cy="7" r="0.8" className="fill-gold-light" animate={{ opacity: [0.1, 1, 0.1] }} transition={{ duration: 1.8, repeat: Infinity, delay: 0.4 }} />
+        <motion.circle cx="4" cy="7" r="0.8" className="fill-gold-light" animate={{ opacity: [1, 0.1, 1] }} transition={{ duration: 1.8, repeat: Infinity, delay: 0.4 }} />
+
+      </g>
+    </g>
+
+    {/* Floating cyber bits */}
+    <motion.circle cx="100" cy="10" r="2" className="fill-gold-light" animate={{ opacity: [0.2, 1, 0.2] }} transition={{ duration: 2.4, repeat: Infinity }} />
+    <motion.circle cx="70" cy="55" r="1.5" className="fill-gold-premium" animate={{ opacity: [0.1, 0.8, 0.1] }} transition={{ duration: 3, delay: 0.4, repeat: Infinity }} />
+    <motion.circle cx="130" cy="25" r="1.5" className="fill-gold-premium" animate={{ opacity: [0.1, 0.8, 0.1] }} transition={{ duration: 3, delay: 0.8, repeat: Infinity }} />
   </svg>
 );
 
