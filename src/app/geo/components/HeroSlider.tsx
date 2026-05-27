@@ -173,6 +173,21 @@ export const HeroSlider: React.FC = () => {
             <span>Generative Engine Optimization (GEO)</span>
           </div>
 
+          {/* Red Infinite Running Line featuring the H1 Warning Text */}
+          <div className="w-full bg-red-600/90 py-3 shadow-[0_0_20px_rgba(220,38,38,0.55)] border-y border-red-500 overflow-hidden select-none rounded-xl relative z-10 flex">
+            <motion.div
+              animate={{ x: [0, -1000] }}
+              transition={{
+                ease: "linear",
+                duration: 22,
+                repeat: Infinity,
+              }}
+              className="whitespace-nowrap flex gap-4 uppercase font-mono text-[9px] md:text-[10px] font-black tracking-[0.2em] text-white"
+            >
+              <span>{t.hero.h1 + " // " + t.hero.h1 + " // " + t.hero.h1}</span>
+            </motion.div>
+          </div>
+
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-display font-black leading-tight text-white tracking-tight drop-shadow-2xl">
             {t.hero.h1}
           </h1>
