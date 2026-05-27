@@ -164,6 +164,27 @@ export const HeroSlider: React.FC = () => {
       {/* Decorative Golden Dust/Noise overlay */}
       <div className="absolute inset-0 bg-noise opacity-[0.02] pointer-events-none" />
 
+      {/* Animated glowing neural brain background image — ambient only, no motion transforms */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div
+          className="absolute -right-20 top-1/2 -translate-y-1/2 w-[55%] h-[90%] opacity-[0.18] mix-blend-screen"
+          style={{ backgroundImage: "url('/assets/neural_brain_premium.png')", backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'center right' }}
+        />
+        {/* Pulse rings — opacity only, no scale/translate to prevent reflow */}
+        <motion.div
+          animate={{ opacity: [0.12, 0, 0.12] }}
+          transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+          className="absolute right-[20%] top-1/2 -translate-y-1/2 w-64 h-64 rounded-full border border-gold-premium/30 pointer-events-none"
+          style={{ willChange: 'opacity' }}
+        />
+        <motion.div
+          animate={{ opacity: [0.08, 0, 0.08] }}
+          transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut', delay: 1.2 }}
+          className="absolute right-[15%] top-1/2 -translate-y-1/2 w-96 h-96 rounded-full border border-cyan-500/15 pointer-events-none"
+          style={{ willChange: 'opacity' }}
+        />
+      </div>
+
       {/* Glowing Golden Orbs in background */}
       <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-gold-dark/10 filter blur-[100px] pointer-events-none animate-pulse" />
       <div className="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full bg-gold-premium/5 filter blur-[120px] pointer-events-none animate-pulse" />
@@ -197,9 +218,20 @@ export const HeroSlider: React.FC = () => {
             {t.hero.h1}
           </h1>
 
-          <p className="text-sand-muted text-sm md:text-base lg:text-lg leading-relaxed font-normal">
-            {t.hero.body}
-          </p>
+          {/* NEW: Red-styled urgent body copy about AI searching for solutions */}
+          <div className="relative border-l-2 border-red-500 pl-4 py-2 bg-red-950/10 rounded-r-xl">
+            <div className="flex items-center gap-1.5 text-red-500 font-mono text-[8px] uppercase tracking-widest font-black mb-2">
+              <motion.span
+                animate={{ opacity: [1, 0.3, 1] }}
+                transition={{ duration: 1.4, repeat: Infinity }}
+                className="w-1.5 h-1.5 rounded-full bg-red-500 flex-shrink-0"
+              />
+              <span>{lang === 'ru' ? 'КРИТИЧЕСКОЕ ПРЕДУПРЕЖДЕНИЕ' : 'CRITICAL ALERT'}</span>
+            </div>
+            <p className="text-red-400/90 text-sm md:text-base leading-relaxed font-display font-semibold">
+              {t.hero.body}
+            </p>
+          </div>
 
           <div className="flex flex-wrap gap-4 mt-2">
             <button
@@ -213,9 +245,80 @@ export const HeroSlider: React.FC = () => {
 
         </div>
 
-        {/* Right Column: AI Interactive Terminal Screen */}
-        <div className="lg:col-span-6 flex flex-col w-full">
-          
+        {/* Right Column: Animated Neural Brain Graphic + AI Terminal */}
+        <div className="lg:col-span-6 flex flex-col w-full gap-4">
+
+          {/* Premium Neural Brain Image Block — fully GPU-accelerated, no layout-triggering animations */}
+          <div
+            className="relative w-full rounded-2xl overflow-hidden border border-gold-premium/15 shadow-gold-glow bg-black/80"
+            style={{ aspectRatio: '4/3', transform: 'translateZ(0)' }}
+          >
+            {/* Neural brain image — static, no hover scale to prevent jitter */}
+            <img
+              src="/assets/neural_brain_premium.png"
+              alt="AI Neural Network Brain - GEO Intelligence"
+              className="w-full h-full object-cover opacity-90"
+              style={{ display: 'block', willChange: 'auto' }}
+            />
+
+            {/* Pulsing gold glow overlay — opacity only, GPU composited */}
+            <motion.div
+              animate={{ opacity: [0.12, 0.30, 0.12] }}
+              transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut' }}
+              className="absolute inset-0 bg-gradient-to-r from-gold-dark/30 via-transparent to-cyan-900/20 pointer-events-none"
+              style={{ willChange: 'opacity' }}
+            />
+
+            {/* Animated sweeping scanner line — px values only, GPU layer */}
+            <motion.div
+              animate={{ y: [-280, 280] }}
+              transition={{ duration: 3.5, repeat: Infinity, ease: 'linear', repeatDelay: 1.5 }}
+              className="absolute inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-cyan-400/90 to-transparent shadow-[0_0_14px_rgba(6,182,212,0.9)] pointer-events-none"
+              style={{ willChange: 'transform', top: '50%' }}
+            />
+
+            {/* Top-left HUD tag */}
+            <div className="absolute top-3 left-3 z-20 bg-black/80 border border-gold-premium/30 px-3 py-1 rounded-full font-mono text-[7px] text-gold-light tracking-widest uppercase font-bold flex items-center gap-1.5">
+              <motion.span
+                animate={{ opacity: [1, 0, 1] }}
+                transition={{ duration: 1.2, repeat: Infinity }}
+                className="w-1.5 h-1.5 rounded-full bg-gold-premium flex-shrink-0"
+                style={{ willChange: 'opacity' }}
+              />
+              <span>NEURAL COGNITION ENGINE: ACTIVE</span>
+            </div>
+
+            {/* Bottom-right metric strip */}
+            <div className="absolute bottom-3 right-3 z-20 bg-black/85 border border-cyan-500/20 px-3 py-1.5 rounded-lg font-mono text-[7px] uppercase tracking-widest flex flex-col items-end gap-0.5">
+              <span className="text-cyan-400 font-bold">SEMANTIC DENSITY: 94.6%</span>
+              <span className="text-red-500 font-bold animate-pulse">BRAND RAG SCORE: 12% — CRITICAL</span>
+            </div>
+
+            {/* Floating particles — px values, GPU isolated */}
+            <motion.span
+              animate={{ y: [-5, 5, -5] }}
+              transition={{ duration: 2.8, repeat: Infinity, ease: 'easeInOut' }}
+              className="absolute top-1/4 left-[20%] w-2 h-2 rounded-full bg-gold-premium/60 shadow-[0_0_6px_#c5a880] pointer-events-none"
+              style={{ willChange: 'transform' }}
+            />
+            <motion.span
+              animate={{ y: [5, -5, 5] }}
+              transition={{ duration: 3.4, repeat: Infinity, ease: 'easeInOut' }}
+              className="absolute bottom-1/3 right-1/4 w-1.5 h-1.5 rounded-full bg-cyan-400/70 shadow-[0_0_6px_rgba(6,182,212,0.8)] pointer-events-none"
+              style={{ willChange: 'transform' }}
+            />
+            <motion.span
+              animate={{ y: [-4, 4, -4] }}
+              transition={{ duration: 4.2, repeat: Infinity, ease: 'easeInOut' }}
+              className="absolute top-2/3 left-1/3 w-1 h-1 rounded-full bg-emerald-400/60 pointer-events-none"
+              style={{ willChange: 'transform' }}
+            />
+
+            {/* Tech Corner brackets */}
+            <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-gold-premium pointer-events-none" />
+            <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-gold-premium pointer-events-none" />
+          </div>
+
           {/* Tab Selector */}
           <div className="flex bg-[#12100e]/70 border border-gold-premium/10 rounded-t-2xl p-1 gap-1 overflow-x-auto no-scrollbar relative z-20">
             {TABS.map((tab) => (

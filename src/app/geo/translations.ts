@@ -113,7 +113,7 @@ export const translations: Record<'ru' | 'en', TranslationSchema> = {
           quote: "Экспаты спрашивают ChatGPT, где безопасно лечить зубы. ИИ выдает один безальтернативный ответ. И это не ваша клиника."
         }
       },
-      body: "Появился новый инструмент, который ваш бизнес прямо сейчас игнорирует. Генеративные нейросети заменили классический поиск. Мы перестроим ваш цифровой след, чтобы ИИ отдавал премиум-трафик вам.",
+      body: "ИИ больше не ищет ссылки. Он ищет готовые экспертные решения — и выдаёт единственный ответ без списка сайтов. Если ваш бизнес не встроен в логику генеративного поиска, вас не существует для 40% самых платёжеспособных клиентов. Ваш бизнес должен быть готов к этому поиску уже сейчас.",
       cta: "Проверить, видит ли ИИ мой бизнес"
     },
     tech: {
@@ -216,7 +216,7 @@ export const translations: Record<'ru' | 'en', TranslationSchema> = {
           quote: "Expats ask ChatGPT where to safely treat teeth. AI provides a single безальтернативный answer. And it is not your clinic."
         }
       },
-      body: "A new tool has emerged that your business is currently ignoring. Generative search engines have replaced classic search. We will rebuild your digital footprint so that AI gives premium traffic to you.",
+      body: "AI no longer searches for links. It searches for ready-made expert solutions — and delivers a single answer, no list of websites. If your business is not embedded in the logic of generative search, you simply do not exist for 40% of the most high-value clients. Your business must be ready for this new reality right now.",
       cta: "Verify if AI sees my business"
     },
     tech: {
