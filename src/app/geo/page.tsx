@@ -5,6 +5,7 @@ import Navbar from './components/Navbar';
 import HeroSlider from './components/HeroSlider';
 import SearchRevolution from './components/SearchRevolution';
 import Technology from './components/Technology';
+import ScannerWidget from './components/ScannerWidget';
 import Cases from './components/Cases';
 import ContactCapture from './components/ContactCapture';
 import Link from 'next/link';
@@ -24,6 +25,9 @@ export default function GeoLandingPage() {
 
       {/* Explanatory RAG/Knowledge Graph Technology Block */}
       <Technology />
+
+      {/* Interactive Multi-agent live GEO Scanner lead capture */}
+      <ScannerWidget />
 
       {/* Real-world cases with live ChatGPT query simulations */}
       <Cases />
