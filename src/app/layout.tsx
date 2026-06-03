@@ -32,9 +32,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark" suppressHydrationWarning>
+    <html lang="en" className="dark bg-[#050507]" suppressHydrationWarning>
       <body
-        className={`${spaceGrotesk.variable} antialiased selection:bg-primary selection:text-white`}
+        className={`${spaceGrotesk.variable} antialiased selection:bg-primary selection:text-white bg-[#050507]`}
       >
         <I18nProvider>
           {children}

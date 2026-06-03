@@ -24,16 +24,29 @@ export const ContactCapture: React.FC = () => {
     const form = e.currentTarget;
     const formData = new FormData(form);
 
-    try {
-      const res = await fetch("https://formsubmit.co/ajax/0451611@gmail.com", {
-        method: "POST",
-        headers: {
-          'Accept': 'application/json'
-        },
-        body: formData
-      });
+    // Collect named fields for webhook
+    const name = (formData.get('name') as string) || '';
+    const contact = (formData.get('contact') as string) || '';
+    const industry = (formData.get('industry') as string) || '';
+    const website = (formData.get('website') as string) || '';
 
-      if (res.ok) {
+    try {
+      // Send to formsubmit (email to owner)
+      const [formRes] = await Promise.allSettled([
+        fetch("https://formsubmit.co/ajax/0451611@gmail.com", {
+          method: "POST",
+          headers: { 'Accept': 'application/json' },
+          body: formData
+        }),
+        // Send to webhook (Google Sheets + Telegram)
+        fetch("/api/geo-lead", {
+          method: "POST",
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ type: 'audit', name, contact, industry, website, lang }),
+        })
+      ]);
+
+      if (formRes.status === 'fulfilled' && formRes.value.ok) {
         setAuditStatus("success");
         form.reset();
       } else {
@@ -50,21 +63,33 @@ export const ContactCapture: React.FC = () => {
     setMagnetStatus("loading");
     const form = e.currentTarget;
     const formData = new FormData(form);
+    const contact = (formData.get('contact_magnet') as string) || '';
 
     try {
-      const res = await fetch("https://formsubmit.co/ajax/0451611@gmail.com", {
-        method: "POST",
-        headers: {
-          'Accept': 'application/json'
-        },
-        body: formData
-      });
+      await Promise.allSettled([
+        fetch("https://formsubmit.co/ajax/0451611@gmail.com", {
+          method: "POST",
+          headers: { 'Accept': 'application/json' },
+          body: formData
+        }),
+        fetch("/api/geo-lead", {
+          method: "POST",
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            type: 'magnet',
+            email: contact.includes('@') ? contact : undefined,
+            contact,
+            lang,
+            source: 'pdf-magnet',
+          }),
+        })
+      ]);
 
-      if (res.ok) {
-        setMagnetStatus("success");
-        form.reset();
-      } else {
-        setMagnetStatus("error");
+      setMagnetStatus("success");
+      form.reset();
+      // Open PDF report in new tab immediately
+      if (typeof window !== 'undefined') {
+        window.open('/geo/report', '_blank');
       }
     } catch (error) {
       setMagnetStatus("error");

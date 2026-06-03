@@ -8,6 +8,7 @@ export interface TranslationSchema {
   };
   hero: {
     h1: string;
+    offer: string;
     slider: {
       realestate: {
         tag: string;
@@ -24,6 +25,14 @@ export interface TranslationSchema {
     };
     body: string;
     cta: string;
+    cta2: string;
+    cta3: string;
+    scanCta: string;
+  };
+  midCta: {
+    label: string;
+    text: string;
+    btn: string;
   };
   tech: {
     title: string;
@@ -99,6 +108,7 @@ export const translations: Record<'ru' | 'en' | 'vi', TranslationSchema> = {
     },
     hero: {
       h1: "40% ваших самых платежеспособных клиентов прямо сейчас отдают деньги конкурентам.",
+      offer: "Адаптируйте бизнес под ИИ-реалии — получайте самых платёжеспособных клиентов БЕСПЛАТНО из ChatGPT и Perplexity",
       slider: {
         realestate: {
           tag: "Недвижимость & Девелопмент",
@@ -114,7 +124,10 @@ export const translations: Record<'ru' | 'en' | 'vi', TranslationSchema> = {
         }
       },
       body: "ИИ больше не ищет ссылки. Он ищет готовые экспертные решения — и выдаёт единственный ответ без списка сайтов. Если ваш бизнес не встроен в логику генеративного поиска, вас не существует для 40% самых платёжеспособных клиентов. Ваш бизнес должен быть готов к этому поиску уже сейчас.",
-      cta: "Проверить, видит ли ИИ мой бизнес"
+      cta: "Проверить, видит ли ИИ мой бизнес",
+      cta2: "Начать получать клиентов через ChatGPT",
+      cta3: "Заставить ИИ-агентов рекомендовать мой бизнес",
+      scanCta: "Запустить бесплатный ИИ-сканер",
     },
     tech: {
       title: "Как работает технология GEO?",
@@ -190,6 +203,11 @@ export const translations: Record<'ru' | 'en' | 'vi', TranslationSchema> = {
         cta: "Скачать PDF-отчет (9.4 MB)",
         success: "Ссылка отправлена! Отчет уже летит к вам."
       }
+    },
+    midCta: {
+      label: "СЛЕДУЮЩИЙ ШАГ",
+      text: "Узнайте, рекомендует ли ChatGPT ваш бизнес прямо сейчас",
+      btn: "Запустить ИИ-сканер (бесплатно)"
     }
   },
   en: {
@@ -202,6 +220,7 @@ export const translations: Record<'ru' | 'en' | 'vi', TranslationSchema> = {
     },
     hero: {
       h1: "40% of your most solvent customers are giving money to competitors right now.",
+      offer: "Adapt your business to the AI era — get your most solvent clients for FREE from ChatGPT and Perplexity",
       slider: {
         realestate: {
           tag: "Real Estate & Development",
@@ -217,7 +236,10 @@ export const translations: Record<'ru' | 'en' | 'vi', TranslationSchema> = {
         }
       },
       body: "AI no longer searches for links. It searches for ready-made expert solutions — and delivers a single answer, no list of websites. If your business is not embedded in the logic of generative search, you simply do not exist for 40% of the most high-value clients. Your business must be ready for this new reality right now.",
-      cta: "Verify if AI sees my business"
+      cta: "Verify if AI sees my business",
+      cta2: "Start getting clients through ChatGPT",
+      cta3: "Make AI agents recommend my business",
+      scanCta: "Run free AI visibility scanner",
     },
     tech: {
       title: "How does GEO Technology work?",
@@ -293,6 +315,11 @@ export const translations: Record<'ru' | 'en' | 'vi', TranslationSchema> = {
         cta: "Download PDF Report (9.4 MB)",
         success: "Link transmitted! Your PDF report is on its way."
       }
+    },
+    midCta: {
+      label: "NEXT STEP",
+      text: "Find out if ChatGPT recommends your business right now",
+      btn: "Run AI Scanner (Free)"
     }
   },
   vi: {
@@ -305,6 +332,7 @@ export const translations: Record<'ru' | 'en' | 'vi', TranslationSchema> = {
     },
     hero: {
       h1: "40% khách hàng tiềm năng nhất của bạn đang trao tiền cho đối thủ ngay lúc này.",
+      offer: "Thích nghi doanh nghiệp với kỷ nguyên AI — nhận khách hàng tiềm năng MIỄN PHÍ từ ChatGPT và Perplexity",
       slider: {
         realestate: {
           tag: "Bất động sản & Phát triển",
@@ -320,7 +348,10 @@ export const translations: Record<'ru' | 'en' | 'vi', TranslationSchema> = {
         }
       },
       body: "AI không còn tìm kiếm đường link. Nó tìm kiếm các giải pháp chuyên môn sẵn có — và đưa ra một câu trả lời duy nhất, không có danh sách trang web. Nếu doanh nghiệp của bạn không được tích hợp vào logic tìm kiếm tạo sinh, bạn không tồn tại với 40% khách hàng có giá trị nhất. Doanh nghiệp của bạn phải sẵn sàng cho thực tế mới này ngay bây giờ.",
-      cta: "Kiểm tra xem AI có nhìn thấy doanh nghiệp của tôi không"
+      cta: "Kiểm tra xem AI có nhìn thấy doanh nghiệp của tôi không",
+      cta2: "Bắt đầu nhận khách hàng qua ChatGPT",
+      cta3: "Buộc các AI agent giới thiệu doanh nghiệp của tôi",
+      scanCta: "Chạy trình quét AI miễn phí",
     },
     tech: {
       title: "Công nghệ GEO hoạt động như thế nào?",
@@ -396,6 +427,11 @@ export const translations: Record<'ru' | 'en' | 'vi', TranslationSchema> = {
         cta: "Tải xuống Báo cáo PDF (9.4 MB)",
         success: "Liên kết đã được gửi! Báo cáo PDF của bạn đang trên đường."
       }
+    },
+    midCta: {
+      label: "BƯỚC TIẾP THEO",
+      text: "Tìm hiểu xem ChatGPT có đề xuất doanh nghiệp của bạn ngay bây giờ không",
+      btn: "Chạy trình quét AI (Miễn phí)"
     }
   }
 };

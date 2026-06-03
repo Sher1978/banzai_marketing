@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { ArrowRight, Search, Terminal, Sparkles, AlertTriangle } from 'lucide-react';
+import { ArrowRight, Search, Terminal, Sparkles, AlertTriangle, Zap, Bot, TrendingUp } from 'lucide-react';
 import { translations } from '../translations';
 import '@/lib/i18n';
 
@@ -39,7 +39,7 @@ const TABS: TabData[] = [
   }
 ];
 
-export const HeroSlider: React.FC = () => {
+export const HeroSlider: React.FC<{ openScanner?: () => void }> = ({ openScanner }) => {
   const { i18n } = useTranslation();
   const lang = (i18n.language === 'ru' ? 'ru' : i18n.language === 'vi' ? 'vi' : 'en') as 'ru' | 'en' | 'vi';
   const t = translations[lang];
@@ -144,6 +144,10 @@ export const HeroSlider: React.FC = () => {
     }
   };
 
+  const handleOpenScanner = () => {
+    if (openScanner) openScanner();
+  };
+
   const tickerText = lang === 'ru'
     ? "ТРЕНД 2026 Г. ПОЛУЧАЙТЕ КЛИЕНТОВ БЕСПЛАТНО ИЗ НЕЙРОСЕТЕЙ С ПОМОЩЬЮ НОВОГО ГЕНЕРАТИВНОГО AI-SEO: GENERATIVE ENGINE OPTIMIZATION // "
     : lang === 'vi'
@@ -152,22 +156,26 @@ export const HeroSlider: React.FC = () => {
   const doubleTicker = tickerText + tickerText + tickerText;
 
   return (
-    <section className="relative w-full min-h-screen py-24 md:py-36 px-6 flex items-center justify-center bg-bg-dubai bg-dubai-gold-radial overflow-hidden border-b border-gold-premium/20">
+    <section className="relative w-full min-h-[100svh] md:min-h-screen py-24 md:py-36 px-6 flex items-center justify-center bg-bg-dubai bg-dubai-gold-radial overflow-hidden border-b border-gold-premium/20">
       
       {/* Background Cyber Grid */}
       <div className="absolute inset-0 cyber-grid opacity-[0.03] pointer-events-none" />
 
-      {/* Premium background visual overlay */}
+      {/* Premium background visual overlay — GPU accelerated to prevent scroll jitter */}
       <div 
         className="absolute inset-0 bg-cover bg-center pointer-events-none opacity-[0.18] mix-blend-screen"
-        style={{ backgroundImage: "url('/assets/dubai_geo_premium.png')" }}
+        style={{ 
+          backgroundImage: "url('/assets/dubai_geo_premium.png')",
+          transform: 'translateZ(0)',
+          willChange: 'transform'
+        }}
       />
 
       {/* Decorative Golden Dust/Noise overlay */}
       <div className="absolute inset-0 bg-noise opacity-[0.02] pointer-events-none" />
 
-      {/* Animated glowing neural brain background image — ambient only, no motion transforms */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+      {/* Animated glowing neural brain background image — hidden on mobile to avoid overflow layout breakage and overlap */}
+      <div className="hidden md:block absolute inset-0 pointer-events-none overflow-hidden">
         <div
           className="absolute -right-20 top-1/2 -translate-y-1/2 w-[55%] h-[90%] opacity-[0.18] mix-blend-screen"
           style={{ backgroundImage: "url('/assets/neural_brain_premium.png')", backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'center right' }}
@@ -187,9 +195,9 @@ export const HeroSlider: React.FC = () => {
         />
       </div>
 
-      {/* Glowing Golden Orbs in background */}
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-gold-dark/10 filter blur-[100px] pointer-events-none animate-pulse" />
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full bg-gold-premium/5 filter blur-[120px] pointer-events-none animate-pulse" />
+      {/* Glowing Golden Orbs in background — pulse disabled on mobile to prevent performance lag */}
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-gold-dark/10 filter blur-[100px] pointer-events-none md:animate-pulse" />
+      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full bg-gold-premium/5 filter blur-[120px] pointer-events-none md:animate-pulse" />
 
       <div className="max-w-6xl mx-auto w-full relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         
@@ -220,6 +228,13 @@ export const HeroSlider: React.FC = () => {
             {t.hero.h1}
           </h1>
 
+          {/* OFFER HEADLINE */}
+          <div className="bg-gradient-to-r from-gold-dark/25 to-transparent border-l-2 border-gold-premium pl-4 py-3 rounded-r-xl">
+            <p className="text-gold-light font-display font-black text-base md:text-lg leading-snug">
+              {t.hero.offer}
+            </p>
+          </div>
+
           {/* NEW: Red-styled urgent body copy about AI searching for solutions */}
           <div className="relative border-l-2 border-red-500 pl-4 py-2 bg-red-950/10 rounded-r-xl">
             <div className="flex items-center gap-1.5 text-red-500 font-mono text-[8px] uppercase tracking-widest font-black mb-2">
@@ -235,14 +250,48 @@ export const HeroSlider: React.FC = () => {
             </p>
           </div>
 
-          <div className="flex flex-wrap gap-4 mt-2">
-            <button
-              onClick={scrollToContact}
-              className="group flex items-center justify-center bg-gradient-to-r from-gold-light via-gold-premium to-gold-dark text-black font-display font-black text-xs md:text-sm px-6 py-4 md:px-10 md:py-4.5 rounded-full transition-all uppercase tracking-wider shadow-gold-glow hover:brightness-110 active:scale-95 cursor-pointer"
+          {/* CTA Buttons Grid */}
+          <div className="flex flex-col gap-3 mt-2">
+            {/* Primary CTA */}
+            <motion.button
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.97 }}
+              onClick={handleOpenScanner}
+              id="hero-cta-primary"
+              className="group flex items-center justify-center gap-2 bg-gradient-to-r from-gold-light via-gold-premium to-gold-dark text-black font-display font-black text-xs md:text-sm px-6 py-4 md:px-10 rounded-full transition-all uppercase tracking-wider shadow-gold-glow hover:brightness-110 active:scale-95 cursor-pointer w-full sm:w-fit"
             >
-              <span className="mr-2">{t.hero.cta}</span>
+              <Zap size={14} />
+              <span>{t.hero.cta}</span>
               <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
-            </button>
+            </motion.button>
+
+            {/* Secondary CTAs */}
+            <div className="flex flex-wrap gap-2">
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.97 }}
+                onClick={handleOpenScanner}
+                id="hero-cta-chatgpt"
+                className="flex items-center gap-2 border border-gold-premium/30 hover:border-gold-premium bg-gold-dark/10 hover:bg-gold-dark/20 text-white font-display font-semibold text-[10px] md:text-xs px-4 py-3 rounded-full transition-all uppercase tracking-wider cursor-pointer"
+              >
+                <Bot size={12} className="text-gold-premium" />
+                <span>{t.hero.cta2}</span>
+              </motion.button>
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.97 }}
+                onClick={handleOpenScanner}
+                id="hero-cta-agents"
+                className="flex items-center gap-2 border border-gold-premium/30 hover:border-gold-premium bg-gold-dark/10 hover:bg-gold-dark/20 text-white font-display font-semibold text-[10px] md:text-xs px-4 py-3 rounded-full transition-all uppercase tracking-wider cursor-pointer"
+              >
+                <TrendingUp size={12} className="text-gold-premium" />
+                <span>{t.hero.cta3}</span>
+              </motion.button>
+            </div>
+
+            <p className="font-mono text-[8px] text-sand-muted/40 uppercase tracking-widest">
+              {lang === 'ru' ? '~30 сек · бесплатно · без регистрации' : lang === 'vi' ? '~30 giây · miễn phí · không đăng ký' : '~30 sec · free · no signup'}
+            </p>
           </div>
 
         </div>
@@ -339,7 +388,7 @@ export const HeroSlider: React.FC = () => {
           </div>
 
           {/* Simulated AI Console Window */}
-          <div className="w-full bg-[#12100e]/95 border-x border-b border-gold-premium/15 rounded-b-2xl p-6 md:p-8 shadow-gold-glow backdrop-blur-xl relative min-h-[340px] flex flex-col justify-between group">
+          <div className="w-full bg-[#12100e]/95 border-x border-b border-gold-premium/15 rounded-b-2xl p-6 md:p-8 shadow-gold-glow backdrop-blur-xl relative h-[360px] flex flex-col justify-between group">
             
             {/* Blinking glow indicators top-right */}
             <div className="absolute top-4 right-4 flex items-center gap-1.5 opacity-60">
@@ -358,7 +407,7 @@ export const HeroSlider: React.FC = () => {
                   <Search size={12} className="text-gold-light" />
                 </div>
                 <div className="bg-black/40 border border-gold-premium/10 rounded-2xl rounded-tl-none px-4 py-3 max-w-[85%]">
-                  <p className="text-white text-xs md:text-sm font-mono leading-relaxed min-h-[1.5em] flex items-center">
+                  <p className="text-white text-xs md:text-sm font-mono leading-relaxed min-h-[3em] flex items-start flex-wrap">
                     {typedQuery}
                     {isTypingQuery && (
                       <span className="w-1.5 h-4 bg-gold-light ml-1 animate-pulse" />
@@ -396,7 +445,7 @@ export const HeroSlider: React.FC = () => {
                     <span>SYSTEM COMPLIANCE RISK</span>
                   </div>
 
-                  <p className="text-gold-light/95 text-xs md:text-sm font-display font-medium leading-relaxed min-h-[3em]">
+                  <p className="text-gold-light/95 text-xs md:text-sm font-display font-medium leading-relaxed min-h-[6em]">
                     {typedResponse}
                     {isTypingResponse && (
                       <span className="inline-block w-1.5 h-3.5 bg-gold-premium ml-0.5 animate-pulse" />

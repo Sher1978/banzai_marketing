@@ -12,7 +12,7 @@ import Link from 'next/link';
 
 export default function GeoLandingPage() {
   return (
-    <main className="min-h-screen bg-bg-dubai text-white font-display antialiased selection:bg-gold-premium selection:text-black scroll-smooth">
+    <main className="min-h-screen w-full overflow-x-hidden relative bg-bg-dubai text-white font-display antialiased selection:bg-gold-premium selection:text-black scroll-smooth">
       
       {/* Dynamic Navigation Bar */}
       <Navbar />
