@@ -170,7 +170,7 @@ export const ContactCapture: React.FC = () => {
         </div>
 
         {/* ==================== Double Funnel Lead Capture Forms ==================== */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-stretch mt-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-stretch mt-12" id="audit-form">
           
           {/* Left Column: Express Audit Form (7 cols) */}
           <motion.div

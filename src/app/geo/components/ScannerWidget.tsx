@@ -31,6 +31,7 @@ export const ScannerWidget: React.FC = () => {
   const [showEmailForm, setShowEmailForm] = useState(false);
   const [auditResult, setAuditResult] = useState<any>(null);
   const terminalEndRef = useRef<HTMLDivElement>(null);
+  const logsContainerRef = useRef<HTMLDivElement>(null);
 
   const [telemetry, setTelemetry] = useState({
     lat: 25.2048,
@@ -54,8 +55,8 @@ export const ScannerWidget: React.FC = () => {
 
   // Auto scroll logs
   useEffect(() => {
-    if (terminalEndRef.current) {
-      terminalEndRef.current.scrollIntoView({ behavior: 'smooth' });
+    if (logsContainerRef.current) {
+      logsContainerRef.current.scrollTop = logsContainerRef.current.scrollHeight;
     }
   }, [logs]);
 
@@ -227,7 +228,7 @@ export const ScannerWidget: React.FC = () => {
   };
 
   const scrollToContact = () => {
-    const contactSection = document.getElementById('contact');
+    const contactSection = document.getElementById('audit-form');
     if (contactSection) {
       contactSection.scrollIntoView({ behavior: 'smooth' });
     }
@@ -518,7 +519,7 @@ export const ScannerWidget: React.FC = () => {
                       {lang === 'ru' ? "1. Адрес веб-сайта компании" : "1. Company Website URL"}
                     </label>
                     <input
-                      type="url"
+                      type="text"
                       required
                       value={website}
                       onChange={(e) => setWebsite(e.target.value)}
@@ -602,7 +603,7 @@ export const ScannerWidget: React.FC = () => {
               </div>
 
               {/* Console Logs */}
-              <div className="flex flex-col gap-3 min-h-[260px] max-h-[300px] overflow-y-auto pr-2 no-scrollbar text-[9px] md:text-xs">
+              <div ref={logsContainerRef} className="flex flex-col gap-3 min-h-[260px] max-h-[300px] overflow-y-auto pr-2 no-scrollbar text-[9px] md:text-xs">
                 {logs.map((log, idx) => (
                   <div key={idx} className="flex gap-2.5 items-start">
                     <span className="text-sand-muted/30 font-mono flex-shrink-0 select-none">[{log.time}]</span>
