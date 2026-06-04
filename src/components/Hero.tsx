@@ -1,8 +1,8 @@
 "use client";
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ArrowRight, Globe } from 'lucide-react';
+import { ArrowRight, Globe, Moon } from 'lucide-react';
 import '@/lib/i18n';
 import { openLeadModal } from './ModalController';
 
@@ -12,6 +12,33 @@ import { openLeadModal } from './ModalController';
 export const Hero: React.FC = () => {
     const { t, i18n } = useTranslation();
     const sectionRef = React.useRef<HTMLDivElement>(null);
+    const [theme, setTheme] = useState<'dark' | 'light'>('dark');
+
+    useEffect(() => {
+        const savedTheme = localStorage.getItem('theme') as 'dark' | 'light' | null;
+        const initialTheme = savedTheme || 'dark';
+        setTheme(initialTheme);
+        if (initialTheme === 'light') {
+            document.documentElement.classList.add('light');
+            document.documentElement.classList.remove('dark');
+        } else {
+            document.documentElement.classList.add('dark');
+            document.documentElement.classList.remove('light');
+        }
+    }, []);
+
+    const toggleTheme = () => {
+        const nextTheme = theme === 'dark' ? 'light' : 'dark';
+        setTheme(nextTheme);
+        localStorage.setItem('theme', nextTheme);
+        if (nextTheme === 'light') {
+            document.documentElement.classList.add('light');
+            document.documentElement.classList.remove('dark');
+        } else {
+            document.documentElement.classList.add('dark');
+            document.documentElement.classList.remove('light');
+        }
+    };
 
     const toggleLanguage = (lang: string) => {
         i18n.changeLanguage(lang);
@@ -35,7 +62,20 @@ export const Hero: React.FC = () => {
             />
 
             {/* Language Switcher */}
-            <div className="absolute top-6 right-6 z-50 flex items-center gap-4">
+            <div className="absolute top-6 right-6 z-50 flex items-center gap-3">
+                {/* Theme Switcher Toggle */}
+                <button
+                    onClick={toggleTheme}
+                    className="p-2 rounded-full border border-white/10 bg-black/40 backdrop-blur-md hover:border-secondary/40 transition-all duration-300 flex items-center justify-center cursor-pointer shadow-2xl"
+                    title={theme === 'dark' ? 'Switch to Light Theme' : 'Switch to Dark Theme'}
+                >
+                    {theme === 'dark' ? (
+                        <Moon size={14} className="text-secondary fill-secondary shadow-[0_0_8px_rgba(6,182,212,0.5)] transition-all" />
+                    ) : (
+                        <Moon size={14} className="text-white/40 fill-none transition-all" />
+                    )}
+                </button>
+
                 <div className="flex bg-black/40 backdrop-blur-md border border-white/10 rounded-full px-4 py-2 gap-2 shadow-2xl">
                     <Globe size={14} className="text-secondary/60 self-center" />
                     <button

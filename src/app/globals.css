@@ -301,3 +301,194 @@ body {
   color: #f1f5f9;
   font-family: var(--font-display);
 }
+
+/* Light theme overrides */
+.light {
+  --color-background-dark: #fbfaf8;
+  --color-background-light: #ffffff;
+  --color-surface-dark: #f5f3f0;
+  --color-bg-dubai: #fbfaf8;
+  --color-surface-dubai: #ffffff;
+  --color-sand-muted: #5e5344;
+  --color-gold-premium: #a68a60;
+  --color-gold-light: #3e3223;
+  --color-gold-dark: #8c714c;
+}
+
+.light body {
+  background-color: #fbfaf8;
+  color: #1a1613;
+}
+
+.light .text-white {
+  color: #1a1613 !important;
+}
+
+.light .text-white\/95 {
+  color: #1a1613 !important;
+}
+
+.light .text-white\/90 {
+  color: rgba(26, 22, 19, 0.9) !important;
+}
+
+.light .text-white\/80 {
+  color: rgba(26, 22, 19, 0.8) !important;
+}
+
+.light .text-white\/70 {
+  color: rgba(26, 22, 19, 0.7) !important;
+}
+
+.light .text-white\/60 {
+  color: rgba(26, 22, 19, 0.6) !important;
+}
+
+.light .text-white\/50 {
+  color: rgba(26, 22, 19, 0.5) !important;
+}
+
+.light .text-white\/40 {
+  color: rgba(26, 22, 19, 0.4) !important;
+}
+
+.light .text-white\/30 {
+  color: rgba(26, 22, 19, 0.3) !important;
+}
+
+.light .text-white\/20 {
+  color: rgba(26, 22, 19, 0.2) !important;
+}
+
+.light .text-white\/15 {
+  color: rgba(26, 22, 19, 0.15) !important;
+}
+
+.light .text-white\/10 {
+  color: rgba(26, 22, 19, 0.1) !important;
+}
+
+.light .text-white\/5 {
+  color: rgba(26, 22, 19, 0.05) !important;
+}
+
+.light .text-sand-muted {
+  color: #5e5344 !important;
+}
+
+.light .text-sand-muted\/95 {
+  color: rgba(94, 83, 68, 0.95) !important;
+}
+
+.light .text-sand-muted\/90 {
+  color: rgba(94, 83, 68, 0.9) !important;
+}
+
+.light .text-sand-muted\/40 {
+  color: rgba(94, 83, 68, 0.4) !important;
+}
+
+.light .text-sand-muted\/30 {
+  color: rgba(94, 83, 68, 0.3) !important;
+}
+
+.light .bg-black {
+  background-color: #ffffff !important;
+}
+
+.light .bg-black\/30 {
+  background-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+.light .bg-black\/40 {
+  background-color: rgba(255, 255, 255, 0.4) !important;
+}
+
+.light .bg-black\/50 {
+  background-color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.light .bg-black\/60 {
+  background-color: rgba(255, 255, 255, 0.6) !important;
+}
+
+.light .bg-black\/75 {
+  background-color: rgba(255, 255, 255, 0.75) !important;
+}
+
+.light .bg-black\/80 {
+  background-color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.light .bg-black\/85 {
+  background-color: rgba(255, 255, 255, 0.85) !important;
+}
+
+.light .bg-black\/90 {
+  background-color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.light .bg-\[\#12100e\] {
+  background-color: #ffffff !important;
+}
+
+.light .bg-\[\#12100e\]\/40 {
+  background-color: rgba(255, 255, 255, 0.4) !important;
+}
+
+.light .bg-\[\#12100e\]\/75 {
+  background-color: rgba(255, 255, 255, 0.75) !important;
+}
+
+.light .bg-gold-dark\/5 {
+  background-color: rgba(166, 138, 96, 0.05) !important;
+}
+
+.light .bg-gold-dark\/10 {
+  background-color: rgba(166, 138, 96, 0.1) !important;
+}
+
+.light .bg-surface-dark {
+  background-color: #ffffff !important;
+}
+
+.light .border-white\/5 {
+  border-color: rgba(0, 0, 0, 0.05) !important;
+}
+
+.light .border-white\/10 {
+  border-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+.light .border-white\/15 {
+  border-color: rgba(0, 0, 0, 0.15) !important;
+}
+
+.light .border-white\/20 {
+  border-color: rgba(0, 0, 0, 0.2) !important;
+}
+
+.light .border-white\/30 {
+  border-color: rgba(0, 0, 0, 0.3) !important;
+}
+
+.light .border-white\/40 {
+  border-color: rgba(0, 0, 0, 0.4) !important;
+}
+
+.light .bg-grid-pattern {
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 1px, transparent 1px) !important;
+}
+
+.light .cyber-grid {
+  background-image: linear-gradient(to right, rgba(166, 138, 96, 0.06) 1px, transparent 1px), linear-gradient(to bottom, rgba(166, 138, 96, 0.06) 1px, transparent 1px) !important;
+}
+
+.light .bg-noise {
+  opacity: 0.015 !important;
+}
+
+.light .mix-blend-screen {
+  mix-blend-mode: multiply !important;
+  opacity: 0.12 !important;
+}

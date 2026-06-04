@@ -140,8 +140,29 @@
         ],
         "button": "LAUNCH BANZAI PROTOCOL"
     },
+    "solution": {
+        "badge": "Our Solution",
+        "title_part1": "Two growth engines.",
+        "title_part2": "One result.",
+        "subtitle": "For sustainable conversion growth, it is necessary to work in two directions simultaneously: create content that grabs attention, and optimize the channels where this content is found by customers — including the new standard of GEO optimization for AI searches.",
+        "pillar1_tag": "Pillar — 01",
+        "pillar1_code": "CONTENT_ENGINE",
+        "pillar1_title": "Content:",
+        "pillar1_subtitle": "Massive & Engaging",
+        "pillar1_desc": "AI allows content creation at an industrial scale without losing quality. Hundreds of relevant posts, videos, and articles tailored to specific audiences generate organic reach and engagement unattainable manually.",
+        "pillar2_tag": "Pillar — 02",
+        "pillar2_code": "CHANNEL_OPT",
+        "pillar2_title": "Channels:",
+        "pillar2_subtitle_part1": "SEO · Content Marketing ·",
+        "pillar2_subtitle_part2": "GEO",
+        "pillar2_desc": "Classic traffic channels are supplemented by a new standard — Generative Engine Optimization (GEO). Your brand must be present not only in Google, but also in ChatGPT, Gemini, and Perplexity answers — where 40% of the most affluent customers make their decisions.",
+        "banner_tag": "Synergy of two pillars",
+        "banner_title": "BanzAI marketing does both.",
+        "banner_desc": "At BanzAI marketing, we implement both directions using advanced AI tools — literally constructing our clients' virality and ensuring their presence where all traffic will be tomorrow."
+    },
     "switcher": {
         "en": "EN",
-        "ru": "RU"
+        "ru": "RU",
+        "vi": "VI"
     }
 }

@@ -140,6 +140,26 @@
         ],
         "button": "KHỞI ĐỘNG GIAO THỨC BANZAI"
     },
+    "solution": {
+        "badge": "Giải Pháp Của Chúng Tôi",
+        "title_part1": "Hai động cơ tăng trưởng.",
+        "title_part2": "Một kết quả.",
+        "subtitle": "Để tăng trưởng chuyển đổi bền vững, cần hoạt động đồng thời trên hai hướng: tạo nội dung thu hút sự chú ý và tối ưu hóa các kênh mà khách hàng tìm thấy nội dung này — bao gồm cả tiêu chuẩn GEO mới để tìm kiếm bằng AI.",
+        "pillar1_tag": "Hướng đi — 01",
+        "pillar1_code": "CONTENT_ENGINE",
+        "pillar1_title": "Nội dung:",
+        "pillar1_subtitle": "Quy mô lớn & Lôi cuốn",
+        "pillar1_desc": "AI cho phép tạo nội dung ở quy mô công nghiệp mà không làm giảm chất lượng. Hàng trăm bài đăng, video và bài viết liên quan được điều chỉnh cho đối tượng cụ thể sẽ tạo ra phạm vi tiếp cận tự nhiên và mức độ tương tác không thể đạt được bằng cách thủ công.",
+        "pillar2_tag": "Hướng đi — 02",
+        "pillar2_code": "CHANNEL_OPT",
+        "pillar2_title": "Kênh truyền thông:",
+        "pillar2_subtitle_part1": "SEO · Content Marketing ·",
+        "pillar2_subtitle_part2": "GEO",
+        "pillar2_desc": "Các kênh lưu lượng truy cập cổ điển được bổ sung bởi tiêu chuẩn mới — Tối ưu hóa Công cụ Tạo lập (GEO). Thương hiệu của bạn phải hiện diện không chỉ trên Google mà cả trong câu trả lời của ChatGPT, Gemini và Perplexity — nơi 40% khách hàng có khả năng chi trả cao nhất đưa ra quyết định.",
+        "banner_tag": "Sự kết hợp của hai hướng đi",
+        "banner_title": "BanzAI marketing thực hiện cả hai.",
+        "banner_desc": "Tại BanzAI marketing, chúng tôi triển khai cả hai hướng đi bằng các công cụ AI tiên tiến — xây dựng tính lan truyền cho khách hàng và đảm bảo sự hiện diện của họ ở nơi mà ngày mai toàn bộ lưu lượng truy cập sẽ đổ về."
+    },
     "switcher": {
         "en": "EN",
         "ru": "RU",

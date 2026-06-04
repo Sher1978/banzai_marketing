@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Globe, ArrowLeft, Menu, X } from 'lucide-react';
+import { Globe, ArrowLeft, Menu, X, Moon } from 'lucide-react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { translations } from '../translations';
@@ -15,6 +15,33 @@ export const Navbar: React.FC = () => {
 
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [theme, setTheme] = useState<'dark' | 'light'>('dark');
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem('theme') as 'dark' | 'light' | null;
+    const initialTheme = savedTheme || 'dark';
+    setTheme(initialTheme);
+    if (initialTheme === 'light') {
+      document.documentElement.classList.add('light');
+      document.documentElement.classList.remove('dark');
+    } else {
+      document.documentElement.classList.add('dark');
+      document.documentElement.classList.remove('light');
+    }
+  }, []);
+
+  const toggleTheme = () => {
+    const nextTheme = theme === 'dark' ? 'light' : 'dark';
+    setTheme(nextTheme);
+    localStorage.setItem('theme', nextTheme);
+    if (nextTheme === 'light') {
+      document.documentElement.classList.add('light');
+      document.documentElement.classList.remove('dark');
+    } else {
+      document.documentElement.classList.add('dark');
+      document.documentElement.classList.remove('light');
+    }
+  };
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -116,6 +143,19 @@ export const Navbar: React.FC = () => {
                 </React.Fragment>
               ))}
             </div>
+
+            {/* Theme Switcher */}
+            <button
+              onClick={toggleTheme}
+              className="p-1.5 rounded-full border border-white/10 bg-black/40 backdrop-blur-md hover:border-secondary/40 transition-all duration-300 flex items-center justify-center cursor-pointer shadow-md"
+              title={theme === 'dark' ? 'Switch to Light Theme' : 'Switch to Dark Theme'}
+            >
+              {theme === 'dark' ? (
+                <Moon size={11} className="text-secondary fill-secondary shadow-[0_0_6px_rgba(6,182,212,0.4)] transition-all" />
+              ) : (
+                <Moon size={11} className="text-white/40 fill-none transition-all" />
+              )}
+            </button>
           </div>
 
           {/* Mobile Hamburger */}
@@ -165,24 +205,39 @@ export const Navbar: React.FC = () => {
             </div>
 
             <div className="relative z-10 flex flex-col gap-5 mt-auto">
-              {/* Language switcher */}
-              <div className="flex items-center gap-3">
-                <Globe size={14} className="text-secondary/60" />
-                {(['ru', 'en', 'vi'] as const).map((code, i, arr) => (
-                  <React.Fragment key={code}>
-                    <button
-                      onClick={() => handleLanguageChange(code)}
-                      className={`text-sm font-bold transition-all ${
-                        lang === code ? 'text-secondary' : 'text-white/30'
-                      }`}
-                    >
-                      {code.toUpperCase()}
-                    </button>
-                    {i < arr.length - 1 && (
-                      <span className="text-white/10">|</span>
-                    )}
-                  </React.Fragment>
-                ))}
+              {/* Language and Theme Switcher Row */}
+              <div className="flex items-center justify-between border-b border-white/5 pb-4">
+                <div className="flex items-center gap-3">
+                  <Globe size={14} className="text-secondary/60" />
+                  {(['ru', 'en', 'vi'] as const).map((code, i, arr) => (
+                    <React.Fragment key={code}>
+                      <button
+                        onClick={() => handleLanguageChange(code)}
+                        className={`text-sm font-bold transition-all ${
+                          lang === code ? 'text-secondary' : 'text-white/30'
+                        }`}
+                      >
+                        {code.toUpperCase()}
+                      </button>
+                      {i < arr.length - 1 && (
+                        <span className="text-white/10">|</span>
+                      )}
+                    </React.Fragment>
+                  ))}
+                </div>
+
+                {/* Theme Switcher */}
+                <button
+                  onClick={toggleTheme}
+                  className="p-2 rounded-full border border-white/10 bg-black/40 backdrop-blur-md hover:border-secondary/40 transition-all duration-300 flex items-center justify-center cursor-pointer shadow-md"
+                  title={theme === 'dark' ? 'Switch to Light Theme' : 'Switch to Dark Theme'}
+                >
+                  {theme === 'dark' ? (
+                    <Moon size={14} className="text-secondary fill-secondary shadow-[0_0_6px_rgba(6,182,212,0.4)] transition-all" />
+                  ) : (
+                    <Moon size={14} className="text-white/40 fill-none transition-all" />
+                  )}
+                </button>
               </div>
 
               {/* Back to main site */}

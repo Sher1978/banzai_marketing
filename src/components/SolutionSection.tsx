@@ -4,6 +4,8 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { ExternalLink, Zap, TrendingUp } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
+import '@/lib/i18n';
 
 /**
  * SolutionSection — "Решение BanzAI marketing"
@@ -11,6 +13,7 @@ import { ExternalLink, Zap, TrendingUp } from 'lucide-react';
  * Placed before FounderSection on the main landing page.
  */
 const SolutionSection: React.FC = () => {
+  const { t } = useTranslation();
   return (
     <section
       id="solution"
@@ -35,22 +38,19 @@ const SolutionSection: React.FC = () => {
           {/* Label */}
           <div className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.3em] text-primary/70 border border-primary/20 px-4 py-1.5 rounded-full mb-6 bg-primary/5">
             <Zap size={10} />
-            <span>Наше Решение</span>
+            <span>{t('solution.badge')}</span>
           </div>
 
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-white uppercase tracking-tighter leading-[0.9] mb-6">
-            Два двигателя роста.
+            {t('solution.title_part1')}
             <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-primary">
-              Один результат.
+              {t('solution.title_part2')}
             </span>
           </h2>
 
           <p className="max-w-3xl mx-auto text-white/50 text-sm md:text-base leading-relaxed">
-            Для устойчивого роста конверсии необходимо работать одновременно в двух направлениях:
-            создавать контент, который захватывает внимание, и оптимизировать каналы, по которым
-            этот контент находят клиенты — включая новый стандарт{' '}
-            <span className="text-red-500 font-bold">ГЕО</span>-оптимизации для ИИ-поиска.
+            {t('solution.subtitle')}
           </p>
         </motion.div>
 
@@ -76,9 +76,9 @@ const SolutionSection: React.FC = () => {
               {/* Pillar number */}
               <div className="flex items-start justify-between mb-6">
                 <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-primary/60">
-                  Направление — 01
+                  {t('solution.pillar1_tag')}
                 </div>
-                <div className="font-mono text-[10px] text-white/20">CONTENT_ENGINE</div>
+                <div className="font-mono text-[10px] text-white/20">{t('solution.pillar1_code')}</div>
               </div>
 
               {/* Image illustration */}
@@ -96,16 +96,14 @@ const SolutionSection: React.FC = () => {
 
               {/* Title */}
               <h3 className="text-2xl md:text-3xl font-black text-white uppercase tracking-tight leading-tight mb-4">
-                Контент:
+                {t('solution.pillar1_title')}
                 <br />
-                <span className="text-secondary">Массовый и Вовлекающий</span>
+                <span className="text-secondary">{t('solution.pillar1_subtitle')}</span>
               </h3>
 
               {/* Description */}
               <p className="text-white/50 text-sm leading-relaxed mb-6 flex-1">
-                ИИ позволяет создавать контент в промышленных масштабах без потери качества.
-                Сотни релевантных постов, видео и статей, настроенных на конкретную аудиторию,
-                генерируют органический охват и вовлечённость, недостижимые вручную.
+                {t('solution.pillar1_desc')}
               </p>
 
               {/* Link to virale.uno */}
@@ -139,9 +137,9 @@ const SolutionSection: React.FC = () => {
               {/* Pillar number */}
               <div className="flex items-start justify-between mb-6">
                 <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/40">
-                  Направление — 02
+                  {t('solution.pillar2_tag')}
                 </div>
-                <div className="font-mono text-[10px] text-white/20">CHANNEL_OPT</div>
+                <div className="font-mono text-[10px] text-white/20">{t('solution.pillar2_code')}</div>
               </div>
 
               {/* Image illustration */}
@@ -159,18 +157,15 @@ const SolutionSection: React.FC = () => {
 
               {/* Title */}
               <h3 className="text-2xl md:text-3xl font-black text-white uppercase tracking-tight leading-tight mb-4">
-                Каналы:
+                {t('solution.pillar2_title')}
                 <br />
-                <span className="text-white/70">SEO · Контент-маркетинг ·</span>{' '}
-                <span className="text-red-500 animate-pulse-red">ГЕО</span>
+                <span className="text-white/70">{t('solution.pillar2_subtitle_part1')}</span>{' '}
+                <span className="text-red-500 animate-pulse-red">{t('solution.pillar2_subtitle_part2')}</span>
               </h3>
 
               {/* Description */}
               <p className="text-white/50 text-sm leading-relaxed mb-6 flex-1">
-                Классические каналы трафика дополняются новым стандартом —{' '}
-                <span className="text-red-400 font-semibold">Generative Engine Optimization (ГЕО)</span>.
-                Ваш бренд должен присутствовать не только в Google, но и в ответах ChatGPT, Gemini
-                и Perplexity — там, где принимают решения 40% самых платежеспособных клиентов.
+                {t('solution.pillar2_desc')}
               </p>
 
               {/* Channel tags */}
@@ -211,16 +206,13 @@ const SolutionSection: React.FC = () => {
             {/* Text */}
             <div className="flex-1 text-center md:text-left">
               <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-primary/60 mb-3">
-                Синергия двух направлений
+                {t('solution.banner_tag')}
               </div>
               <h3 className="text-xl md:text-2xl font-black text-white uppercase tracking-tight mb-3">
-                BanzAI marketing делает и то, и другое.
+                {t('solution.banner_title')}
               </h3>
               <p className="text-white/50 text-sm leading-relaxed">
-                Мы в компании <span className="text-white font-semibold">BanzAI marketing</span> реализуем оба направления
-                с помощью передовых ИИ-инструментов — буквально{' '}
-                <span className="text-secondary font-semibold">конструируя вирусность</span> наших клиентов
-                и обеспечивая их присутствие там, где завтра будет весь трафик.
+                {t('solution.banner_desc')}
               </p>
             </div>
 

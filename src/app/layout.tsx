@@ -33,6 +33,26 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark bg-[#050507]" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  var saved = localStorage.getItem('theme');
+                  if (saved === 'light') {
+                    document.documentElement.classList.add('light');
+                    document.documentElement.classList.remove('dark');
+                  } else {
+                    document.documentElement.classList.add('dark');
+                    document.documentElement.classList.remove('light');
+                  }
+                } catch (_) {}
+              })();
+            `
+          }}
+        />
+      </head>
       <body
         className={`${spaceGrotesk.variable} antialiased selection:bg-primary selection:text-white bg-[#050507]`}
       >

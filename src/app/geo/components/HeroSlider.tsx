@@ -145,7 +145,14 @@ export const HeroSlider: React.FC<{ openScanner?: () => void }> = ({ openScanner
   };
 
   const handleOpenScanner = () => {
-    if (openScanner) openScanner();
+    if (openScanner) {
+      openScanner();
+    } else {
+      const scannerSection = document.getElementById('scanner');
+      if (scannerSection) {
+        scannerSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
   };
 
   const tickerText = lang === 'ru'
