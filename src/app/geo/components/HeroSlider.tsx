@@ -382,7 +382,7 @@ export const HeroSlider: React.FC<{ openScanner?: () => void; openLeadModal?: ()
           </div>
 
           {/* Tab Selector */}
-          <div className="flex bg-[#12100e]/70 border border-gold-premium/10 rounded-t-2xl p-1 gap-1 overflow-x-auto no-scrollbar relative z-20">
+          <div className="hero-chat-tab flex bg-[#12100e]/70 border border-gold-premium/10 rounded-t-2xl p-1 gap-1 overflow-x-auto no-scrollbar relative z-20">
             {TABS.map((tab) => (
               <button
                 key={tab.id}
@@ -399,7 +399,7 @@ export const HeroSlider: React.FC<{ openScanner?: () => void; openLeadModal?: ()
           </div>
 
           {/* Simulated AI Console Window */}
-          <div className="w-full bg-[#12100e]/95 border-x border-b border-gold-premium/15 rounded-b-2xl p-6 md:p-8 shadow-gold-glow backdrop-blur-xl relative h-[360px] flex flex-col justify-between group">
+          <div className="hero-chat-console w-full bg-[#12100e]/95 border-x border-b border-gold-premium/15 rounded-b-2xl p-6 md:p-8 shadow-gold-glow backdrop-blur-xl relative h-[360px] flex flex-col justify-between group">
             
             {/* Blinking glow indicators top-right */}
             <div className="absolute top-4 right-4 flex items-center gap-1.5 opacity-60">
@@ -417,7 +417,7 @@ export const HeroSlider: React.FC<{ openScanner?: () => void; openLeadModal?: ()
                 <div className="w-8 h-8 rounded-full bg-gold-dark/20 border border-gold-premium/30 flex items-center justify-center flex-shrink-0">
                   <Search size={12} className="text-gold-light" />
                 </div>
-                <div className="bg-black/40 border border-gold-premium/10 rounded-2xl rounded-tl-none px-4 py-3 max-w-[85%]">
+                <div className="hero-chat-q bg-black/40 border border-gold-premium/10 rounded-2xl rounded-tl-none px-4 py-3 max-w-[85%]">
                   <p className="text-white text-xs md:text-sm font-mono leading-relaxed min-h-[3em] flex items-start flex-wrap">
                     {typedQuery}
                     {isTypingQuery && (
@@ -448,7 +448,7 @@ export const HeroSlider: React.FC<{ openScanner?: () => void; openLeadModal?: ()
                   <Sparkles size={12} className="text-black" />
                 </div>
                 
-                <div className="bg-gold-premium/5 border border-gold-premium/20 rounded-2xl rounded-tl-none px-5 py-4 max-w-[85%] shadow-inner flex flex-col gap-3">
+                <div className="hero-chat-a bg-gold-premium/5 border border-gold-premium/20 rounded-2xl rounded-tl-none px-5 py-4 max-w-[85%] shadow-inner flex flex-col gap-3">
                   
                   {/* Warning label to strike FOMO */}
                   <div className="flex items-center gap-1.5 text-red-500/80 font-display text-[9px] font-bold uppercase tracking-wider">

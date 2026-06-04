@@ -323,13 +323,39 @@ body {
   background-color: rgba(0, 0, 0, 0.4) !important;
 }
 
-/* Glassmorphic header */
+/* ===== Glassmorphic Navbar Header ===== */
 .glass-header {
-  background-color: rgba(9, 8, 7, 0.3) !important;
-  backdrop-filter: blur(24px) saturate(180%) !important;
-  -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
-  border-bottom: 1px solid rgba(197, 168, 128, 0.15) !important;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4) !important;
+  /* Layered semi-transparent dark base — lets background bleed through */
+  background: linear-gradient(
+    135deg,
+    rgba(12, 9, 6, 0.55) 0%,
+    rgba(8, 6, 4, 0.45) 100%
+  ) !important;
+  /* Strong blur + colour pump — the core of the frosted glass */
+  backdrop-filter: blur(28px) saturate(200%) brightness(0.9) !important;
+  -webkit-backdrop-filter: blur(28px) saturate(200%) brightness(0.9) !important;
+  /* Gold shimmer bottom border */
+  border-bottom: 1px solid rgba(197, 168, 128, 0.20) !important;
+  /* Subtle inner top highlight + drop shadow for depth */
+  box-shadow:
+    inset 0 1px 0 rgba(197, 168, 128, 0.08),
+    0 8px 40px rgba(0, 0, 0, 0.55),
+    0 2px 8px rgba(0, 0, 0, 0.35) !important;
+}
+
+/* Frosted noise layer via pseudo-element (adds texture like real frosted glass) */
+.glass-header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+.glass-header > * {
+  position: relative;
+  z-index: 1;
 }
 
 /* Light theme overrides relocated to the bottom of the file for specificity */
@@ -681,4 +707,66 @@ textarea:focus {
 
 .light .text-sand-muted\/40 {
   color: rgba(74, 62, 46, 0.6) !important;
+}
+
+/* =========================================================== */
+/* ===== HERO CHAT PANEL: Unified theming (dark & light) ===== */
+/* =========================================================== */
+
+/* =========================================================== */
+/* ===== HERO CHAT PANEL: Unified theme for both modes   ===== */
+/* =========================================================== */
+
+/* --- DARK THEME (default) ----------------------------------- */
+.hero-chat-tab {
+  background-color: rgba(12, 10, 8, 0.85) !important;
+  border-color: rgba(197, 168, 128, 0.12) !important;
+}
+
+.hero-chat-console {
+  background-color: rgba(10, 8, 6, 0.97) !important;
+  border-color: rgba(197, 168, 128, 0.12) !important;
+}
+
+.hero-chat-q {
+  background-color: rgba(0, 0, 0, 0.50) !important;
+  border-color: rgba(197, 168, 128, 0.10) !important;
+}
+
+.hero-chat-a {
+  background-color: rgba(197, 168, 128, 0.06) !important;
+  border-color: rgba(197, 168, 128, 0.18) !important;
+}
+
+/* --- LIGHT THEME -------------------------------------------- */
+.light .hero-chat-tab {
+  background-color: #e8dfc8 !important;
+  border-color: rgba(166, 138, 96, 0.25) !important;
+}
+
+.light .hero-chat-console {
+  background-color: #f0e8d4 !important;
+  border-color: rgba(166, 138, 96, 0.2) !important;
+  box-shadow: 0 4px 24px rgba(166, 138, 96, 0.10) !important;
+  backdrop-filter: none !important;
+}
+
+.light .hero-chat-q {
+  background-color: #e0d5be !important;
+  border-color: rgba(166, 138, 96, 0.20) !important;
+}
+
+.light .hero-chat-a {
+  background-color: #e8dfc8 !important;
+  border-color: rgba(166, 138, 96, 0.28) !important;
+  box-shadow: inset 0 1px 4px rgba(166, 138, 96, 0.08) !important;
+}
+
+/* Inactive tab buttons in light mode */
+.light .hero-chat-tab button:not(.bg-gold-premium) {
+  color: #5e5344 !important;
+}
+.light .hero-chat-tab button:not(.bg-gold-premium):hover {
+  background-color: rgba(166, 138, 96, 0.12) !important;
+  color: #3e3223 !important;
 }
