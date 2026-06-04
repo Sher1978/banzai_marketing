@@ -11,7 +11,7 @@
   --color-gold-premium: #c5a880;
   --color-gold-light: #e6d3b3;
   --color-gold-dark: #8c714c;
-  --color-sand-muted: #a3957f;
+  --color-sand-muted: #c5b8a5;
   --color-bg-dubai: #090807;
   --color-surface-dubai: #12100e;
 
@@ -288,6 +288,16 @@
   }
 }
 
+html {
+  font-size: 106.25%;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 112.5%;
+  }
+}
+
 html,
 body {
   max-width: 100%;
@@ -304,11 +314,11 @@ body {
 
 /* Light theme overrides */
 .light {
-  --color-background-dark: #fbfaf8;
-  --color-background-light: #ffffff;
-  --color-surface-dark: #f5f3f0;
-  --color-bg-dubai: #fbfaf8;
-  --color-surface-dubai: #ffffff;
+  --color-background-dark: #f2ebd9;
+  --color-background-light: #faf7ee;
+  --color-surface-dark: #e6ddc5;
+  --color-bg-dubai: #f2ebd9;
+  --color-surface-dubai: #faf7ee;
   --color-sand-muted: #5e5344;
   --color-gold-premium: #a68a60;
   --color-gold-light: #3e3223;
@@ -316,7 +326,7 @@ body {
 }
 
 .light body {
-  background-color: #fbfaf8;
+  background-color: #f2ebd9;
   color: #1a1613;
 }
 
@@ -393,51 +403,51 @@ body {
 }
 
 .light .bg-black {
-  background-color: #ffffff !important;
+  background-color: #faf7ee !important;
 }
 
 .light .bg-black\/30 {
-  background-color: rgba(255, 255, 255, 0.3) !important;
+  background-color: rgba(250, 247, 238, 0.3) !important;
 }
 
 .light .bg-black\/40 {
-  background-color: rgba(255, 255, 255, 0.4) !important;
+  background-color: rgba(250, 247, 238, 0.4) !important;
 }
 
 .light .bg-black\/50 {
-  background-color: rgba(255, 255, 255, 0.5) !important;
+  background-color: rgba(250, 247, 238, 0.5) !important;
 }
 
 .light .bg-black\/60 {
-  background-color: rgba(255, 255, 255, 0.6) !important;
+  background-color: rgba(250, 247, 238, 0.6) !important;
 }
 
 .light .bg-black\/75 {
-  background-color: rgba(255, 255, 255, 0.75) !important;
+  background-color: rgba(250, 247, 238, 0.75) !important;
 }
 
 .light .bg-black\/80 {
-  background-color: rgba(255, 255, 255, 0.8) !important;
+  background-color: rgba(250, 247, 238, 0.8) !important;
 }
 
 .light .bg-black\/85 {
-  background-color: rgba(255, 255, 255, 0.85) !important;
+  background-color: rgba(250, 247, 238, 0.85) !important;
 }
 
 .light .bg-black\/90 {
-  background-color: rgba(255, 255, 255, 0.9) !important;
+  background-color: rgba(250, 247, 238, 0.9) !important;
 }
 
 .light .bg-\[\#12100e\] {
-  background-color: #ffffff !important;
+  background-color: #faf7ee !important;
 }
 
 .light .bg-\[\#12100e\]\/40 {
-  background-color: rgba(255, 255, 255, 0.4) !important;
+  background-color: rgba(250, 247, 238, 0.4) !important;
 }
 
 .light .bg-\[\#12100e\]\/75 {
-  background-color: rgba(255, 255, 255, 0.75) !important;
+  background-color: rgba(250, 247, 238, 0.75) !important;
 }
 
 .light .bg-gold-dark\/5 {
@@ -449,7 +459,7 @@ body {
 }
 
 .light .bg-surface-dark {
-  background-color: #ffffff !important;
+  background-color: #faf7ee !important;
 }
 
 .light .border-white\/5 {
@@ -491,4 +501,72 @@ body {
 .light .mix-blend-screen {
   mix-blend-mode: multiply !important;
   opacity: 0.12 !important;
+}
+
+/* Glassmorphic header */
+.glass-header {
+  background-color: rgba(9, 8, 7, 0.3) !important;
+  backdrop-filter: blur(24px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
+  border-bottom: 1px solid rgba(197, 168, 128, 0.15) !important;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4) !important;
+}
+
+.light .glass-header {
+  background-color: rgba(242, 235, 217, 0.35) !important;
+  backdrop-filter: blur(24px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
+  border-bottom: 1px solid rgba(166, 138, 96, 0.15) !important;
+  box-shadow: 0 4px 30px rgba(166, 138, 96, 0.08) !important;
+}
+
+/* Light overrides for hardcoded gradients and hex dark backgrounds */
+.light .bg-gradient-to-b.from-\[\#1c1813\].to-\[\#12100e\] {
+  background-image: linear-gradient(to bottom, #faf7ee, #e6ddc5) !important;
+}
+
+.light .bg-\[\#12100e\]\/40 {
+  background-color: rgba(245, 243, 240, 0.6) !important;
+}
+
+.light .bg-\[\#16120e\] {
+  background-color: #faf7ee !important;
+  border-color: rgba(166, 138, 96, 0.25) !important;
+}
+
+.light .bg-[#12100e]/75 {
+  background-color: rgba(250, 247, 238, 0.8) !important;
+}
+
+.light .bg-[#12100e]/95 {
+  background-color: rgba(250, 247, 238, 0.95) !important;
+}
+
+.light .bg-[#12100e]/50 {
+  background-color: rgba(250, 247, 238, 0.5) !important;
+}
+
+.light .bg-gradient-to-r.from-primary\/\[0\.06\].via-surface-dark.to-secondary\/\[0\.06\] {
+  background-image: linear-gradient(to right, rgba(166, 138, 96, 0.04), #faf7ee, rgba(6, 182, 212, 0.04)) !important;
+}
+
+.light .bg-gradient-to-b.from-\[\#16120e\].to-\[\#0b0a09\] {
+  background-image: linear-gradient(to bottom, #faf7ee, #e6ddc5) !important;
+}
+
+.light .bg-surface-dark {
+  background-color: #faf7ee !important;
+}
+
+/* Fix text contrast in light and dark themes */
+.light .text-sand-muted\/95 {
+  color: #4a3e2e !important;
+}
+
+.light .text-sand-muted {
+  color: #4a3e2e !important;
+}
+
+.light .text-sand-muted\/40 {
+  color: rgba(74, 62, 46, 0.6) !important;
 }
