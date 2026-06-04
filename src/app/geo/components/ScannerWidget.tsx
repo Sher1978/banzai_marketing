@@ -16,15 +16,14 @@ interface LogLine {
 interface ScannerWidgetProps {
   isOpen: boolean;
   onClose: () => void;
+  website: string;
+  setWebsite: (val: string) => void;
 }
 
-export const ScannerWidget: React.FC<ScannerWidgetProps> = ({ isOpen, onClose }) => {
+export const ScannerWidget: React.FC<ScannerWidgetProps> = ({ isOpen, onClose, website, setWebsite }) => {
   const { i18n } = useTranslation();
-  const lang = (i18n.language === 'ru' ? 'ru' : 'en') as 'ru' | 'en';
+  const lang = (i18n.language === 'ru' ? 'ru' : i18n.language === 'vi' ? 'vi' : 'en') as 'ru' | 'en' | 'vi';
   const t = translations[lang];
-
-  // Form inputs state
-  const [website, setWebsite] = useState('');
   const [region, setRegion] = useState('');
   const [industry, setIndustry] = useState('');
   const [email, setEmail] = useState('');

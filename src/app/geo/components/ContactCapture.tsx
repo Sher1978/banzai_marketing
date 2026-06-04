@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { translations } from '../translations';
-import { Send, FileText, CheckCircle, AlertCircle, Plus, Minus, HelpCircle, ChevronDown } from 'lucide-react';
+import { Send, FileText, CheckCircle, AlertCircle, Plus, Minus, HelpCircle, ChevronDown, X } from 'lucide-react';
 import '@/lib/i18n';
 
 interface FaqItemProps {
@@ -51,7 +51,12 @@ const FaqItem: React.FC<FaqItemProps> = ({ q, a, isOpen, onToggle }) => {
   );
 };
 
-export const ContactCapture: React.FC = () => {
+interface ContactCaptureProps {
+  website: string;
+  setWebsite: (val: string) => void;
+}
+
+export const ContactCapture: React.FC<ContactCaptureProps> = ({ website, setWebsite }) => {
   const { i18n } = useTranslation();
   const lang = (i18n.language === 'ru' ? 'ru' : i18n.language === 'vi' ? 'vi' : 'en') as 'ru' | 'en' | 'vi';
   const t = translations[lang];
@@ -87,8 +92,7 @@ export const ContactCapture: React.FC = () => {
 
     const name = (formData.get('name') as string) || '';
     const contact = (formData.get('contact') as string) || '';
-    const industry = (formData.get('industry') as string) || '';
-    const website = (formData.get('website') as string) || '';
+    const websiteForm = website;
 
     try {
       const [formRes] = await Promise.allSettled([
@@ -100,13 +104,18 @@ export const ContactCapture: React.FC = () => {
         fetch("/api/geo-lead", {
           method: "POST",
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ type: 'audit', name, contact, industry, website, lang }),
+          body: JSON.stringify({ type: 'audit', name, contact, website: websiteForm, lang }),
         })
       ]);
 
       if (formRes.status === 'fulfilled' && formRes.value.ok) {
         setAuditStatus("success");
         form.reset();
+        
+        // Redirect to thank you page
+        setTimeout(() => {
+          window.location.href = '/geo/thank-you';
+        }, 600);
       } else {
         setAuditStatus("error");
       }
@@ -275,33 +284,27 @@ export const ContactCapture: React.FC = () => {
                   placeholder={t.contact.form.contact.toUpperCase()}
                 />
 
-                {/* Industry */}
-                <div className="relative">
-                  <select
-                    name="industry"
-                    className="w-full bg-black/60 border border-gold-premium/15 focus:border-gold-premium rounded-xl px-4 py-4 text-xs md:text-sm text-white placeholder-sand-muted/30 focus:outline-none focus:ring-1 focus:ring-gold-premium/45 transition-all font-mono appearance-none cursor-pointer"
-                    defaultValue=""
-                  >
-                    <option value="" disabled hidden>
-                      {`${t.contact.form.industryOptions.placeholder.toUpperCase()} ${lang === 'ru' ? '(НЕОБЯЗАТЕЛЬНО)' : lang === 'vi' ? '(TÙY CHỌN)' : '(OPTIONAL)'}`}
-                    </option>
-                    <option value="realestate">{t.contact.form.industryOptions.realestate}</option>
-                    <option value="premium">{t.contact.form.industryOptions.premium}</option>
-                    <option value="medical">{t.contact.form.industryOptions.medical}</option>
-                    <option value="other">{t.contact.form.industryOptions.other}</option>
-                  </select>
-                  <div className="absolute right-4 top-1/2 -translate-y-1/2 text-gold-premium/50 pointer-events-none text-xs">
-                    ▼
-                  </div>
-                </div>
-
                 {/* Website */}
-                <input
-                  type="url"
-                  name="website"
-                  className="w-full bg-black/60 border border-gold-premium/15 focus:border-gold-premium rounded-xl px-4 py-4 text-xs md:text-sm text-white placeholder-sand-muted/30 focus:outline-none focus:ring-1 focus:ring-gold-premium/45 transition-all font-mono"
-                  placeholder={`${t.contact.form.website.toUpperCase()} ${lang === 'ru' ? '(НЕОБЯЗАТЕЛЬНО)' : lang === 'vi' ? '(TÙY CHỌN)' : '(OPTIONAL)'}`}
-                />
+                <div className="relative">
+                  <input
+                    type="text"
+                    name="website"
+                    value={website}
+                    onChange={(e) => setWebsite(e.target.value)}
+                    className="w-full bg-black/60 border border-gold-premium/15 focus:border-gold-premium rounded-xl pl-4 pr-10 py-4 text-xs md:text-sm text-white placeholder-sand-muted/30 focus:outline-none focus:ring-1 focus:ring-gold-premium/45 transition-all font-mono"
+                    placeholder={`${t.contact.form.website.toUpperCase()} ${lang === 'ru' ? '(НЕОБЯЗАТЕЛЬНО)' : lang === 'vi' ? '(TÙY CHỌN)' : '(OPTIONAL)'}`}
+                  />
+                  {website && (
+                    <button
+                      type="button"
+                      onClick={() => setWebsite('')}
+                      className="absolute right-4 top-1/2 -translate-y-1/2 text-sand-muted/40 hover:text-white transition-colors cursor-pointer"
+                      title="Clear website"
+                    >
+                      <X size={14} />
+                    </button>
+                  )}
+                </div>
 
                 {/* Submit Audit CTA */}
                 <motion.button

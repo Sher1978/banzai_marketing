@@ -11,12 +11,15 @@ import ScannerWidget from './components/ScannerWidget';
 import Cases from './components/Cases';
 import PricingTable from './components/PricingTable';
 import ContactCapture from './components/ContactCapture';
+import LeadCaptureModal from './components/LeadCaptureModal';
 import { translations } from './translations';
 import '@/lib/i18n';
 import Link from 'next/link';
 
 export default function GeoLandingPage() {
   const [isScannerOpen, setIsScannerOpen] = useState(false);
+  const [isLeadModalOpen, setIsLeadModalOpen] = useState(false);
+  const [website, setWebsite] = useState('');
   const { i18n } = useTranslation();
   const lang = (i18n.language === 'ru' ? 'ru' : i18n.language === 'vi' ? 'vi' : 'en') as 'ru' | 'en' | 'vi';
   const t = translations[lang];
@@ -80,10 +83,10 @@ export default function GeoLandingPage() {
       />
 
       {/* Dynamic Navigation Bar */}
-      <Navbar />
+      <Navbar openLeadModal={() => setIsLeadModalOpen(true)} />
 
       {/* Hero Section with Interactive FOMO AI Chat typing slider */}
-      <HeroSlider openScanner={() => setIsScannerOpen(true)} />
+      <HeroSlider openScanner={() => setIsScannerOpen(true)} openLeadModal={() => setIsLeadModalOpen(true)} />
 
       {/* Chronological Search Revolution Accordion / Collapse Timeline */}
       <SearchRevolution />
@@ -94,7 +97,22 @@ export default function GeoLandingPage() {
       {/* Interactive Multi-agent live GEO Scanner lead capture popup modal */}
       <AnimatePresence>
         {isScannerOpen && (
-          <ScannerWidget isOpen={isScannerOpen} onClose={() => setIsScannerOpen(false)} />
+          <ScannerWidget 
+            isOpen={isScannerOpen} 
+            onClose={() => setIsScannerOpen(false)} 
+            website={website}
+            setWebsite={setWebsite}
+          />
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {isLeadModalOpen && (
+          <LeadCaptureModal 
+            isOpen={isLeadModalOpen} 
+            onClose={() => setIsLeadModalOpen(false)} 
+            website={website}
+          />
         )}
       </AnimatePresence>
 
@@ -102,10 +120,10 @@ export default function GeoLandingPage() {
       <Cases />
 
       {/* Pricing section with glassmorphic cards */}
-      <PricingTable />
+      <PricingTable openLeadModal={() => setIsLeadModalOpen(true)} />
 
       {/* Double conversion funnel (GEO Audit Form + PDF Magnet Download) + FAQ Accordion */}
-      <ContactCapture />
+      <ContactCapture website={website} setWebsite={setWebsite} />
 
       {/* Deep luxurious dark gold styled system footer */}
       <footer className="py-12 bg-black border-t border-gold-premium/10 text-center relative z-10">

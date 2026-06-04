@@ -7,7 +7,7 @@ import { translations } from '../translations';
 import { Zap, HelpCircle, Check, ArrowRight } from 'lucide-react';
 import '@/lib/i18n';
 
-export const PricingTable: React.FC = () => {
+export const PricingTable: React.FC<{ openLeadModal?: () => void }> = ({ openLeadModal }) => {
   const { i18n } = useTranslation();
   const lang = (i18n.language === 'ru' ? 'ru' : i18n.language === 'vi' ? 'vi' : 'en') as 'ru' | 'en' | 'vi';
   const t = translations[lang];
@@ -49,9 +49,13 @@ export const PricingTable: React.FC = () => {
   ];
 
   const handleCtaClick = () => {
-    const contactSection = document.getElementById('audit-form');
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: 'smooth' });
+    if (openLeadModal) {
+      openLeadModal();
+    } else {
+      const contactSection = document.getElementById('audit-form');
+      if (contactSection) {
+        contactSection.scrollIntoView({ behavior: 'smooth' });
+      }
     }
   };
 

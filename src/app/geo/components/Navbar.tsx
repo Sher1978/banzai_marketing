@@ -8,7 +8,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { translations } from '../translations';
 import '@/lib/i18n';
 
-export const Navbar: React.FC = () => {
+interface NavbarProps {
+  openLeadModal?: () => void;
+}
+
+export const Navbar: React.FC<NavbarProps> = ({ openLeadModal }) => {
   const { i18n } = useTranslation();
   const lang = (i18n.language === 'ru' ? 'ru' : i18n.language === 'vi' ? 'vi' : 'en') as 'ru' | 'en' | 'vi';
   const t = translations[lang];
@@ -104,7 +108,10 @@ export const Navbar: React.FC = () => {
               </button>
             ))}
             <button
-              onClick={() => scrollToSection('contact')}
+              onClick={() => {
+                if (openLeadModal) openLeadModal();
+                else scrollToSection('contact');
+              }}
               className="text-[11px] uppercase tracking-[0.2em] text-black bg-secondary hover:bg-cyan-400 px-5 py-2 font-bold transition-all duration-300 sharp-border cursor-pointer"
             >
               {t.nav.contact}
@@ -197,7 +204,11 @@ export const Navbar: React.FC = () => {
                 {t.nav.cases}
               </button>
               <button
-                onClick={() => scrollToSection('contact')}
+                onClick={() => {
+                  if (openLeadModal) openLeadModal();
+                  else scrollToSection('contact');
+                  setMobileOpen(false);
+                }}
                 className="text-left text-2xl font-black uppercase tracking-tight text-secondary"
               >
                 {t.nav.contact}

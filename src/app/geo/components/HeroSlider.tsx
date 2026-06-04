@@ -39,7 +39,7 @@ const TABS: TabData[] = [
   }
 ];
 
-export const HeroSlider: React.FC<{ openScanner?: () => void }> = ({ openScanner }) => {
+export const HeroSlider: React.FC<{ openScanner?: () => void; openLeadModal?: () => void }> = ({ openScanner, openLeadModal }) => {
   const { i18n } = useTranslation();
   const lang = (i18n.language === 'ru' ? 'ru' : i18n.language === 'vi' ? 'vi' : 'en') as 'ru' | 'en' | 'vi';
   const t = translations[lang];
@@ -138,9 +138,13 @@ export const HeroSlider: React.FC<{ openScanner?: () => void }> = ({ openScanner
   };
 
   const scrollToContact = () => {
-    const contactSection = document.getElementById('audit-form');
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: 'smooth' });
+    if (openLeadModal) {
+      openLeadModal();
+    } else {
+      const contactSection = document.getElementById('audit-form');
+      if (contactSection) {
+        contactSection.scrollIntoView({ behavior: 'smooth' });
+      }
     }
   };
 
