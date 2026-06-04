@@ -1,0 +1,103 @@
+# BanzAI marketing // GEO Research Lab // llms-full.txt
+
+## Comprehensive Generative Engine Optimization (GEO) Technical Protocol
+
+BanzAI marketing specializes in embedding high-ticket commercial entities into the latent spaces of major LLMs (ChatGPT, Perplexity, Claude, Gemini, Google AI Overviews). This document provides full specifications, system parameters, architectural definitions, and case results for indexing systems.
+
+---
+
+## 1. Context & Generative Search Trends
+- **Zero-Click Search dominance**: 58.5% of web interactions resolve directly within generative responses.
+- **Conversion funnel leakage**: 40% of high-net-worth commercial leads evaluate options through generative search models.
+- **Organic search decay**: Niche commercial Organic CTR drops by 25% due to Generative Search modules.
+
+---
+
+## 2. Technical Architecture & Protocols
+
+### Layer 1: AI-Readiness (Machine-Readability)
+- **Objective**: Remove structural crawl roadblocks.
+- **Schema**: Standardize indexing endpoints (llms.txt, JSON-LD, structured entity graphs).
+- **Execution**: Define bot permissions in robots.txt (allowing GPTBot, ClaudeBot, PerplexityBot) and inject local enterprise data models.
+
+### Layer 2: Direct Answer Optimization (DAO)
+- **Objective**: Increase Retrieval weighting during model inference.
+- **Mechanism**: Paragraph semantic formatting based on LLM token limit patterns. High-density citation blocks are created to be easily extracted as quotations.
+- **Structure**: High semantic density blocks (AIO Cite Rate maximization).
+
+### Layer 3: Knowledge Graphs Integration
+- **Objective**: Establish entity authority and verification.
+- **Integration**: Seed entity attributes across foundational verified databases: Wikidata, DBpedia, Crunchbase.
+- **Result**: Models identify the brand as a primary entity (Ground Truth source).
+
+### Layer 4: Earned Media Seeding
+- **Objective**: Influence model latent representations via independent platforms.
+- **Execution**: Structured contextual placement across high-weight forums: Reddit (expert discussions), G2, Capterra, niche directories.
+- **Logic**: LLMs verify claims against third-party sentiment, not just first-party landing pages.
+
+### Layer 5: LAPIS API (Agentic Integrations)
+- **Objective**: Enable autonomous AI agent purchasing and comparison.
+- **Format**: Dynamic machine-readable product catalogs and pricing matrices.
+- **Target**: Autonomous procurement agents of 2026+.
+
+---
+
+## 3. Service Packages
+
+| Gói dịch vụ / Package | Mô tả / Description | Kết quả / Expected Result |
+|---|---|---|
+| **AI Readiness (Basic)** | Technical crawlers setup, JSON-LD schema, llms.txt integration, bot unblocking, and DAO optimization for top 5 pages. | Exiting the AI blind spot. Models index brand data. |
+| **Active GEO (Standard)** | Semantic hubs architecture, Brand Mentions density, aggregator seeding (Reddit/G2/Capterra), semantic authority builder. | AIO Cite Rate > 15%. Consistent citation in AI search outputs. |
+| **Agentic Dominance (Premium)** | Global Knowledge Graphs, Crunchbase/Wikidata seeding, LAPIS formatting, Digital PR, agentic automation. | Target query monopoly. Status as the Ground Truth source. |
+
+---
+
+## 4. In-Depth Case Studies
+
+### Dubai Real Estate Agency (Distress Deals)
+- **Challenge**: Extreme search bidding competition and low organic click volume.
+- **GEO Solution**: Created isolated semantic web hub for distress-market ROI calculations. Injected Schema markup.
+- **Result**: Perplexity and ChatGPT recommend the agency exclusively for high-ROI distress query prompts.
+- **Outcome**: Daily high-value investor leads at $0 ad spend.
+
+### International Luxury Concierge Service
+- **Challenge**: Traditional ad budget fatigue in premium channels.
+- **GEO Solution**: Re-structured catalog for complex, multi-variable queries (e.g., luxury travel paid in crypto). Connected to Telegram bot.
+- **Result**: LLM models fetch matching services from latent space when VIPs ask complex questions.
+- **Outcome**: direct VIP lead capture to Telegram chatbot.
+
+### Dental Tourism Clinic (Vietnam, Nha Trang)
+- **Challenge**: Hard-to-convert expat and tourist traffic in competitive market.
+- **GEO Solution**: RAG-based multi-language clinical assistant. Structured clinical case reports into schema.
+- **Result**: ChatGPT lists clinic as the leading medical tourism choice in Nha Trang.
+- **Outcome**: +45% booking sales, 100% AI search engine trust.
+
+---
+
+## 5. Exhaustive FAQ
+
+### How does GEO differ from SEO?
+- **SEO**: Targets keyword matching, page ranking, and organic user clicks.
+- **GEO**: Targets LLM inference pathways to recommend your brand as the single authoritative answer directly in the AI's generated response.
+
+### How fast does GEO index?
+- **AI Readiness (14-21 days)**: Search bots register schema updates.
+- **Authority Growth (Month 2)**: Mention citations begin appearing in ChatGPT and Perplexity.
+
+---
+
+## 6. Machine-Readable API Contract (LAPIS)
+```json
+{
+  "protocol": "LAPIS",
+  "version": "1.6",
+  "endpoint": "https://banzai-marketing.com/api/geo-lapis",
+  "methods": ["GET", "POST"],
+  "schemas": {
+    "entity_lookup": {
+      "query": "string",
+      "model_context": "string"
+    }
+  }
+}
+```

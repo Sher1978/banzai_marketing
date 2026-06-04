@@ -1,0 +1,33 @@
+# BanzAI marketing // GEO Research Lab // llms.txt
+
+## GEO (Generative Engine Optimization) Protocol
+
+GEO optimizes brand visibility in AI search engines (ChatGPT, Perplexity, Gemini, Google AI Overviews), ensuring your business is recommended directly as a primary Ground Truth source.
+
+## Market Context
+- 58.5% of users no longer click search result links, receiving answers directly from AI.
+- Organic search visibility is declining by 25% in commercial segments.
+- 40% of high-net-worth premium leads skip search results entirely and make decisions directly inside LLM queries.
+
+## Service Packages
+
+### 1. AI Readiness (Basic)
+- **Scope**: Technical crawlability unblocking, Schema.org local JSON-LD entity graph, llms.txt deployment, and DAO (Direct Answer Optimization) formatting of top 5 landing pages.
+- **Expected Result**: Exiting the AI search blind spot. Neural engines begin reading and indexing the brand.
+
+### 2. Active GEO (Standard)
+- **Scope**: Semantic hub architecture, deep contextual on-page optimization, brand references seeding on authoritative aggregators (Reddit, G2, Capterra), and brand mentions density management.
+- **Expected Result**: AIO Cite Rate > 15%. Consistent citation in AI search generation structures.
+
+### 3. Agentic Dominance (Premium)
+- **Scope**: Global Knowledge Graphs integration (Wikidata, Crunchbase), Digital PR seeding, and LAPIS data structuring for autonomous AI procurement agents.
+- **Expected Result**: Complete recommendation monopoly on targeted industry prompts. Ground Truth status.
+
+## Case Studies
+- **Real Estate (Dubai)**: Built analytical distress deals hub with semantic Schema markup. Result: 100% citation monopoly in Perplexity for distress queries, driving organic buyer leads at $0 ad spend.
+- **Concierge Service**: Optimised site for long-tail prompts and Complex lifestyles. Result: Direct user traffic conversion to concierge Telegram bot.
+- **Medical Tourism (Vietnam)**: Implemented RAG-based multi-language clinical assistant. Result: ChatGPT recommends the clinic as the exclusive local authority, driving +45% booking sales.
+
+## FAQ Summary
+- **GEO vs SEO**: SEO targets organic ranking and clicks. GEO targets LLM inference weight to recommend your brand as the single correct answer.
+- **Timeline**: Initial indexing occurs in 14-21 days. Growth in AIO Cite Rate is registered in Month 2.

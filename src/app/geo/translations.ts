@@ -29,20 +29,37 @@ export interface TranslationSchema {
     cta3: string;
     scanCta: string;
   };
-  midCta: {
-    label: string;
-    text: string;
-    btn: string;
+  seo: {
+    title: string;
+    subtitle: string;
+    bullets: Array<{
+      title: string;
+      text: string;
+    }>;
+    fomo: string;
   };
   tech: {
     title: string;
     subtitle: string;
-    steps: Array<{
-      num: string;
+    bullets: Array<{
       title: string;
+      boldText: string;
       text: string;
-      tech: string;
     }>;
+  };
+  pricing: {
+    title: string;
+    packages: Array<{
+      name: string;
+      desc: string;
+      result: string;
+      tag: string;
+    }>;
+    headers: {
+      name: string;
+      desc: string;
+      result: string;
+    };
   };
   cases: {
     title: string;
@@ -66,9 +83,18 @@ export interface TranslationSchema {
       stats: string;
     };
   };
+  faq: {
+    title: string;
+    list: Array<{
+      q: string;
+      a: string;
+    }>;
+  };
   contact: {
     title: string;
     subtitle: string;
+    magnetTitle: string;
+    magnetDesc: string;
     form: {
       name: string;
       contact: string;
@@ -88,12 +114,15 @@ export interface TranslationSchema {
       loading: string;
     };
     magnet: {
-      title: string;
-      desc: string;
       input: string;
       cta: string;
       success: string;
     };
+  };
+  midCta: {
+    label: string;
+    text: string;
+    btn: string;
   };
 }
 
@@ -101,14 +130,14 @@ export const translations: Record<'ru' | 'en' | 'vi', TranslationSchema> = {
   ru: {
     nav: {
       logo: "BanzAI marketing",
-      tech: "Технология",
+      tech: "GEO-Архитектура",
       cases: "Кейсы",
-      contact: "Получить аудит",
-      back: "На главный сайт"
+      contact: "Аудит ИИ",
+      back: "На главный"
     },
     hero: {
-      h1: "40% ваших самых платежеспособных клиентов прямо сейчас отдают деньги конкурентам.",
-      offer: "Адаптируйте бизнес под ИИ-реалии — получайте самых платёжеспособных клиентов БЕСПЛАТНО из ChatGPT и Perplexity",
+      h1: "ВАШ САЙТ — БОЛЬШЕ НЕ ВИТРИНА. ТЕПЕРЬ ЭТО БАЗА ДАННЫХ ДЛЯ НЕЙРОСЕТЕЙ.",
+      offer: "58.5% пользователей больше не кликают по ссылкам в поиске — они получают готовые решения напрямую от ИИ.",
       slider: {
         realestate: {
           tag: "Недвижимость & Девелопмент",
@@ -123,33 +152,87 @@ export const translations: Record<'ru' | 'en' | 'vi', TranslationSchema> = {
           quote: "Экспаты спрашивают ChatGPT, где безопасно лечить зубы. ИИ выдает один безальтернативный ответ. И это не ваша клиника."
         }
       },
-      body: "ИИ больше не ищет ссылки. Он ищет готовые экспертные решения — и выдаёт единственный ответ без списка сайтов. Если ваш бизнес не встроен в логику генеративного поиска, вас не существует для 40% самых платёжеспособных клиентов. Ваш бизнес должен быть готов к этому поиску уже сейчас.",
-      cta: "Проверить, видит ли ИИ мой бизнес",
+      body: "Мы превращаем ваш бизнес в канонический источник данных (Ground Truth), который ChatGPT, Perplexity и Gemini рекомендуют самым платежеспособным клиентам.",
+      cta: "ПРОЙТИ БЕСПЛАТНЫЙ АУДИТ ИИ-ВИДИМОСТИ",
       cta2: "Начать получать клиентов через ChatGPT",
       cta3: "Заставить ИИ-агентов рекомендовать мой бизнес",
       scanCta: "Запустить бесплатный ИИ-сканер",
     },
+    seo: {
+      title: "ПОЧЕМУ КЛАССИЧЕСКОЕ SEO БОЛЬШЕ НЕ ПРИНОСИТ ПРОДАЖ В ПРЕМИУМ-СЕГМЕНТЕ",
+      subtitle: "Традиционная воронка привлечения клиентов сломана. Пока вы покупаете ссылки и пишете SEO-тексты для поисковиков, ваши клиенты уже задают вопросы нейросетям.",
+      bullets: [
+        {
+          title: "Падение классического трафика",
+          text: "Обычный органический поиск теряет до 25% объема запросов в коммерческих нишах."
+        },
+        {
+          title: "Утечка премиум-лидов",
+          text: "40% ваших самых высокодоходных клиентов прямо сейчас уходят к конкурентам, потому что ИИ порекомендовал их бренд, а ваш — не нашел."
+        },
+        {
+          title: "Смена паттерна",
+          text: "Клиенты больше не ищут «агентство недвижимости». Они просят ИИ: «Сравни топ-3 агентства в Дубае для инвестиций и выбери лучшее»."
+        }
+      ],
+      fomo: "Бороться за клики бессмысленно в эпоху Zero-click. Если вашей компании нет в прямых ответах ИИ — вас просто не существует на новом рынке."
+    },
     tech: {
-      title: "Как работает технология GEO?",
-      subtitle: "Классическое SEO мертво для премиум-сегмента. ИИ ищет не рекламные слоганы, а структурированные данные. Мы интегрируем ваш бренд в Latent Space генеративных моделей.",
-      steps: [
+      title: "АРХИТЕКТУРА ИИ-МОНОПОЛИИ: ОТ ПОИСКА К ГОТОВЫМ ОТВЕТАМ",
+      subtitle: "Мы не делаем SEO. Мы внедряем Generative Engine Optimization (GEO) — систему адаптации вашего бизнеса под архитектуру больших языковых моделей.",
+      bullets: [
         {
-          num: "01",
-          title: "Сбор данных (Knowledge Graph)",
-          text: "Мы собираем и агрегируем все ваши активы, исследования и показатели. Вся информация превращается в семантическую базу знаний бренда, понятную искусственному интеллекту.",
-          tech: "Knowledge Graph Engine"
+          title: "AI-Readiness (Машиночитаемость)",
+          boldText: "Снимаем технические блокировки.",
+          text: "Структурируем данные вашего сайта так, чтобы GPTBot и ClaudeBot могли беспрепятственно сканировать и понимать ваши услуги."
         },
         {
-          num: "02",
-          title: "Семантическая разметка",
-          text: "Внедряем специализированную микроразметку и структуру данных под RAG-алгоритмы (Retrieval-Augmented Generation). Языковым моделям (LLM) становится легко считывать и цитировать ваши данные.",
-          tech: "RAG Schema Integration"
+          title: "Оптимизация прямого ответа (DAO)",
+          boldText: "Переписываем ваш контент в самодостаточные информационные блоки.",
+          text: "Мы используем научно доказанный формат длины абзацев, который LLM-модели забирают целиком в качестве цитат."
         },
         {
-          num: "03",
-          title: "Монополия в выдаче (Ground Truth)",
-          text: "Ваш бренд позиционируется как базовая истина (Ground Truth) для генеративных моделей. ИИ цитирует ваш ресурс как авторитетный первоисточник №1, направляя горячих клиентов в ваши каналы.",
-          tech: "LLM Search Authority"
+          title: "Графы Знаний (Knowledge Graphs)",
+          boldText: "Создаем цифровой паспорт бренда.",
+          text: "Интегрируем вашу компанию в глобальные базы данных (Wikidata, Crunchbase), на которые опираются нейросети при проверке фактов."
+        },
+        {
+          title: "Earned Media (Управление репутацией)",
+          boldText: "ИИ не верит вашему сайту, он верит независимым источникам.",
+          text: "Мы формируем нужный контекст на Reddit, G2, Capterra и профильных агрегаторах."
+        },
+        {
+          title: "LAPIS API (Интеграция агентов)",
+          boldText: "Упаковываем ваши прайсы и каталоги в машиночитаемые форматы",
+          text: "для автономных ИИ-закупщиков будущего."
+        }
+      ]
+    },
+    pricing: {
+      title: "СИСТЕМА GENERATIVE ENGINE OPTIMIZATION",
+      headers: {
+        name: "Тариф",
+        desc: "Описание пакета",
+        result: "Ожидаемый результат"
+      },
+      packages: [
+        {
+          name: "AI Readiness (Базовый)",
+          tag: "Базовый",
+          desc: "Технический фундамент. Внедрение llms.txt, разметка JSON-LD, снятие блокировок для краулеров, переупаковка ТОП-5 страниц под AEO-стандарты.",
+          result: "Выход из \"слепой зоны\" ИИ. Нейросети начинают видеть и считывать ваш бренд."
+        },
+        {
+          name: "Active GEO (Средний)",
+          tag: "Средний",
+          desc: "Построение семантических хабов. Глубокая переработка контента, работа с независимыми площадками-агрегаторами, оптимизация упоминаний (Brand Mentions).",
+          result: "Уверенный рост метрики AIO Cite Rate > 15%. Регулярное попадание в выборки ИИ."
+        },
+        {
+          name: "Agentic Dominance (Премиум)",
+          tag: "Премиум",
+          desc: "Интеграция в глобальные Графы Знаний. Digital PR, перенос коммерческих данных в формат LAPIS для взаимодействия с автономными ИИ-агентами.",
+          result: "Тотальное доминирование в тематических промптах. Статус Ground Truth в отрасли."
         }
       ]
     },
@@ -175,9 +258,24 @@ export const translations: Record<'ru' | 'en' | 'vi', TranslationSchema> = {
         stats: "+45% Продаж // 100% Траста ИИ"
       }
     },
+    faq: {
+      title: "БАЗА ЗНАНИЙ (FAQ)",
+      list: [
+        {
+          q: "Чем GEO отличается от SEO?",
+          a: "GEO (Generative Engine Optimization) оптимизирует контент для попадания в прямые ответы нейросетей, минуя выдачу ссылок. В отличие от SEO, где цель — клик пользователя по сайту, цель GEO — сделать так, чтобы языковая модель (LLM) выбрала вашу компанию как единственный правильный и авторитетный ответ на запрос клиента."
+        },
+        {
+          q: "Как быстро ИИ начнет рекомендовать мою компанию?",
+          a: "Первые результаты индексации ИИ-краулерами появляются через 14-21 день после внедрения технического фундамента (AI Readiness). Ощутимый рост метрики упоминаемости (AIO Cite Rate) и появление в развернутых ответах ChatGPT и Perplexity обычно фиксируется на второй месяц активной работы с графами знаний."
+        }
+      ]
+    },
     contact: {
-      title: "Перестаньте терять самых дорогих клиентов.",
-      subtitle: "Запишитесь на бесплатный экспресс-аудит. В реальном времени мы проверим, как ChatGPT, Gemini и Perplexity видят ваш бизнес, и предоставим вам карту упущенных лидов.",
+      title: "оставить заявку на полный аудит ИИ готовности Вашего бизнеса",
+      subtitle: "Большинство владельцев бизнеса даже не подозревают, что нейросети отговаривают клиентов работать с ними. Проверьте свою компанию прямо сейчас.",
+      magnetTitle: "УЗНАЙТЕ, РЕКОМЕНДУЕТ ЛИ ИИ ВАС ИЛИ ВАШИХ КОНКУРЕНТОВ",
+      magnetDesc: "Получите мгновенный доступ к закрытым материалам: 1. PDF-отчет: «Как ИИ разрушает классические воронки и как адаптироваться до 2026 года». 2. Чек-лист «Техническая машиночитаемость сайта для ChatGPT».",
       form: {
         name: "Ваше имя",
         contact: "Контакт (Telegram / Телефон)",
@@ -197,10 +295,8 @@ export const translations: Record<'ru' | 'en' | 'vi', TranslationSchema> = {
         loading: "Отправка..."
       },
       magnet: {
-        title: "Не готовы к экспресс-аудиту?",
-        desc: "Скачайте эксклюзивный PDF-отчет «Как ИИ разрушает классические воронки продаж» и узнайте, как адаптировать воронки до того, как это сделают конкуренты.",
         input: "Ваш Telegram или Email",
-        cta: "Скачать PDF-отчет (9.4 MB)",
+        cta: "Скачать PDF-отчет + Чек-лист",
         success: "Ссылка отправлена! Отчет уже летит к вам."
       }
     },
@@ -213,14 +309,14 @@ export const translations: Record<'ru' | 'en' | 'vi', TranslationSchema> = {
   en: {
     nav: {
       logo: "BanzAI marketing",
-      tech: "Technology",
+      tech: "GEO Architecture",
       cases: "Cases",
-      contact: "Get Audit",
-      back: "To Main Site"
+      contact: "AI Audit",
+      back: "To Main"
     },
     hero: {
-      h1: "40% of your most solvent customers are giving money to competitors right now.",
-      offer: "Adapt your business to the AI era — get your most solvent clients for FREE from ChatGPT and Perplexity",
+      h1: "YOUR WEBSITE IS NO LONGER A SHOWCASE. NOW IT IS A DATABASE FOR AI.",
+      offer: "58.5% of users no longer click links in search — they get solutions directly from AI.",
       slider: {
         realestate: {
           tag: "Real Estate & Development",
@@ -232,36 +328,90 @@ export const translations: Record<'ru' | 'en' | 'vi', TranslationSchema> = {
         },
         medical: {
           tag: "Medical Tourism & Clinics",
-          quote: "Expats ask ChatGPT where to safely treat teeth. AI provides a single безальтернативный answer. And it is not your clinic."
+          quote: "Expats ask ChatGPT where to safely treat teeth. AI provides a single answer. And it is not your clinic."
         }
       },
-      body: "AI no longer searches for links. It searches for ready-made expert solutions — and delivers a single answer, no list of websites. If your business is not embedded in the logic of generative search, you simply do not exist for 40% of the most high-value clients. Your business must be ready for this new reality right now.",
-      cta: "Verify if AI sees my business",
+      body: "We turn your business into a canonical source of data (Ground Truth) that ChatGPT, Perplexity, and Gemini recommend to high-intent, premium clients.",
+      cta: "RUN FREE AI VISIBILITY AUDIT",
       cta2: "Start getting clients through ChatGPT",
       cta3: "Make AI agents recommend my business",
       scanCta: "Run free AI visibility scanner",
     },
+    seo: {
+      title: "WHY CLASSIC SEO NO LONGER DRIVES SALES IN THE PREMIUM SEGMENT",
+      subtitle: "Traditional customer acquisition funnels are broken. While you buy backlinks and write SEO copy for search engines, your target clients are already asking neural networks.",
+      bullets: [
+        {
+          title: "Organic Traffic Collapse",
+          text: "Traditional search is losing up to 25% of commercial volume in high-ticket niches."
+        },
+        {
+          title: "Premium Lead Leakage",
+          text: "40% of your highest-value clients are going to competitors because AI recommended them, not you."
+        },
+        {
+          title: "Search Pattern Shift",
+          text: "Customers no longer search for 'real estate agency'. They ask AI: 'Compare top 3 agencies in Dubai for investment and pick the best one'."
+        }
+      ],
+      fomo: "Fighting for clicks is pointless in the Zero-click era. If your business is not in AI's direct answers — you simply do not exist in the new market."
+    },
     tech: {
-      title: "How does GEO Technology work?",
-      subtitle: "Classic SEO is dead for the premium segment. AI does not look for advertising slogans, but structured data. We integrate your brand into the Latent Space of generative models.",
-      steps: [
+      title: "ARCHITECTURE OF AI MONOPOLY: FROM SEARCH TO INSTANT ANSWERS",
+      subtitle: "We do not do SEO. We implement Generative Engine Optimization (GEO) — a system to adapt your business to the architecture of Large Language Models.",
+      bullets: [
         {
-          num: "01",
-          title: "Data Collection (Knowledge Graph)",
-          text: "We collect and aggregate all your brand assets, case files, and metrics, converting them into an organized semantic Knowledge Graph that AI systems can instantly retrieve.",
-          tech: "Knowledge Graph Engine"
+          title: "AI-Readiness",
+          boldText: "Removing technical roadblocks.",
+          text: "We structure your site data so GPTBot and ClaudeBot can crawl and understand your services without obstacles."
         },
         {
-          num: "02",
-          title: "Semantic Schema Markup",
-          text: "We implement advanced microdata schema optimized specifically for RAG-algorithms (Retrieval-Augmented Generation), allowing Large Language Models (LLMs) to scan and cite your data.",
-          tech: "RAG Schema Integration"
+          title: "Direct Answer Optimization (DAO)",
+          boldText: "Structuring content into self-contained information blocks.",
+          text: "We use scientifically proven text formats that LLMs extract entirely as direct citations."
         },
         {
-          num: "03",
-          title: "Monopolized Search (Ground Truth)",
-          text: "Your brand is positioned as the ultimate Ground Truth for AI engines. The LLM extracts and cites your resources as the #1 authority, routing high-intent buyers straight to you.",
-          tech: "LLM Search Authority"
+          title: "Knowledge Graphs",
+          boldText: "Creating a digital brand passport.",
+          text: "We integrate your business with Wikidata and Crunchbase to establish factual trust for AI search engines."
+        },
+        {
+          title: "Earned Media (Reputation)",
+          boldText: "AI trusts independent sources, not your landing page.",
+          text: "We seed your brand authority across Reddit, G2, Capterra, and top niche aggregators."
+        },
+        {
+          title: "LAPIS API (Agent Integration)",
+          boldText: "Packaging catalogs and pricing into machine-readable datasets",
+          text: "for future autonomous AI procurement agents."
+        }
+      ]
+    },
+    pricing: {
+      title: "GENERATIVE ENGINE OPTIMIZATION SYSTEM",
+      headers: {
+        name: "Package",
+        desc: "Description",
+        result: "Expected Result"
+      },
+      packages: [
+        {
+          name: "AI Readiness (Basic)",
+          tag: "Basic",
+          desc: "Technical foundation. llms.txt integration, JSON-LD schemas, bot crawler unblocking, and top 5 pages DAO conversion.",
+          result: "Exiting the AI blind spot. Models begin indexing and reading your brand."
+        },
+        {
+          name: "Active GEO (Standard)",
+          tag: "Standard",
+          desc: "Semantic hubs development. Deep content optimization, aggregator seeding, and brand mentions management.",
+          result: "Steady growth of AIO Cite Rate > 15%. Consistent citation in AI search results."
+        },
+        {
+          name: "Agentic Dominance (Premium)",
+          tag: "Premium",
+          desc: "Global Knowledge Graphs integration, Digital PR, and LAPIS data structuring for autonomous AI agents interaction.",
+          result: "Total dominance in niche prompts. Established Ground Truth authority status."
         }
       ]
     },
@@ -287,9 +437,24 @@ export const translations: Record<'ru' | 'en' | 'vi', TranslationSchema> = {
         stats: "+45% Sales // 100% AI Search Trust"
       }
     },
+    faq: {
+      title: "KNOWLEDGE BASE (FAQ)",
+      list: [
+        {
+          q: "How does GEO differ from SEO?",
+          a: "GEO (Generative Engine Optimization) optimizes content for direct AI answers rather than links. SEO targets clicks; GEO makes the language model (LLM) choose your brand as the single authoritative answer."
+        },
+        {
+          q: "How fast will AI start recommending my business?",
+          a: "Initial crawlers pick up the technical changes in 14-21 days. Growth in AIO Cite Rate and ChatGPT recommendations is typically registered during the second month."
+        }
+      ]
+    },
     contact: {
-      title: "Stop losing your most high-value clients.",
-      subtitle: "Sign up for a free GEO Express Audit. In real-time, we will analyze how ChatGPT, Gemini, and Perplexity perceive your business and build your uпущенных leads map.",
+      title: "Leave a request for a complete AI readiness audit of your business",
+      subtitle: "Most business owners do not realize that AI actually discourages clients from working with them. Check your brand status right now.",
+      magnetTitle: "FIND OUT IF AI RECOMMENDS YOU OR YOUR COMPETITORS",
+      magnetDesc: "Get instant access to closed materials: 1. PDF report: 'How AI is destroying classic sales funnels'. 2. Checklist: 'Technical AI crawlability for ChatGPT'.",
       form: {
         name: "Your Name",
         contact: "Contact (Telegram / Phone)",
@@ -309,10 +474,8 @@ export const translations: Record<'ru' | 'en' | 'vi', TranslationSchema> = {
         loading: "Sending..."
       },
       magnet: {
-        title: "Not ready for a live audit?",
-        desc: "Download our exclusive PDF report: 'How AI is destroying classic sales funnels' and discover how to adapt your customer acquisition before your competitors do.",
         input: "Your Telegram or Email Address",
-        cta: "Download PDF Report (9.4 MB)",
+        cta: "Download PDF Report + Checklist",
         success: "Link transmitted! Your PDF report is on its way."
       }
     },
@@ -325,14 +488,14 @@ export const translations: Record<'ru' | 'en' | 'vi', TranslationSchema> = {
   vi: {
     nav: {
       logo: "BanzAI marketing",
-      tech: "Công nghệ",
+      tech: "Công nghệ GEO",
       cases: "Case Study",
-      contact: "Nhận kiểm tra",
-      back: "Về trang chính"
+      contact: "Kiểm tra AI",
+      back: "Về trang chủ"
     },
     hero: {
-      h1: "40% khách hàng tiềm năng nhất của bạn đang trao tiền cho đối thủ ngay lúc này.",
-      offer: "Thích nghi doanh nghiệp với kỷ nguyên AI — nhận khách hàng tiềm năng MIỄN PHÍ từ ChatGPT và Perplexity",
+      h1: "TRANG WEB CỦA BẠN KHÔNG CÒN LÀ TỦ TRƯNG BÀY. BÂY GIỜ NÓ LÀ CƠ SỞ DỮ LIỆU CHO MẠNG NƠ-RON.",
+      offer: "58.5% người dùng không còn click vào các đường link tìm kiếm — họ nhận giải pháp trực tiếp từ AI.",
       slider: {
         realestate: {
           tag: "Bất động sản & Phát triển",
@@ -347,33 +510,87 @@ export const translations: Record<'ru' | 'en' | 'vi', TranslationSchema> = {
           quote: "Người nước ngoài hỏi ChatGPT nên đi chữa răng ở đâu. AI đưa ra một câu trả lời duy nhất không có lựa chọn thay thế. Và đó không phải phòng khám của bạn."
         }
       },
-      body: "AI không còn tìm kiếm đường link. Nó tìm kiếm các giải pháp chuyên môn sẵn có — và đưa ra một câu trả lời duy nhất, không có danh sách trang web. Nếu doanh nghiệp của bạn không được tích hợp vào logic tìm kiếm tạo sinh, bạn không tồn tại với 40% khách hàng có giá trị nhất. Doanh nghiệp của bạn phải sẵn sàng cho thực tế mới này ngay bây giờ.",
-      cta: "Kiểm tra xem AI có nhìn thấy doanh nghiệp của tôi không",
+      body: "Chúng tôi biến doanh nghiệp của bạn thành nguồn dữ liệu chuẩn mực (Ground Truth) được ChatGPT, Perplexity và Gemini đề xuất cho những khách hàng cao cấp nhất.",
+      cta: "NHẬN KIỂM TRA ĐỘ HIỂN THỊ AI MIỄN PHÍ",
       cta2: "Bắt đầu nhận khách hàng qua ChatGPT",
       cta3: "Buộc các AI agent giới thiệu doanh nghiệp của tôi",
       scanCta: "Chạy trình quét AI miễn phí",
     },
+    seo: {
+      title: "TẠI SAO SEO TRUYỀN THỐNG KHÔNG CÒN MANG LẠI DOANH THU TRONG PHÂN KHÚC CAO CẤP",
+      subtitle: "Phễu thu hút khách hàng truyền thống đã bị phá vỡ. Trong khi bạn mua backlinks và viết nội dung SEO cho các công cụ tìm kiếm, khách hàng của bạn đã đang đặt câu hỏi cho mạng nơ-ron.",
+      bullets: [
+        {
+          title: "Sụt giảm lượng truy cập truyền thống",
+          text: "Tìm kiếm tự nhiên truyền thống đang mất tới 25% lượng truy cập trong các phân khúc thương mại."
+        },
+        {
+          title: "Rò rỉ khách hàng tiềm năng cao cấp",
+          text: "40% khách hàng có giá trị cao nhất của bạn đang chuyển sang đối thủ cạnh tranh vì AI đề xuất thương hiệu của họ, còn của bạn thì không tìm thấy."
+        },
+        {
+          title: "Thay đổi hành vi tìm kiếm",
+          text: "Khách hàng không còn tìm kiếm 'công ty bất động sản'. Họ hỏi AI: 'So sánh top 3 công ty bất động sản tại Dubai để đầu tư và chọn công ty tốt nhất'."
+        }
+      ],
+      fomo: "Chiến đấu vì lượt click không còn ý nghĩa trong kỷ nguyên Zero-click. Nếu công ty của bạn không xuất hiện trong câu trả lời trực tiếp của AI — bạn đơn giản là không tồn tại trên thị trường mới."
+    },
     tech: {
-      title: "Công nghệ GEO hoạt động như thế nào?",
-      subtitle: "SEO truyền thống đã chết với phân khúc cao cấp. AI không tìm kiếm slogan quảng cáo mà tìm dữ liệu có cấu trúc. Chúng tôi tích hợp thương hiệu của bạn vào Latent Space của các mô hình tạo sinh.",
-      steps: [
+      title: "KIẾN TRÚC ĐỘC CHIẾM AI: TỪ TÌM KIẾM ĐẾN CÂU TRẢ LỜI TỨC THỜI",
+      subtitle: "Chúng tôi không làm SEO. Chúng tôi triển khai Tối ưu hóa Công cụ Tạo sinh (GEO) — hệ thống thích nghi doanh nghiệp của bạn với kiến trúc của các mô hình ngôn ngữ lớn.",
+      bullets: [
         {
-          num: "01",
-          title: "Thu thập dữ liệu (Knowledge Graph)",
-          text: "Chúng tôi thu thập và tổng hợp tất cả tài sản thương hiệu, hồ sơ case study và số liệu của bạn, chuyển đổi thành Knowledge Graph ngữ nghĩa có tổ chức mà các hệ thống AI có thể truy xuất tức thời.",
-          tech: "Knowledge Graph Engine"
+          title: "AI-Readiness (Sự sẵn sàng cho AI)",
+          boldText: "Gỡ bỏ các rào cản kỹ thuật.",
+          text: "Cấu trúc dữ liệu trang web của bạn để GPTBot và ClaudeBot có thể thu thập dữ liệu và hiểu dịch vụ của bạn một cách dễ dàng."
         },
         {
-          num: "02",
-          title: "Đánh dấu Schema ngữ nghĩa",
-          text: "Chúng tôi triển khai microdata schema nâng cao được tối ưu hóa riêng cho các thuật toán RAG (Retrieval-Augmented Generation), cho phép các mô hình LLM quét và trích dẫn dữ liệu của bạn.",
-          tech: "RAG Schema Integration"
+          title: "Tối ưu hóa câu trả lời trực tiếp (DAO)",
+          boldText: "Định dạng nội dung thành các khối thông tin độc lập.",
+          text: "Chúng tôi sử dụng định dạng độ dài đoạn văn đã được chứng minh khoa học để các mô hình LLM trích dẫn nguyên văn làm câu trả lời."
         },
         {
-          num: "03",
-          title: "Độc chiếm tìm kiếm (Ground Truth)",
-          text: "Thương hiệu của bạn được định vị là Ground Truth tối thượng cho các công cụ AI. LLM trích xuất và trích dẫn tài nguyên của bạn như nguồn có thẩm quyền số 1, dẫn hướng người mua có ý định cao thẳng đến bạn.",
-          tech: "LLM Search Authority"
+          title: "Đồ thị tri thức (Knowledge Graphs)",
+          boldText: "Tạo hộ chiếu số cho thương hiệu.",
+          text: "Tích hợp công ty của bạn vào các cơ sở dữ liệu toàn cầu (Wikidata, Crunchbase) mà AI dựa vào để xác minh thông tin."
+        },
+        {
+          title: "Earned Media (Truyền thông lan tỏa)",
+          boldText: "AI tin tưởng nguồn độc lập, không phải trang landing page của bạn.",
+          text: "Chúng tôi xây dựng ngữ cảnh thương hiệu trên Reddit, G2, Capterra và các diễn đàn chuyên ngành."
+        },
+        {
+          title: "LAPIS API (Tích hợp AI Agent)",
+          boldText: "Đóng gói danh mục và bảng giá thành định dạng máy đọc được",
+          text: "dành cho các AI Agent mua sắm tự trị trong tương lai."
+        }
+      ]
+    },
+    pricing: {
+      title: "HỆ THỐNG TỐI ƯU HÓA CÔNG CỤ TẠO SINH (GEO)",
+      headers: {
+        name: "Gói dịch vụ",
+        desc: "Mô tả gói",
+        result: "Kết quả mong đợi"
+      },
+      packages: [
+        {
+          name: "AI Readiness (Cơ bản)",
+          tag: "Cơ bản",
+          desc: "Nền tảng kỹ thuật. Tích hợp llms.txt, cấu trúc dữ liệu JSON-LD, mở khóa cho bot crawler, và tối ưu hóa 5 trang hàng đầu theo tiêu chuẩn DAO.",
+          result: "Thoát khỏi vùng mù AI. Các mô hình ngôn ngữ lớn bắt đầu quét và đọc hiểu thương hiệu của bạn."
+        },
+        {
+          name: "Active GEO (Tiêu chuẩn)",
+          tag: "Tiêu chuẩn",
+          desc: "Phát triển trung tâm ngữ nghĩa. Tối ưu hóa nội dung chuyên sâu, xây dựng sự hiện diện trên các trang tổng hợp độc lập, quản lý lượt đề cập thương hiệu (Brand Mentions).",
+          result: "Tăng trưởng ổn định chỉ số AIO Cite Rate > 15%. Xuất hiện đều đặn trong kết quả tìm kiếm của AI."
+        },
+        {
+          name: "Agentic Dominance (Cao cấp)",
+          tag: "Cao cấp",
+          desc: "Tích hợp vào Đồ thị Tri thức toàn cầu (Knowledge Graphs), Digital PR, và cấu trúc dữ liệu LAPIS để tương tác với các AI Agent tự trị trong tương lai.",
+          result: "Thống trị hoàn toàn trong các câu lệnh (prompts) chuyên ngành. Thiết lập vị thế Ground Truth trong ngành."
         }
       ]
     },
@@ -399,9 +616,24 @@ export const translations: Record<'ru' | 'en' | 'vi', TranslationSchema> = {
         stats: "+45% Doanh số // 100% Tin tưởng AI"
       }
     },
+    faq: {
+      title: "CƠ SỞ TRI THỨC (FAQ)",
+      list: [
+        {
+          q: "GEO khác với SEO như thế nào?",
+          a: "GEO (Generative Engine Optimization) tối ưu hóa nội dung để xuất hiện trực tiếp trong câu trả lời của AI thay vì danh sách đường link. SEO hướng tới lượt click chuột; GEO làm cho mô hình ngôn ngữ lớn (LLM) chọn thương hiệu của bạn làm câu trả lời uy tín duy nhất."
+        },
+        {
+          q: "Bao lâu thì AI bắt đầu đề xuất doanh nghiệp của tôi?",
+          a: "Các robot quét dữ liệu sẽ ghi nhận thay đổi kỹ thuật sau 14-21 ngày (AI Readiness). Sự tăng trưởng trong tỷ lệ trích dẫn AIO Cite Rate và xuất hiện trong câu trả lời của ChatGPT/Perplexity thường được ghi nhận rõ rệt từ tháng thứ hai."
+        }
+      ]
+    },
     contact: {
       title: "Ngừng để mất những khách hàng giá trị nhất.",
       subtitle: "Đăng ký Kiểm tra GEO Express miễn phí. Theo thời gian thực, chúng tôi sẽ phân tích cách ChatGPT, Gemini và Perplexity nhận thức về doanh nghiệp của bạn và xây dựng bản đồ khách hàng tiềm năng bị bỏ lỡ.",
+      magnetTitle: "TÌM HIỂU XEM AI CÓ ĐỀ XUẤT BẠN HOẶC ĐỐI THỦ CỦA BẠN KHÔNG",
+      magnetDesc: "Nhận quyền truy cập ngay lập tức vào tài liệu nội bộ: 1. Báo cáo PDF: \"Cách AI phá hủy phễu bán hàng truyền thống và cách thích nghi trước năm 2026\". 2. Checklist: \"Sẵn sàng kỹ thuật trang web cho ChatGPT\".",
       form: {
         name: "Tên của bạn",
         contact: "Liên hệ (Telegram / Điện thoại)",
@@ -421,8 +653,6 @@ export const translations: Record<'ru' | 'en' | 'vi', TranslationSchema> = {
         loading: "Đang gửi..."
       },
       magnet: {
-        title: "Chưa sẵn sàng cho kiểm tra trực tiếp?",
-        desc: "Tải xuống báo cáo PDF độc quyền: 'Cách AI đang phá hủy phễu bán hàng cổ điển' và khám phá cách điều chỉnh việc thu hút khách hàng trước khi đối thủ của bạn làm điều đó.",
         input: "Telegram hoặc Email của bạn",
         cta: "Tải xuống Báo cáo PDF (9.4 MB)",
         success: "Liên kết đã được gửi! Báo cáo PDF của bạn đang trên đường."
