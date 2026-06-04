@@ -109,7 +109,7 @@ export const Technology: React.FC = () => {
           </>
         )
       },
-      image: "/assets/solution_pillars_infographic.png",
+      image: "/assets/tech_dao_extraction.png",
       icon: <Cpu className="text-gold-premium" size={20} />,
       systemTag: "CONTENT_DAO: SEMANTIC_TOKENIZATION_ACTIVE",
       telemetry: [
