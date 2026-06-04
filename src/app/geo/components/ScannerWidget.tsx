@@ -80,7 +80,7 @@ export const ScannerWidget: React.FC<ScannerWidgetProps> = ({ isOpen, onClose, w
     const auditPromise = fetch('/api/geo-audit', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ website, industry, region })
+      body: JSON.stringify({ website, industry, region, lang })
     })
     .then(r => r.json())
     .catch(err => {
@@ -101,9 +101,9 @@ export const ScannerWidget: React.FC<ScannerWidgetProps> = ({ isOpen, onClose, w
     // Initial Logs (Hacker Style)
     addLog(lang === 'ru' ? "⚡ Инициализация ядра GEO-Scanner v2.5 (Matrix Radar Mode)..." : "⚡ Initializing GEO-Scanner v2.5 kernel (Matrix Radar Mode)...", 'system');
     
-    // Custom backend easter egg
+    // Kernel status confirmation
     setTimeout(() => {
-      addLog("🧩 Принято, Шер. Никаких no-code костылей. Твой Шертёнок на связи, давай разберем чистый бэкенд.", 'success');
+      addLog(lang === 'ru' ? "🧩 Ядро инициализировано. Запуск процедур сканирования..." : "🧩 Kernel initialized. Launching scan procedures...", 'success');
     }, 800);
 
     setTimeout(() => {
@@ -245,7 +245,7 @@ export const ScannerWidget: React.FC<ScannerWidgetProps> = ({ isOpen, onClose, w
 
   return (
     <div 
-      className="fixed inset-0 z-[100] bg-black/90 backdrop-blur-md flex items-center justify-center p-4 md:p-6 overflow-y-auto"
+      className="fixed inset-0 z-[100] bg-black/90 backdrop-blur-md flex items-start justify-center p-4 md:p-10 overflow-y-auto"
       onClick={(e) => {
         if (e.target === e.currentTarget) onClose();
       }}
@@ -254,7 +254,7 @@ export const ScannerWidget: React.FC<ScannerWidgetProps> = ({ isOpen, onClose, w
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0.95 }}
-        className="relative w-full max-w-4xl bg-bg-dubai border border-gold-premium/30 rounded-3xl p-6 md:p-10 shadow-[0_0_50px_rgba(197,168,128,0.25)] overflow-hidden"
+        className="relative w-full max-w-4xl bg-bg-dubai border border-gold-premium/30 rounded-3xl p-6 md:p-10 shadow-[0_0_50px_rgba(197,168,128,0.25)]"
       >
         {/* Close Button */}
         <button
@@ -270,7 +270,7 @@ export const ScannerWidget: React.FC<ScannerWidgetProps> = ({ isOpen, onClose, w
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-gold-premium/[0.015] filter blur-[150px] pointer-events-none rounded-full" />
         <div className="absolute inset-0 bg-noise opacity-[0.015] pointer-events-none" />
 
-        <div className="relative z-10 max-h-[85vh] overflow-y-auto pr-1 no-scrollbar">
+        <div className="relative z-10 pr-1">
         
         {/* Header Block */}
         <div className="text-center max-w-2xl mx-auto mb-16">

@@ -312,195 +312,15 @@ body {
   font-family: var(--font-display);
 }
 
-/* Light theme overrides */
-.light {
-  --color-background-dark: #f2ebd9;
-  --color-background-light: #faf7ee;
-  --color-surface-dark: #e6ddc5;
-  --color-bg-dubai: #f2ebd9;
-  --color-surface-dubai: #faf7ee;
-  --color-sand-muted: #5e5344;
-  --color-gold-premium: #a68a60;
-  --color-gold-light: #3e3223;
-  --color-gold-dark: #8c714c;
+/* Light theme overrides moved to the bottom of the file for CSS specificity ordering */
+
+/* Specific class to force dark backgrounds for tech HUD diagrams in light theme */
+.bg-tech-image-container {
+  background-color: #12100e !important;
 }
 
-.light body {
-  background-color: #f2ebd9;
-  color: #1a1613;
-}
-
-.light .text-white {
-  color: #1a1613 !important;
-}
-
-.light .text-white\/95 {
-  color: #1a1613 !important;
-}
-
-.light .text-white\/90 {
-  color: rgba(26, 22, 19, 0.9) !important;
-}
-
-.light .text-white\/80 {
-  color: rgba(26, 22, 19, 0.8) !important;
-}
-
-.light .text-white\/70 {
-  color: rgba(26, 22, 19, 0.7) !important;
-}
-
-.light .text-white\/60 {
-  color: rgba(26, 22, 19, 0.6) !important;
-}
-
-.light .text-white\/50 {
-  color: rgba(26, 22, 19, 0.5) !important;
-}
-
-.light .text-white\/40 {
-  color: rgba(26, 22, 19, 0.4) !important;
-}
-
-.light .text-white\/30 {
-  color: rgba(26, 22, 19, 0.3) !important;
-}
-
-.light .text-white\/20 {
-  color: rgba(26, 22, 19, 0.2) !important;
-}
-
-.light .text-white\/15 {
-  color: rgba(26, 22, 19, 0.15) !important;
-}
-
-.light .text-white\/10 {
-  color: rgba(26, 22, 19, 0.1) !important;
-}
-
-.light .text-white\/5 {
-  color: rgba(26, 22, 19, 0.05) !important;
-}
-
-.light .text-sand-muted {
-  color: #5e5344 !important;
-}
-
-.light .text-sand-muted\/95 {
-  color: rgba(94, 83, 68, 0.95) !important;
-}
-
-.light .text-sand-muted\/90 {
-  color: rgba(94, 83, 68, 0.9) !important;
-}
-
-.light .text-sand-muted\/40 {
-  color: rgba(94, 83, 68, 0.4) !important;
-}
-
-.light .text-sand-muted\/30 {
-  color: rgba(94, 83, 68, 0.3) !important;
-}
-
-.light .bg-black {
-  background-color: #faf7ee !important;
-}
-
-.light .bg-black\/30 {
-  background-color: rgba(250, 247, 238, 0.3) !important;
-}
-
-.light .bg-black\/40 {
-  background-color: rgba(250, 247, 238, 0.4) !important;
-}
-
-.light .bg-black\/50 {
-  background-color: rgba(250, 247, 238, 0.5) !important;
-}
-
-.light .bg-black\/60 {
-  background-color: rgba(250, 247, 238, 0.6) !important;
-}
-
-.light .bg-black\/75 {
-  background-color: rgba(250, 247, 238, 0.75) !important;
-}
-
-.light .bg-black\/80 {
-  background-color: rgba(250, 247, 238, 0.8) !important;
-}
-
-.light .bg-black\/85 {
-  background-color: rgba(250, 247, 238, 0.85) !important;
-}
-
-.light .bg-black\/90 {
-  background-color: rgba(250, 247, 238, 0.9) !important;
-}
-
-.light .bg-\[\#12100e\] {
-  background-color: #faf7ee !important;
-}
-
-.light .bg-\[\#12100e\]\/40 {
-  background-color: rgba(250, 247, 238, 0.4) !important;
-}
-
-.light .bg-\[\#12100e\]\/75 {
-  background-color: rgba(250, 247, 238, 0.75) !important;
-}
-
-.light .bg-gold-dark\/5 {
-  background-color: rgba(166, 138, 96, 0.05) !important;
-}
-
-.light .bg-gold-dark\/10 {
-  background-color: rgba(166, 138, 96, 0.1) !important;
-}
-
-.light .bg-surface-dark {
-  background-color: #faf7ee !important;
-}
-
-.light .border-white\/5 {
-  border-color: rgba(0, 0, 0, 0.05) !important;
-}
-
-.light .border-white\/10 {
-  border-color: rgba(0, 0, 0, 0.1) !important;
-}
-
-.light .border-white\/15 {
-  border-color: rgba(0, 0, 0, 0.15) !important;
-}
-
-.light .border-white\/20 {
-  border-color: rgba(0, 0, 0, 0.2) !important;
-}
-
-.light .border-white\/30 {
-  border-color: rgba(0, 0, 0, 0.3) !important;
-}
-
-.light .border-white\/40 {
-  border-color: rgba(0, 0, 0, 0.4) !important;
-}
-
-.light .bg-grid-pattern {
-  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 1px, transparent 1px) !important;
-}
-
-.light .cyber-grid {
-  background-image: linear-gradient(to right, rgba(166, 138, 96, 0.06) 1px, transparent 1px), linear-gradient(to bottom, rgba(166, 138, 96, 0.06) 1px, transparent 1px) !important;
-}
-
-.light .bg-noise {
-  opacity: 0.015 !important;
-}
-
-.light .mix-blend-screen {
-  mix-blend-mode: multiply !important;
-  opacity: 0.12 !important;
+.bg-black-hud-overlay {
+  background-color: rgba(0, 0, 0, 0.4) !important;
 }
 
 /* Glassmorphic header */
@@ -512,64 +332,7 @@ body {
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4) !important;
 }
 
-.light .glass-header {
-  background-color: rgba(242, 235, 217, 0.35) !important;
-  backdrop-filter: blur(24px) saturate(180%) !important;
-  -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
-  border-bottom: 1px solid rgba(166, 138, 96, 0.15) !important;
-  box-shadow: 0 4px 30px rgba(166, 138, 96, 0.08) !important;
-}
-
-/* Light overrides for hardcoded gradients and hex dark backgrounds */
-.light .bg-gradient-to-b.from-\[\#1c1813\].to-\[\#12100e\] {
-  background-image: linear-gradient(to bottom, #faf7ee, #e6ddc5) !important;
-}
-
-.light .bg-\[\#12100e\]\/40 {
-  background-color: rgba(245, 243, 240, 0.6) !important;
-}
-
-.light .bg-\[\#16120e\] {
-  background-color: #faf7ee !important;
-  border-color: rgba(166, 138, 96, 0.25) !important;
-}
-
-.light .bg-[#12100e]/75 {
-  background-color: rgba(250, 247, 238, 0.8) !important;
-}
-
-.light .bg-[#12100e]/95 {
-  background-color: rgba(250, 247, 238, 0.95) !important;
-}
-
-.light .bg-[#12100e]/50 {
-  background-color: rgba(250, 247, 238, 0.5) !important;
-}
-
-.light .bg-gradient-to-r.from-primary\/\[0\.06\].via-surface-dark.to-secondary\/\[0\.06\] {
-  background-image: linear-gradient(to right, rgba(166, 138, 96, 0.04), #faf7ee, rgba(6, 182, 212, 0.04)) !important;
-}
-
-.light .bg-gradient-to-b.from-\[\#16120e\].to-\[\#0b0a09\] {
-  background-image: linear-gradient(to bottom, #faf7ee, #e6ddc5) !important;
-}
-
-.light .bg-surface-dark {
-  background-color: #faf7ee !important;
-}
-
-/* Fix text contrast in light and dark themes */
-.light .text-sand-muted\/95 {
-  color: #4a3e2e !important;
-}
-
-.light .text-sand-muted {
-  color: #4a3e2e !important;
-}
-
-.light .text-sand-muted\/40 {
-  color: rgba(74, 62, 46, 0.6) !important;
-}
+/* Light theme overrides relocated to the bottom of the file for specificity */
 
 /* ==================== GLOBAL CONTRAST & INPUT FIELD OUTLINES ==================== */
 
@@ -671,3 +434,251 @@ textarea:focus {
 }
 
 /* ================================================================================= */
+/* ==================== LIGHT THEME OVERRIDES (CRITICAL SPECIFICITY) ==================== */
+.light {
+  --color-background-dark: #f2ebd9;
+  --color-background-light: #faf7ee;
+  --color-surface-dark: #e6ddc5;
+  --color-bg-dubai: #f2ebd9;
+  --color-surface-dubai: #faf7ee;
+  --color-sand-muted: #5e5344;
+  --color-gold-premium: #a68a60;
+  --color-gold-light: #3e3223;
+  --color-gold-dark: #8c714c;
+}
+
+.light body {
+  background-color: #f2ebd9;
+  color: #1a1613;
+}
+
+.light .text-white {
+  color: #1a1613 !important;
+}
+
+.light .text-white\/95 {
+  color: #1a1613 !important;
+}
+
+.light .text-white\/90 {
+  color: rgba(26, 22, 19, 0.9) !important;
+}
+
+.light .text-white\/80 {
+  color: rgba(26, 22, 19, 0.8) !important;
+}
+
+.light .text-white\/70 {
+  color: rgba(26, 22, 19, 0.7) !important;
+}
+
+.light .text-white\/60 {
+  color: rgba(26, 22, 19, 0.6) !important;
+}
+
+.light .text-white\/50 {
+  color: rgba(26, 22, 19, 0.5) !important;
+}
+
+.light .text-white\/40 {
+  color: rgba(26, 22, 19, 0.4) !important;
+}
+
+.light .text-white\/30 {
+  color: rgba(26, 22, 19, 0.3) !important;
+}
+
+.light .text-white\/20 {
+  color: rgba(26, 22, 19, 0.2) !important;
+}
+
+.light .text-white\/15 {
+  color: rgba(26, 22, 19, 0.15) !important;
+}
+
+.light .text-white\/10 {
+  color: rgba(26, 22, 19, 0.1) !important;
+}
+
+.light .text-white\/5 {
+  color: rgba(26, 22, 19, 0.05) !important;
+}
+
+.light .text-sand-muted {
+  color: #5e5344 !important;
+}
+
+.light .text-sand-muted\/95 {
+  color: rgba(94, 83, 68, 0.95) !important;
+}
+
+.light .text-sand-muted\/90 {
+  color: rgba(94, 83, 68, 0.9) !important;
+}
+
+.light .text-sand-muted\/40 {
+  color: rgba(94, 83, 68, 0.4) !important;
+}
+
+.light .text-sand-muted\/30 {
+  color: rgba(94, 83, 68, 0.3) !important;
+}
+
+/* Background overrides */
+.light .bg-black {
+  background-color: #faf7ee !important;
+}
+
+.light .bg-black\/30 {
+  background-color: rgba(250, 247, 238, 0.3) !important;
+}
+
+.light .bg-black\/40 {
+  background-color: rgba(250, 247, 238, 0.4) !important;
+}
+
+.light .bg-black\/50 {
+  background-color: rgba(250, 247, 238, 0.5) !important;
+}
+
+.light .bg-black\/60 {
+  background-color: rgba(250, 247, 238, 0.6) !important;
+}
+
+.light .bg-black\/75 {
+  background-color: rgba(250, 247, 238, 0.75) !important;
+}
+
+.light .bg-black\/80 {
+  background-color: rgba(250, 247, 238, 0.8) !important;
+}
+
+.light .bg-black\/85 {
+  background-color: rgba(250, 247, 238, 0.85) !important;
+}
+
+.light .bg-black\/90 {
+  background-color: rgba(250, 247, 238, 0.9) !important;
+}
+
+.light .bg-\[\#12100e\] {
+  background-color: #faf7ee !important;
+  border-color: rgba(166, 138, 96, 0.18) !important;
+}
+
+.light .bg-\[\#12100e\]\/95 {
+  background-color: rgba(250, 247, 238, 0.95) !important;
+  border-color: rgba(166, 138, 96, 0.18) !important;
+}
+
+.light .bg-\[\#12100e\]\/80 {
+  background-color: rgba(250, 247, 238, 0.8) !important;
+  border-color: rgba(166, 138, 96, 0.18) !important;
+}
+
+.light .bg-\[\#12100e\]\/75 {
+  background-color: rgba(250, 247, 238, 0.75) !important;
+  border-color: rgba(166, 138, 96, 0.15) !important;
+}
+
+.light .bg-\[\#12100e\]\/70 {
+  background-color: rgba(250, 247, 238, 0.7) !important;
+}
+
+.light .bg-\[\#12100e\]\/50 {
+  background-color: rgba(250, 247, 238, 0.5) !important;
+}
+
+.light .bg-\[\#12100e\]\/40 {
+  background-color: rgba(250, 247, 238, 0.4) !important;
+  border-color: rgba(166, 138, 96, 0.15) !important;
+}
+
+.light .bg-\[\#16120e\] {
+  background-color: #faf7ee !important;
+  border-color: rgba(166, 138, 96, 0.25) !important;
+}
+
+.light .bg-\[\#1a1612\]\/80 {
+  background-color: rgba(230, 221, 197, 0.85) !important;
+  border-color: rgba(166, 138, 96, 0.4) !important;
+}
+
+.light .bg-surface-dark {
+  background-color: #faf7ee !important;
+}
+
+.light .border-white\/5 {
+  border-color: rgba(0, 0, 0, 0.05) !important;
+}
+
+.light .border-white\/10 {
+  border-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+.light .border-white\/15 {
+  border-color: rgba(0, 0, 0, 0.15) !important;
+}
+
+.light .border-white\/20 {
+  border-color: rgba(0, 0, 0, 0.2) !important;
+}
+
+.light .border-white\/30 {
+  border-color: rgba(0, 0, 0, 0.3) !important;
+}
+
+.light .border-white\/40 {
+  border-color: rgba(0, 0, 0, 0.4) !important;
+}
+
+.light .bg-grid-pattern {
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 1px, transparent 1px) !important;
+}
+
+.light .cyber-grid {
+  background-image: linear-gradient(to right, rgba(166, 138, 96, 0.06) 1px, transparent 1px), linear-gradient(to bottom, rgba(166, 138, 96, 0.06) 1px, transparent 1px) !important;
+}
+
+.light .bg-noise {
+  opacity: 0.015 !important;
+}
+
+.light .mix-blend-screen {
+  mix-blend-mode: multiply !important;
+  opacity: 0.12 !important;
+}
+
+.light .glass-header {
+  background-color: rgba(242, 235, 217, 0.35) !important;
+  backdrop-filter: blur(24px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
+  border-bottom: 1px solid rgba(166, 138, 96, 0.15) !important;
+  box-shadow: 0 4px 30px rgba(166, 138, 96, 0.08) !important;
+}
+
+/* Light overrides for hardcoded gradients and hex dark backgrounds */
+.light .bg-gradient-to-b.from-\[\#1c1813\].to-\[\#12100e\] {
+  background-image: linear-gradient(to bottom, #faf7ee, #e6ddc5) !important;
+}
+
+.light .bg-gradient-to-r.from-primary\/\[0\.06\].via-surface-dark.to-secondary\/\[0\.06\] {
+  background-image: linear-gradient(to right, rgba(166, 138, 96, 0.04), #faf7ee, rgba(6, 182, 212, 0.04)) !important;
+}
+
+.light .bg-gradient-to-b.from-\[\#16120e\].to-\[\#0b0a09\] {
+  background-image: linear-gradient(to bottom, #faf7ee, #e6ddc5) !important;
+}
+
+/* Fix text contrast in light and dark themes */
+.light .text-sand-muted\/95 {
+  color: #4a3e2e !important;
+}
+
+.light .text-sand-muted {
+  color: #4a3e2e !important;
+}
+
+.light .text-sand-muted\/40 {
+  color: rgba(74, 62, 46, 0.6) !important;
+}

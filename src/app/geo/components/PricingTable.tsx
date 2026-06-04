@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { translations } from '../translations';
 import { Zap, HelpCircle, Check, ArrowRight } from 'lucide-react';
+import Image from 'next/image';
 import '@/lib/i18n';
 
 export const PricingTable: React.FC<{ openLeadModal?: () => void }> = ({ openLeadModal }) => {
@@ -21,6 +22,7 @@ export const PricingTable: React.FC<{ openLeadModal?: () => void }> = ({ openLea
       desc: t.pricing.packages[0].desc,
       result: t.pricing.packages[0].result,
       badge: null,
+      image: "/assets/tech_rag_markup.png",
       borderClass: "border-gold-premium/15 hover:border-gold-premium/40 bg-surface-dubai/40",
       ctaText: lang === 'ru' ? "ЗАПУСТИТЬ БАЗОВЫЙ ЭТАП" : lang === 'vi' ? "BẮT ĐẦU GIAI ĐOẠN CƠ BẢN" : "START BASIC STAGE",
     },
@@ -32,6 +34,7 @@ export const PricingTable: React.FC<{ openLeadModal?: () => void }> = ({ openLea
       desc: t.pricing.packages[1].desc,
       result: t.pricing.packages[1].result,
       badge: lang === 'ru' ? "РЕКОМЕНДУЕМ" : lang === 'vi' ? "KHUYÊN DÙNG" : "POPULAR",
+      image: "/assets/tech_dao_extraction.png",
       borderClass: "border-gold-premium/50 bg-[#1a1612]/80 shadow-gold-glow",
       ctaText: lang === 'ru' ? "ПОЛУЧИТЬ АКТИВНЫЙ GEO" : lang === 'vi' ? "NHẬN ACTIVE GEO" : "GET ACTIVE GEO",
     },
@@ -42,7 +45,8 @@ export const PricingTable: React.FC<{ openLeadModal?: () => void }> = ({ openLea
       name: t.pricing.packages[2].name,
       desc: t.pricing.packages[2].desc,
       result: t.pricing.packages[2].result,
-      badge: lang === 'ru' ? "МАКСИМАЛЬНЫЙ" : lang === 'vi' ? "TỐI ĐA" : "ULTIMATE",
+      badge: lang === 'ru' ? "МАКСИМАЛЬНЫЙ" : lang === 'vi' ? "TỐI ДА" : "ULTIMATE",
+      image: "/assets/geo_channels_pillar.png",
       borderClass: "border-cyan-500/40 hover:border-cyan-400 bg-cyan-950/10 shadow-[0_0_20px_rgba(6,182,212,0.1)]",
       ctaText: lang === 'ru' ? "ДОСТИЧЬ ДОМИНИРОВАНИЯ" : lang === 'vi' ? "ĐẠT THỐNG TRỊ AGENTIC" : "DOMINATE SYSTEM",
     }
@@ -131,6 +135,17 @@ export const PricingTable: React.FC<{ openLeadModal?: () => void }> = ({ openLea
               )}
 
               <div>
+                {/* Image illustration */}
+                <div className="relative w-full rounded-2xl overflow-hidden bg-tech-image-container aspect-[16/10] mb-6 group-hover:border-gold-premium/30 transition-all duration-300 border border-white/5 shadow-inner">
+                  <Image
+                    src={pkg.image}
+                    alt={pkg.name}
+                    fill
+                    className="object-cover opacity-85 group-hover:opacity-100 group-hover:scale-[1.02] transition-all duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+                </div>
+
                 {/* Header info */}
                 <div className="flex items-center gap-3 mb-6">
                   <div className={`w-9 h-9 rounded-xl border flex items-center justify-center ${

@@ -62,7 +62,7 @@ export const ContactCapture: React.FC<ContactCaptureProps> = ({ website, setWebs
   const t = translations[lang];
 
   // Accordion states
-  const [openCategory, setOpenCategory] = useState<number | null>(0);
+  const [openCategory, setOpenCategory] = useState<number | null>(null);
   const [openFaq, setOpenFaq] = useState<string | null>(null);
 
   const categories = [

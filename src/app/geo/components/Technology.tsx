@@ -378,7 +378,7 @@ export const Technology: React.FC = () => {
                     </div>
 
                     {/* Inner image container */}
-                    <div className="relative w-full h-full rounded-xl overflow-hidden bg-[#12100e]">
+                    <div className="relative w-full h-full rounded-xl overflow-hidden bg-tech-image-container">
                       {/* Grid pattern overlay */}
                       <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.025)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.025)_1px,transparent_1px)] bg-[size:16px_16px] group-hover:bg-[size:8px_8px] transition-all duration-500 z-10 pointer-events-none" />
                       

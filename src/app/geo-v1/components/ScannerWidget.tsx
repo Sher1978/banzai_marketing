@@ -75,7 +75,7 @@ export const ScannerWidget: React.FC = () => {
     const auditPromise = fetch('/api/geo-audit', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ website, industry, region })
+      body: JSON.stringify({ website, industry, region, lang })
     })
     .then(r => r.json())
     .catch(err => {
@@ -96,9 +96,9 @@ export const ScannerWidget: React.FC = () => {
     // Initial Logs (Hacker Style)
     addLog(lang === 'ru' ? "⚡ Инициализация ядра GEO-Scanner v2.5 (Matrix Radar Mode)..." : "⚡ Initializing GEO-Scanner v2.5 kernel (Matrix Radar Mode)...", 'system');
     
-    // Custom backend easter egg
+    // Kernel status confirmation
     setTimeout(() => {
-      addLog("🧩 Принято, Шер. Никаких no-code костылей. Твой Шертёнок на связи, давай разберем чистый бэкенд.", 'success');
+      addLog(lang === 'ru' ? "🧩 Ядро инициализировано. Запуск процедур сканирования..." : "🧩 Kernel initialized. Launching scan procedures...", 'success');
     }, 800);
 
     setTimeout(() => {

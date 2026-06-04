@@ -68,11 +68,7 @@ export const Navbar: React.FC<NavbarProps> = ({ openLeadModal }) => {
     <>
       {/* Desktop / Fixed Navbar */}
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          scrolled
-            ? 'glass-header'
-            : 'bg-transparent'
-        }`}
+        className="fixed top-0 left-0 right-0 z-50 transition-all duration-500 glass-header"
       >
         <nav className="max-w-[1440px] mx-auto flex items-center justify-between px-6 py-4 md:py-5">
 
