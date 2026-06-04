@@ -1,7 +1,8 @@
 "use client";
 
-import React from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { AnimatePresence } from 'framer-motion';
 import Navbar from './components/Navbar';
 import HeroSlider from './components/HeroSlider';
 import SearchRevolution from './components/SearchRevolution';
@@ -15,6 +16,7 @@ import '@/lib/i18n';
 import Link from 'next/link';
 
 export default function GeoLandingPage() {
+  const [isScannerOpen, setIsScannerOpen] = useState(false);
   const { i18n } = useTranslation();
   const lang = (i18n.language === 'ru' ? 'ru' : i18n.language === 'vi' ? 'vi' : 'en') as 'ru' | 'en' | 'vi';
   const t = translations[lang];
@@ -81,7 +83,7 @@ export default function GeoLandingPage() {
       <Navbar />
 
       {/* Hero Section with Interactive FOMO AI Chat typing slider */}
-      <HeroSlider />
+      <HeroSlider openScanner={() => setIsScannerOpen(true)} />
 
       {/* Chronological Search Revolution Accordion / Collapse Timeline */}
       <SearchRevolution />
@@ -89,8 +91,12 @@ export default function GeoLandingPage() {
       {/* Explanatory RAG/Knowledge Graph Technology Architecture Block */}
       <Technology />
 
-      {/* Interactive Multi-agent live GEO Scanner lead capture */}
-      <ScannerWidget />
+      {/* Interactive Multi-agent live GEO Scanner lead capture popup modal */}
+      <AnimatePresence>
+        {isScannerOpen && (
+          <ScannerWidget isOpen={isScannerOpen} onClose={() => setIsScannerOpen(false)} />
+        )}
+      </AnimatePresence>
 
       {/* Real-world cases with live ChatGPT query simulations */}
       <Cases />

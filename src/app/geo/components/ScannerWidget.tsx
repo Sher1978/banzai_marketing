@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { translations } from '../translations';
-import { Terminal, Send, CheckCircle2, AlertTriangle, Cpu, Globe, Mail, ShieldAlert, Sparkles, FileText, ArrowRight, Activity } from 'lucide-react';
+import { Terminal, Send, CheckCircle2, AlertTriangle, Cpu, Globe, Mail, ShieldAlert, Sparkles, FileText, ArrowRight, Activity, X } from 'lucide-react';
 import '@/lib/i18n';
 
 interface LogLine {
@@ -13,7 +13,12 @@ interface LogLine {
   time: string;
 }
 
-export const ScannerWidget: React.FC = () => {
+interface ScannerWidgetProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+export const ScannerWidget: React.FC<ScannerWidgetProps> = ({ isOpen, onClose }) => {
   const { i18n } = useTranslation();
   const lang = (i18n.language === 'ru' ? 'ru' : 'en') as 'ru' | 'en';
   const t = translations[lang];
@@ -228,21 +233,45 @@ export const ScannerWidget: React.FC = () => {
   };
 
   const scrollToContact = () => {
-    const contactSection = document.getElementById('audit-form');
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: 'smooth' });
-    }
+    onClose();
+    setTimeout(() => {
+      const contactSection = document.getElementById('audit-form');
+      if (contactSection) {
+        contactSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 300);
   };
 
-  return (
-    <section className="relative py-28 px-6 bg-bg-dubai border-t border-gold-premium/10 overflow-hidden" id="scanner">
-      
-      {/* Background Matrix-Style Visuals */}
-      <div className="absolute inset-0 cyber-grid opacity-[0.02] pointer-events-none" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-gold-premium/[0.015] filter blur-[150px] pointer-events-none rounded-full" />
-      <div className="absolute inset-0 bg-noise opacity-[0.015] pointer-events-none" />
+  if (!isOpen) return null;
 
-      <div className="max-w-4xl mx-auto relative z-10">
+  return (
+    <div 
+      className="fixed inset-0 z-[100] bg-black/90 backdrop-blur-md flex items-center justify-center p-4 md:p-6 overflow-y-auto"
+      onClick={(e) => {
+        if (e.target === e.currentTarget) onClose();
+      }}
+    >
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 0.95 }}
+        className="relative w-full max-w-4xl bg-bg-dubai border border-gold-premium/30 rounded-3xl p-6 md:p-10 shadow-[0_0_50px_rgba(197,168,128,0.25)] overflow-hidden"
+      >
+        {/* Close Button */}
+        <button
+          onClick={onClose}
+          className="absolute top-6 right-6 w-8 h-8 rounded-full border border-gold-premium/20 hover:border-gold-premium/50 bg-black/40 text-gold-premium flex items-center justify-center cursor-pointer transition-colors duration-300 z-50"
+          aria-label="Close scanner"
+        >
+          <X size={14} />
+        </button>
+
+        {/* Background Matrix-Style Visuals */}
+        <div className="absolute inset-0 cyber-grid opacity-[0.02] pointer-events-none" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-gold-premium/[0.015] filter blur-[150px] pointer-events-none rounded-full" />
+        <div className="absolute inset-0 bg-noise opacity-[0.015] pointer-events-none" />
+
+        <div className="relative z-10 max-h-[85vh] overflow-y-auto pr-1 no-scrollbar">
         
         {/* Header Block */}
         <div className="text-center max-w-2xl mx-auto mb-16">
@@ -979,8 +1008,9 @@ export const ScannerWidget: React.FC = () => {
 
         </AnimatePresence>
 
-      </div>
-    </section>
+        </div>
+      </motion.div>
+    </div>
   );
 };
 

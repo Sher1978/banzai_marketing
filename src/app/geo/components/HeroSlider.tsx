@@ -138,7 +138,7 @@ export const HeroSlider: React.FC<{ openScanner?: () => void }> = ({ openScanner
   };
 
   const scrollToContact = () => {
-    const contactSection = document.getElementById('contact');
+    const contactSection = document.getElementById('audit-form');
     if (contactSection) {
       contactSection.scrollIntoView({ behavior: 'smooth' });
     }
@@ -277,7 +277,7 @@ export const HeroSlider: React.FC<{ openScanner?: () => void }> = ({ openScanner
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.97 }}
-                onClick={handleOpenScanner}
+                onClick={scrollToContact}
                 id="hero-cta-chatgpt"
                 className="flex items-center gap-2 border border-gold-premium/30 hover:border-gold-premium bg-gold-dark/10 hover:bg-gold-dark/20 text-white font-display font-semibold text-[10px] md:text-xs px-4 py-3 rounded-full transition-all uppercase tracking-wider cursor-pointer"
               >
@@ -287,7 +287,7 @@ export const HeroSlider: React.FC<{ openScanner?: () => void }> = ({ openScanner
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.97 }}
-                onClick={handleOpenScanner}
+                onClick={scrollToContact}
                 id="hero-cta-agents"
                 className="flex items-center gap-2 border border-gold-premium/30 hover:border-gold-premium bg-gold-dark/10 hover:bg-gold-dark/20 text-white font-display font-semibold text-[10px] md:text-xs px-4 py-3 rounded-full transition-all uppercase tracking-wider cursor-pointer"
               >

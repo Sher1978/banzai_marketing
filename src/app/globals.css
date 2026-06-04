@@ -570,3 +570,104 @@ body {
 .light .text-sand-muted\/40 {
   color: rgba(74, 62, 46, 0.6) !important;
 }
+
+/* ==================== GLOBAL CONTRAST & INPUT FIELD OUTLINES ==================== */
+
+/* Globals inputs and textareas (Dark Theme) */
+input[type="text"],
+input[type="url"],
+input[type="email"],
+select,
+textarea {
+  background-color: #181512 !important; /* Lighter background for visibility */
+  border: 1px solid rgba(197, 168, 128, 0.35) !important; /* Brighter gold outline */
+  color: #ffffff !important;
+  transition: all 0.3s ease !important;
+}
+
+input[type="text"]::placeholder,
+input[type="url"]::placeholder,
+input[type="email"]::placeholder,
+textarea::placeholder {
+  color: rgba(197, 168, 128, 0.4) !important; /* Make placeholders readable but distinct */
+}
+
+/* Focused states for inputs */
+input[type="text"]:focus,
+input[type="url"]:focus,
+input[type="email"]:focus,
+select:focus,
+textarea:focus {
+  background-color: #201c18 !important; /* Brighter background on focus */
+  border-color: #c5a880 !important; /* Brighter gold border */
+  box-shadow: 0 0 0 2px rgba(197, 168, 128, 0.25) !important;
+}
+
+/* Light Theme overrides for inputs */
+.light input[type="text"],
+.light input[type="url"],
+.light input[type="email"],
+.light select,
+.light textarea {
+  background-color: #faf7ee !important; /* Warm light cream */
+  border: 1px solid rgba(166, 138, 96, 0.4) !important; /* Brighter border */
+  color: #1a1613 !important;
+}
+
+.light input[type="text"]::placeholder,
+.light input[type="url"]::placeholder,
+.light input[type="email"]::placeholder,
+.light textarea::placeholder {
+  color: rgba(94, 83, 68, 0.5) !important;
+}
+
+.light input[type="text"]:focus,
+.light input[type="url"]:focus,
+.light input[type="email"]:focus,
+.light select:focus,
+.light textarea:focus {
+  background-color: #ffffff !important;
+  border-color: #a68a60 !important;
+  box-shadow: 0 0 0 2px rgba(166, 138, 96, 0.2) !important;
+}
+
+/* Lighten container boxes for better contrast relative to background */
+.bg-\[\#12100e\] {
+  background-color: #161310 !important; /* Lighter dark */
+  border: 1px solid rgba(197, 168, 128, 0.22) !important;
+}
+
+.bg-\[\#12100e\]\/95 {
+  background-color: rgba(22, 19, 16, 0.95) !important;
+  border: 1px solid rgba(197, 168, 128, 0.22) !important;
+}
+
+.bg-\[\#12100e\]\/80 {
+  background-color: rgba(22, 19, 16, 0.8) !important;
+  border: 1px solid rgba(197, 168, 128, 0.2) !important;
+}
+
+.bg-\[\#12100e\]\/75 {
+  background-color: rgba(22, 19, 16, 0.75) !important;
+  border: 1px solid rgba(197, 168, 128, 0.18) !important;
+}
+
+.bg-\[\#12100e\]\/70 {
+  background-color: rgba(22, 19, 16, 0.7) !important;
+}
+
+.bg-\[\#12100e\]\/40 {
+  background-color: rgba(22, 19, 16, 0.4) !important;
+  border: 1px solid rgba(197, 168, 128, 0.18) !important;
+}
+
+.bg-\[\#16120e\] {
+  background-color: #1a1511 !important;
+  border: 1px solid rgba(197, 168, 128, 0.3) !important;
+}
+
+.bg-surface-dark {
+  background-color: #161310 !important;
+}
+
+/* ================================================================================= */

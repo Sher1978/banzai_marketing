@@ -49,7 +49,7 @@ export const PricingTable: React.FC = () => {
   ];
 
   const handleCtaClick = () => {
-    const contactSection = document.getElementById('contact');
+    const contactSection = document.getElementById('audit-form');
     if (contactSection) {
       contactSection.scrollIntoView({ behavior: 'smooth' });
     }

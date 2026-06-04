@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { translations } from '../translations';
-import { Send, FileText, CheckCircle, AlertCircle, Plus, Minus, HelpCircle } from 'lucide-react';
+import { Send, FileText, CheckCircle, AlertCircle, Plus, Minus, HelpCircle, ChevronDown } from 'lucide-react';
 import '@/lib/i18n';
 
 interface FaqItemProps {
@@ -57,7 +57,23 @@ export const ContactCapture: React.FC = () => {
   const t = translations[lang];
 
   // Accordion states
-  const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [openCategory, setOpenCategory] = useState<number | null>(0);
+  const [openFaq, setOpenFaq] = useState<string | null>(null);
+
+  const categories = [
+    {
+      title: lang === 'ru' ? "1. Основы GEO и принципы ИИ-поиска" : lang === 'vi' ? "1. Nguyên lý cơ bản về GEO & Tìm kiếm AI" : "1. GEO Basics & AI Search Principles",
+      items: t.faq.list.slice(0, 13)
+    },
+    {
+      title: lang === 'ru' ? "2. Технические настройки и Schema-разметка" : lang === 'vi' ? "2. Cấu hình Kỹ thuật & Định dạng Schema" : "2. Technical Settings & Schema Markups",
+      items: t.faq.list.slice(13, 28)
+    },
+    {
+      title: lang === 'ru' ? "3. Авторитет бренда, ИИ-репутация и Карты" : lang === 'vi' ? "3. Uy tín thương hiệu, Danh tiếng AI & Bản đồ" : "3. Brand Authority, AI Reputation & Maps",
+      items: t.faq.list.slice(28, 40)
+    }
+  ];
 
   // Form submission states
   const [auditStatus, setAuditStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
@@ -156,16 +172,54 @@ export const ContactCapture: React.FC = () => {
             <div className="w-16 h-0.5 bg-gold-premium mx-auto" />
           </div>
 
-          <div className="flex flex-col gap-4">
-            {t.faq.list.map((item, index) => (
-              <FaqItem
-                key={index}
-                q={item.q}
-                a={item.a}
-                isOpen={openFaq === index}
-                onToggle={() => setOpenFaq(prev => prev === index ? null : index)}
-              />
-            ))}
+          <div className="flex flex-col gap-6">
+            {categories.map((cat, catIdx) => {
+              const isCatOpen = openCategory === catIdx;
+              return (
+                <div key={catIdx} className="border border-gold-premium/15 rounded-2xl bg-[#12100e]/40 overflow-hidden shadow-[inset_0_1px_2px_rgba(255,255,255,0.02)]">
+                  <button
+                    onClick={() => setOpenCategory(prev => prev === catIdx ? null : catIdx)}
+                    className="w-full flex items-center justify-between p-5 md:p-6 text-left cursor-pointer focus:outline-none bg-black/20 hover:bg-black/35 transition-colors duration-300"
+                  >
+                    <span className="font-display font-black text-xs md:text-sm text-gold-premium uppercase tracking-wider">
+                      {cat.title}
+                    </span>
+                    <div className={`w-5 h-5 rounded-full flex items-center justify-center border transition-all ${
+                      isCatOpen ? 'border-gold-premium text-gold-premium rotate-180' : 'border-white/10 text-white/40'
+                    }`}>
+                      <ChevronDown size={12} />
+                    </div>
+                  </button>
+
+                  <AnimatePresence initial={false}>
+                    {isCatOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <div className="p-5 md:p-6 flex flex-col gap-4 border-t border-gold-premium/10 bg-black/10">
+                          {cat.items.map((item, faqIdx) => {
+                            const faqKey = `${catIdx}-${faqIdx}`;
+                            const isFaqOpen = openFaq === faqKey;
+                            return (
+                              <FaqItem
+                                key={faqIdx}
+                                q={item.q}
+                                a={item.a}
+                                isOpen={isFaqOpen}
+                                onToggle={() => setOpenFaq(prev => prev === faqKey ? null : faqKey)}
+                              />
+                            );
+                          })}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              );
+            })}
           </div>
         </div>
 
@@ -255,19 +309,17 @@ export const ContactCapture: React.FC = () => {
                   whileTap={{ scale: 0.99 }}
                   type="submit"
                   disabled={auditStatus === "loading" || auditStatus === "success"}
-                  className="w-full relative px-6 py-4.5 bg-transparent overflow-hidden mt-2 rounded-xl disabled:opacity-50 disabled:cursor-not-allowed border border-gold-premium hover:border-gold-light transition-colors group/btn cursor-pointer"
+                  className="w-full group mt-2 px-6 py-4.5 bg-gradient-to-r from-gold-light via-gold-premium to-gold-dark text-black font-display font-black text-xs md:text-sm rounded-xl uppercase tracking-widest shadow-gold-glow hover:brightness-110 active:scale-[0.98] transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  <div className="absolute inset-0 bg-gradient-to-r from-gold-light via-gold-premium to-gold-dark translate-y-full group-hover/btn:translate-y-0 transition-transform duration-300 ease-out" />
-                  
-                  <span className="relative z-10 font-display font-black text-xs md:text-sm text-white group-hover/btn:text-black tracking-widest uppercase transition-colors duration-300 flex items-center justify-center gap-2">
+                  <span className="font-display font-black text-xs md:text-sm text-black tracking-widest uppercase flex items-center justify-center gap-2">
                     {auditStatus === "loading" ? (
                       <>
-                        <div className="w-4 h-4 border-2 border-gold-premium border-t-transparent rounded-full animate-spin" />
+                        <div className="w-4 h-4 border-2 border-black border-t-transparent rounded-full animate-spin" />
                         <span>{t.contact.form.loading}</span>
                       </>
                     ) : auditStatus === "success" ? (
                       <>
-                        <CheckCircle size={14} className="text-black" />
+                        <CheckCircle size={14} />
                         <span>{t.contact.form.success}</span>
                       </>
                     ) : auditStatus === "error" ? (
