@@ -1,5 +1,11 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+> [!IMPORTANT]
+> **AI AGENTS & DEVELOPERS DEPLOYMENT PROTOCOL:**
+> * **Active Pipeline**: This project is deployed exclusively via **GitHub-Vercel integration**.
+> * **How to Deploy**: Commit your changes and run `git push origin master`. Vercel will automatically build and deploy the changes.
+> * **Ignore Cloudflare**: The Cloudflare scripts (`build:cf`, `deploy:cf`) in `package.json` and the `wrangler.jsonc` file are legacy configurations. Do **NOT** use them or attempt to authenticate with Wrangler.
+
 ## Getting Started
 
 First, run the development server:
