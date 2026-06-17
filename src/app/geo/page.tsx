@@ -20,9 +20,34 @@ export default function GeoLandingPage() {
   const [isScannerOpen, setIsScannerOpen] = useState(false);
   const [isLeadModalOpen, setIsLeadModalOpen] = useState(false);
   const [website, setWebsite] = useState('');
+  const [autoStartScan, setAutoStartScan] = useState(false);
   const { i18n } = useTranslation();
   const lang = (i18n.language === 'ru' ? 'ru' : i18n.language === 'vi' ? 'vi' : 'en') as 'ru' | 'en' | 'vi';
   const t = translations[lang];
+
+  React.useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      const urlParam = params.get('url');
+      if (urlParam) {
+        let cleanUrl = urlParam.trim().toLowerCase();
+        // Remove http://, https://, and www.
+        cleanUrl = cleanUrl.replace(/^(https?:\/\/)?(www\.)?/, '');
+        // Remove trailing slashes and paths to get just the domain
+        cleanUrl = cleanUrl.split('/')[0];
+        // Remove query parameters or hash just in case
+        cleanUrl = cleanUrl.split('?')[0].split('#')[0];
+        
+        // Simple domain validation regex
+        const domainRegex = /^[a-zA-Z0-9]([a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9]([a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*\.[a-zA-Z]{2,}$/;
+        if (domainRegex.test(cleanUrl)) {
+          setWebsite(cleanUrl);
+          setAutoStartScan(true);
+          setIsScannerOpen(true);
+        }
+      }
+    }
+  }, []);
 
   // Schema.org Structured Data
   const organizationJsonLd = {
@@ -99,9 +124,13 @@ export default function GeoLandingPage() {
         {isScannerOpen && (
           <ScannerWidget 
             isOpen={isScannerOpen} 
-            onClose={() => setIsScannerOpen(false)} 
+            onClose={() => {
+              setIsScannerOpen(false);
+              setAutoStartScan(false);
+            }} 
             website={website}
             setWebsite={setWebsite}
+            autoStart={autoStartScan}
           />
         )}
       </AnimatePresence>

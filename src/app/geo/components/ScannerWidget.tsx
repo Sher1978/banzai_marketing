@@ -18,9 +18,10 @@ interface ScannerWidgetProps {
   onClose: () => void;
   website: string;
   setWebsite: (val: string) => void;
+  autoStart?: boolean;
 }
 
-export const ScannerWidget: React.FC<ScannerWidgetProps> = ({ isOpen, onClose, website, setWebsite }) => {
+export const ScannerWidget: React.FC<ScannerWidgetProps> = ({ isOpen, onClose, website, setWebsite, autoStart }) => {
   const { i18n } = useTranslation();
   const lang = (i18n.language === 'ru' ? 'ru' : i18n.language === 'vi' ? 'vi' : 'en') as 'ru' | 'en' | 'vi';
   const t = translations[lang];
@@ -57,6 +58,12 @@ export const ScannerWidget: React.FC<ScannerWidgetProps> = ({ isOpen, onClose, w
     return () => clearInterval(interval);
   }, [step]);
 
+  useEffect(() => {
+    if (isOpen && autoStart && website && step === 'intro') {
+      handleStartScan();
+    }
+  }, [isOpen, autoStart, website, step]);
+
   // Auto scroll logs
   useEffect(() => {
     if (logsContainerRef.current) {
@@ -69,18 +76,21 @@ export const ScannerWidget: React.FC<ScannerWidgetProps> = ({ isOpen, onClose, w
     setLogs(prev => [...prev, { text, type, time }]);
   };
 
-  const handleStartScan = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleStartScan = (e?: React.FormEvent<HTMLFormElement>) => {
+    if (e) e.preventDefault();
     setStep('running');
     setLogs([]);
     setProgress(0);
     setAuditResult(null);
 
+    const activeRegion = region || 'Global';
+    const activeIndustry = industry || 'General Business';
+
     // Call the real audit API in the background
     const auditPromise = fetch('/api/geo-audit', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ website, industry, region, lang })
+      body: JSON.stringify({ website, industry: activeIndustry, region: activeRegion, lang })
     })
     .then(r => r.json())
     .catch(err => {
@@ -114,14 +124,14 @@ export const ScannerWidget: React.FC<ScannerWidgetProps> = ({ isOpen, onClose, w
 
     setTimeout(() => {
       addLog(lang === 'ru' 
-        ? `🗺️ [География] Настройка региональных RAG-координат: "${region}"`
-        : `🗺️ [Location] Mapping regional RAG boundaries to: "${region}"`, 'info');
+        ? `🗺️ [География] Настройка региональных RAG-координат: "${activeRegion}"`
+        : `🗺️ [Location] Mapping regional RAG boundaries to: "${activeRegion}"`, 'info');
     }, 2800);
 
     setTimeout(() => {
       addLog(lang === 'ru' 
-        ? `🔍 [Ниша] Ограничение Latent Space под индустрию: "${industry}"` 
-        : `🔍 [Niche] Filtering Latent Space variables for: "${industry}"`, 'info');
+        ? `🔍 [Ниша] Ограничение Latent Space под индустрию: "${activeIndustry}"` 
+        : `🔍 [Niche] Filtering Latent Space variables for: "${activeIndustry}"`, 'info');
       setProgress(25);
     }, 4000);
 
@@ -170,9 +180,67 @@ export const ScannerWidget: React.FC<ScannerWidgetProps> = ({ isOpen, onClose, w
       setAuditResult(result);
       
       addLog(lang === 'ru' 
-        ? `📊 [Агент 4] Итоговый GEO Score: ${result.score || '12%'}. Загрузка диагностического отчета...`
+        ? `📊 [Агент 4] Итоговый GEO Score: ${result.score || '12%'}. Загрузка diagnostic отчета...`
         : `📊 [Agent 4] Final GEO Score: ${result.score || '12%'}. Loading diagnostic sheet...`, 'success');
       setProgress(100);
+
+      // Trigger automatic lead capturing and PDF dispatch
+      try {
+        const presenceVal = result?.metrics?.presence || '1/10';
+        const accuracyVal = result?.metrics?.accuracy || '2/10';
+        const sentimentVal = result?.metrics?.sentiment || 'NEUTRAL';
+        const scoreVal = result?.score || '12%';
+
+        const queryParams = new URLSearchParams({
+          website,
+          region: activeRegion,
+          industry: activeIndustry,
+          score: scoreVal,
+          presence: presenceVal,
+          accuracy: accuracyVal,
+          sentiment: sentimentVal
+        }).toString();
+        const reportUrl = `${window.location.origin}/geo/report?${queryParams}`;
+
+        // Call /api/geo-lead to save to Sheets, send Telegram notification, and send Email
+        fetch('/api/geo-lead', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            type: 'scanner',
+            website,
+            email,
+            score: scoreVal,
+            industry: activeIndustry,
+            region: activeRegion,
+            lang,
+            report_url: reportUrl,
+            source: 'geo-scanner-widget'
+          }),
+        }).catch(err => console.error('Error sending lead webhook:', err));
+
+        // FormSubmit backup dispatch
+        const formData = new FormData();
+        formData.append('_subject', 'BanzAI marketing - Real-time GEO Diagnostic PDF Lead');
+        formData.append('website', website);
+        formData.append('region', activeRegion);
+        formData.append('niche_industry', activeIndustry);
+        formData.append('email', email);
+        formData.append('presence', presenceVal);
+        formData.append('accuracy', accuracyVal);
+        formData.append('sentiment', sentimentVal);
+        formData.append('score', scoreVal);
+        formData.append('report_url', reportUrl);
+        formData.append('double_confirmation', 'YES - AUTO DISPATCHED');
+
+        fetch("https://formsubmit.co/ajax/0451611@gmail.com", {
+          method: "POST",
+          headers: { 'Accept': 'application/json' },
+          body: formData
+        }).catch(err => console.error('Error sending FormSubmit lead:', err));
+      } catch (err) {
+        console.error('Error auto-dispatching lead:', err);
+      }
 
       setTimeout(() => {
         setStep('results');
@@ -540,7 +608,7 @@ export const ScannerWidget: React.FC<ScannerWidgetProps> = ({ isOpen, onClose, w
 
               <form onSubmit={handleStartScan} className="flex flex-col gap-6">
                 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   
                   <div className="relative md:col-span-1">
                     <label className="block text-[9px] font-mono text-sand-muted uppercase tracking-widest font-bold mb-2">
@@ -558,28 +626,14 @@ export const ScannerWidget: React.FC<ScannerWidgetProps> = ({ isOpen, onClose, w
 
                   <div className="relative md:col-span-1">
                     <label className="block text-[9px] font-mono text-sand-muted uppercase tracking-widest font-bold mb-2">
-                      {lang === 'ru' ? "2. Ниша / Сфера деятельности" : "2. Niche / Industry"}
+                      {lang === 'ru' ? "2. E-mail для получения отчета" : "2. Email for report delivery"}
                     </label>
                     <input
-                      type="text"
+                      type="email"
                       required
-                      value={industry}
-                      onChange={(e) => setIndustry(e.target.value)}
-                      placeholder="E.g. Эстетическая стоматология"
-                      className="w-full bg-black/60 border border-gold-premium/15 focus:border-gold-premium rounded-xl px-4 py-3.5 text-xs md:text-sm text-white placeholder-sand-muted/20 focus:outline-none focus:ring-1 focus:ring-gold-premium/40 transition-all font-mono"
-                    />
-                  </div>
-
-                  <div className="relative md:col-span-1">
-                    <label className="block text-[9px] font-mono text-sand-muted uppercase tracking-widest font-bold mb-2">
-                      {lang === 'ru' ? "3. География (Регион / Город)" : "3. Geography (Region / City)"}
-                    </label>
-                    <input
-                      type="text"
-                      required
-                      value={region}
-                      onChange={(e) => setRegion(e.target.value)}
-                      placeholder="E.g. Вьетнам, Нячанг"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="ceo@yourcompany.com"
                       className="w-full bg-black/60 border border-gold-premium/15 focus:border-gold-premium rounded-xl px-4 py-3.5 text-xs md:text-sm text-white placeholder-sand-muted/20 focus:outline-none focus:ring-1 focus:ring-gold-premium/40 transition-all font-mono"
                     />
                   </div>
@@ -894,67 +948,26 @@ export const ScannerWidget: React.FC<ScannerWidgetProps> = ({ isOpen, onClose, w
                 </span>
               </div>
 
-              {/* PDF Request Action Confirmation (Two-step email collection) */}
-              <div className="border-t border-gold-premium/10 pt-8 flex flex-col gap-6 items-center w-full animate-fade-in">
+              {/* PDF Request Action Confirmation (Automatic email sent notification) */}
+              <div className="border-t border-gold-premium/10 pt-8 flex flex-col gap-6 items-center w-full animate-fade-in text-center">
                 
-                <div className="text-center max-w-lg">
+                <div className="max-w-lg">
+                  <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 mb-3 animate-pulse">
+                    <CheckCircle2 size={22} />
+                  </div>
                   <h4 className="font-display font-black text-xs md:text-sm text-white uppercase tracking-wider mb-2 flex items-center justify-center gap-2">
                     <FileText size={14} className="text-gold-premium" />
-                    <span>{lang === 'ru' ? "ПРИСЛАТЬ ПОДРОБНЫЙ PDF-ОТЧЕТ НА EMAIL" : "RECEIVE COMPREHENSIVE PDF REPORT"}</span>
+                    <span>{lang === 'ru' ? "ПОДРОБНЫЙ PDF-ОТЧЕТ ОТПРАВЛЕН" : "DETAILED PDF REPORT DISPATCHED"}</span>
                   </h4>
-                  <p className="text-sand-muted text-xs leading-relaxed">
+                  <p className="text-sand-muted text-xs leading-relaxed max-w-md mx-auto">
                     {lang === 'ru'
-                      ? `Мы сгенерируем полный PDF-лист со всеми 15 сырыми промптами, RAG-логами и подробной семантической картой бренда.`
-                      : `We will compile a comprehensive PDF report containing all 15 raw prompts, RAG console logs, and a deep semantic map of your brand.`}
+                      ? `Полный диагностический отчет со всеми 15 сырыми промптами, RAG-логами и семантической картой бренда успешно отправлен на ваш e-mail:`
+                      : `A comprehensive diagnostic report containing all 15 raw prompts, RAG console logs, and a deep semantic map of your brand has been successfully dispatched to:`}
+                  </p>
+                  <p className="text-gold-light font-mono font-bold text-xs mt-2 bg-black/45 border border-gold-premium/15 px-4 py-2 rounded-xl inline-block">
+                    {email}
                   </p>
                 </div>
-
-                <AnimatePresence mode="wait">
-                  {!showEmailForm ? (
-                    <motion.button
-                      key="reveal-email-btn"
-                      initial={{ opacity: 0, y: 5 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -5 }}
-                      onClick={() => setShowEmailForm(true)}
-                      className="bg-transparent border border-gold-premium hover:border-gold-light text-white hover:bg-gold-premium/10 font-display font-bold text-xs px-8 py-4.5 rounded-xl uppercase tracking-widest transition-all cursor-pointer flex items-center gap-2.5"
-                    >
-                      <Mail size={14} className="text-gold-premium" />
-                      <span>{lang === 'ru' ? "ПРИСЛАТЬ ИМЕЙЛ" : "SEND TO EMAIL"}</span>
-                    </motion.button>
-                  ) : (
-                    <motion.form
-                      key="email-form-active"
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: 'auto' }}
-                      exit={{ opacity: 0, height: 0 }}
-                      onSubmit={handleConfirmSendPdf}
-                      className="w-full max-w-md flex flex-col sm:flex-row gap-3 overflow-hidden"
-                    >
-                      <input
-                        type="email"
-                        required
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        placeholder="E.g. ceo@yourcompany.com"
-                        className="flex-grow bg-black/60 border border-gold-premium/15 focus:border-gold-premium rounded-xl px-4 py-3 text-xs text-white placeholder-sand-muted/20 focus:outline-none focus:ring-1 focus:ring-gold-premium/40 transition-all font-mono"
-                      />
-                      <motion.button
-                        whileHover={{ scale: 1.01 }}
-                        whileTap={{ scale: 0.99 }}
-                        type="submit"
-                        disabled={sendingPdf}
-                        className="flex-shrink-0 bg-gradient-to-r from-gold-light via-gold-premium to-gold-dark text-black hover:brightness-105 font-display font-black text-xs px-6 py-3.5 rounded-xl uppercase tracking-widest transition-colors cursor-pointer font-bold"
-                      >
-                        {sendingPdf ? (
-                          <div className="w-4 h-4 border-2 border-black border-t-transparent rounded-full animate-spin" />
-                        ) : (
-                          <span>{lang === 'ru' ? "ПОДТВЕРДИТЬ ОТПРАВКУ PDF" : "CONFIRM DISPATCH"}</span>
-                        )}
-                      </motion.button>
-                    </motion.form>
-                  )}
-                </AnimatePresence>
 
               </div>
 
