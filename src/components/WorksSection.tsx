@@ -55,6 +55,14 @@ const works: WorkItem[] = [
         badge: "AI VIDEO ENGINE",
         descRu: "Инженерный ИИ-сервис для генерации вирусных Reels и Shorts за 10 минут. Автоматическое написание сценариев в стиле автора и интеллектуальный видеомонтаж.",
         descEn: "AI-powered production engine for viral Reels and Shorts in 10 minutes. Features personalized voice matching (Digital DNA) and automated video editing."
+    },
+    {
+        url: "https://project-wbfhb.vercel.app/",
+        image: "/assets/healthcare_net.png",
+        title: "Healthcare Net",
+        badge: "MEDICAL / B2B CATALOG",
+        descRu: "Интерактивный B2B-каталог медицинского и эстетического оборудования премиум-класса для клиник в Дубае. Подбор систем и генерация коммерческих предложений.",
+        descEn: "Interactive B2B catalog of premium medical and aesthetic equipment for clinics in Dubai. Platform matching and automated commercial proposals."
     }
 ];
 
@@ -85,20 +93,23 @@ const WorksSection: React.FC = () => {
                     </div>
                     <div className="h-[2px] flex-grow bg-gradient-to-r from-primary/30 to-transparent hidden md:block mb-4" />
                 </div>
+            </div>
 
-                {/* Works Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16">
-                    {works.map((work, idx) => (
-                        <motion.a
+            {/* Infinite Horizontal Auto-Scrolling Marquee Slider */}
+            <div className="w-full relative z-10 overflow-hidden py-4 select-none">
+                {/* Left and Right Fade Overlays */}
+                <div className="absolute inset-y-0 left-0 w-16 md:w-32 bg-gradient-to-r from-dubai-night via-dubai-night/85 to-transparent z-20 pointer-events-none" />
+                <div className="absolute inset-y-0 right-0 w-16 md:w-32 bg-gradient-to-l from-dubai-night via-dubai-night/85 to-transparent z-20 pointer-events-none" />
+
+                <div className="animate-marquee-custom flex gap-8 md:gap-12 w-max px-6">
+                    {/* Double the array for seamless infinite looping */}
+                    {[...works, ...works].map((work, idx) => (
+                        <a
                             key={idx}
                             href={work.url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            initial={{ opacity: 0, y: 40 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6, delay: idx * 0.1 }}
-                            viewport={{ once: true, margin: "-10%" }}
-                            className="group flex flex-col space-y-6 block"
+                            className="group flex flex-col space-y-6 flex-shrink-0 w-[300px] md:w-[480px] block"
                         >
                             {/* Large Card Mockup */}
                             <div className="relative aspect-video w-full overflow-hidden border border-white/10 bg-black/40 sharp-border transition-all duration-500 group-hover:border-primary/50 group-hover:shadow-[0_0_30px_rgba(168,85,247,0.15)]">
@@ -110,6 +121,7 @@ const WorksSection: React.FC = () => {
                                         fill
                                         sizes="(max-width: 768px) 100vw, 50vw"
                                         className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                                        priority={idx < 4}
                                     />
                                     {/* Glassmorphic Overlay on hover */}
                                     <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-500" />
@@ -134,21 +146,35 @@ const WorksSection: React.FC = () => {
                             {/* Card Details */}
                             <div className="space-y-3 px-2">
                                 <div className="flex items-center space-x-3">
-                                    <h3 className="text-2xl font-black text-white group-hover:text-primary transition-colors uppercase tracking-tight">
+                                    <h3 className="text-xl md:text-2xl font-black text-white group-hover:text-primary transition-colors uppercase tracking-tight">
                                         {work.title}
                                     </h3>
                                     <span className="text-xs text-white/40 font-mono tracking-tighter">
-                                        {work.url.replace("https://", "").replace("www.", "")}
+                                        {work.url.replace("https://", "").replace("www.", "").split('/')[0]}
                                     </span>
                                 </div>
-                                <p className="text-white/60 text-sm md:text-base font-medium leading-relaxed">
+                                <p className="text-white/60 text-xs md:text-sm font-medium leading-relaxed line-clamp-2 md:line-clamp-none">
                                     {isRu ? work.descRu : work.descEn}
                                 </p>
                             </div>
-                        </motion.a>
+                        </a>
                     ))}
                 </div>
             </div>
+
+            {/* Custom inline style for marquee animations */}
+            <style dangerouslySetInnerHTML={{ __html: `
+                @keyframes marquee {
+                    0% { transform: translateX(0); }
+                    100% { transform: translateX(-50%); }
+                }
+                .animate-marquee-custom {
+                    animation: marquee 55s linear infinite;
+                }
+                .animate-marquee-custom:hover {
+                    animation-play-state: paused;
+                }
+            `}} />
         </section>
     );
 };
