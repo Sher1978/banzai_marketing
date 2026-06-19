@@ -282,13 +282,12 @@ export const ScannerModal: React.FC<ScannerModalProps> = ({ isOpen, onClose, onN
                         />
                       </div>
                       <div className="grid grid-cols-2 gap-3">
-                        <div>
+                         <div>
                           <label className="block text-[9px] font-mono text-sand-muted/70 uppercase tracking-widest mb-1.5">
                             {lang === 'ru' ? '2. Ниша' : lang === 'vi' ? '2. Lĩnh vực' : '2. Niche'}
                           </label>
                           <input
                             type="text"
-                            required
                             value={industry}
                             onChange={(e) => setIndustry(e.target.value)}
                             placeholder={lang === 'ru' ? 'Напр: стоматология' : lang === 'vi' ? 'VD: nha khoa' : 'E.g. dental'}
@@ -302,7 +301,6 @@ export const ScannerModal: React.FC<ScannerModalProps> = ({ isOpen, onClose, onN
                           </label>
                           <input
                             type="text"
-                            required
                             value={region}
                             onChange={(e) => setRegion(e.target.value)}
                             placeholder={lang === 'ru' ? 'Напр: Дубай' : lang === 'vi' ? 'VD: Hà Nội' : 'E.g. Dubai'}

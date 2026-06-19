@@ -3,6 +3,7 @@ import GeoBanner from "@/components/GeoBanner";
 import PainSection from "@/components/PainSection";
 import SolutionSection from "@/components/SolutionSection";
 import FounderSection from "@/components/FounderSection";
+import WorksSection from "@/components/WorksSection";
 import ProcessSection from "@/components/ProcessSection";
 import FeatureSection from "@/components/FeatureSection";
 import ComparisonSection from "@/components/ComparisonSection";
@@ -18,6 +19,7 @@ export default function Home() {
       <PainSection />
       <SolutionSection />
       <FounderSection />
+      <WorksSection />
       <ProcessSection />
       <FeatureSection />
       <ComparisonSection />

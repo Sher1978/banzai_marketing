@@ -533,7 +533,6 @@ export const ScannerWidget: React.FC = () => {
                     </label>
                     <input
                       type="text"
-                      required
                       value={industry}
                       onChange={(e) => setIndustry(e.target.value)}
                       placeholder="E.g. Эстетическая стоматология"
@@ -547,7 +546,6 @@ export const ScannerWidget: React.FC = () => {
                     </label>
                     <input
                       type="text"
-                      required
                       value={region}
                       onChange={(e) => setRegion(e.target.value)}
                       placeholder="E.g. Вьетнам, Нячанг"

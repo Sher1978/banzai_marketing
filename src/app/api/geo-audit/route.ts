@@ -8,11 +8,13 @@ const AI_BOTS = ['gptbot', 'claudebot', 'perplexitybot', 'google-extended', 'app
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { website, industry, region } = body;
+    const { website } = body;
+    const industry = body.industry || 'General Business';
+    const region = body.region || 'Global';
 
-    if (!website || !industry || !region) {
+    if (!website) {
       return NextResponse.json(
-        { success: false, error: 'Missing required parameters: website, industry, region' },
+        { success: false, error: 'Missing required parameter: website' },
         { status: 400 }
       );
     }
@@ -338,8 +340,8 @@ export async function POST(req: NextRequest) {
                 text: `Анализируй готовность сайта к ИИ-цитированию (RAG, AI Search, Google AI Overviews).
 Вот собранные метаданные сайта:
 - Адрес сайта: ${formattedUrl}
-- Тема бизнеса (ниша): ${industry}
-- Регион: ${region}
+- Тема бизнеса (ниша): ${industry} (если указано 'General Business', определи реальную нишу по контенту сайта)
+- Регион: ${region} (если указано 'Global', определи реальный регион бизнеса по контактам/языку/контенту сайта)
 - Заголовок страницы (title): ${pageTitle}
 - Описание страницы (description): ${pageDesc}
 - Заголовки H1 на странице: ${h1s.join(', ')}

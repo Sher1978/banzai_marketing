@@ -313,7 +313,7 @@ export const ScannerWidget: React.FC<ScannerWidgetProps> = ({ isOpen, onClose, w
 
   return (
     <div 
-      className="fixed inset-0 z-[100] bg-black/90 backdrop-blur-md flex items-start justify-center p-4 md:p-10 overflow-y-auto"
+      className="fixed inset-0 z-[100] bg-black/90 backdrop-blur-md flex items-start justify-center p-2 sm:p-4 md:p-10 overflow-y-auto"
       onClick={(e) => {
         if (e.target === e.currentTarget) onClose();
       }}
@@ -322,7 +322,7 @@ export const ScannerWidget: React.FC<ScannerWidgetProps> = ({ isOpen, onClose, w
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0.95 }}
-        className="relative w-full max-w-4xl bg-bg-dubai border border-gold-premium/30 rounded-3xl p-6 md:p-10 shadow-[0_0_50px_rgba(197,168,128,0.25)]"
+        className="relative w-full max-w-4xl bg-bg-dubai border border-gold-premium/30 rounded-2xl md:rounded-3xl p-4 sm:p-6 md:p-10 shadow-[0_0_50px_rgba(197,168,128,0.25)]"
       >
         {/* Close Button */}
         <button
@@ -341,12 +341,12 @@ export const ScannerWidget: React.FC<ScannerWidgetProps> = ({ isOpen, onClose, w
         <div className="relative z-10 pr-1">
         
         {/* Header Block */}
-        <div className="text-center max-w-2xl mx-auto mb-16">
+        <div className="text-center max-w-2xl mx-auto mb-6 md:mb-12">
           <div className="inline-flex items-center gap-2 bg-[#12100e] border border-red-500/30 px-4 py-1.5 rounded-full text-red-500 tracking-widest uppercase font-bold text-[9px] mb-4">
             <Cpu size={12} className="animate-spin duration-3000" />
             <span>GEO MATRIX AUDITOR</span>
           </div>
-          <h2 className="text-3xl md:text-4xl font-display font-black text-white uppercase tracking-tight mb-4">
+          <h2 className="text-xl sm:text-2xl md:text-4xl font-display font-black text-white uppercase tracking-tight mb-3">
             {lang === 'ru' ? "ЭКСПРЕСС-АНАЛИЗ ВАШЕГО САЙТА ПОД ИИ-ПОИСК" : "REAL-TIME GEO SUITE SCANNER"}
           </h2>
           <p className="text-sand-muted text-xs md:text-sm leading-relaxed">
@@ -745,21 +745,25 @@ export const ScannerWidget: React.FC<ScannerWidgetProps> = ({ isOpen, onClose, w
 
                 const presenceVal = auditResult?.metrics?.presence || '1/10';
                 const presenceNum = parseInt(presenceVal) || 1;
-                const presenceColor = presenceNum >= 7 ? 'text-emerald-400 bg-emerald-950/15 border-emerald-500/15' : presenceNum >= 4 ? 'text-gold-premium bg-amber-950/15 border-amber-500/15' : 'text-red-500 bg-red-950/15 border-red-500/15';
+                const presenceIsCritical = presenceNum < 4;
 
                 const accuracyVal = auditResult?.metrics?.accuracy || '2/10';
                 const accuracyNum = parseInt(accuracyVal) || 2;
-                const accuracyColor = accuracyNum >= 7 ? 'text-emerald-400 bg-emerald-950/15 border-emerald-500/15' : accuracyNum >= 4 ? 'text-gold-premium bg-amber-950/15 border-amber-500/15' : 'text-red-500 bg-red-950/15 border-red-500/15';
+                const accuracyIsCritical = accuracyNum < 4;
 
                 const sentimentVal = auditResult?.metrics?.sentiment || 'NEUTRAL';
                 const sentimentColor = sentimentVal === 'POSITIVE' ? 'text-emerald-400 bg-emerald-950/15 border-emerald-500/15' : sentimentVal === 'NEGATIVE' ? 'text-red-500 bg-red-950/15 border-red-500/15' : 'text-gold-premium bg-amber-950/15 border-amber-500/15';
+                const sentimentIsCritical = sentimentVal === 'NEGATIVE';
 
                 const competitorCount = auditResult?.meta?.competitorCount || 12;
                 const mentionedVal = auditResult?.meta?.mentioned || false;
 
                 return (
                   <>
-                    <div className="flex flex-col md:flex-row justify-between items-center gap-6 border-b border-gold-premium/10 pb-8 w-full">
+                    {/* ── HERO SCORE BLOCK ─────────────────────────────── */}
+                    <div className={`relative flex flex-col md:flex-row justify-between items-center gap-6 pb-8 border-b w-full ${isLow ? 'border-red-500/30' : 'border-gold-premium/10'}`}>
+                      
+                      {/* Left: Label + site */}
                       <div className="max-w-md">
                         <div className={`flex items-center gap-2 ${scoreTextClass} font-mono text-[9px] font-bold uppercase tracking-widest mb-2`}>
                           <ShieldAlert size={12} className={isLow ? "animate-bounce" : ""} />
@@ -775,117 +779,187 @@ export const ScannerWidget: React.FC<ScannerWidgetProps> = ({ isOpen, onClose, w
                         </p>
                       </div>
 
-                      {/* Score */}
-                      <div className={`flex items-center gap-4 ${scoreBgClass} border px-6 py-4 rounded-2xl flex-shrink-0 text-center`}>
-                        <div>
-                          <div className={`text-[8px] font-mono ${scoreTextClass} uppercase tracking-widest mb-0.5`}>
-                            GEO VISIBILITY INDEX
-                          </div>
-                          <div className={`font-display font-black text-3xl ${scoreColorClass} drop-shadow`}>
-                            {auditResult?.score || "12%"}
-                          </div>
+                      {/* Right: BIG SCORE — full-width on mobile, auto on desktop */}
+                      <div className={`relative flex flex-col items-center justify-center ${scoreBgClass} border-2 rounded-2xl md:rounded-3xl px-6 py-5 md:px-8 md:py-6 w-full md:w-auto flex-shrink-0 text-center overflow-hidden`}>
+                        {isLow && (
+                          <div className="absolute inset-0 bg-red-600/10 animate-pulse rounded-2xl pointer-events-none" />
+                        )}
+                        <div className={`text-[8px] font-mono ${scoreTextClass} uppercase tracking-widest mb-1`}>
+                          GEO VISIBILITY INDEX
                         </div>
-                        <div className={`text-left font-mono text-[8px] ${scoreTextClass} leading-relaxed uppercase tracking-wider`}>
-                          STATUS: {scoreStatus}
-                          <br />
-                          {isLow ? "OUTSIDE LATENT SPACE" : "EMBEDDED IN LATENT SPACE"}
+                        <div className={`font-display font-black leading-none drop-shadow ${isLow ? 'text-[60px] sm:text-[72px] md:text-[80px] text-red-500 [text-shadow:0_0_40px_rgba(239,68,68,0.8),0_0_80px_rgba(239,68,68,0.4)]' : isMid ? 'text-[60px] sm:text-[72px] md:text-[80px] text-amber-400 [text-shadow:0_0_30px_rgba(245,158,11,0.6)]' : 'text-[60px] sm:text-[72px] md:text-[80px] text-emerald-400 [text-shadow:0_0_30px_rgba(52,211,153,0.6)]'}`}>
+                          {auditResult?.score || "12%"}
                         </div>
+                        <div className={`font-mono text-[8px] sm:text-[9px] ${scoreTextClass} uppercase tracking-widest mt-1 font-black`}>
+                          {scoreStatus}
+                        </div>
+                        {isLow && (
+                          <div className="mt-2 flex items-center gap-1.5 bg-red-600/20 border border-red-500/40 px-3 py-1 rounded-full">
+                            <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-ping" />
+                            <span className="text-red-400 font-mono text-[7px] sm:text-[8px] font-black uppercase tracking-widest">OUTSIDE LATENT SPACE</span>
+                          </div>
+                        )}
                       </div>
                     </div>
 
-                    {/* The Three Evaluator parameters inside prompt */}
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
+                    {/* ── THREE METRIC CARDS ──────────────────────────── */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 w-full">
                       
-                      {/* Parameter 1: Presence */}
-                      <div className="bg-black/30 border border-gold-premium/5 p-5 rounded-2xl flex flex-col gap-2.5">
-                        <span className="font-mono text-[8px] text-gold-premium/50 uppercase tracking-widest font-bold">
-                          METRIC 01 / PRESENCE
-                        </span>
-                        <h4 className="font-display font-black text-sm text-white uppercase">
-                          {lang === 'ru' ? "1. ПРИСУТСТВИЕ (VISIBILITY)" : "1. BRAND PRESENCE"}
-                        </h4>
-                        <div className={`w-fit border rounded-lg py-1 px-3 font-mono text-[10px] font-bold ${presenceColor}`}>
-                          {lang === 'ru' ? `УРОВЕНЬ: ${presenceVal}` : `LEVEL: ${presenceVal}`}
+                      {/* PRESENCE */}
+                      <div className={`relative p-5 rounded-2xl flex flex-col gap-3 border-2 overflow-hidden transition-all ${
+                        presenceIsCritical
+                          ? 'bg-red-950/30 border-red-500/60 shadow-[0_0_25px_rgba(239,68,68,0.25)]'
+                          : presenceNum >= 7
+                            ? 'bg-emerald-950/20 border-emerald-500/30'
+                            : 'bg-amber-950/20 border-amber-500/30'
+                      }`}>
+                        {presenceIsCritical && (
+                          <>
+                            <div className="absolute top-0 left-0 right-0 h-1 bg-red-500 animate-pulse" />
+                            <div className="absolute inset-0 bg-red-600/5 animate-pulse pointer-events-none" />
+                          </>
+                        )}
+                        <div className="flex items-center justify-between">
+                          <span className="font-mono text-[8px] text-white/40 uppercase tracking-widest font-bold">METRIC 01</span>
+                          {presenceIsCritical && (
+                            <span className="flex items-center gap-1 bg-red-600 text-white text-[8px] font-black px-2 py-0.5 rounded-full uppercase tracking-wider animate-pulse">
+                              <AlertTriangle size={8} /> CRITICAL
+                            </span>
+                          )}
                         </div>
-                        <p className="text-sand-muted text-xs leading-relaxed">
+                        <h4 className="font-display font-black text-sm text-white uppercase">
+                          {lang === 'ru' ? "ПРИСУТСТВИЕ" : "BRAND PRESENCE"}
+                        </h4>
+                        <div className="w-full bg-black/40 rounded-full h-2 overflow-hidden border border-white/5">
+                          <div
+                            className={`h-full rounded-full transition-all ${presenceIsCritical ? 'bg-red-500 shadow-[0_0_8px_#ef4444]' : presenceNum >= 7 ? 'bg-emerald-400' : 'bg-amber-400'}`}
+                            style={{ width: `${(presenceNum / 10) * 100}%` }}
+                          />
+                        </div>
+                        <div className={`text-2xl font-black font-display ${presenceIsCritical ? 'text-red-400' : presenceNum >= 7 ? 'text-emerald-400' : 'text-amber-400'}`}>
+                          {presenceVal}
+                          <span className="text-xs font-mono font-normal ml-1 opacity-60">/ 10</span>
+                        </div>
+                        <p className={`text-xs leading-relaxed ${presenceIsCritical ? 'text-red-200/80' : 'text-sand-muted'}`}>
                           {lang === 'ru'
-                            ? (presenceNum >= 7 
+                            ? (presenceNum >= 7
                                 ? "Ваш бренд хорошо закрепился в выдаче ИИ-поисковиков. Модели часто рекомендуют и цитируют ваш сайт."
                                 : presenceNum >= 4
                                   ? "Бренд имеет частичное присутствие. ИИ находит вас, но в большинстве случаев отдает приоритет конкурентам."
-                                  : "Сайт практически отсутствует в базе RAG ИИ-поисковиков. Модели рекомендуют только ваших конкурентов.")
+                                  : "⛔ Сайт практически отсутствует в RAG-базе ИИ. Модели рекомендуют только ваших конкурентов — вас не существует для ИИ-поиска.")
                             : (presenceNum >= 7
                                 ? "Your brand is well integrated in AI search. LLM models frequently recommend and cite your domain."
                                 : presenceNum >= 4
                                   ? "Partial visibility. AI knows your brand but tends to prioritize competitors in direct queries."
-                                  : "Domain not cited in generative search. AI queries consistently return competitor listings.")}
+                                  : "⛔ Domain not cited in generative search. AI queries consistently return competitor listings — you are invisible.")}
                         </p>
                       </div>
 
-                      {/* Parameter 2: Accuracy */}
-                      <div className="bg-black/30 border border-gold-premium/5 p-5 rounded-2xl flex flex-col gap-2.5">
-                        <span className="font-mono text-[8px] text-gold-premium/50 uppercase tracking-widest font-bold">
-                          METRIC 02 / ACCURACY
-                        </span>
-                        <h4 className="font-display font-black text-sm text-white uppercase">
-                          {lang === 'ru' ? "2. ТОЧНОСТЬ (CONTEXT)" : "2. DATA ACCURACY"}
-                        </h4>
-                        <div className={`w-fit border rounded-lg py-1 px-3 font-mono text-[10px] font-bold ${accuracyColor}`}>
-                          {lang === 'ru' ? `ОЦЕНКА: ${accuracyVal}` : `SCORE: ${accuracyVal}`}
+                      {/* ACCURACY */}
+                      <div className={`relative p-5 rounded-2xl flex flex-col gap-3 border-2 overflow-hidden transition-all ${
+                        accuracyIsCritical
+                          ? 'bg-red-950/30 border-red-500/60 shadow-[0_0_25px_rgba(239,68,68,0.25)]'
+                          : accuracyNum >= 7
+                            ? 'bg-emerald-950/20 border-emerald-500/30'
+                            : 'bg-amber-950/20 border-amber-500/30'
+                      }`}>
+                        {accuracyIsCritical && (
+                          <>
+                            <div className="absolute top-0 left-0 right-0 h-1 bg-red-500 animate-pulse" />
+                            <div className="absolute inset-0 bg-red-600/5 animate-pulse pointer-events-none" />
+                          </>
+                        )}
+                        <div className="flex items-center justify-between">
+                          <span className="font-mono text-[8px] text-white/40 uppercase tracking-widest font-bold">METRIC 02</span>
+                          {accuracyIsCritical && (
+                            <span className="flex items-center gap-1 bg-red-600 text-white text-[8px] font-black px-2 py-0.5 rounded-full uppercase tracking-wider animate-pulse">
+                              <AlertTriangle size={8} /> CRITICAL
+                            </span>
+                          )}
                         </div>
-                        <p className="text-sand-muted text-xs leading-relaxed">
+                        <h4 className="font-display font-black text-sm text-white uppercase">
+                          {lang === 'ru' ? "ТОЧНОСТЬ ДАННЫХ" : "DATA ACCURACY"}
+                        </h4>
+                        <div className="w-full bg-black/40 rounded-full h-2 overflow-hidden border border-white/5">
+                          <div
+                            className={`h-full rounded-full transition-all ${accuracyIsCritical ? 'bg-red-500 shadow-[0_0_8px_#ef4444]' : accuracyNum >= 7 ? 'bg-emerald-400' : 'bg-amber-400'}`}
+                            style={{ width: `${(accuracyNum / 10) * 100}%` }}
+                          />
+                        </div>
+                        <div className={`text-2xl font-black font-display ${accuracyIsCritical ? 'text-red-400' : accuracyNum >= 7 ? 'text-emerald-400' : 'text-amber-400'}`}>
+                          {accuracyVal}
+                          <span className="text-xs font-mono font-normal ml-1 opacity-60">/ 10</span>
+                        </div>
+                        <p className={`text-xs leading-relaxed ${accuracyIsCritical ? 'text-red-200/80' : 'text-sand-muted'}`}>
                           {lang === 'ru'
                             ? (accuracyNum >= 7
                                 ? "На сайте настроена качественная разметка Schema.org и открытый robots.txt. ИИ-краулеры легко считывают ваши данные."
                                 : accuracyNum >= 4
                                   ? "Присутствуют базовые метаданные, но отсутствует расширенная микроразметка LocalBusiness/Product для глубокого парсинга."
-                                  : "Критическая нехватка микроразметки JSON-LD или ИИ-краулеры заблокированы в robots.txt. Данные недоступны для ИИ.")
+                                  : "⛔ Критическая нехватка JSON-LD разметки. ИИ-краулеры заблокированы или не могут прочитать структуру вашего сайта.")
                             : (accuracyNum >= 7
                                 ? "Excellent Schema.org structure and permissive robots.txt. AI bots can easily crawl and index page parameters."
                                 : accuracyNum >= 4
                                   ? "Basic meta tags found, but missing advanced LocalBusiness schemas necessary for precise indexing."
-                                  : "Critical structured data deficiency or bots blocked in robots.txt. Crawler parsing is highly obstructed.")}
+                                  : "⛔ Critical structured data deficiency. Crawler parsing is obstructed — AI cannot read your site's content.")}
                         </p>
                       </div>
 
-                      {/* Parameter 3: Sentiment */}
-                      <div className="bg-black/30 border border-gold-premium/5 p-5 rounded-2xl flex flex-col gap-2.5">
-                        <span className="font-mono text-[8px] text-gold-premium/50 uppercase tracking-widest font-bold">
-                          METRIC 03 / SENTIMENT
-                        </span>
-                        <h4 className="font-display font-black text-sm text-white uppercase">
-                          {lang === 'ru' ? "3. ТОНАЛЬНОСТЬ (SENTIMENT)" : "3. AI SENTIMENT"}
-                        </h4>
-                        <div className={`w-fit border rounded-lg py-1 px-3 font-mono text-[10px] font-bold ${sentimentColor}`}>
-                          {lang === 'ru' ? `РИСК: ${sentimentVal}` : `RISK: ${sentimentVal}`}
+                      {/* SENTIMENT */}
+                      <div className={`relative p-5 rounded-2xl flex flex-col gap-3 border-2 overflow-hidden transition-all ${
+                        sentimentIsCritical
+                          ? 'bg-red-950/30 border-red-500/60 shadow-[0_0_25px_rgba(239,68,68,0.25)]'
+                          : sentimentVal === 'POSITIVE'
+                            ? 'bg-emerald-950/20 border-emerald-500/30'
+                            : 'bg-amber-950/20 border-amber-500/30'
+                      }`}>
+                        {sentimentIsCritical && (
+                          <>
+                            <div className="absolute top-0 left-0 right-0 h-1 bg-red-500 animate-pulse" />
+                            <div className="absolute inset-0 bg-red-600/5 animate-pulse pointer-events-none" />
+                          </>
+                        )}
+                        <div className="flex items-center justify-between">
+                          <span className="font-mono text-[8px] text-white/40 uppercase tracking-widest font-bold">METRIC 03</span>
+                          {sentimentIsCritical && (
+                            <span className="flex items-center gap-1 bg-red-600 text-white text-[8px] font-black px-2 py-0.5 rounded-full uppercase tracking-wider animate-pulse">
+                              <AlertTriangle size={8} /> CRITICAL
+                            </span>
+                          )}
                         </div>
-                        <p className="text-sand-muted text-xs leading-relaxed">
+                        <h4 className="font-display font-black text-sm text-white uppercase">
+                          {lang === 'ru' ? "ТОНАЛЬНОСТЬ" : "AI SENTIMENT"}
+                        </h4>
+                        <div className={`w-fit border-2 rounded-xl py-2 px-4 font-mono text-sm font-black tracking-widest ${sentimentColor} ${sentimentIsCritical ? 'animate-pulse shadow-[0_0_15px_rgba(239,68,68,0.4)]' : ''}`}>
+                          {sentimentVal}
+                        </div>
+                        <p className={`text-xs leading-relaxed ${sentimentIsCritical ? 'text-red-200/80' : 'text-sand-muted'}`}>
                           {lang === 'ru'
                             ? (sentimentVal === 'POSITIVE'
                                 ? "Бренд имеет сильную репутационную подложку. Отзывы в сети формируют положительный сентимент для ИИ."
                                 : sentimentVal === 'NEGATIVE'
-                                  ? "ИИ обнаружил негативный сентимент в отношении бренда. Репутационные риски перехвата трафика конкурентами."
-                                  : "Сентимент нейтральный или слабый. Бренд не имеет сентимент-защиты, что делает его уязвимым.")
+                                  ? "⛔ ИИ обнаружил негативный сентимент вокруг бренда. Конкуренты легко перехватывают ваш трафик."
+                                  : "Сентимент нейтральный или слабый. Бренд не имеет сентимент-защиты.")
                             : (sentimentVal === 'POSITIVE'
-                                ? "Brand reputation is strongly positive. Crawled reviews form a highly favorable context for AI recommendations."
+                                ? "Brand reputation is strongly positive. Crawled reviews form a favorable context for AI recommendations."
                                 : sentimentVal === 'NEGATIVE'
-                                  ? "Critical negative mentions detected. Competitors easily hijack traffic due to poor reputation values."
-                                  : "Sentiment is neutral and weak. Lacks sentiment safeguards, making search hooks vulnerable.")}
+                                  ? "⛔ Critical negative mentions detected. Competitors easily hijack your traffic due to poor reputation signals."
+                                  : "Sentiment is neutral and weak. Lacks sentiment safeguards — brand is vulnerable.")}
                         </p>
                       </div>
-
                     </div>
 
-                    {/* On-Page Findings Details */}
+                    {/* ── ON-PAGE FINDINGS ────────────────────────────── */}
                     {auditResult?.findings && auditResult.findings.length > 0 && (
-                      <div className="bg-black/30 border border-gold-premium/5 p-5 rounded-2xl w-full">
-                        <span className="font-mono text-[8px] text-gold-premium/50 uppercase tracking-widest font-bold">
-                          {lang === 'ru' ? "ТЕХНИЧЕСКИЙ АНАЛИЗ СТРАНИЦЫ (ON-PAGE AUDIT)" : "ON-PAGE TECHNICAL ANALYSIS"}
+                      <div className="bg-black/40 border border-red-500/20 p-5 rounded-2xl w-full">
+                        <span className="font-mono text-[8px] text-red-400 uppercase tracking-widest font-bold flex items-center gap-1.5">
+                          <AlertTriangle size={10} className="animate-pulse" />
+                          {lang === 'ru' ? "ВЫЯВЛЕННЫЕ ТЕХНИЧЕСКИЕ ПРОБЛЕМЫ (ON-PAGE AUDIT)" : "DETECTED TECHNICAL ISSUES (ON-PAGE AUDIT)"}
                         </span>
                         <ul className="mt-3 flex flex-col gap-2 font-mono text-[10px] text-sand-muted">
                           {auditResult.findings.map((f: string, idx: number) => (
                             <li key={idx} className="flex gap-2.5 items-start">
-                              <span className="text-gold-premium">✓</span>
+                              <span className="text-red-400 flex-shrink-0">✗</span>
                               <span>{f}</span>
                             </li>
                           ))}
@@ -893,7 +967,7 @@ export const ScannerWidget: React.FC<ScannerWidgetProps> = ({ isOpen, onClose, w
                       </div>
                     )}
 
-                    {/* Gemini On-Page Evaluation Details */}
+                    {/* ── GEMINI CONTEXT AUDIT ─────────────────────────── */}
                     {auditResult?.htmlAuditSummary && (
                       <div className="bg-black/30 border border-cyan-500/10 p-5 rounded-2xl w-full">
                         <span className="font-mono text-[8px] text-cyan-400 uppercase tracking-widest font-bold">
@@ -905,7 +979,7 @@ export const ScannerWidget: React.FC<ScannerWidgetProps> = ({ isOpen, onClose, w
                       </div>
                     )}
 
-                    {/* Grok API Custom Search Brand Summary */}
+                    {/* ── GROK SEARCH SUMMARY ──────────────────────────── */}
                     {auditResult?.summary && (
                       <div className="bg-black/30 border border-gold-premium/15 p-5 rounded-2xl w-full">
                         <span className="font-mono text-[8px] text-gold-light uppercase tracking-widest font-bold">
@@ -917,16 +991,22 @@ export const ScannerWidget: React.FC<ScannerWidgetProps> = ({ isOpen, onClose, w
                       </div>
                     )}
 
-                    {/* The Killer B2B FOMO message */}
-                    <div className={`bg-red-950/10 border ${isLow ? 'border-red-500/25' : 'border-amber-500/20'} p-5 md:p-6 rounded-2xl flex flex-col gap-3 font-display w-full`}>
-                      <div className={`flex items-center gap-2 ${isLow ? 'text-red-500' : 'text-gold-premium'} font-mono text-[9px] font-bold uppercase tracking-widest`}>
-                        <AlertTriangle size={12} className="animate-pulse" />
-                        <span>COMPETITOR DOMINANCE ALERT // ANALYSIS SYSTEM</span>
+                    {/* ── COMPETITOR DOMINANCE KILL SHOT ───────────────── */}
+                    <div className={`relative overflow-hidden border-2 p-6 md:p-8 rounded-2xl flex flex-col gap-4 font-display w-full ${isLow ? 'bg-red-950/20 border-red-500/50 shadow-[0_0_40px_rgba(239,68,68,0.2)]' : 'bg-amber-950/15 border-amber-500/30'}`}>
+                      {isLow && <div className="absolute inset-0 bg-red-600/5 animate-pulse pointer-events-none" />}
+                      {isLow && <div className="absolute top-0 left-0 right-0 h-1 bg-red-500 shadow-[0_0_12px_rgba(239,68,68,0.9)]" />}
+                      <div className={`flex items-center gap-2 ${isLow ? 'text-red-400' : 'text-amber-400'} font-mono text-[9px] font-bold uppercase tracking-widest`}>
+                        <AlertTriangle size={14} className="animate-bounce" />
+                        <span>COMPETITOR DOMINANCE ALERT // REAL-TIME ANALYSIS</span>
+                        <AlertTriangle size={14} className="animate-bounce" />
                       </div>
-                      <p className={`text-xs md:text-sm font-black tracking-tight uppercase leading-relaxed text-center drop-shadow ${isLow ? 'text-red-500' : 'text-gold-light'}`}>
+                      <p className={`text-lg md:text-2xl font-black tracking-tight uppercase leading-tight ${isLow ? 'text-red-400' : 'text-amber-300'}`}>
                         {lang === 'ru'
-                          ? `«ИЗ 15 ЗАПРОСОВ ВАШИХ ПОТЕНЦИАЛЬНЫХ КЛИЕНТОВ ИИ ПОРЕКОМЕНДОВАЛ ВАС ${mentionedVal ? '1' : '0'} РАЗ, А ВАШЕГО КОНКУРЕНТА — ${competitorCount} РАЗ. СДЕЛКА ЗАКРЫТА».`
-                          : `“OUT OF 15 SEARCH QUERIES FROM YOUR POTENTIAL CLIENTS, AI RECOMMENDED YOU ${mentionedVal ? '1' : '0'} TIMES, AND YOUR COMPETITOR — ${competitorCount} TIMES. DEAL IS CLOSED.”`}
+                          ? `ИЗ 15 ЗАПРОСОВ ВАШИХ КЛИЕНТОВ ИИ ПОРЕКОМЕНДОВАЛ ВАС ${mentionedVal ? '1' : '0'} РАЗ — А ВАШЕГО КОНКУРЕНТА ${competitorCount} РАЗ.`
+                          : `OUT OF 15 SEARCH QUERIES, AI RECOMMENDED YOU ${mentionedVal ? '1' : '0'} TIMES — AND YOUR COMPETITOR ${competitorCount} TIMES.`}
+                      </p>
+                      <p className={`text-xs font-mono font-bold uppercase tracking-widest ${isLow ? 'text-red-300/70' : 'text-amber-300/70'}`}>
+                        {lang === 'ru' ? '— СДЕЛКА ЗАКРЫТА. НЕ В ВАШУ ПОЛЬЗУ.' : '— DEAL IS CLOSED. NOT IN YOUR FAVOR.'}
                       </p>
                     </div>
                   </>

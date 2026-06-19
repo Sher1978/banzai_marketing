@@ -84,6 +84,9 @@ export const ScannerModal: React.FC<ScannerModalProps> = ({ isOpen, onClose, onN
 
     addLog(lang === 'ru' ? "⚡ Инициализация ядра GEO-Scanner v2.5..." : lang === 'vi' ? "⚡ Khởi tạo lõi GEO-Scanner v2.5..." : "⚡ Initializing GEO-Scanner v2.5 kernel...", 'system');
 
+    const activeRegion = region || 'Global';
+    const activeIndustry = industry || 'General Business';
+
     setTimeout(() => {
       addLog(lang === 'ru'
         ? `📡 Анализ веб-структуры: "${website}"...`
@@ -93,17 +96,17 @@ export const ScannerModal: React.FC<ScannerModalProps> = ({ isOpen, onClose, onN
 
     setTimeout(() => {
       addLog(lang === 'ru'
-        ? `🗺️ Настройка RAG-координат: "${region}"`
-        : lang === 'vi' ? `🗺️ Cấu hình tọa độ RAG: "${region}"`
-        : `🗺️ Mapping regional RAG boundaries: "${region}"`, 'info');
+        ? `🗺️ Настройка RAG-координат: "${activeRegion}"`
+        : lang === 'vi' ? `🗺️ Cấu hình tọa độ RAG: "${activeRegion}"`
+        : `🗺️ Mapping regional RAG boundaries: "${activeRegion}"`, 'info');
       setProgress(20);
     }, 2500);
 
     setTimeout(() => {
       addLog(lang === 'ru'
-        ? `🔍 Ниша загружена: "${industry}"`
-        : lang === 'vi' ? `🔍 Niche đã tải: "${industry}"`
-        : `🔍 Niche loaded: "${industry}"`, 'info');
+        ? `🔍 Ниша загружена: "${activeIndustry}"`
+        : lang === 'vi' ? `🔍 Niche đã tải: "${activeIndustry}"`
+        : `🔍 Niche loaded: "${activeIndustry}"`, 'info');
       setProgress(40);
     }, 4000);
 
@@ -137,6 +140,56 @@ export const ScannerModal: React.FC<ScannerModalProps> = ({ isOpen, onClose, onN
         : lang === 'vi' ? "📊 GEO Visibility Score đã tính: 12% — MỨC NGUY HIỂM"
         : "📊 GEO Visibility Score calculated: 12% — CRITICAL RISK LEVEL", 'success');
       setProgress(100);
+
+      // Trigger automatic lead capturing and PDF dispatch
+      try {
+        const queryParams = new URLSearchParams({
+          website,
+          region: activeRegion,
+          industry: activeIndustry,
+          score: '12%',
+          presence: '1/10',
+          accuracy: '2/10',
+          sentiment: 'NEUTRAL'
+        }).toString();
+        const reportUrl = `${window.location.origin}/geo/report?${queryParams}`;
+
+        // Call /api/geo-lead to save to Sheets, send Telegram notification, and send Email
+        fetch('/api/geo-lead', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            type: 'scanner',
+            website,
+            email,
+            score: '12%',
+            industry: activeIndustry,
+            region: activeRegion,
+            lang,
+            report_url: reportUrl,
+            source: 'geo-scanner-modal'
+          }),
+        }).catch(err => console.error('Error sending lead webhook:', err));
+
+        // FormSubmit backup dispatch
+        const formData = new FormData();
+        formData.append('_subject', 'BanzAI GEO Scanner Lead — PDF Request');
+        formData.append('website', website);
+        formData.append('region', activeRegion);
+        formData.append('industry', activeIndustry);
+        formData.append('email', email);
+        formData.append('score', '12% — CRITICAL');
+        formData.append('report_url', reportUrl);
+        formData.append('double_confirmation', 'YES - AUTO DISPATCHED');
+
+        fetch("https://formsubmit.co/ajax/0451611@gmail.com", {
+          method: "POST",
+          headers: { 'Accept': 'application/json' },
+          body: formData
+        }).catch(err => console.error('Error sending FormSubmit lead:', err));
+      } catch (err) {
+        console.error('Error auto-dispatching lead:', err);
+      }
     }, 12000);
 
     setTimeout(() => {
@@ -281,35 +334,19 @@ export const ScannerModal: React.FC<ScannerModalProps> = ({ isOpen, onClose, onN
                           className="w-full bg-black/60 border border-gold-premium/15 focus:border-gold-premium rounded-xl px-4 py-3 text-sm text-white placeholder-sand-muted/20 focus:outline-none focus:ring-1 focus:ring-gold-premium/40 transition-all font-mono"
                         />
                       </div>
-                      <div className="grid grid-cols-2 gap-3">
-                        <div>
-                          <label className="block text-[9px] font-mono text-sand-muted/70 uppercase tracking-widest mb-1.5">
-                            {lang === 'ru' ? '2. Ниша' : lang === 'vi' ? '2. Lĩnh vực' : '2. Niche'}
-                          </label>
-                          <input
-                            type="text"
-                            required
-                            value={industry}
-                            onChange={(e) => setIndustry(e.target.value)}
-                            placeholder={lang === 'ru' ? 'Напр: стоматология' : lang === 'vi' ? 'VD: nha khoa' : 'E.g. dental'}
-                            id="scanner-industry"
-                            className="w-full bg-black/60 border border-gold-premium/15 focus:border-gold-premium rounded-xl px-4 py-3 text-sm text-white placeholder-sand-muted/20 focus:outline-none focus:ring-1 focus:ring-gold-premium/40 transition-all font-mono"
-                          />
-                        </div>
-                        <div>
-                          <label className="block text-[9px] font-mono text-sand-muted/70 uppercase tracking-widest mb-1.5">
-                            {lang === 'ru' ? '3. Город / Регион' : lang === 'vi' ? '3. Thành phố' : '3. City / Region'}
-                          </label>
-                          <input
-                            type="text"
-                            required
-                            value={region}
-                            onChange={(e) => setRegion(e.target.value)}
-                            placeholder={lang === 'ru' ? 'Напр: Дубай' : lang === 'vi' ? 'VD: Hà Nội' : 'E.g. Dubai'}
-                            id="scanner-region"
-                            className="w-full bg-black/60 border border-gold-premium/15 focus:border-gold-premium rounded-xl px-4 py-3 text-sm text-white placeholder-sand-muted/20 focus:outline-none focus:ring-1 focus:ring-gold-premium/40 transition-all font-mono"
-                          />
-                        </div>
+                      <div>
+                        <label className="block text-[9px] font-mono text-sand-muted/70 uppercase tracking-widest mb-1.5">
+                          {lang === 'ru' ? '2. E-mail для получения отчета' : lang === 'vi' ? '2. Email nhận báo cáo' : '2. Email for report delivery'}
+                        </label>
+                        <input
+                          type="email"
+                          required
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
+                          placeholder="ceo@yourcompany.com"
+                          id="scanner-email"
+                          className="w-full bg-black/60 border border-gold-premium/15 focus:border-gold-premium rounded-xl px-4 py-3 text-sm text-white placeholder-sand-muted/20 focus:outline-none focus:ring-1 focus:ring-gold-premium/40 transition-all font-mono"
+                        />
                       </div>
 
                       <motion.button
@@ -486,55 +523,24 @@ export const ScannerModal: React.FC<ScannerModalProps> = ({ isOpen, onClose, onN
                       </p>
                     </div>
 
-                    {/* PDF secondary CTA */}
-                    <div className="border-t border-gold-premium/10 pt-4">
-                      <div className="flex items-center justify-center gap-2 mb-3">
+                    {/* PDF secondary CTA (Automatic confirmation notice) */}
+                    <div className="border-t border-gold-premium/10 pt-4 text-center">
+                      <div className="flex items-center justify-center gap-2 mb-2">
                         <FileText size={12} className="text-gold-premium/60" />
                         <span className="text-sand-muted/60 font-mono text-[9px] uppercase tracking-widest">
-                          {lang === 'ru' ? 'ПОЛУЧИТЬ ДЕТАЛЬНЫЙ PDF-ОТЧЁТ' : lang === 'vi' ? 'NHẬN BÁO CÁO PDF CHI TIẾT' : 'GET DETAILED PDF REPORT'}
+                          {lang === 'ru' ? 'PDF-ОТЧЁТ УСПЕШНО ОТПРАВЛЕН' : lang === 'vi' ? 'BÁO CÁO PDF ĐÃ GỬI' : 'PDF REPORT DISPATCHED'}
                         </span>
                       </div>
-
-                      <AnimatePresence mode="wait">
-                        {!showEmailForm ? (
-                          <motion.button
-                            key="show-email"
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            onClick={() => setShowEmailForm(true)}
-                            className="w-full border border-gold-premium/30 hover:border-gold-premium text-sand-muted hover:text-white rounded-xl px-6 py-3 font-mono text-[10px] uppercase tracking-widest transition-all cursor-pointer flex items-center justify-center gap-2"
-                          >
-                            <Mail size={12} className="text-gold-premium" />
-                            <span>{lang === 'ru' ? 'Получить PDF на email' : lang === 'vi' ? 'Nhận PDF qua email' : 'Get PDF to email'}</span>
-                          </motion.button>
-                        ) : (
-                          <motion.form
-                            key="email-form"
-                            initial={{ opacity: 0, height: 0 }}
-                            animate={{ opacity: 1, height: 'auto' }}
-                            exit={{ opacity: 0, height: 0 }}
-                            onSubmit={handleSendPdf}
-                            className="flex gap-2 overflow-hidden"
-                          >
-                            <input
-                              type="email"
-                              required
-                              value={email}
-                              onChange={(e) => setEmail(e.target.value)}
-                              placeholder="email@company.com"
-                              className="flex-grow bg-black/60 border border-gold-premium/15 focus:border-gold-premium rounded-xl px-4 py-2.5 text-xs text-white placeholder-sand-muted/20 focus:outline-none transition-all font-mono"
-                            />
-                            <button
-                              type="submit"
-                              disabled={sendingPdf}
-                              className="flex-shrink-0 bg-gradient-to-r from-gold-light to-gold-dark text-black font-bold text-[10px] px-4 py-2.5 rounded-xl uppercase tracking-wider cursor-pointer"
-                            >
-                              {sendingPdf ? <div className="w-4 h-4 border-2 border-black border-t-transparent rounded-full animate-spin" /> : <Send size={12} />}
-                            </button>
-                          </motion.form>
-                        )}
-                      </AnimatePresence>
+                      <p className="text-sand-muted text-[10px] leading-relaxed max-w-sm mx-auto">
+                        {lang === 'ru'
+                          ? `Детальный отчет с промптами и RAG-логами успешно отправлен на вашу почту:`
+                          : lang === 'vi'
+                          ? `Báo cáo chi tiết đã được gửi thành công đến địa chỉ email của bạn:`
+                          : `The detailed report with prompts and RAG logs has been successfully sent to:`}
+                      </p>
+                      <p className="text-gold-light font-mono font-bold text-xs mt-1 bg-black/45 border border-gold-premium/10 px-3 py-1.5 rounded-lg inline-block">
+                        {email}
+                      </p>
                     </div>
                   </motion.div>
                 )}
