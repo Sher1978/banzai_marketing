@@ -63,6 +63,14 @@ const works: WorkItem[] = [
         badge: "MEDICAL / B2B CATALOG",
         descRu: "Интерактивный B2B-каталог медицинского и эстетического оборудования премиум-класса для клиник в Дубае. Подбор систем и генерация коммерческих предложений.",
         descEn: "Interactive B2B catalog of premium medical and aesthetic equipment for clinics in Dubai. Platform matching and automated commercial proposals."
+    },
+    {
+        url: "https://keep-r-www.vercel.app/",
+        image: "/assets/keep_r.png",
+        title: "KeepR",
+        badge: "ASSET DIGITAL PASSPORT",
+        descRu: "Экосистема цифровых паспортов для суперкаров и премиальных активов в Дубае. Криптографический аудит истории обслуживания и фиксация рыночной наценки.",
+        descEn: "Digital passport ecosystem for supercars and premium assets in Dubai. Cryptographically secure service history audits and market premium logging."
     }
 ];
 
