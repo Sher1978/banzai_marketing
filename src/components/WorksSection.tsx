@@ -71,6 +71,14 @@ const works: WorkItem[] = [
         badge: "ASSET DIGITAL PASSPORT",
         descRu: "Экосистема цифровых паспортов для суперкаров и премиальных активов в Дубае. Криптографический аудит истории обслуживания и фиксация рыночной наценки.",
         descEn: "Digital passport ecosystem for supercars and premium assets in Dubai. Cryptographically secure service history audits and market premium logging."
+    },
+    {
+        url: "https://rohstofftrader.net/",
+        image: "/assets/rohstofftrader.png",
+        title: "Commodity Traders",
+        badge: "COMMODITIES / ANALYTICS",
+        descRu: "Инвестиционный портал оценки горнодобывающих акций и аналитики сырьевых активов для немецких инвесторов. Интерактивные опросники и автоматическая PDF-генерация отчетов.",
+        descEn: "Investment portal evaluating mining stocks and commodities analytics for German investors. Features interactive surveys and automated PDF report generation."
     }
 ];
 
