@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import "@/lib/i18n";
@@ -38,20 +38,31 @@ const videos: VideoItem[] = [
     }
 ];
 
-interface VideoCardProps {
+interface VideoCardProps extends React.ComponentPropsWithoutRef<typeof motion.div> {
     src: string;
     title: string;
     desc: string;
     isRu: boolean;
+    isActive?: boolean;
 }
 
-const VideoCard: React.FC<VideoCardProps> = ({ src, title, desc, isRu }) => {
+const VideoCard: React.FC<VideoCardProps> = ({ src, title, desc, isRu, isActive = true, className, ...motionProps }) => {
     const videoRef = useRef<HTMLVideoElement>(null);
     const [isPlaying, setIsPlaying] = useState(false);
     const [isMuted, setIsMuted] = useState(false);
     const [progress, setProgress] = useState(0);
 
+    // Pause video if card becomes inactive
+    useEffect(() => {
+        if (!isActive && isPlaying && videoRef.current) {
+            videoRef.current.pause();
+            setIsPlaying(false);
+        }
+    }, [isActive, isPlaying]);
+
     const togglePlay = () => {
+        if (!isActive) return;
+        if (!videoRef.current) return;
         if (!videoRef.current) return;
         if (isPlaying) {
             videoRef.current.pause();
@@ -82,9 +93,10 @@ const VideoCard: React.FC<VideoCardProps> = ({ src, title, desc, isRu }) => {
     };
 
     return (
-        <div 
+        <motion.div 
             onClick={togglePlay}
-            className="relative aspect-[9/16] w-[280px] md:w-full flex-shrink-0 snap-center bg-black/60 border border-white/10 sharp-border overflow-hidden cursor-pointer group shadow-2xl transition-all duration-500 hover:border-primary/50"
+            className={`relative aspect-[9/16] w-[280px] md:w-full flex-shrink-0 snap-center bg-black/60 border border-white/10 sharp-border overflow-hidden cursor-pointer group shadow-2xl transition-all duration-500 hover:border-primary/50 ${className || ''}`}
+            {...motionProps}
         >
             {/* Glowing tech corner lines */}
             <div className="absolute top-0 left-0 w-4 h-4 border-t border-l border-white/20 pointer-events-none z-20 group-hover:border-primary/50 transition-colors" />
@@ -129,20 +141,22 @@ const VideoCard: React.FC<VideoCardProps> = ({ src, title, desc, isRu }) => {
             </div>
 
             {/* Mute/Unmute Toggle in Top Right */}
-            <button
-                onClick={toggleMute}
-                className="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-black/60 border border-white/10 flex items-center justify-center text-white/80 hover:text-white hover:border-primary/50 transition-all duration-300 backdrop-blur-sm"
-            >
-                {isMuted ? (
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 9.75 19.5 12m0 0 2.25 2.25M19.5 12l2.25-2.25M19.5 12l-2.25 2.25m-10.5-6 4.72-4.72a.75.75 0 0 1 1.28.53v15.88a.75.75 0 0 1-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.009 9.009 0 0 1 2.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75Z" />
-                    </svg>
-                ) : (
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M19.114 5.636a9 9 0 0 1 0 12.728M16.463 8.288a5.25 5.25 0 0 1 0 7.424M6.75 8.25l4.72-4.72a.75.75 0 0 1 1.28.53v15.88a.75.75 0 0 1-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.009 9.009 0 0 1 2.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75Z" />
-                    </svg>
-                )}
-            </button>
+            {isActive && (
+                <button
+                    onClick={toggleMute}
+                    className="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-black/60 border border-white/10 flex items-center justify-center text-white/80 hover:text-white hover:border-primary/50 transition-all duration-300 backdrop-blur-sm"
+                >
+                    {isMuted ? (
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 9.75 19.5 12m0 0 2.25 2.25M19.5 12l2.25-2.25M19.5 12l-2.25 2.25m-10.5-6 4.72-4.72a.75.75 0 0 1 1.28.53v15.88a.75.75 0 0 1-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.009 9.009 0 0 1 2.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75Z" />
+                        </svg>
+                    ) : (
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M19.114 5.636a9 9 0 0 1 0 12.728M16.463 8.288a5.25 5.25 0 0 1 0 7.424M6.75 8.25l4.72-4.72a.75.75 0 0 1 1.28.53v15.88a.75.75 0 0 1-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.009 9.009 0 0 1 2.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75Z" />
+                        </svg>
+                    )}
+                </button>
+            )}
 
             {/* Bottom Text and Progress Bar */}
             <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6 z-15 flex flex-col justify-end pointer-events-none">
@@ -164,7 +178,7 @@ const VideoCard: React.FC<VideoCardProps> = ({ src, title, desc, isRu }) => {
                     />
                 </div>
             </div>
-        </div>
+        </motion.div>
     );
 };
 
@@ -175,6 +189,39 @@ const FounderSection: React.FC = () => {
     const { t, i18n } = useTranslation();
     const isRu = i18n.language === 'ru';
     const bullets = t('founder.bullets', { returnObjects: true }) as Array<{ bold: string; subtext: string }>;
+
+    // States for mobile stacked video carousel
+    const [videoOrder, setVideoOrder] = useState([0, 1, 2]);
+    const [swipeDirection, setSwipeDirection] = useState<'left' | 'right' | null>(null);
+    const [isSwiping, setIsSwiping] = useState(false);
+
+    const handleSwipeLeft = () => {
+        if (isSwiping) return;
+        setIsSwiping(true);
+        setSwipeDirection('left');
+        setTimeout(() => {
+            setVideoOrder(prev => {
+                const [first, ...rest] = prev;
+                return [...rest, first];
+            });
+            setIsSwiping(false);
+            setSwipeDirection(null);
+        }, 300);
+    };
+
+    const handleSwipeRight = () => {
+        if (isSwiping) return;
+        setIsSwiping(true);
+        setSwipeDirection('right');
+        setTimeout(() => {
+            setVideoOrder(prev => {
+                const [first, ...rest] = prev;
+                return [...rest, first];
+            });
+            setIsSwiping(false);
+            setSwipeDirection(null);
+        }, 300);
+    };
 
     return (
         <section className="relative py-32 px-6 bg-dubai-night border-y border-primary/20 overflow-hidden">
@@ -321,8 +368,8 @@ const FounderSection: React.FC = () => {
                     </p>
                 </div>
 
-                {/* Videos Container */}
-                <div className="flex md:grid md:grid-cols-3 overflow-x-auto md:overflow-x-visible snap-x snap-mandatory md:snap-none gap-6 md:gap-8 pb-6 md:pb-0 scrollbar-hide max-w-full scroll-pl-6">
+                {/* Videos Container - Desktop Grid */}
+                <div className="hidden md:grid md:grid-cols-3 gap-8">
                     {videos.map((vid, idx) => (
                         <VideoCard
                             key={idx}
@@ -330,8 +377,78 @@ const FounderSection: React.FC = () => {
                             title={isRu ? vid.titleRu : vid.titleEn}
                             desc={isRu ? vid.descRu : vid.descEn}
                             isRu={isRu}
+                            isActive={true}
                         />
                     ))}
+                </div>
+
+                {/* Videos Container - Mobile Stacked Deck */}
+                <div className="flex flex-col items-center md:hidden mt-8">
+                    <div className="relative w-[280px] h-[530px] mx-auto select-none">
+                        {videoOrder.map((videoIdx, pos) => {
+                            const vid = videos[videoIdx];
+                            const isTop = pos === 0;
+
+                            let xVal: string | number = 0;
+                            let rotVal = 0;
+                            let scaleVal = 1 - pos * 0.06;
+                            let yVal = pos * 16;
+                            let opacVal = 1 - pos * 0.25;
+
+                            if (isSwiping && isTop) {
+                                if (swipeDirection === 'left') {
+                                    xVal = "-150%";
+                                    rotVal = -20;
+                                    opacVal = 0;
+                                } else if (swipeDirection === 'right') {
+                                    xVal = "150%";
+                                    rotVal = 20;
+                                    opacVal = 0;
+                                }
+                            }
+
+                            return (
+                                <VideoCard
+                                    key={videoIdx}
+                                    src={vid.src}
+                                    title={isRu ? vid.titleRu : vid.titleEn}
+                                    desc={isRu ? vid.descRu : vid.descEn}
+                                    isRu={isRu}
+                                    isActive={isTop}
+                                    style={{
+                                        position: 'absolute',
+                                        left: 0,
+                                        top: 0,
+                                        zIndex: videos.length - pos,
+                                        transformOrigin: "bottom center",
+                                        pointerEvents: isTop ? 'auto' : 'none'
+                                    }}
+                                    animate={{
+                                        x: xVal,
+                                        y: yVal,
+                                        scale: scaleVal,
+                                        opacity: opacVal,
+                                        rotate: rotVal
+                                    }}
+                                    transition={isSwiping && isTop ? { duration: 0.3, ease: "easeOut" } : { type: "spring", stiffness: 300, damping: 25 }}
+                                    drag={isTop ? "x" : false}
+                                    dragConstraints={{ left: 0, right: 0 }}
+                                    dragElastic={0.7}
+                                    onDragEnd={(event, info) => {
+                                        if (info.offset.x < -80) {
+                                            handleSwipeLeft();
+                                        } else if (info.offset.x > 80) {
+                                            handleSwipeRight();
+                                        }
+                                    }}
+                                />
+                            );
+                        })}
+                    </div>
+                    {/* Swipe indicator helper text */}
+                    <p className="text-white/40 text-[11px] font-mono mt-6 uppercase tracking-wider animate-pulse">
+                        {isRu ? "← свайпните для перехода →" : "← swipe to switch →"}
+                    </p>
                 </div>
             </div>
 

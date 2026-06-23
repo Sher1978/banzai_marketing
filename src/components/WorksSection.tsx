@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import Image from 'next/image';
@@ -295,6 +295,95 @@ const WorksSection: React.FC = () => {
     const isRu = i18n.language === 'ru';
     const [selectedWork, setSelectedWork] = useState<WorkItem | null>(null);
 
+    const containerRef = useRef<HTMLDivElement>(null);
+    const [isMouseDown, setIsMouseDown] = useState(false);
+    const [startX, setStartX] = useState(0);
+    const [scrollLeftVal, setScrollLeftVal] = useState(0);
+    const isDraggingRef = useRef(false);
+    const isPausedRef = useRef(false);
+
+    const handleMouseDown = (e: React.MouseEvent) => {
+        const container = containerRef.current;
+        if (!container) return;
+        setIsMouseDown(true);
+        isDraggingRef.current = false;
+        setStartX(e.pageX - container.offsetLeft);
+        setScrollLeftVal(container.scrollLeft);
+        isPausedRef.current = true;
+    };
+
+    const handleMouseUp = () => {
+        setIsMouseDown(false);
+        // Keep it paused briefly to prevent instant jumping
+        setTimeout(() => {
+            isPausedRef.current = false;
+        }, 1500);
+    };
+
+    const handleMouseLeave = () => {
+        setIsMouseDown(false);
+        isPausedRef.current = false;
+    };
+
+    const handleMouseMove = (e: React.MouseEvent) => {
+        if (!isMouseDown) return;
+        e.preventDefault();
+        const container = containerRef.current;
+        if (!container) return;
+        const x = e.pageX - container.offsetLeft;
+        const walk = (x - startX) * 1.5; // scroll-fast multiplier
+        if (Math.abs(walk) > 5) {
+            isDraggingRef.current = true;
+        }
+        container.scrollLeft = scrollLeftVal - walk;
+    };
+
+    const handleTouchStart = () => {
+        isPausedRef.current = true;
+    };
+
+    const handleTouchEnd = () => {
+        setTimeout(() => {
+            isPausedRef.current = false;
+        }, 2000);
+    };
+
+    const handleScroll = () => {
+        const container = containerRef.current;
+        if (!container) return;
+
+        const halfWidth = container.scrollWidth / 2;
+        if (container.scrollLeft >= halfWidth) {
+            container.scrollLeft -= halfWidth;
+        } else if (container.scrollLeft <= 0) {
+            container.scrollLeft += halfWidth;
+        }
+    };
+
+    useEffect(() => {
+        const container = containerRef.current;
+        if (!container) return;
+
+        let animationFrameId: number;
+        let lastTime = performance.now();
+        const speed = 40; // pixels per second
+
+        const update = (time: number) => {
+            if (!isPausedRef.current && !isMouseDown && !selectedWork && container) {
+                const delta = (time - lastTime) / 1000;
+                container.scrollLeft += speed * delta;
+            }
+            lastTime = time;
+            animationFrameId = requestAnimationFrame(update);
+        };
+
+        animationFrameId = requestAnimationFrame(update);
+
+        return () => {
+            cancelAnimationFrame(animationFrameId);
+        };
+    }, [isMouseDown, selectedWork]);
+
     return (
         <section className="relative py-32 px-6 bg-dubai-night border-y border-white/5 overflow-hidden">
             {/* Cyber Grid Background */}
@@ -326,12 +415,28 @@ const WorksSection: React.FC = () => {
                 <div className="absolute inset-y-0 left-0 w-16 md:w-32 bg-gradient-to-r from-dubai-night via-dubai-night/85 to-transparent z-20 pointer-events-none" />
                 <div className="absolute inset-y-0 right-0 w-16 md:w-32 bg-gradient-to-l from-dubai-night via-dubai-night/85 to-transparent z-20 pointer-events-none" />
 
-                <div className="animate-marquee-custom flex gap-8 md:gap-12 w-max px-6">
+                <div 
+                    ref={containerRef}
+                    onMouseDown={handleMouseDown}
+                    onMouseUp={handleMouseUp}
+                    onMouseLeave={handleMouseLeave}
+                    onMouseMove={handleMouseMove}
+                    onTouchStart={handleTouchStart}
+                    onTouchEnd={handleTouchEnd}
+                    onScroll={handleScroll}
+                    className="flex gap-8 md:gap-12 overflow-x-auto scrollbar-hide px-6 cursor-grab active:cursor-grabbing"
+                >
                     {/* Double the array for seamless infinite looping */}
                     {[...works, ...works].map((work, idx) => (
                         <div
                             key={idx}
-                            onClick={() => setSelectedWork(work)}
+                            onClick={(e) => {
+                                if (isDraggingRef.current) {
+                                    e.preventDefault();
+                                    return;
+                                }
+                                setSelectedWork(work);
+                            }}
                             className="group flex flex-col space-y-6 flex-shrink-0 w-[300px] md:w-[480px] cursor-pointer"
                         >
                             {/* Large Card Mockup */}
@@ -573,17 +678,14 @@ const WorksSection: React.FC = () => {
                 )}
             </AnimatePresence>
 
-            {/* Custom inline style for marquee animations */}
+            {/* Custom inline style for scrollbar hiding */}
             <style dangerouslySetInnerHTML={{ __html: `
-                @keyframes marquee {
-                    0% { transform: translateX(0); }
-                    100% { transform: translateX(-50%); }
+                .scrollbar-hide::-webkit-scrollbar {
+                    display: none;
                 }
-                .animate-marquee-custom {
-                    animation: marquee 55s linear infinite;
-                }
-                .animate-marquee-custom:hover {
-                    animation-play-state: paused;
+                .scrollbar-hide {
+                    -ms-overflow-style: none;  /* IE and Edge */
+                    scrollbar-width: none;  /* Firefox */
                 }
             `}} />
         </section>
