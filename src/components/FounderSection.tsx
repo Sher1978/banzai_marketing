@@ -1,16 +1,179 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import "@/lib/i18n";
 import Image from 'next/image';
 
+interface VideoItem {
+    src: string;
+    titleRu: string;
+    titleEn: string;
+    descRu: string;
+    descEn: string;
+}
+
+const videos: VideoItem[] = [
+    {
+        src: "/assets/founder_video_1.mp4",
+        titleRu: "ИИ-Сценарии & Диктор",
+        titleEn: "AI Scripting & Voiceover",
+        descRu: "Генерация голоса и текста по цифровому следу автора (Digital DNA).",
+        descEn: "Personalized voice and text generation matching the author's tone."
+    },
+    {
+        src: "/assets/founder_video_2.mp4",
+        titleRu: "Динамический Монтаж",
+        titleEn: "Dynamic Editing",
+        descRu: "Автоматическое удержание внимания через умные визуальные триггеры.",
+        descEn: "Automated attention retention utilizing smart visual triggers."
+    },
+    {
+        src: "/assets/founder_video_3.mp4",
+        titleRu: "Нейросетевая Вирусность",
+        titleEn: "Neural Virality",
+        descRu: "Масштабирование видеоконтента без единой живой съемки за год.",
+        descEn: "Scaling organic video reach with zero physical production needed."
+    }
+];
+
+interface VideoCardProps {
+    src: string;
+    title: string;
+    desc: string;
+    isRu: boolean;
+}
+
+const VideoCard: React.FC<VideoCardProps> = ({ src, title, desc, isRu }) => {
+    const videoRef = useRef<HTMLVideoElement>(null);
+    const [isPlaying, setIsPlaying] = useState(false);
+    const [isMuted, setIsMuted] = useState(false);
+    const [progress, setProgress] = useState(0);
+
+    const togglePlay = () => {
+        if (!videoRef.current) return;
+        if (isPlaying) {
+            videoRef.current.pause();
+            setIsPlaying(false);
+        } else {
+            videoRef.current.muted = isMuted;
+            videoRef.current.play().then(() => {
+                setIsPlaying(true);
+            }).catch(err => {
+                console.error("Error playing video:", err);
+            });
+        }
+    };
+
+    const toggleMute = (e: React.MouseEvent) => {
+        e.stopPropagation();
+        if (!videoRef.current) return;
+        const nextMuted = !isMuted;
+        videoRef.current.muted = nextMuted;
+        setIsMuted(nextMuted);
+    };
+
+    const handleTimeUpdate = () => {
+        if (!videoRef.current) return;
+        const duration = videoRef.current.duration || 1;
+        const current = videoRef.current.currentTime;
+        setProgress((current / duration) * 100);
+    };
+
+    return (
+        <div 
+            onClick={togglePlay}
+            className="relative aspect-[9/16] w-[280px] md:w-full flex-shrink-0 snap-center bg-black/60 border border-white/10 sharp-border overflow-hidden cursor-pointer group shadow-2xl transition-all duration-500 hover:border-primary/50"
+        >
+            {/* Glowing tech corner lines */}
+            <div className="absolute top-0 left-0 w-4 h-4 border-t border-l border-white/20 pointer-events-none z-20 group-hover:border-primary/50 transition-colors" />
+            <div className="absolute bottom-0 right-0 w-4 h-4 border-b border-r border-white/20 pointer-events-none z-20 group-hover:border-primary/50 transition-colors" />
+
+            <video
+                ref={videoRef}
+                src={src}
+                loop
+                playsInline
+                onTimeUpdate={handleTimeUpdate}
+                className="w-full h-full object-cover"
+            />
+
+            {/* Dark vignette overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/25 to-black/10 opacity-70 group-hover:opacity-60 transition-opacity duration-300 pointer-events-none" />
+
+            {/* Play/Pause Button in Center */}
+            <div className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
+                <motion.div
+                    animate={{
+                        opacity: isPlaying ? 0 : 1,
+                        scale: isPlaying ? 0.8 : 1
+                    }}
+                    whileHover={{ scale: 1.1 }}
+                    className="w-16 h-16 rounded-full bg-black/75 border border-white/20 flex items-center justify-center text-white backdrop-blur-md transition-all duration-300 group-hover:border-primary group-hover:text-primary pointer-events-auto"
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        togglePlay();
+                    }}
+                >
+                    {isPlaying ? (
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" className="w-6 h-6">
+                            <path fillRule="evenodd" d="M6.75 5.25a.75.75 0 0 1 .75-.75H9a.75.75 0 0 1 .75.75v13.5a.75.75 0 0 1-.75.75H7.5a.75.75 0 0 1-.75-.75V5.25Zm7.5 0A.75.75 0 0 1 15 4.5h1.5a.75.75 0 0 1 .75.75v13.5a.75.75 0 0 1-.75.75H15a.75.75 0 0 1-.75-.75V5.25Z" clipRule="evenodd" />
+                        </svg>
+                    ) : (
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" className="w-6 h-6 translate-x-0.5">
+                            <path fillRule="evenodd" d="M4.5 5.653c0-1.427 1.529-2.33 2.779-1.643l11.54 6.347c1.295.712 1.295 2.573 0 3.286L7.28 19.99c-1.25.687-2.779-.217-2.779-1.643V5.653Z" clipRule="evenodd" />
+                        </svg>
+                    )}
+                </motion.div>
+            </div>
+
+            {/* Mute/Unmute Toggle in Top Right */}
+            <button
+                onClick={toggleMute}
+                className="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-black/60 border border-white/10 flex items-center justify-center text-white/80 hover:text-white hover:border-primary/50 transition-all duration-300 backdrop-blur-sm"
+            >
+                {isMuted ? (
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 9.75 19.5 12m0 0 2.25 2.25M19.5 12l2.25-2.25M19.5 12l-2.25 2.25m-10.5-6 4.72-4.72a.75.75 0 0 1 1.28.53v15.88a.75.75 0 0 1-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.009 9.009 0 0 1 2.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75Z" />
+                    </svg>
+                ) : (
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M19.114 5.636a9 9 0 0 1 0 12.728M16.463 8.288a5.25 5.25 0 0 1 0 7.424M6.75 8.25l4.72-4.72a.75.75 0 0 1 1.28.53v15.88a.75.75 0 0 1-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.009 9.009 0 0 1 2.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75Z" />
+                    </svg>
+                )}
+            </button>
+
+            {/* Bottom Text and Progress Bar */}
+            <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6 z-15 flex flex-col justify-end pointer-events-none">
+                <span className="text-[10px] font-mono text-primary uppercase tracking-widest mb-1">
+                    {isRu ? "Шоукейс Контента" : "Content Showcase"}
+                </span>
+                <h3 className="text-sm md:text-base font-bold text-white uppercase tracking-tight mb-1">
+                    {title}
+                </h3>
+                <p className="text-white/60 text-xs line-clamp-2">
+                    {desc}
+                </p>
+
+                {/* Progress Bar Container */}
+                <div className="w-full h-1 bg-white/10 mt-4 rounded-full overflow-hidden">
+                    <div 
+                        className="h-full bg-primary transition-all duration-100 ease-out" 
+                        style={{ width: `${progress}%` }}
+                    />
+                </div>
+            </div>
+        </div>
+    );
+};
+
 /**
  * FounderSection with HUD-style storytelling and Identity Unlock interaction.
  */
 const FounderSection: React.FC = () => {
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
+    const isRu = i18n.language === 'ru';
     const bullets = t('founder.bullets', { returnObjects: true }) as Array<{ bold: string; subtext: string }>;
 
     return (
@@ -141,6 +304,47 @@ const FounderSection: React.FC = () => {
                 </div>
 
             </div>
+
+            {/* AI Videos Subsection */}
+            <div className="max-w-[1280px] mx-auto mt-24 pt-16 border-t border-white/10 relative z-10">
+                <div className="space-y-4 mb-12">
+                    <span className="text-xs font-mono tracking-[0.4em] text-primary uppercase block">
+                        {isRu ? "ПРОТОТИП // ИИ-ГЕНЕРАЦИЯ" : "PROTOTYPE // AI-GENERATED CONTENT"}
+                    </span>
+                    <h3 className="text-2xl md:text-4xl font-black text-white uppercase tracking-tighter leading-[0.9]">
+                        {isRu ? "ИИ-Контент в Действии" : "AI Content in Action"}
+                    </h3>
+                    <p className="text-white/60 text-xs md:text-sm font-medium leading-relaxed max-w-2xl">
+                        {isRu 
+                            ? "Примеры реальных Reels-роликов, сгенерированных нашей нейросетевой системой. За весь год не было проведено ни одной съемки."
+                            : "Examples of actual Reels generated by our neural content pipeline. Zero physical camera shoots were conducted."}
+                    </p>
+                </div>
+
+                {/* Videos Container */}
+                <div className="flex md:grid md:grid-cols-3 overflow-x-auto md:overflow-x-visible snap-x snap-mandatory md:snap-none gap-6 md:gap-8 pb-6 md:pb-0 scrollbar-hide max-w-full scroll-pl-6">
+                    {videos.map((vid, idx) => (
+                        <VideoCard
+                            key={idx}
+                            src={vid.src}
+                            title={isRu ? vid.titleRu : vid.titleEn}
+                            desc={isRu ? vid.descRu : vid.descEn}
+                            isRu={isRu}
+                        />
+                    ))}
+                </div>
+            </div>
+
+            {/* Custom inline style for scrollbar hiding */}
+            <style dangerouslySetInnerHTML={{ __html: `
+                .scrollbar-hide::-webkit-scrollbar {
+                    display: none;
+                }
+                .scrollbar-hide {
+                    -ms-overflow-style: none;  /* IE and Edge */
+                    scrollbar-width: none;  /* Firefox */
+                }
+            `}} />
         </section>
     );
 };

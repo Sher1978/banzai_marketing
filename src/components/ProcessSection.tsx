@@ -5,6 +5,12 @@ import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import "@/lib/i18n";
 
+const stepImages = [
+    "/assets/tech_knowledge_graph.png",
+    "/assets/neural_brain_premium.png",
+    "/assets/tech_dao_extraction.png"
+];
+
 /**
  * ProcessSection showing the 3-step deployment.
  */
@@ -34,8 +40,15 @@ const ProcessSection: React.FC = () => {
                             initial={{ opacity: 0, y: 30 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ delay: idx * 0.2 }}
-                            className="relative p-10 border border-white/5 bg-white/[0.02] backdrop-blur-xl group hover:border-primary/50 transition-all duration-500"
+                            className="relative p-10 border border-white/5 bg-black/40 backdrop-blur-xl group hover:border-primary/50 transition-all duration-500 overflow-hidden"
                         >
+                            {/* Background Image Texture */}
+                            <div 
+                                className="absolute inset-0 bg-cover bg-center opacity-10 group-hover:opacity-20 transition-all duration-700 mix-blend-screen grayscale pointer-events-none"
+                                style={{ backgroundImage: `url("${stepImages[idx]}")` }}
+                            />
+                            {/* Overlay Vignette */}
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/40 pointer-events-none" />
                             {/* Step Number Badge */}
                             <div className="absolute top-0 right-0 p-4 font-mono text-primary/20 group-hover:text-primary/40 transition-colors text-6xl font-black">
                                 0{idx + 1}

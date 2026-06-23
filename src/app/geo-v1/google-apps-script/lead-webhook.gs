@@ -29,7 +29,7 @@ const CONFIG = {
   SHEET_NAME: 'GEO Leads',
 
   // URL сайта — для ссылки на PDF в письме
-  SITE_URL: 'https://banzai-marketing.com',
+  SITE_URL: 'https://www.banzaimarketing.tech',
 
   // Email отправителя (должен совпадать с Google-аккаунтом скрипта)
   FROM_NAME: 'BanzAI marketing GEO Team',

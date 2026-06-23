@@ -25,6 +25,32 @@ interface WorkItem {
 
 const works: WorkItem[] = [
     {
+        url: "https://project-lejbs.vercel.app/",
+        image: "/assets/ostwest_premium.png",
+        title: "OstWest Premium",
+        badge: "LUXURY TRAVEL / CONCIERGE",
+        descRu: "Премиальный консьерж-сервис подбора люксовых туров по всему миру. Интерактивная 3D-модель Земли, персонализация маршрутов и 24/7 поддержка в пути.",
+        descEn: "Premium concierge service for luxury global tours. Features an interactive 3D globe visualization, route personalization, and 24/7 client support.",
+        trafficGrowth: "+340%",
+        leadsGrowth: "4.2x",
+        period: "3 мес.",
+        periodEn: "3 months",
+        chartPoints: [15, 24, 38, 52, 75, 110, 145],
+        highlightsRu: [
+            "Разработка интерактивной 3D-модели Земли с направлениями",
+            "Конверсия в заявку на индивидуальный тур выросла до 14%",
+            "Глубокая персонализация подбора под запросы клиентов",
+            "Интеграция с WhatsApp-консьержем для мгновенной связи"
+        ],
+        highlightsEn: [
+            "Interactive 3D Earth globe visualization with destinations",
+            "Personalized luxury tour booking conversion increased to 14%",
+            "Deep personalization based on premium clients' requests",
+            "Seamless WhatsApp concierge integration for instant support"
+        ],
+        color: "#bef264" // Lime Green
+    },
+    {
         url: "https://shershadowcapital.online",
         image: "/assets/sher_shadow_capital.png",
         title: "Sher Shadow Capital",

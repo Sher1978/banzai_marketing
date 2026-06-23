@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     title: "BanzAI Marketing - Cyber-Samurai AI Agency",
     description: "Production by AI. Strategy by Experts. Results for the Bold.",
     type: "website",
-    url: "https://banzai-marketing.com",
+    url: "https://www.banzaimarketing.tech",
   },
   twitter: {
     card: "summary_large_image",

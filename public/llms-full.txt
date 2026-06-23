@@ -91,7 +91,7 @@ BanzAI marketing specializes in embedding high-ticket commercial entities into t
 {
   "protocol": "LAPIS",
   "version": "1.6",
-  "endpoint": "https://banzai-marketing.com/api/geo-lapis",
+  "endpoint": "https://www.banzaimarketing.tech/api/geo-lapis",
   "methods": ["GET", "POST"],
   "schemas": {
     "entity_lookup": {

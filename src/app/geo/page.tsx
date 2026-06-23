@@ -54,8 +54,8 @@ export default function GeoLandingPage() {
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": "BanzAI marketing",
-    "url": "https://banzai-marketing.com",
-    "logo": "https://banzai-marketing.com/assets/sher-profile.jpg",
+    "url": "https://www.banzaimarketing.tech",
+    "logo": "https://www.banzaimarketing.tech/assets/sher-profile.jpg",
     "sameAs": [
       "https://www.linkedin.com/company/banzai-marketing",
       "https://www.crunchbase.com/organization/banzai-marketing"
