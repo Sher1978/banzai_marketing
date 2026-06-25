@@ -15,7 +15,7 @@ const FooterCTA: React.FC = () => {
     const bullets = t('footer_cta.bullets', { returnObjects: true }) as Array<{ bold: string; subtext: string }>;
 
     return (
-        <section className="relative py-32 px-6 bg-black overflow-hidden">
+        <section className="relative py-16 md:py-32 px-6 bg-black overflow-hidden">
             {/* Background Radial Glow */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/10 rounded-full blur-[160px] pointer-events-none" />
 

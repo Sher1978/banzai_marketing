@@ -19,7 +19,7 @@ const ProcessSection: React.FC = () => {
     const steps = t('process.steps', { returnObjects: true }) as Array<{ title: string; subtext: string }>;
 
     return (
-        <section className="relative py-32 px-6 bg-black overflow-hidden">
+        <section className="relative py-16 md:py-32 px-6 bg-black overflow-hidden">
             <div className="max-w-[1280px] mx-auto relative z-10">
 
                 <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-24">

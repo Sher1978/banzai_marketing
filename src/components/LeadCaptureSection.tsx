@@ -36,7 +36,7 @@ const LeadCaptureSection: React.FC = () => {
     };
 
     return (
-        <section className="relative py-32 px-6 bg-dubai-night border-t border-primary/20 overflow-hidden" id="contact">
+        <section className="relative py-16 md:py-32 px-6 bg-dubai-night border-t border-primary/20 overflow-hidden" id="contact">
             {/* Cyber Grid Background */}
             <div className="absolute inset-0 cyber-grid opacity-10 pointer-events-none" />
 

@@ -14,7 +14,7 @@ const FeatureSection: React.FC = () => {
     const bullets = t('feature.bullets', { returnObjects: true }) as Array<{ bold: string; subtext: string }>;
 
     return (
-        <section className="relative py-32 px-6 bg-dubai-night/50 border-y border-secondary/10 overflow-hidden">
+        <section className="relative py-16 md:py-32 px-6 bg-dubai-night/50 border-y border-secondary/10 overflow-hidden">
             {/* Background Ambience */}
             <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-secondary/5 rounded-full blur-[120px] pointer-events-none" />
 

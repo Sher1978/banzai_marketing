@@ -437,7 +437,7 @@ const WorksSection: React.FC = () => {
     }, [isMouseDown, selectedWork]);
 
     return (
-        <section className="relative py-32 px-6 bg-dubai-night border-y border-white/5 overflow-hidden">
+        <section className="relative py-16 md:py-32 px-6 bg-dubai-night border-y border-white/5 overflow-hidden">
             {/* Cyber Grid Background */}
             <div className="absolute inset-0 cyber-grid opacity-5 pointer-events-none" />
 

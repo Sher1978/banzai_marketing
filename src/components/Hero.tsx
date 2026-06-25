@@ -47,7 +47,7 @@ export const Hero: React.FC = () => {
     const bullets = t('hero.bullets', { returnObjects: true }) as Array<{ bold: string; subtext: string }>;
 
     return (
-        <section className="relative w-full min-h-[90vh] py-20 lg:py-32 px-6 flex items-center bg-[#050505] overflow-hidden border-b border-primary/20">
+        <section className="relative w-full min-h-[75vh] md:min-h-[90vh] pt-20 pb-12 md:py-32 px-6 flex items-start md:items-center bg-[#050505] overflow-hidden border-b border-primary/20">
             {/* Background Image */}
             <div
                 className="absolute inset-0 bg-cover bg-right lg:bg-center pointer-events-none opacity-100"

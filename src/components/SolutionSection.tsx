@@ -17,7 +17,7 @@ const SolutionSection: React.FC = () => {
   return (
     <section
       id="solution"
-      className="relative py-28 px-6 bg-background-dark overflow-hidden"
+      className="relative py-16 md:py-28 px-6 bg-background-dark overflow-hidden"
     >
       {/* Subtle cyber grid */}
       <div className="absolute inset-0 cyber-grid opacity-[0.04] pointer-events-none" />
