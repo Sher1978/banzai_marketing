@@ -25,6 +25,58 @@ interface WorkItem {
 
 const works: WorkItem[] = [
     {
+        url: "https://resonation-rho.vercel.app/",
+        image: "/assets/resonation.png",
+        title: "RESONation",
+        badge: "SOCIAL NETWORK / SAAS",
+        descRu: "Платформа дешифровки Социального Кода для предпринимателей и визионеров нового времени. Поиск партнеров, друзей и единомышленников в 32 раза быстрее за счет математики резонанса.",
+        descEn: "Social Code decryption platform for entrepreneurs and visionaries of the new era. Find partners, friends, and like-minded people 32 times faster via resonance mathematics.",
+        trafficGrowth: "+410%",
+        leadsGrowth: "5.6x",
+        period: "3 мес.",
+        periodEn: "3 months",
+        chartPoints: [12, 22, 35, 58, 92, 140, 210],
+        highlightsRu: [
+            "Разработка математического ядра совместимости социальных кодов",
+            "Снижение времени на поиск синергичных партнеров в 32 раза",
+            "Интеграция интерактивного радара социальных связей на Canvas/SVG",
+            "Конверсия в регистрацию на живые события выросла до 42%"
+        ],
+        highlightsEn: [
+            "Developed mathematical compatibility engine for social codes",
+            "Reduced time to find synergistic partners by 32x",
+            "Integrated interactive Canvas/SVG social connection radar",
+            "Conversion rate to live networking events boosted to 42%"
+        ],
+        color: "#a855f7" // Purple
+    },
+    {
+        url: "https://resonation-relation.vercel.app/",
+        image: "/assets/resonation_relation.png",
+        title: "Anima Space",
+        badge: "COMMUNITY / RELATIONSHIPS",
+        descRu: "Экосистема и закрытое комьюнити осознанных отношений. Выход из тупика одиночества и конфликтов через метод «Теневого Танца», соматику и Код Личности.",
+        descEn: "Closed community and ecosystem of conscious relationships. A way out of the dead end of loneliness and conflicts through the 'Shadow Dance' method, somatics, and Personality Code.",
+        trafficGrowth: "+290%",
+        leadsGrowth: "4.1x",
+        period: "5 мес.",
+        periodEn: "5 months",
+        chartPoints: [10, 18, 25, 45, 68, 95, 130],
+        highlightsRu: [
+            "Разработка концепции и запуск закрытой экосистемы отношений",
+            "Интеграция интерактивного ИИ-теста оценки Теневого саботажа",
+            "Снижение уровня оттока участников (Churn Rate) в клубе до 4%",
+            "Проведение более 50 соматических сессий TantraKiz в СНГ и ОАЭ"
+        ],
+        highlightsEn: [
+            "Developed and launched the private relationship ecosystem concept",
+            "Integrated an interactive AI-powered Shadow Sabotage assessment test",
+            "Reduced monthly member churn rate (Churn Rate) to under 4%",
+            "Conducted 50+ offline somatic TantraKiz sessions in CIS and UAE"
+        ],
+        color: "#be123c" // Burgundy
+    },
+    {
         url: "https://project-lejbs.vercel.app/",
         image: "/assets/ostwest_premium.png",
         title: "OstWest Premium",
