@@ -44,6 +44,22 @@
     text-shadow: 0 0 10px rgba(6, 182, 212, 0.8);
   }
 
+  .text-cyberpunk-neon-cyan {
+    color: #00f0ff !important;
+    text-shadow: 
+      0 0 5px #00f0ff,
+      0 0 15px rgba(0, 240, 255, 0.8),
+      0 0 30px rgba(0, 240, 255, 0.4);
+  }
+
+  .text-cyberpunk-neon-yellow {
+    color: #fcee0a !important;
+    text-shadow: 
+      0 0 5px #fcee0a,
+      0 0 15px rgba(252, 238, 10, 0.8),
+      0 0 30px rgba(252, 238, 10, 0.4);
+  }
+
   .sharp-border {
     clip-path: polygon(0 0,
         100% 0,

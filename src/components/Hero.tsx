@@ -111,9 +111,9 @@ export const Hero: React.FC = () => {
                         {t('hero.badge')}
                     </div>
 
-                    <h1 className="text-4xl md:text-5xl lg:text-8xl font-black leading-[0.85] text-white tracking-tighter drop-shadow-2xl">
+                    <h1 className="text-4xl md:text-5xl lg:text-8xl font-black leading-[0.85] tracking-tighter drop-shadow-2xl">
                         {t('hero.title').split(' ').map((word: string, i: number) => (
-                            <span key={i} className={i % 2 !== 0 ? 'text-secondary brightness-125' : ''}>
+                            <span key={i} className={i % 2 !== 0 ? 'text-cyberpunk-neon-cyan' : 'text-cyberpunk-neon-yellow'}>
                                 {word}{' '}
                             </span>
                         ))}
@@ -145,6 +145,19 @@ export const Hero: React.FC = () => {
                         </button>
                     </div>
                 </div>
+            </div>
+
+            {/* Holographic Easter Egg (Temporal Sync) */}
+            <div className="absolute right-12 bottom-12 hidden lg:flex flex-col items-end gap-1.5 font-mono text-[10px] text-white/30 border-r-2 border-secondary/40 pr-4 select-none z-20">
+                <span className="text-secondary/70 font-bold tracking-[0.2em] uppercase text-right">
+                    {i18n.language === 'ru' ? 'СИНХРОНИЗАЦИЯ С БУДУЩИМ' : i18n.language === 'vi' ? 'ĐỒNG BỘ THỜI GIAN' : 'FUTURE TIMELINE SYNC'}
+                </span>
+                <span className="text-white/95 font-black text-sm tracking-widest drop-shadow-[0_0_8px_rgba(6,182,212,0.4)]">
+                    EST. 2046
+                </span>
+                <span className="text-[9px] text-white/20 tracking-[0.15em] uppercase">
+                    {i18n.language === 'ru' ? 'КВАНТОВЫЙ ПРОТОКОЛ АКТИВЕН' : i18n.language === 'vi' ? 'QUANTUM PROTOCOL ACTIVE' : 'QUANTUM PROTOCOL ACTIVE'}
+                </span>
             </div>
         </section>
     );
