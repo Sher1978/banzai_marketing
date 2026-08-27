@@ -47,7 +47,7 @@ export const Hero: React.FC = () => {
     const bullets = t('hero.bullets', { returnObjects: true }) as Array<{ bold: string; subtext: string }>;
 
     return (
-        <section className="relative w-full min-h-[75vh] md:min-h-[90vh] pt-20 pb-12 md:py-32 px-6 flex items-start md:items-center bg-[#050505] overflow-hidden border-b border-primary/20">
+        <section className="relative w-full min-h-[60vh] md:min-h-[75vh] pt-10 pb-10 md:pt-16 md:pb-20 px-6 flex items-start md:items-center bg-[#050505] overflow-hidden border-b border-primary/20">
             {/* Background Image */}
             <div
                 className="absolute inset-0 bg-cover bg-right lg:bg-center pointer-events-none opacity-100"
@@ -62,7 +62,7 @@ export const Hero: React.FC = () => {
             />
 
             {/* Language Switcher */}
-            <div className="absolute top-6 right-6 z-50 flex items-center gap-3">
+            <div className="absolute top-4 right-6 z-50 flex items-center gap-3">
                 {/* Theme Switcher Toggle */}
                 <button
                     onClick={toggleTheme}
@@ -106,12 +106,12 @@ export const Hero: React.FC = () => {
 
             <div className="max-w-[1440px] mx-auto w-full relative z-10 flex flex-col justify-center">
                 {/* Content Column (Main focus) */}
-                <div className="flex flex-col gap-6 md:gap-8 max-w-2xl">
+                <div className="flex flex-col gap-5 md:gap-6 max-w-2xl">
                     <div className="inline-flex items-center gap-2 text-secondary uppercase tracking-[0.2em] text-[10px] md:text-xs font-bold border-l-2 border-secondary pl-3 shadow-[0_0_10px_rgba(6,182,212,0.3)] bg-black/40 py-1 pr-4 w-fit">
                         {t('hero.badge')}
                     </div>
 
-                    <h1 className="text-4xl md:text-5xl lg:text-8xl font-black leading-[0.85] tracking-tighter drop-shadow-2xl">
+                    <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-black leading-[1.05] tracking-tight drop-shadow-2xl">
                         {t('hero.title').split(' ').map((word: string, i: number) => (
                             <span key={i} className={i % 2 !== 0 ? 'text-cyberpunk-neon-cyan' : 'text-cyberpunk-neon-yellow'}>
                                 {word}{' '}

@@ -8,6 +8,7 @@ import Image from 'next/image';
 
 interface VideoItem {
     src: string;
+    poster: string;
     titleRu: string;
     titleEn: string;
     descRu: string;
@@ -17,6 +18,7 @@ interface VideoItem {
 const videos: VideoItem[] = [
     {
         src: "/assets/founder_video_1.mp4",
+        poster: "/assets/founder_video_1_poster.webp",
         titleRu: "ИИ-Сценарии & Диктор",
         titleEn: "AI Scripting & Voiceover",
         descRu: "Генерация голоса и текста по цифровому следу автора (Digital DNA).",
@@ -24,6 +26,7 @@ const videos: VideoItem[] = [
     },
     {
         src: "/assets/founder_video_2.mp4",
+        poster: "/assets/founder_video_2_poster.webp",
         titleRu: "Динамический Монтаж",
         titleEn: "Dynamic Editing",
         descRu: "Автоматическое удержание внимания через умные визуальные триггеры.",
@@ -31,6 +34,7 @@ const videos: VideoItem[] = [
     },
     {
         src: "/assets/founder_video_3.mp4",
+        poster: "/assets/founder_video_3_poster.webp",
         titleRu: "Нейросетевая Вирусность",
         titleEn: "Neural Virality",
         descRu: "Масштабирование видеоконтента без единой живой съемки за год.",
@@ -40,13 +44,14 @@ const videos: VideoItem[] = [
 
 interface VideoCardProps extends React.ComponentPropsWithoutRef<typeof motion.div> {
     src: string;
+    poster?: string;
     title: string;
     desc: string;
     isRu: boolean;
     isActive?: boolean;
 }
 
-const VideoCard: React.FC<VideoCardProps> = ({ src, title, desc, isRu, isActive = true, className, ...motionProps }) => {
+const VideoCard: React.FC<VideoCardProps> = ({ src, poster, title, desc, isRu, isActive = true, className, ...motionProps }) => {
     const videoRef = useRef<HTMLVideoElement>(null);
     const [isPlaying, setIsPlaying] = useState(false);
     const [isMuted, setIsMuted] = useState(false);
@@ -105,9 +110,10 @@ const VideoCard: React.FC<VideoCardProps> = ({ src, title, desc, isRu, isActive 
             <video
                 ref={videoRef}
                 src={src}
+                poster={poster}
                 loop
                 playsInline
-                preload="none"
+                preload="metadata"
                 onTimeUpdate={handleTimeUpdate}
                 className="w-full h-full object-cover"
             />
@@ -382,6 +388,7 @@ const FounderSection: React.FC = () => {
                         <VideoCard
                             key={idx}
                             src={vid.src}
+                            poster={vid.poster}
                             title={isRu ? vid.titleRu : vid.titleEn}
                             desc={isRu ? vid.descRu : vid.descEn}
                             isRu={isRu}
@@ -419,6 +426,7 @@ const FounderSection: React.FC = () => {
                                 <VideoCard
                                     key={videoIdx}
                                     src={vid.src}
+                                    poster={vid.poster}
                                     title={isRu ? vid.titleRu : vid.titleEn}
                                     desc={isRu ? vid.descRu : vid.descEn}
                                     isRu={isRu}
