@@ -26,7 +26,7 @@ interface WorkItem {
 const works: WorkItem[] = [
     {
         url: "https://sherlock-cars-dubai.vercel.app/",
-        image: "/assets/sherlock_cars.png",
+        image: "/assets/sherlock_cars.webp",
         title: "Sherlock Cars Dubai",
         badge: "AUTOMOTIVE / AI PLATFORM",
         descRu: "Премиальный автоподбор и ИИ-платформа поиска автомобилей в Дубае. Выездная мультиточечная диагностика суперкаров, прямые API-интеграции и VIP-сопровождение.",
@@ -51,34 +51,8 @@ const works: WorkItem[] = [
         color: "#ffe600" // Electric Cyber Yellow
     },
     {
-        url: "https://resonation-rho.vercel.app/",
-        image: "/assets/resonation.png",
-        title: "RESONation",
-        badge: "SOCIAL NETWORK / SAAS",
-        descRu: "Платформа дешифровки Социального Кода для предпринимателей и визионеров нового времени. Поиск партнеров, друзей и единомышленников в 32 раза быстрее за счет математики резонанса.",
-        descEn: "Social Code decryption platform for entrepreneurs and visionaries of the new era. Find partners, friends, and like-minded people 32 times faster via resonance mathematics.",
-        trafficGrowth: "+410%",
-        leadsGrowth: "5.6x",
-        period: "3 мес.",
-        periodEn: "3 months",
-        chartPoints: [12, 22, 35, 58, 92, 140, 210],
-        highlightsRu: [
-            "Разработка математического ядра совместимости социальных кодов",
-            "Снижение времени на поиск синергичных партнеров в 32 раза",
-            "Интеграция интерактивного радара социальных связей на Canvas/SVG",
-            "Конверсия в регистрацию на живые события выросла до 42%"
-        ],
-        highlightsEn: [
-            "Developed mathematical compatibility engine for social codes",
-            "Reduced time to find synergistic partners by 32x",
-            "Integrated interactive Canvas/SVG social connection radar",
-            "Conversion rate to live networking events boosted to 42%"
-        ],
-        color: "#a855f7" // Purple
-    },
-    {
         url: "https://resonation-relation.vercel.app/",
-        image: "/assets/resonation_relation.png",
+        image: "/assets/resonation_relation.webp",
         title: "Anima Space",
         badge: "COMMUNITY / RELATIONSHIPS",
         descRu: "Экосистема и закрытое комьюнити осознанных отношений. Выход из тупика одиночества и конфликтов через метод «Теневого Танца», соматику и Код Личности.",
@@ -104,7 +78,7 @@ const works: WorkItem[] = [
     },
     {
         url: "https://project-lejbs.vercel.app/",
-        image: "/assets/ostwest_premium.png",
+        image: "/assets/ostwest_premium.webp",
         title: "OstWest Premium",
         badge: "LUXURY TRAVEL / CONCIERGE",
         descRu: "Премиальный консьерж-сервис подбора люксовых туров по всему миру. Интерактивная 3D-модель Земли, персонализация маршрутов и 24/7 поддержка в пути.",
@@ -130,7 +104,7 @@ const works: WorkItem[] = [
     },
     {
         url: "https://shershadowcapital.online",
-        image: "/assets/sher_shadow_capital.png",
+        image: "/assets/sher_shadow_capital.webp",
         title: "Sher Shadow Capital",
         badge: "BUSINESS CONSULTING",
         descRu: "Премиальный консалтинг и Теневой Аудит (SFI) для топ-лидеров. Разблокировка когнитивных барьеров и вывод личной и бизнес-эффективности на максимум.",
@@ -156,7 +130,7 @@ const works: WorkItem[] = [
     },
     {
         url: "https://www.friendlycode.fun/",
-        image: "/assets/friendly_code.png",
+        image: "/assets/friendly_code.webp",
         title: "REVOO B2C App",
         badge: "LOYALTY / WEB APP",
         descRu: "Клиентское веб-приложение лояльности REVOO для ресторанов и заведений. Интерактивная «стеклянная батарейка» с динамическим кэшбеком от 5% до 20%.",
@@ -182,7 +156,7 @@ const works: WorkItem[] = [
     },
     {
         url: "https://paybio.top/",
-        image: "/assets/paybio.png",
+        image: "/assets/paybio.webp",
         title: "PayBio",
         badge: "TELEGRAM SAAS",
         descRu: "Платформа для запуска автоматических Telegram-магазинов за 60 секунд. Продажа гайдов, курсов и слотов на консультации в один клик прямо внутри мессенджера.",
@@ -208,7 +182,7 @@ const works: WorkItem[] = [
     },
     {
         url: "https://revoo.win/business",
-        image: "/assets/revoo_business.png",
+        image: "/assets/revoo_business.webp",
         title: "REVOO Business",
         badge: "REPUTATION / B2B SAAS",
         descRu: "B2B SaaS-платформа программы лояльности для ресторанов. Автоматическое удержание клиентов за счет когнитивной геймификации и буст оценок на Google Maps.",
@@ -234,7 +208,7 @@ const works: WorkItem[] = [
     },
     {
         url: "https://www.virale.uno/",
-        image: "/assets/virale.png",
+        image: "/assets/virale.webp",
         title: "Viral Engine",
         badge: "AI VIDEO ENGINE",
         descRu: "Инженерный ИИ-сервис для генерации вирусных Reels и Shorts за 10 минут. Автоматическое написание сценариев в стиле автора и интеллектуальный видеомонтаж.",
@@ -260,7 +234,7 @@ const works: WorkItem[] = [
     },
     {
         url: "https://project-wbfhb.vercel.app/",
-        image: "/assets/healthcare_net.png",
+        image: "/assets/healthcare_net.webp",
         title: "Healthcare Net",
         badge: "MEDICAL / B2B CATALOG",
         descRu: "Интерактивный B2B-каталог медицинского и эстетического оборудования премиум-класса для клиник в Дубае. Подбор систем и генерация коммерческих предложений.",
@@ -286,7 +260,7 @@ const works: WorkItem[] = [
     },
     {
         url: "https://project-wbfhb.vercel.app/umbrella-v4/",
-        image: "/assets/emirates_net.png",
+        image: "/assets/emirates_net.webp",
         title: "Emirates Net Group",
         badge: "HOLDING / CONGLOMERATE",
         descRu: "Интерактивная экосистема холдинга Emirates Net Group, объединяющая 5 ведущих компаний в сферах здравоохранения, недвижимости, юриспруденции, инженерии и финансов в ОАЭ. Динамическое Canvas-колесо управления активами.",
@@ -312,7 +286,7 @@ const works: WorkItem[] = [
     },
     {
         url: "https://keep-r-www.vercel.app/",
-        image: "/assets/keep_r.png",
+        image: "/assets/keep_r.webp",
         title: "KeepR",
         badge: "ASSET DIGITAL PASSPORT",
         descRu: "Экосистема цифровых паспортов для суперкаров и премиальных активов в Дубае. Криптографический аудит истории обслуживания и фиксация рыночной наценки.",

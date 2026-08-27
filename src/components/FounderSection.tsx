@@ -107,6 +107,7 @@ const VideoCard: React.FC<VideoCardProps> = ({ src, title, desc, isRu, isActive 
                 src={src}
                 loop
                 playsInline
+                preload="none"
                 onTimeUpdate={handleTimeUpdate}
                 className="w-full h-full object-cover"
             />
