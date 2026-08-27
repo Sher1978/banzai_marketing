@@ -31,6 +31,29 @@ const PainSection: React.FC = () => {
 
             <div className="max-w-4xl mx-auto w-full flex flex-col items-center gap-16 relative z-10">
 
+                <motion.div
+                    initial={{ opacity: 0, y: -20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6 }}
+                    className="relative px-8 py-3 bg-red-950/40 border border-red-500/30 backdrop-blur-md mb-2 flex items-center justify-center gap-3 select-none shadow-[0_0_20px_rgba(220,38,38,0.15)] max-w-lg mx-auto"
+                >
+                    {/* Glowing LED alert indicator */}
+                    <div className="relative flex h-3 w-3">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-3 w-3 bg-red-600"></span>
+                    </div>
+                    
+                    <span className="text-sm md:text-base font-black text-white uppercase tracking-[0.15em] text-center glitch">
+                        {t('pain.badge')}
+                    </span>
+                    
+                    {/* Tech corners */}
+                    <div className="absolute top-0 left-0 w-2.5 h-2.5 border-t-2 border-l-2 border-red-500" />
+                    <div className="absolute top-0 right-0 w-2.5 h-2.5 border-t-2 border-r-2 border-red-500" />
+                    <div className="absolute bottom-0 left-0 w-2.5 h-2.5 border-b-2 border-l-2 border-red-500" />
+                    <div className="absolute bottom-0 right-0 w-2.5 h-2.5 border-b-2 border-r-2 border-red-500" />
+                </motion.div>
+
                 <motion.h2
                     initial={{ opacity: 0, scale: 0.9 }}
                     whileInView={{ opacity: 1, scale: 1 }}

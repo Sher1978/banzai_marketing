@@ -25,6 +25,32 @@ interface WorkItem {
 
 const works: WorkItem[] = [
     {
+        url: "https://sherlock-cars-dubai.vercel.app/",
+        image: "/assets/sherlock_cars.png",
+        title: "Sherlock Cars Dubai",
+        badge: "AUTOMOTIVE / AI PLATFORM",
+        descRu: "Премиальный автоподбор и ИИ-платформа поиска автомобилей в Дубае. Выездная мультиточечная диагностика суперкаров, прямые API-интеграции и VIP-сопровождение.",
+        descEn: "Premium luxury car inspection and AI search ecosystem in Dubai. Turnkey multi-point diagnostics for supercars, direct database API feeds, and VIP export.",
+        trafficGrowth: "+520%",
+        leadsGrowth: "6.1x",
+        period: "3 мес.",
+        periodEn: "3 months",
+        chartPoints: [15, 28, 48, 85, 150, 260, 410],
+        highlightsRu: [
+            "Разработка проприетарной ИИ-системы перехвата авто по API за 12 мс",
+            "Выездная мультиточечная диагностика премиальных авто и суперкаров",
+            "Интеграция Telegram-бота с автоматической квалификацией лидов",
+            "Рост конверсии в закрытие сделки под ключ до 38%"
+        ],
+        highlightsEn: [
+            "Developed proprietary AI vehicle interception engine via 12ms API ping",
+            "Turnkey multi-point diagnostic inspection for luxury SUVs & supercars",
+            "Integrated automated lead qualification Telegram bot",
+            "Turnkey deal completion conversion rate boosted to 38%"
+        ],
+        color: "#ffe600" // Electric Cyber Yellow
+    },
+    {
         url: "https://resonation-rho.vercel.app/",
         image: "/assets/resonation.png",
         title: "RESONation",
@@ -259,6 +285,32 @@ const works: WorkItem[] = [
         color: "#6366f1" // Indigo
     },
     {
+        url: "https://project-wbfhb.vercel.app/umbrella-v4/",
+        image: "/assets/emirates_net.png",
+        title: "Emirates Net Group",
+        badge: "HOLDING / CONGLOMERATE",
+        descRu: "Интерактивная экосистема холдинга Emirates Net Group, объединяющая 5 ведущих компаний в сферах здравоохранения, недвижимости, юриспруденции, инженерии и финансов в ОАЭ. Динамическое Canvas-колесо управления активами.",
+        descEn: "Interactive ecosystem of the Emirates Net Group holding, uniting 5 leading companies across healthcare, real estate, legal, engineering, and finance in the UAE. Features a dynamic Canvas asset management wheel.",
+        trafficGrowth: "+320%",
+        leadsGrowth: "4.5x",
+        period: "4 мес.",
+        periodEn: "4 months",
+        chartPoints: [18, 26, 42, 60, 85, 120, 160],
+        highlightsRu: [
+            "Интерактивная Canvas-визуализация структуры холдинга из 5 подразделений",
+            "Повышение вовлеченности инвесторов и партнеров на 150%",
+            "Интеграция профилей компаний в единый цифровой хаб",
+            "Оптимизация корпоративного позиционирования для рынка ОАЭ"
+        ],
+        highlightsEn: [
+            "Interactive Canvas-based visualization of the holding's 5 sectors",
+            "Boosted investor and partner engagement by 150%",
+            "Integrated company profiles into a single digital hub",
+            "Optimized corporate positioning for the UAE market"
+        ],
+        color: "#c5a880" // Gold / Champagne
+    },
+    {
         url: "https://keep-r-www.vercel.app/",
         image: "/assets/keep_r.png",
         title: "KeepR",
@@ -443,8 +495,8 @@ const WorksSection: React.FC = () => {
 
             <div className="max-w-[1280px] mx-auto relative z-10">
                 {/* Section Header */}
-                <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-24">
-                    <div className="space-y-4">
+                <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
+                    <div className="space-y-4 max-w-3xl">
                         <span className="text-xs font-mono tracking-[0.4em] text-primary uppercase block">
                             {isRu ? "ПОРТФОЛИО // НАШИ КЕЙСЫ" : "PORTFOLIO // CASES"}
                         </span>
@@ -456,8 +508,13 @@ const WorksSection: React.FC = () => {
                         >
                             {isRu ? "Наши Работы" : "Our Works"}
                         </motion.h2>
+                        <p className="text-white/60 text-sm md:text-base leading-relaxed font-medium uppercase tracking-wide pt-2">
+                            {isRu 
+                                ? "Мы — агентство полного цикла. Помимо производства контента и GEO-оптимизации, мы делаем ребрендинг и упаковку бизнеса ПОД КЛЮЧ с нуля. Вот некоторые из наших работ в 2025/2026:" 
+                                : "We are a full-cycle agency. Besides content production and GEO-optimization, we provide turnkey rebranding and business packaging from scratch. Here are some of our works in 2025/2026:"}
+                        </p>
                     </div>
-                    <div className="h-[2px] flex-grow bg-gradient-to-r from-primary/30 to-transparent hidden md:block mb-4" />
+                    <div className="h-[2px] flex-grow bg-gradient-to-r from-primary/30 to-transparent hidden lg:block mb-4" />
                 </div>
             </div>
 

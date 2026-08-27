@@ -21,6 +21,7 @@
         }
     },
     "pain": {
+        "badge": "THE MAIN BUSINESS PROBLEM IN 2026",
         "title": "Why are you paying $100 per click?",
         "bullets": [
             {
@@ -120,7 +121,7 @@
     },
     "contact": {
         "title": "INITIATE PROTOCOL.",
-        "subtitle": "Secure your spot. The algorithm is waiting.",
+        "subtitle": "Leave a request for a consultation and get an effective business promotion strategy in 2026",
         "form": {
             "name": "YOUR_NAME",
             "email": "COMM_LINK (EMAIL)",

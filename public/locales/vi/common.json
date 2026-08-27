@@ -21,6 +21,7 @@
         }
     },
     "pain": {
+        "badge": "VẤN ĐỀ CHÍNH CỦA DOANH NGHIỆP TRONG NĂM 2026",
         "title": "Tại sao bạn trả $100 mỗi lần nhấp chuột?",
         "bullets": [
             {
@@ -120,7 +121,7 @@
     },
     "contact": {
         "title": "KHỞI ĐỘNG GIAO THỨC.",
-        "subtitle": "Đặt chỗ ngay. Thuật toán đang chờ.",
+        "subtitle": "Hãy để lại yêu cầu tư vấn để nhận được chiến lược phát triển doanh nghiệp hiệu quả vào năm 2026",
         "form": {
             "name": "TÊN_CỦA_BẠN",
             "email": "LIÊN_HỆ (EMAIL)",
