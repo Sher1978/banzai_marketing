@@ -224,8 +224,8 @@ export const FomoSlider: React.FC = () => {
                     </p>
                 </div>
 
-                {/* Desktop Tabs Selector (Hidden on Mobile) */}
-                <div className="hidden sm:flex flex-wrap items-center justify-center gap-3">
+                {/* Combined Desktop & Mobile Tab Navigation */}
+                <div className="flex flex-nowrap overflow-x-auto no-scrollbar [&::-webkit-scrollbar]:hidden gap-2 sm:gap-4 pb-4 px-2 sm:px-0 justify-start sm:justify-center snap-x">
                     {slides.map((slide, idx) => {
                         const TabIcon = slide.icon;
                         const isActive = activeTab === idx;
@@ -233,7 +233,7 @@ export const FomoSlider: React.FC = () => {
                             <button
                                 key={idx}
                                 onClick={() => setActiveTab(idx)}
-                                className={`flex items-center gap-2.5 px-6 py-3.5 rounded-full font-black text-xs uppercase tracking-wider transition-all duration-300 cursor-pointer ${
+                                className={`flex-shrink-0 flex items-center gap-2.5 px-6 py-3.5 rounded-full font-black text-xs uppercase tracking-wider transition-all duration-300 cursor-pointer snap-start border ${
                                     isActive
                                         ? 'bg-[#ffe600] text-black shadow-[0_0_25px_rgba(255,230,0,0.5)] scale-105'
                                         : 'bg-[#121217] text-white/70 hover:text-white border border-white/10 hover:border-[#ffe600]/40'
