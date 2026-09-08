@@ -139,8 +139,8 @@ export const OutrichHero: React.FC = () => {
                             </h3>
                             <p className="text-xs text-white/80 leading-relaxed font-medium">
                                 {isRu
-                                    ? 'Вставьте ссылку на профиль Вашего бизнеса на Google Maps и получите ВЕРДИКТ локального доминирования компании'
-                                    : 'Paste your business Google Maps profile link to get your company\'s local dominance VERDICT'}
+                                    ? 'Узнайте за 10 секунд, почему вашего бизнеса нет на первых строчках Google и сколько клиентов вы отдаете конкурентам.'
+                                    : 'Find out in 10 seconds why your business isn\'t ranking on Google and how many clients you\'re losing to competitors.'}
                             </p>
                         </div>
 
