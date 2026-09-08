@@ -113,12 +113,12 @@ export const OutrichHero: React.FC = () => {
                             </span>
                             <h3 className="text-xl md:text-2xl font-bold text-white uppercase tracking-tight flex items-center gap-2">
                                 <MapPin className="text-[#ffe600]" size={22} />
-                                <span>{isRu ? 'Оценка Google-профиля' : 'Google Profile Audit'}</span>
+                                <span>{isRu ? 'УЗНАЙТЕ ПОТЕНЦИАЛ ВАШЕГО БИЗНЕСА' : 'Discover Your Business Potential'}</span>
                             </h3>
                             <p className="text-xs text-white/80 leading-relaxed font-medium">
                                 {isRu
-                                    ? 'Узнайте за 10 секунд, почему вашего бизнеса нет на первых строчках Google и сколько клиентов вы отдаете конкурентам.'
-                                    : 'Find out in 10 seconds why your business is missing Top Google spots and how many clients you lose to rivals.'}
+                                    ? 'Вставьте ссылку на профиль Вашего бизнеса на Google Maps и получите ВЕРДИКТ локального доминирования компании'
+                                    : 'Paste your business Google Maps profile link to get your company\'s local dominance VERDICT'}
                             </p>
                         </div>
 
