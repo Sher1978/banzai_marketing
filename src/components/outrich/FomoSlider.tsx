@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MapPin, Mail, MessageSquare, Bot, Target, ShieldAlert, ArrowRight, Flame } from 'lucide-react';
+import { MapPin, Mail, MessageSquare, Bot, Target, ShieldAlert, ArrowRight, Flame, ChevronLeft, ChevronRight } from 'lucide-react';
 import { openLeadModal } from '../ModalController';
 
 export const FomoSlider: React.FC = () => {
@@ -27,7 +27,14 @@ export const FomoSlider: React.FC = () => {
             badgeEn: 'LOCAL MAP TRAFFIC',
             statRu: 'Вывод бизнеса в первые строчки Карт',
             statEn: 'Top-3 Maps ranking without pay-per-click',
-            image: '/assets/map_outreach_revo_banner.png'
+            image: '/assets/dubai_geo_premium.png',
+            overlayTitleRu: '🚨 ДЕНЕЖНАЯ УТЕЧКА В РЕКЛАМЕ',
+            overlayTitleEn: '🚨 AD BUDGET LEAK',
+            overlayTextRu: 'Слив бюджета на дорожающие клики',
+            overlayTextEn: 'Draining budget on inflated cost-per-click',
+            overlayHighlightRu: '🏆 Top-3 Google Maps Захвачен',
+            overlayHighlightEn: '🏆 Top-3 Google Maps Secured',
+            overlayTag: 'MAPS ENGINE'
         },
         {
             id: 1,
@@ -44,7 +51,14 @@ export const FomoSlider: React.FC = () => {
             badgeEn: 'DIRECT B2B SALES',
             statRu: 'Прямой выход на тех, кто подписывает чеки',
             statEn: 'Direct access to decision makers & check signers',
-            image: '/assets/hero_dubai_ai_skyline.png'
+            image: '/assets/hero_dubai_ai_skyline.png',
+            overlayTitleRu: '🛡️ СПАМ-ФИЛЬТРЫ БЛОКИРУЮТ',
+            overlayTitleEn: '🛡️ SPAM FILTERS BLOCKING',
+            overlayTextRu: 'Массовый холодный спам: 0% ответов',
+            overlayTextEn: 'Mass cold emails: 0% open rate',
+            overlayHighlightRu: '✉️ Прямой контакт с Директором',
+            overlayHighlightEn: '✉️ Direct CEO / Owner Reach',
+            overlayTag: 'DIRECT B2B'
         },
         {
             id: 2,
@@ -61,7 +75,14 @@ export const FomoSlider: React.FC = () => {
             badgeEn: 'MESSENGER LEAD SEARCH',
             statRu: 'Перехват горячих запросов в реальном времени',
             statEn: 'Real-time hot lead interception',
-            image: '/assets/lead_radar_interception.png'
+            image: '/assets/emirates_net.png',
+            overlayTitleRu: '⚡ ИИ-ПЕРЕХВАТ В ЧАТАХ (24/7)',
+            overlayTitleEn: '⚡ REALTIME RADAR (24/7)',
+            overlayTextRu: 'Запрос: «Где найти лучшего эксперта?»',
+            overlayTextEn: 'Query: "Looking for top expert now"',
+            overlayHighlightRu: '🎯 Контакт перехвачен [12ms]',
+            overlayHighlightEn: '🎯 Lead Intercepted [12ms]',
+            overlayTag: 'TELEGRAM RADAR'
         },
         {
             id: 3,
@@ -78,7 +99,14 @@ export const FomoSlider: React.FC = () => {
             badgeEn: 'AI SEARCH & GEO WEBSITES',
             statRu: 'Готовность сайта к выдаче в ответах нейросетей',
             statEn: 'Full GEO readiness for ChatGPT & Gemini answers',
-            image: '/assets/geo_channels_pillar.png'
+            image: '/assets/dubai_villa_premium.png',
+            overlayTitleRu: '🤖 ИИ-ПОИСК ВМЕСТО GOOGLE',
+            overlayTitleEn: '🤖 AI OVERVIEW OVERTAKE',
+            overlayTextRu: 'ИИ НЕ видят стандартные сайты',
+            overlayTextEn: 'Standard sites invisible to AI LLMs',
+            overlayHighlightRu: '🤖 ChatGPT выводит вас в Лидеры',
+            overlayHighlightEn: '🤖 ChatGPT Recommends Your Site',
+            overlayTag: 'GEO OPTIMIZATION'
         },
         {
             id: 4,
@@ -95,7 +123,14 @@ export const FomoSlider: React.FC = () => {
             badgeEn: 'REPEAT SALES & SYSTEM',
             statRu: 'Поток повторных продаж без трат на рекламу',
             statEn: 'Continuous repeat sales with zero extra ad spend',
-            image: '/assets/neural_brain_premium.png'
+            image: '/assets/sherlock_cars.png',
+            overlayTitleRu: '🔄 УТЕЧКА КЛИЕНТОВ ПОСЛЕ ПОКУПКИ',
+            overlayTitleEn: '🔄 CLIENT CHURN AFTER 1ST VISIT',
+            overlayTextRu: 'Разовые покупки съедают LTV',
+            overlayTextEn: 'Single purchases destroy LTV margin',
+            overlayHighlightRu: '⭐ Revo Telegram: +130% Возвратов',
+            overlayHighlightEn: '⭐ Revo Engine: +130% Repeat Sales',
+            overlayTag: 'REVO RETENTION'
         },
         {
             id: 5,
@@ -112,7 +147,14 @@ export const FomoSlider: React.FC = () => {
             badgeEn: 'AD AUCTION DRAIN',
             statRu: 'Получение клиентов в обход рекламных торгов',
             statEn: 'Client acquisition bypassing overheated ad bidding',
-            image: '/assets/tech_dao_extraction.png'
+            image: '/assets/monaco_yacht_premium.png',
+            overlayTitleRu: '🔥 АУКЦИОННЫЙ ТУПИК',
+            overlayTitleEn: '🔥 AD AUCTION DEAD-END',
+            overlayTextRu: 'Перегретые торги с гигантами рынка',
+            overlayTextEn: 'Overheated bidding vs mega brands',
+            overlayHighlightRu: '⚡ Внеаукционный Поток Клиентов',
+            overlayHighlightEn: '⚡ Zero Auction Direct Client Flow',
+            overlayTag: 'AUCTION BYPASS'
         }
     ];
 
@@ -123,20 +165,28 @@ export const FomoSlider: React.FC = () => {
         return () => clearInterval(interval);
     }, [slides.length]);
 
+    const handlePrev = () => {
+        setActiveTab((prev) => (prev - 1 + slides.length) % slides.length);
+    };
+
+    const handleNext = () => {
+        setActiveTab((prev) => (prev + 1) % slides.length);
+    };
+
     const currentSlide = slides[activeTab];
     const IconComp = currentSlide.icon;
 
     return (
-        <section id="fomo" className="relative py-20 md:py-32 px-4 sm:px-6 bg-structural-mesh border-b border-white/10 overflow-hidden">
+        <section id="fomo" className="relative py-12 md:py-32 px-3 sm:px-6 bg-structural-mesh border-b border-white/10 overflow-hidden">
             {/* Cyber Grid */}
             <div className="absolute inset-0 cyber-grid opacity-10 pointer-events-none" />
 
-            <div className="max-w-[1440px] mx-auto relative z-10 space-y-12">
+            <div className="max-w-[1440px] mx-auto relative z-10 space-y-8 md:space-y-12">
                 {/* Urgency Alert Bar */}
-                <div className="bg-red-500/10 border border-red-500/40 p-4 rounded-2xl flex flex-col md:flex-row items-center justify-between gap-4 max-w-4xl mx-auto shadow-[0_0_30px_rgba(239,68,68,0.2)]">
-                    <div className="flex items-center gap-3">
-                        <span className="w-3 h-3 rounded-full bg-red-500 animate-ping flex-shrink-0" />
-                        <p className="text-xs md:text-sm text-white font-mono font-bold">
+                <div className="bg-red-500/10 border border-red-500/40 p-3.5 sm:p-4 rounded-2xl flex flex-col md:flex-row items-center justify-between gap-3 max-w-4xl mx-auto shadow-[0_0_30px_rgba(239,68,68,0.2)]">
+                    <div className="flex items-center gap-3 text-left">
+                        <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-ping flex-shrink-0" />
+                        <p className="text-[11px] sm:text-xs md:text-sm text-white font-mono font-bold leading-tight">
                             {isRu
                                 ? '🚨 ОКНО ВОЗМОЖНОСТЕЙ ЗАКРЫВАЕТСЯ: Компании, занявшие Top-3 в Google AI Overview сегодня, удерживают лидерство весь 2026 год.'
                                 : '🚨 WINDOW CLOSING: Brands capturing Top-3 in Google AI Overview today secure dominance for all of 2026.'}
@@ -144,19 +194,19 @@ export const FomoSlider: React.FC = () => {
                     </div>
                     <button
                         onClick={openLeadModal}
-                        className="text-xs font-black text-black bg-[#ffe600] px-4 py-2 rounded-lg uppercase tracking-wider whitespace-nowrap hover:scale-105 transition-transform"
+                        className="w-full md:w-auto text-[11px] font-black text-black bg-[#ffe600] px-4 py-2.5 rounded-lg uppercase tracking-wider whitespace-nowrap hover:scale-105 transition-transform cursor-pointer"
                     >
                         {isRu ? 'Запишитесь на разбор' : 'Book Audit'}
                     </button>
                 </div>
 
                 {/* Header */}
-                <div className="text-center space-y-4 max-w-3xl mx-auto">
-                    <div className="inline-flex items-center gap-2 neon-yellow-badge text-[10px]">
-                        <Flame size={14} className="fill-black" />
+                <div className="text-center space-y-3 max-w-3xl mx-auto">
+                    <div className="inline-flex items-center gap-2 neon-yellow-badge text-[9px] sm:text-[10px]">
+                        <Flame size={12} className="fill-black" />
                         <span>{isRu ? 'ГДЕ ВЫ ТЕРЯЕТЕ КЛИЕНТОВ' : 'WHERE YOU LOSE LEADS'}</span>
                     </div>
-                    <h2 className="text-3xl sm:text-5xl font-black text-white uppercase tracking-tight">
+                    <h2 className="text-2xl sm:text-5xl font-black text-white uppercase tracking-tight leading-tight">
                         {isRu ? (
                             <>
                                 Где вы теряете клиентов <span className="text-[#ffe600] text-glow-yellow">прямо сейчас?</span>
@@ -167,15 +217,15 @@ export const FomoSlider: React.FC = () => {
                             </>
                         )}
                     </h2>
-                    <p className="text-white/70 text-sm md:text-base font-medium">
+                    <p className="text-white/70 text-xs sm:text-base font-medium hidden sm:block">
                         {isRu
                             ? 'Выберите ваш сегмент бизнеса и действуйте немедленно, пока нишу не заняли конкуренты.'
                             : 'Select your business domain and act immediately before competitors claim the territory.'}
                     </p>
                 </div>
 
-                {/* Tabs Selector */}
-                <div className="flex flex-wrap items-center justify-center gap-3">
+                {/* Desktop Tabs Selector (Hidden on Mobile) */}
+                <div className="hidden sm:flex flex-wrap items-center justify-center gap-3">
                     {slides.map((slide, idx) => {
                         const TabIcon = slide.icon;
                         const isActive = activeTab === idx;
@@ -196,63 +246,117 @@ export const FomoSlider: React.FC = () => {
                     })}
                 </div>
 
+                {/* Mobile Horizontal Scroll Bar + Slide Indicator (Visible only on Mobile) */}
+                <div className="sm:hidden flex items-center justify-between gap-2 bg-[#0a0a0e] p-2 rounded-2xl border border-white/10">
+                    <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-1 px-1">
+                        {slides.map((slide, idx) => {
+                            const isActive = activeTab === idx;
+                            return (
+                                <button
+                                    key={idx}
+                                    onClick={() => setActiveTab(idx)}
+                                    className={`px-3 py-1.5 rounded-full text-[10px] font-black uppercase tracking-wider whitespace-nowrap transition-all ${
+                                        isActive
+                                            ? 'bg-[#ffe600] text-black'
+                                            : 'bg-[#14141a] text-white/60 border border-white/5'
+                                    }`}
+                                >
+                                    {idx + 1}. {isRu ? slide.categoryRu.split(' ')[0] : slide.categoryEn.split(' ')[0]}
+                                </button>
+                            );
+                        })}
+                    </div>
+                    <div className="flex items-center gap-1 pl-2 border-l border-white/10 text-white/80 font-mono text-[10px] font-bold flex-shrink-0">
+                        <button onClick={handlePrev} className="p-1 text-[#ffe600]">
+                            <ChevronLeft size={16} />
+                        </button>
+                        <span>{activeTab + 1}/{slides.length}</span>
+                        <button onClick={handleNext} className="p-1 text-[#ffe600]">
+                            <ChevronRight size={16} />
+                        </button>
+                    </div>
+                </div>
+
                 {/* Animated Slide Showcase Card */}
-                <div className="relative min-h-[420px] bg-[#0d0d12] border-2 border-[#ffe600]/50 rounded-3xl p-6 sm:p-10 md:p-14 shadow-[0_0_50px_rgba(255,230,0,0.15)] overflow-hidden">
+                <div className="relative min-h-[380px] bg-[#0d0d12] border-2 border-[#ffe600]/50 rounded-2xl sm:rounded-3xl p-4 sm:p-10 md:p-14 shadow-[0_0_50px_rgba(255,230,0,0.15)] overflow-hidden">
                     <AnimatePresence mode="wait">
                         <motion.div
                             key={activeTab}
                             initial={{ opacity: 0, x: 20 }}
                             animate={{ opacity: 1, x: 0 }}
                             exit={{ opacity: 0, x: -20 }}
-                            transition={{ duration: 0.4 }}
-                            className="grid lg:grid-cols-12 gap-8 items-center"
+                            transition={{ duration: 0.3 }}
+                            className="grid lg:grid-cols-12 gap-6 md:gap-8 items-center"
                         >
                             {/* Left Info Column */}
-                            <div className="lg:col-span-7 space-y-6">
-                                <div className="inline-flex items-center gap-2 bg-[#ffe600]/10 border border-[#ffe600]/40 px-3.5 py-1 rounded-full text-[#ffe600] text-xs font-mono font-bold">
-                                    <IconComp size={14} />
-                                    <span>{isRu ? currentSlide.badgeRu : currentSlide.badgeEn}</span>
+                            <div className="lg:col-span-7 space-y-4 sm:space-y-6">
+                                <div className="flex items-center justify-between">
+                                    <div className="inline-flex items-center gap-2 bg-[#ffe600]/10 border border-[#ffe600]/40 px-3 py-1 rounded-full text-[#ffe600] text-[10px] sm:text-xs font-mono font-bold">
+                                        <IconComp size={13} />
+                                        <span>{isRu ? currentSlide.badgeRu : currentSlide.badgeEn}</span>
+                                    </div>
+                                    <span className="sm:hidden font-mono text-[10px] text-white/40">
+                                        {activeTab + 1} / {slides.length}
+                                    </span>
                                 </div>
 
-                                <h3 className="text-2xl sm:text-4xl font-black text-white uppercase tracking-tight leading-tight">
+                                <h3 className="text-xl sm:text-4xl font-black text-white uppercase tracking-tight leading-tight">
                                     {isRu ? currentSlide.titleRu : currentSlide.titleEn}
                                 </h3>
 
-                                <p className="text-base sm:text-lg text-white/80 leading-relaxed border-l-4 border-[#ffe600] pl-4 italic">
+                                <p className="text-xs sm:text-lg text-white/80 leading-relaxed border-l-2 sm:border-l-4 border-[#ffe600] pl-3 sm:pl-4 italic">
                                     "{isRu ? currentSlide.quoteRu : currentSlide.quoteEn}"
                                 </p>
 
-                                <div className="pt-2 flex flex-wrap items-center gap-6">
+                                <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
                                     <button
                                         onClick={openLeadModal}
-                                        className="bg-[#ffe600] hover:bg-[#ffff00] text-black font-black text-xs md:text-sm px-8 py-4 rounded-full uppercase tracking-wider shadow-[0_0_25px_rgba(255,230,0,0.4)] transition-all duration-300 hover:scale-105 flex items-center gap-2 cursor-pointer"
+                                        className="w-full sm:w-auto bg-[#ffe600] hover:bg-[#ffff00] text-black font-black text-xs md:text-sm px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl sm:rounded-full uppercase tracking-wider shadow-[0_0_25px_rgba(255,230,0,0.4)] transition-all duration-300 hover:scale-105 flex items-center justify-center gap-2 cursor-pointer"
                                     >
                                         <span>{isRu ? currentSlide.ctaRu : currentSlide.ctaEn}</span>
                                         <ArrowRight size={16} className="stroke-[3]" />
                                     </button>
 
-                                    <div className="flex items-center gap-2 text-xs font-mono text-[#ffe600] font-bold">
-                                        <ShieldAlert size={16} />
+                                    <div className="flex items-center justify-center sm:justify-start gap-2 text-[11px] sm:text-xs font-mono text-[#ffe600] font-bold">
+                                        <ShieldAlert size={15} className="flex-shrink-0" />
                                         <span>{isRu ? currentSlide.statRu : currentSlide.statEn}</span>
                                     </div>
                                 </div>
                             </div>
 
-                            {/* Right Image Graphic Preview */}
-                            <div className="lg:col-span-5 relative aspect-video lg:aspect-square rounded-2xl overflow-hidden border border-white/20 shadow-2xl">
+                            {/* Right Image Graphic Preview with Emotional Cyber HUD Overlay */}
+                            <div className="lg:col-span-5 relative aspect-video sm:aspect-square rounded-xl sm:rounded-2xl overflow-hidden border-2 border-[#ffe600]/30 shadow-[0_0_30px_rgba(255,230,0,0.2)] group/img">
                                 <img
                                     src={currentSlide.image}
                                     alt={isRu ? currentSlide.categoryRu : currentSlide.categoryEn}
-                                    className="w-full h-full object-cover"
+                                    className="w-full h-full object-cover transition-transform duration-700 group-hover/img:scale-105"
                                 />
-                                <div className="absolute inset-0 bg-gradient-to-t from-[#0d0d12] via-transparent to-transparent opacity-80" />
-                                <div className="absolute bottom-4 left-4 right-4 bg-black/80 backdrop-blur-md p-3 rounded-xl border border-white/10 flex items-center justify-between">
-                                    <span className="text-xs font-mono text-[#ffe600] font-bold">
-                                        OutRich.Dubai AI System
+                                <div className="absolute inset-0 bg-gradient-to-t from-[#0d0d12] via-black/40 to-transparent opacity-90" />
+
+                                {/* Floating Emotional HUD Card */}
+                                <div className="absolute top-4 left-4 right-4 bg-black/85 backdrop-blur-md p-3.5 rounded-xl border border-red-500/40 space-y-1.5 shadow-xl">
+                                    <div className="flex items-center justify-between">
+                                        <span className="text-[10px] font-mono font-black text-red-400 uppercase tracking-wider">
+                                            {isRu ? currentSlide.overlayTitleRu : currentSlide.overlayTitleEn}
+                                        </span>
+                                        <span className="text-[9px] font-mono text-white/50 bg-white/10 px-2 py-0.5 rounded">
+                                            {currentSlide.overlayTag}
+                                        </span>
+                                    </div>
+                                    <p className="text-xs font-mono text-white/90">
+                                        {isRu ? currentSlide.overlayTextRu : currentSlide.overlayTextEn}
+                                    </p>
+                                </div>
+
+                                {/* Bottom Solution Highlight Overlay */}
+                                <div className="absolute bottom-3 left-3 right-3 bg-black/90 backdrop-blur-md p-3 rounded-xl border border-[#ffe600]/60 space-y-1">
+                                    <span className="text-xs font-mono font-black text-[#ffe600] block text-glow-yellow">
+                                        {isRu ? currentSlide.overlayHighlightRu : currentSlide.overlayHighlightEn}
                                     </span>
-                                    <span className="text-[10px] font-mono text-white/50 uppercase">
-                                        Status: Operational
-                                    </span>
+                                    <div className="flex items-center justify-between text-[9px] font-mono text-white/60">
+                                        <span>OutRich.Dubai AI Engine</span>
+                                        <span className="text-[#ffe600] font-bold">STATUS: OPERATIONAL</span>
+                                    </div>
                                 </div>
                             </div>
                         </motion.div>
