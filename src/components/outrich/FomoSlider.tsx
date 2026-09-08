@@ -27,7 +27,7 @@ export const FomoSlider: React.FC = () => {
             badgeEn: 'LOCAL MAP TRAFFIC',
             statRu: 'Вывод бизнеса в первые строчки Карт',
             statEn: 'Top-3 Maps ranking without pay-per-click',
-            image: '/assets/dubai_geo_premium.png',
+            image: '/assets/map_outreach_revo_banner.png',
             overlayTitleRu: '🚨 ДЕНЕЖНАЯ УТЕЧКА В РЕКЛАМЕ',
             overlayTitleEn: '🚨 AD BUDGET LEAK',
             overlayTextRu: 'Слив бюджета на дорожающие клики',
@@ -51,7 +51,7 @@ export const FomoSlider: React.FC = () => {
             badgeEn: 'DIRECT B2B SALES',
             statRu: 'Прямой выход на тех, кто подписывает чеки',
             statEn: 'Direct access to decision makers & check signers',
-            image: '/assets/hero_dubai_ai_skyline.png',
+            image: '/assets/ai_b2b_conveyor.png',
             overlayTitleRu: '🛡️ СПАМ-ФИЛЬТРЫ БЛОКИРУЮТ',
             overlayTitleEn: '🛡️ SPAM FILTERS BLOCKING',
             overlayTextRu: 'Массовый холодный спам: 0% ответов',
@@ -75,7 +75,7 @@ export const FomoSlider: React.FC = () => {
             badgeEn: 'MESSENGER LEAD SEARCH',
             statRu: 'Перехват горячих запросов в реальном времени',
             statEn: 'Real-time hot lead interception',
-            image: '/assets/emirates_net.png',
+            image: '/assets/lead_radar_interception.png',
             overlayTitleRu: '⚡ ИИ-ПЕРЕХВАТ В ЧАТАХ (24/7)',
             overlayTitleEn: '⚡ REALTIME RADAR (24/7)',
             overlayTextRu: 'Запрос: «Где найти лучшего эксперта?»',
@@ -99,7 +99,7 @@ export const FomoSlider: React.FC = () => {
             badgeEn: 'AI SEARCH & GEO WEBSITES',
             statRu: 'Готовность сайта к выдаче в ответах нейросетей',
             statEn: 'Full GEO readiness for ChatGPT & Gemini answers',
-            image: '/assets/dubai_villa_premium.png',
+            image: '/assets/tech_llm_citation.png',
             overlayTitleRu: '🤖 ИИ-ПОИСК ВМЕСТО GOOGLE',
             overlayTitleEn: '🤖 AI OVERVIEW OVERTAKE',
             overlayTextRu: 'ИИ НЕ видят стандартные сайты',
@@ -123,7 +123,7 @@ export const FomoSlider: React.FC = () => {
             badgeEn: 'REPEAT SALES & SYSTEM',
             statRu: 'Поток повторных продаж без трат на рекламу',
             statEn: 'Continuous repeat sales with zero extra ad spend',
-            image: '/assets/sherlock_cars.png',
+            image: '/assets/cafe_mobile_payment.png',
             overlayTitleRu: '🔄 УТЕЧКА КЛИЕНТОВ ПОСЛЕ ПОКУПКИ',
             overlayTitleEn: '🔄 CLIENT CHURN AFTER 1ST VISIT',
             overlayTextRu: 'Разовые покупки съедают LTV',
@@ -147,7 +147,7 @@ export const FomoSlider: React.FC = () => {
             badgeEn: 'AD AUCTION DRAIN',
             statRu: 'Получение клиентов в обход рекламных торгов',
             statEn: 'Client acquisition bypassing overheated ad bidding',
-            image: '/assets/monaco_yacht_premium.png',
+            image: '/assets/ad_auction_trap.png',
             overlayTitleRu: '🔥 АУКЦИОННЫЙ ТУПИК',
             overlayTitleEn: '🔥 AD AUCTION DEAD-END',
             overlayTextRu: 'Перегретые торги с гигантами рынка',
@@ -331,10 +331,10 @@ export const FomoSlider: React.FC = () => {
                                     alt={isRu ? currentSlide.categoryRu : currentSlide.categoryEn}
                                     className="w-full h-full object-cover transition-transform duration-700 group-hover/img:scale-105"
                                 />
-                                <div className="absolute inset-0 bg-gradient-to-t from-[#0d0d12] via-black/40 to-transparent opacity-90" />
+                                <div className="absolute inset-0 bg-gradient-to-t from-[#0d0d12] via-black/40 to-transparent opacity-30 sm:opacity-90 pointer-events-none" />
 
                                 {/* Floating Emotional HUD Card */}
-                                <div className="absolute top-4 left-4 right-4 bg-black/85 backdrop-blur-md p-3.5 rounded-xl border border-red-500/40 space-y-1.5 shadow-xl">
+                                <div className="hidden sm:block absolute top-4 left-4 right-4 bg-black/85 backdrop-blur-md p-3.5 rounded-xl border border-red-500/40 space-y-1.5 shadow-xl">
                                     <div className="flex items-center justify-between">
                                         <span className="text-[10px] font-mono font-black text-red-400 uppercase tracking-wider">
                                             {isRu ? currentSlide.overlayTitleRu : currentSlide.overlayTitleEn}
@@ -349,7 +349,7 @@ export const FomoSlider: React.FC = () => {
                                 </div>
 
                                 {/* Bottom Solution Highlight Overlay */}
-                                <div className="absolute bottom-3 left-3 right-3 bg-black/90 backdrop-blur-md p-3 rounded-xl border border-[#ffe600]/60 space-y-1">
+                                <div className="hidden sm:block absolute bottom-3 left-3 right-3 bg-black/90 backdrop-blur-md p-3 rounded-xl border border-[#ffe600]/60 space-y-1">
                                     <span className="text-xs font-mono font-black text-[#ffe600] block text-glow-yellow">
                                         {isRu ? currentSlide.overlayHighlightRu : currentSlide.overlayHighlightEn}
                                     </span>
