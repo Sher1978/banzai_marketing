@@ -523,9 +523,9 @@ export const FounderGuideSection: React.FC = () => {
                     </div>
 
                     {/* Infinite Horizontal Auto-Scrolling Marquee Slider */}
-                    <div className="w-full relative z-10 py-4 select-none">
-                        <div className="hidden sm:block absolute inset-y-0 left-0 w-12 sm:w-24 bg-gradient-to-r from-[#070709] to-transparent z-20 pointer-events-none" />
-                        <div className="hidden sm:block absolute inset-y-0 right-0 w-12 sm:w-24 bg-gradient-to-l from-[#070709] to-transparent z-20 pointer-events-none" />
+                    <div className="w-full relative z-10 overflow-hidden py-4 select-none">
+                        <div className="absolute inset-y-0 left-0 w-12 sm:w-24 bg-gradient-to-r from-[#070709] to-transparent z-20 pointer-events-none" />
+                        <div className="absolute inset-y-0 right-0 w-12 sm:w-24 bg-gradient-to-l from-[#070709] to-transparent z-20 pointer-events-none" />
 
                         <div
                             ref={containerRef}
@@ -536,63 +536,11 @@ export const FounderGuideSection: React.FC = () => {
                             onTouchStart={handleTouchStart}
                             onTouchEnd={handleTouchEnd}
                             onScroll={handleScroll}
-                            className="flex flex-col sm:flex-row gap-8 sm:gap-8 overflow-y-visible sm:overflow-x-auto sm:scrollbar-hide sm:no-scrollbar px-2 sm:px-4 sm:cursor-grab sm:active:cursor-grabbing py-2"
+                            className="flex gap-4 sm:gap-8 overflow-x-auto scrollbar-hide no-scrollbar [&::-webkit-scrollbar]:hidden px-2 sm:px-4 cursor-grab active:cursor-grabbing py-2"
                         >
-                            {/* We map over original portfolioCases twice but on mobile we only need one set, though CSS can't easily trim an array map. However, we can just let it show twice, or we can slice it. Let's slice for mobile using a responsive class trick or just map the duplicated array but with a vertical flex layout */}
-                            {[...portfolioCases, ...portfolioCases].slice(0, 5).map((item, idx) => (
-                                <div
-                                    key={`mob-${idx}`}
-                                    onClick={(e) => {
-                                        if (isDraggingRef.current) {
-                                            e.preventDefault();
-                                            return;
-                                        }
-                                        setSelectedCase(item);
-                                    }}
-                                    className="sm:hidden group w-full bg-[#0d0d12] border-2 border-white/10 hover:border-[#ffe600] rounded-3xl overflow-hidden transition-all duration-300 hover:shadow-[0_0_35px_rgba(255,230,0,0.3)] cursor-pointer flex flex-col justify-between"
-                                >
-                                    {/* Large Preview Image Container */}
-                                    <div className="relative w-full h-[220px] overflow-hidden">
-                                        <img
-                                            src={item.image}
-                                            alt={item.title}
-                                            className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                                        />
-                                        <div className="absolute top-3 right-3 bg-black/85 backdrop-blur-md px-3 py-1 rounded-lg text-[10px] font-mono text-[#ffe600] font-bold border border-white/15 uppercase tracking-wider">
-                                            {item.badge}
-                                        </div>
-                                    </div>
-
-                                    <div className="p-6 space-y-4 flex-grow flex flex-col justify-between">
-                                        <div className="space-y-2">
-                                            <h4 className="text-xl font-bold text-white group-hover:text-[#ffe600] transition-colors uppercase tracking-tight">
-                                                {item.title}
-                                            </h4>
-                                            <p className="text-xs text-white/70 line-clamp-2 font-medium leading-relaxed">
-                                                {isRu ? item.descRu : item.descEn}
-                                            </p>
-                                        </div>
-
-                                        <div className="pt-4 border-t border-white/10 flex items-center justify-between">
-                                            <div>
-                                                <span className="text-[10px] font-mono text-white/40 block uppercase">
-                                                    {isRu ? 'РОСТ ТРАФИКА' : 'TRAFFIC GROWTH'}
-                                                </span>
-                                                <span className="text-xl font-bold text-[#ffe600]">
-                                                    {item.metric}
-                                                </span>
-                                            </div>
-                                            <div className="w-10 h-10 rounded-full bg-[#ffe600]/10 flex items-center justify-center group-hover:bg-[#ffe600] transition-colors">
-                                                <ArrowRight size={18} className="text-[#ffe600] group-hover:text-black" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            ))}
-
                             {[...portfolioCases, ...portfolioCases].map((item, idx) => (
                                 <div
-                                    key={`desk-${idx}`}
+                                    key={idx}
                                     onClick={(e) => {
                                         if (isDraggingRef.current) {
                                             e.preventDefault();
@@ -600,7 +548,7 @@ export const FounderGuideSection: React.FC = () => {
                                         }
                                         setSelectedCase(item);
                                     }}
-                                    className="hidden sm:flex group flex-shrink-0 w-[285px] sm:w-[440px] bg-[#0d0d12] border-2 border-white/10 hover:border-[#ffe600] rounded-3xl overflow-hidden transition-all duration-300 hover:shadow-[0_0_35px_rgba(255,230,0,0.3)] cursor-pointer flex-col justify-between"
+                                    className="group flex-shrink-0 w-[285px] sm:w-[440px] bg-[#0d0d12] border-2 border-white/10 hover:border-[#ffe600] rounded-3xl overflow-hidden transition-all duration-300 hover:shadow-[0_0_35px_rgba(255,230,0,0.3)] cursor-pointer flex flex-col justify-between"
                                 >
                                     {/* Large Preview Image Container */}
                                     <div className="relative w-full h-[220px] sm:h-[280px] overflow-hidden">
