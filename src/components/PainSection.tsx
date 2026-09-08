@@ -20,7 +20,8 @@ const PainSection: React.FC = () => {
     const scale = useTransform(scrollYProgress, [0.4, 0.7], [1, 2.2]);
     const opacityValue = useTransform(scrollYProgress, [0.3, 0.5, 0.8], [0, 1, 0]);
 
-    const bullets = t('pain.bullets', { returnObjects: true }) as Array<{ bold: string; subtext: string; highlight?: boolean }>;
+    const rawBullets = t('pain.bullets', { returnObjects: true });
+    const bullets = (Array.isArray(rawBullets) ? rawBullets : []) as Array<{ bold: string; subtext: string; highlight?: boolean }>;
 
     return (
         <section

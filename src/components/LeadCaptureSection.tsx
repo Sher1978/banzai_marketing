@@ -88,10 +88,9 @@ const LeadCaptureSection: React.FC = () => {
                         <div className="relative">
                             <textarea
                                 name="message"
-                                required
                                 rows={4}
                                 className="w-full bg-black/60 border border-white/10 rounded-lg px-4 py-4 text-white placeholder-white/30 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all font-mono text-sm resize-none"
-                                placeholder={t('contact.form.message')}
+                                placeholder={t('contact.form.message') + ' (необязательно / optional)'}
                             ></textarea>
                         </div>
 

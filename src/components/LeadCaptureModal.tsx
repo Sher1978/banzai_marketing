@@ -42,6 +42,18 @@ const LeadCaptureModal: React.FC<LeadCaptureModalProps> = ({ isOpen, onClose }) 
         const formData = new FormData(form);
 
         try {
+            // Also post to OutRich Telegram Lead API
+            fetch("/api/outrich-lead", {
+                method: "POST",
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    name: formData.get("name"),
+                    contact: formData.get("email"),
+                    message: formData.get("message") || "Не указано",
+                    source: "OutRich Lead Modal"
+                })
+            }).catch(e => console.error(e));
+
             const res = await fetch("https://formsubmit.co/ajax/0451611@gmail.com", {
                 method: "POST",
                 headers: {
@@ -128,10 +140,9 @@ const LeadCaptureModal: React.FC<LeadCaptureModalProps> = ({ isOpen, onClose }) 
                             <div className="relative">
                                 <textarea
                                     name="message"
-                                    required
                                     rows={3}
                                     className="w-full bg-black/60 border border-white/10 rounded-lg px-4 py-4 text-white placeholder-white/30 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all font-mono text-sm resize-none"
-                                    placeholder={t('contact.form.message')}
+                                    placeholder={t('contact.form.message') + ' (необязательно / optional)'}
                                 ></textarea>
                             </div>
 

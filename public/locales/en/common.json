@@ -120,26 +120,26 @@
         }
     },
     "contact": {
-        "title": "INITIATE PROTOCOL.",
-        "subtitle": "Leave a request for a consultation and get an effective business promotion strategy in 2026",
+        "title": "BOOK STRATEGY AUDIT",
+        "subtitle": "Leave a request to get a 15-minute lead generation plan for Google Maps & AI Overview",
         "form": {
-            "name": "YOUR_NAME",
-            "email": "COMM_LINK (EMAIL)",
-            "message": "DIRECTIVE (MESSAGE)",
-            "submit": "TRANSMIT DATA",
-            "success": "DATA TRANSMITTED. STANDBY.",
-            "error": "SYSTEM ERROR. RETRY."
+            "name": "Your Name",
+            "email": "Telegram / WhatsApp / Phone / Email",
+            "message": "Message (optional)",
+            "submit": "BOOK STRATEGY AUDIT",
+            "success": "Request received. We will contact you within 15 minutes.",
+            "error": "Submission error. Please try again."
         }
     },
     "footer_cta": {
-        "title": "Unleash the sword. Start dominating.",
+        "title": "Build your own lead generation system.",
         "bullets": [
             {
-                "bold": "Stop feeding the platforms.",
-                "subtext": "Stop being a sponsor for advertising giants. Start taking your profit back."
+                "bold": "Stop overpaying for ads.",
+                "subtext": "Stop draining budget on inflating ad auctions."
             }
         ],
-        "button": "LAUNCH BANZAI PROTOCOL"
+        "button": "BOOK STRATEGY AUDIT"
     },
     "solution": {
         "badge": "Our Solution",

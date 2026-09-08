@@ -15,8 +15,11 @@
   --color-bg-dubai: #090807;
   --color-surface-dubai: #12100e;
 
-  --font-display: "Space Grotesk", sans-serif;
-  --font-sans: "Space Grotesk", sans-serif;
+  --color-neon-yellow: #ffe600;
+  --color-neon-yellow-glow: rgba(255, 230, 0, 0.45);
+
+  --font-display: var(--font-inter), "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-sans: var(--font-inter), "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 
   --background-image-neon-gradient: linear-gradient(135deg, #a855f7 0%, #06b6d4 100%);
   --background-image-night-gradient: linear-gradient(180deg, #050507 0%, #0a0a0e 100%);
@@ -25,6 +28,7 @@
   --background-image-gold-gradient: linear-gradient(135deg, #e6d3b3 0%, #c5a880 50%, #8c714c 100%);
 
   --shadow-neon-glow: 0 0 20px rgba(168, 85, 247, 0.4), 0 0 40px rgba(6, 182, 212, 0.2);
+  --shadow-neon-yellow: 0 0 25px rgba(255, 230, 0, 0.45);
   --shadow-neon-border: 0 0 5px rgba(168, 85, 247, 0.5), inset 0 0 5px rgba(168, 85, 247, 0.2);
   --shadow-neon-red: 0 0 20px rgba(220, 38, 38, 0.6), 0 0 40px rgba(220, 38, 38, 0.3);
   --shadow-gold-glow: 0 0 20px rgba(197, 168, 128, 0.3), 0 0 40px rgba(140, 113, 76, 0.15);
@@ -32,6 +36,107 @@
 }
 
 @layer utilities {
+  .bg-neon-yellow {
+    background-color: #ffe600 !important;
+  }
+
+  .text-neon-yellow {
+    color: #ffe600 !important;
+  }
+
+  .border-neon-yellow {
+    border-color: #ffe600 !important;
+  }
+
+  .shadow-neon-yellow {
+    box-shadow: 0 0 25px rgba(255, 230, 0, 0.45) !important;
+  }
+
+  .shadow-neon-yellow-sm {
+    box-shadow: 0 0 12px rgba(255, 230, 0, 0.3) !important;
+  }
+
+  .neon-yellow-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffe600 !important;
+    color: #000000 !important;
+    font-weight: 900 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    padding: 0.35rem 1rem !important;
+    border-radius: 9999px !important;
+    box-shadow: 0 0 20px rgba(255, 230, 0, 0.45) !important;
+  }
+
+  .text-glow-yellow {
+    text-shadow: 0 0 10px rgba(255, 230, 0, 0.8), 0 0 25px rgba(255, 230, 0, 0.4);
+  }
+
+  /* iOS 26 Glassmorphism & Visual Separation Utilities */
+  .ios-glass-card {
+    background: rgba(13, 14, 19, 0.75) !important;
+    backdrop-filter: blur(28px) saturate(190%) !important;
+    -webkit-backdrop-filter: blur(28px) saturate(190%) !important;
+    border: 1px solid rgba(255, 230, 0, 0.25) !important;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 230, 0, 0.15) !important;
+  }
+
+  .ios-glass-yellow-highlight {
+    background: linear-gradient(135deg, rgba(255, 230, 0, 0.12) 0%, rgba(20, 20, 26, 0.85) 100%) !important;
+    backdrop-filter: blur(32px) saturate(200%) !important;
+    -webkit-backdrop-filter: blur(32px) saturate(200%) !important;
+    border: 2px solid #ffe600 !important;
+    box-shadow: 0 0 60px rgba(255, 230, 0, 0.28), inset 0 1px 0 rgba(255, 230, 0, 0.4) !important;
+  }
+
+  /* Structural / Texture Background Utilities for Alternating Sections */
+  .bg-structural-carbon {
+    background-color: #07070a !important;
+    background-image: 
+      radial-gradient(circle at 50% 50%, rgba(255, 230, 0, 0.08) 0%, transparent 60%),
+      linear-gradient(135deg, rgba(255, 230, 0, 0.03) 25%, transparent 25%),
+      linear-gradient(225deg, rgba(255, 230, 0, 0.03) 25%, transparent 25%),
+      linear-gradient(45deg, rgba(255, 230, 0, 0.03) 25%, transparent 25%),
+      linear-gradient(315deg, rgba(255, 230, 0, 0.03) 25%, #07070a 25%);
+    background-position: 0 0, 10px 0, 10px -10px, 0px 10px, 0px 0px;
+    background-size: 100% 100%, 20px 20px, 20px 20px, 20px 20px, 20px 20px;
+  }
+
+  .bg-structural-mesh {
+    background-color: #08080c !important;
+    background-image: 
+      radial-gradient(rgba(255, 230, 0, 0.12) 1px, transparent 1px),
+      radial-gradient(rgba(255, 255, 255, 0.05) 1px, #08080c 1px);
+    background-size: 24px 24px;
+    background-position: 0 0, 12px 12px;
+  }
+
+  /* Pulsing Neon Yellow Outline Highlight */
+  .pulsing-neon-yellow-outline {
+    border: 2px solid #ffe600 !important;
+    animation: pulsing-neon-border 2.5s ease-in-out infinite !important;
+  }
+
+  @keyframes pulsing-neon-border {
+    0%, 100% {
+      border-color: #ffe600;
+      box-shadow: 0 0 20px rgba(255, 230, 0, 0.45), inset 0 0 15px rgba(255, 230, 0, 0.2);
+    }
+    50% {
+      border-color: #ffffa0;
+      box-shadow: 0 0 45px rgba(255, 230, 0, 0.9), inset 0 0 25px rgba(255, 230, 0, 0.45);
+    }
+  }
+
+  /* Strict Mobile Overflow Lock */
+  html, body {
+    overflow-x: hidden !important;
+    max-width: 100vw !important;
+    width: 100% !important;
+    position: relative !important;
+  }
   .text-glow-gold {
     text-shadow: 0 0 10px rgba(197, 168, 128, 0.7), 0 0 20px rgba(140, 113, 76, 0.4);
   }

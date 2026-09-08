@@ -16,7 +16,8 @@ const stepImages = [
  */
 const ProcessSection: React.FC = () => {
     const { t } = useTranslation();
-    const steps = t('process.steps', { returnObjects: true }) as Array<{ title: string; subtext: string }>;
+    const rawSteps = t('process.steps', { returnObjects: true });
+    const steps = (Array.isArray(rawSteps) ? rawSteps : []) as Array<{ title: string; subtext: string }>;
 
     return (
         <section className="relative py-16 md:py-32 px-6 bg-black overflow-hidden">

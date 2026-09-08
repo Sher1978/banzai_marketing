@@ -8,6 +8,20 @@ const nextConfig: NextConfig = {
     formats: ['image/avif', 'image/webp'],
     minimumCacheTTL: 31536000,
   },
+  async rewrites() {
+    return [
+      {
+        source: '/',
+        has: [
+          {
+            type: 'host',
+            value: '(.*outrich\\.online|.*outrich-dubai)',
+          },
+        ],
+        destination: '/outrich-dubai',
+      },
+    ];
+  },
 };
 
 export default nextConfig;

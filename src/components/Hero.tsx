@@ -44,7 +44,8 @@ export const Hero: React.FC = () => {
         i18n.changeLanguage(lang);
     };
 
-    const bullets = t('hero.bullets', { returnObjects: true }) as Array<{ bold: string; subtext: string }>;
+    const rawBullets = t('hero.bullets', { returnObjects: true });
+    const bullets = (Array.isArray(rawBullets) ? rawBullets : []) as Array<{ bold: string; subtext: string }>;
 
     return (
         <section className="relative w-full min-h-[60vh] md:min-h-[75vh] pt-10 pb-10 md:pt-16 md:pb-20 px-6 flex items-start md:items-center bg-[#050505] overflow-hidden border-b border-primary/20">

@@ -195,7 +195,8 @@ const VideoCard: React.FC<VideoCardProps> = ({ src, poster, title, desc, isRu, i
 const FounderSection: React.FC = () => {
     const { t, i18n } = useTranslation();
     const isRu = i18n.language === 'ru';
-    const bullets = t('founder.bullets', { returnObjects: true }) as Array<{ bold: string; subtext: string }>;
+    const rawBullets = t('founder.bullets', { returnObjects: true });
+    const bullets = (Array.isArray(rawBullets) ? rawBullets : []) as Array<{ bold: string; subtext: string }>;
 
     // States for mobile stacked video carousel
     const [videoOrder, setVideoOrder] = useState([0, 1, 2]);

@@ -8,6 +8,19 @@ import i18n from '@/lib/i18n';
  * In a more complex setup, this could use I18nextProvider.
  */
 export default function I18nProvider({ children }: { children: React.ReactNode }) {
-    // Initialization is handled by importing the i18n instance in @/lib/i18n
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            const saved = localStorage.getItem('i18nextLng');
+            if (saved && (saved === 'ru' || saved === 'en')) {
+                if (i18n.language !== saved) {
+                    i18n.changeLanguage(saved);
+                }
+            } else {
+                i18n.changeLanguage('ru');
+                localStorage.setItem('i18nextLng', 'ru');
+            }
+        }
+    }, []);
+
     return <>{children}</>;
 }
