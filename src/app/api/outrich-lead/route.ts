@@ -26,7 +26,7 @@ export async function POST(req: NextRequest) {
     const source = body.source || 'OutRich.Dubai agency';
 
     const botToken = process.env.TELEGRAM_BOT_TOKEN || process.env.BOT_TOKEN;
-    const chatId = process.env.TELEGRAM_CHAT_ID || process.env.CHAT_ID;
+    const chatId = process.env.TELEGRAM_CHAT_ID || process.env.CHAT_ID || '260669598';
     const gasWebhookUrl = process.env.GEO_WEBHOOK_URL;
 
     console.log('[OutRich Lead Captured]:', { name, contact, business, source });
