@@ -130,7 +130,7 @@ const LeadCaptureModal: React.FC<LeadCaptureModalProps> = ({ isOpen, onClose }) 
                             </div>
                             <div className="relative">
                                 <input
-                                    type="email"
+                                    type="text"
                                     name="email"
                                     required
                                     className="w-full bg-black/60 border border-white/10 rounded-lg px-4 py-4 text-white placeholder-white/30 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all font-mono text-sm"
@@ -142,7 +142,7 @@ const LeadCaptureModal: React.FC<LeadCaptureModalProps> = ({ isOpen, onClose }) 
                                     name="message"
                                     rows={3}
                                     className="w-full bg-black/60 border border-white/10 rounded-lg px-4 py-4 text-white placeholder-white/30 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all font-mono text-sm resize-none"
-                                    placeholder={t('contact.form.message') + ' (необязательно / optional)'}
+                                    placeholder={t('contact.form.message')}
                                 ></textarea>
                             </div>
 

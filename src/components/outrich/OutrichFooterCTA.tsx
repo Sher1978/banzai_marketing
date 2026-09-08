@@ -54,12 +54,12 @@ export const OutrichFooterCTA: React.FC = () => {
                             {isRu ? (
                                 <>
                                     Перестаньте платить за каждый клик. <br />
-                                    <span className="text-[#ffe600] text-glow-yellow">Постройте свою систему.</span>
+                                    <span className="text-[#ffe600] text-glow-yellow">Настройте перехват людей.</span>
                                 </>
                             ) : (
                                 <>
                                     Stop paying per click. <br />
-                                    <span className="text-[#ffe600] text-glow-yellow">Build your own system.</span>
+                                    <span className="text-[#ffe600] text-glow-yellow">Setup your client interception system.</span>
                                 </>
                             )}
                         </h2>

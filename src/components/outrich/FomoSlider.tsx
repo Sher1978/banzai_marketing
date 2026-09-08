@@ -27,7 +27,7 @@ export const FomoSlider: React.FC = () => {
             badgeEn: 'LOCAL TRAFFIC',
             statRu: '80% кликов в Top-3',
             statEn: '80% clicks in Top-3',
-            image: '/assets/dubai_geo_premium.png'
+            image: '/assets/map_outreach_revo_banner.png'
         },
         {
             id: 1,
@@ -44,7 +44,7 @@ export const FomoSlider: React.FC = () => {
             badgeEn: 'CHAT INTERCEPTION',
             statRu: 'Реакция за 12 мс',
             statEn: '12ms instant ping',
-            image: '/assets/tech_llm_citation.png'
+            image: '/assets/lead_radar_interception.png'
         },
         {
             id: 2,
@@ -61,7 +61,7 @@ export const FomoSlider: React.FC = () => {
             badgeEn: 'DIRECT CONTACT',
             statRu: 'Прямой выход на владельцев',
             statEn: 'Direct Owner Reach',
-            image: '/assets/tech_knowledge_graph.png'
+            image: '/assets/hero_dubai_ai_skyline.png'
         }
     ];
 
