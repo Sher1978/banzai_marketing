@@ -46,16 +46,18 @@ export const StoryBrandPlanSection: React.FC = () => {
                 <div className="text-center space-y-4 max-w-3xl mx-auto">
                     <div className="inline-flex items-center gap-2 neon-yellow-badge text-[10px]">
                         <ShieldCheck size={14} className="fill-black" />
-                        <span>{isRu ? 'ПРОСТОЙ 3-ШАГОВЫЙ ПЛАН' : 'SIMPLE 3-STEP PLAN'}</span>
+                        <span>{isRu ? 'С ЧЕГО НАЧАТЬ // 3-ШАГОВЫЙ ПЛАН' : 'WHERE TO START // 3-STEP PLAN'}</span>
                     </div>
                     <h2 className="text-3xl sm:text-5xl font-bold text-white uppercase tracking-tight">
                         {isRu ? (
                             <>
-                                Пошаговый план <span className="text-[#ffe600] text-glow-yellow">запуска системы</span>
+                                С чего начать: <br className="hidden sm:block" />
+                                <span className="text-[#ffe600] text-glow-yellow">Пошаговый план запуска системы</span>
                             </>
                         ) : (
                             <>
-                                Step-by-Step Plan <span className="text-[#ffe600] text-glow-yellow">To Launch The System</span>
+                                Where to start: <br className="hidden sm:block" />
+                                <span className="text-[#ffe600] text-glow-yellow">Step-by-step launch plan</span>
                             </>
                         )}
                     </h2>
