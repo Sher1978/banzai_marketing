@@ -246,35 +246,31 @@ export const FomoSlider: React.FC = () => {
                     })}
                 </div>
 
-                {/* Mobile Horizontal Scroll Bar + Slide Indicator (Visible only on Mobile) */}
-                <div className="sm:hidden flex items-center justify-between gap-2 bg-[#0a0a0e] p-2 rounded-2xl border border-white/10">
-                    <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-1 px-1">
-                        {slides.map((slide, idx) => {
-                            const isActive = activeTab === idx;
-                            return (
-                                <button
-                                    key={idx}
-                                    onClick={() => setActiveTab(idx)}
-                                    className={`px-3 py-1.5 rounded-full text-[10px] font-black uppercase tracking-wider whitespace-nowrap transition-all ${
-                                        isActive
-                                            ? 'bg-[#ffe600] text-black'
-                                            : 'bg-[#14141a] text-white/60 border border-white/5'
-                                    }`}
-                                >
-                                    {idx + 1}. {isRu ? slide.categoryRu.split(' ')[0] : slide.categoryEn.split(' ')[0]}
-                                </button>
-                            );
-                        })}
+                {/* Sleek Mobile Navigation Pill Control (Replaces scrollbar) */}
+                <div className="sm:hidden flex items-center justify-between gap-3 bg-[#0d0d14] border border-[#ffe600]/40 px-4 py-2.5 rounded-full shadow-[0_0_20px_rgba(255,230,0,0.15)]">
+                    <button
+                        onClick={handlePrev}
+                        className="w-8 h-8 rounded-full bg-[#ffe600]/10 border border-[#ffe600]/50 flex items-center justify-center text-[#ffe600] active:scale-95 transition-transform cursor-pointer"
+                        aria-label="Previous Slide"
+                    >
+                        <ChevronLeft size={18} />
+                    </button>
+
+                    <div className="text-center font-mono text-[11px] font-bold text-white uppercase tracking-wider flex items-center gap-2 truncate">
+                        <span className="text-[#ffe600] font-black">{activeTab + 1}/{slides.length}</span>
+                        <span className="text-white/30">•</span>
+                        <span className="text-white/90 truncate max-w-[170px]">
+                            {isRu ? currentSlide.categoryRu : currentSlide.categoryEn}
+                        </span>
                     </div>
-                    <div className="flex items-center gap-1 pl-2 border-l border-white/10 text-white/80 font-mono text-[10px] font-bold flex-shrink-0">
-                        <button onClick={handlePrev} className="p-1 text-[#ffe600]">
-                            <ChevronLeft size={16} />
-                        </button>
-                        <span>{activeTab + 1}/{slides.length}</span>
-                        <button onClick={handleNext} className="p-1 text-[#ffe600]">
-                            <ChevronRight size={16} />
-                        </button>
-                    </div>
+
+                    <button
+                        onClick={handleNext}
+                        className="w-8 h-8 rounded-full bg-[#ffe600]/10 border border-[#ffe600]/50 flex items-center justify-center text-[#ffe600] active:scale-95 transition-transform cursor-pointer"
+                        aria-label="Next Slide"
+                    >
+                        <ChevronRight size={18} />
+                    </button>
                 </div>
 
                 {/* Animated Slide Showcase Card */}
@@ -286,7 +282,14 @@ export const FomoSlider: React.FC = () => {
                             animate={{ opacity: 1, x: 0 }}
                             exit={{ opacity: 0, x: -20 }}
                             transition={{ duration: 0.3 }}
-                            className="grid lg:grid-cols-12 gap-6 md:gap-8 items-center"
+                            drag="x"
+                            dragConstraints={{ left: 0, right: 0 }}
+                            dragElastic={0.2}
+                            onDragEnd={(_, { offset }) => {
+                                if (offset.x < -50) handleNext();
+                                else if (offset.x > 50) handlePrev();
+                            }}
+                            className="grid lg:grid-cols-12 gap-6 md:gap-8 items-center touch-pan-y"
                         >
                             {/* Left Info Column */}
                             <div className="lg:col-span-7 space-y-4 sm:space-y-6">
@@ -361,6 +364,20 @@ export const FomoSlider: React.FC = () => {
                             </div>
                         </motion.div>
                     </AnimatePresence>
+
+                    {/* Mobile Bottom Progress Dots */}
+                    <div className="sm:hidden flex items-center justify-center gap-2 pt-3">
+                        {slides.map((_, idx) => (
+                            <button
+                                key={idx}
+                                onClick={() => setActiveTab(idx)}
+                                className={`h-1.5 rounded-full transition-all duration-300 ${
+                                    activeTab === idx ? 'w-6 bg-[#ffe600]' : 'w-2 bg-white/20'
+                                }`}
+                                aria-label={`Go to slide ${idx + 1}`}
+                            />
+                        ))}
+                    </div>
                 </div>
             </div>
         </section>
