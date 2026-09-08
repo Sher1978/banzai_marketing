@@ -163,8 +163,8 @@ export const ProductsTechSection: React.FC = () => {
                                         </div>
                                         <p className="text-xs sm:text-sm text-white/90 leading-relaxed font-medium">
                                             {isRu
-                                                ? 'Оцифровываем ваших клиентов. Они получают бонусы в Telegram, оставляют вам 5 звезд и возвращаются снова.'
-                                                : 'Digitize your customers. They receive Telegram bonuses, leave 5-star reviews, and come back.'}
+                                                ? 'Оцифровываем ваших клиентов. Они получают бонусы, оставляют вам 5 звезд и возвращаются снова.'
+                                                : 'Digitize your customers. They receive bonuses, leave 5-star reviews, and come back.'}
                                         </p>
                                     </div>
                                 </div>
