@@ -130,6 +130,21 @@
     }
   }
 
+  /* Universal Scrollbar Hide Utilities for horizontal sliders across browsers */
+  .scrollbar-hide::-webkit-scrollbar,
+  .no-scrollbar::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    background: transparent !important;
+  }
+
+  .scrollbar-hide,
+  .no-scrollbar {
+    -ms-overflow-style: none !important; /* IE and Edge */
+    scrollbar-width: none !important; /* Firefox */
+  }
+
   /* Strict Mobile Overflow Lock */
   html, body {
     overflow-x: hidden !important;

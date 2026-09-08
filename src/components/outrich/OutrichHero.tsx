@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ArrowRight, Search, ShieldCheck, Sparkles, Zap, MapPin } from 'lucide-react';
+import { ArrowRight, Search, ShieldCheck, Sparkles, Zap, MapPin, AlertTriangle } from 'lucide-react';
 import '@/lib/i18n';
 import { openLeadModal } from '../ModalController';
 import GoogleProfileAuditModal from './GoogleProfileAuditModal';
@@ -12,10 +12,32 @@ export const OutrichHero: React.FC = () => {
     const isRu = i18n.language === 'ru';
 
     const [auditQuery, setAuditQuery] = useState('');
+    const [auditError, setAuditError] = useState('');
     const [isAuditModalOpen, setIsAuditModalOpen] = useState(false);
+
+    const isGoogleMapsUrl = (url: string) => {
+        const cleaned = url.trim().toLowerCase();
+        return (
+            cleaned.includes('google.com/maps') ||
+            cleaned.includes('maps.google') ||
+            cleaned.includes('maps.app.goo.gl') ||
+            cleaned.includes('goo.gl/maps') ||
+            cleaned.includes('maps.app') ||
+            (cleaned.startsWith('http') && cleaned.includes('maps'))
+        );
+    };
 
     const handleAuditSubmit = (e: React.FormEvent) => {
         e.preventDefault();
+        if (!isGoogleMapsUrl(auditQuery)) {
+            setAuditError(
+                isRu
+                    ? 'Принимаются только прямые ссылки на Google Maps (например: https://maps.app.goo.gl/...)'
+                    : 'Only direct Google Maps profile URLs are accepted (e.g. https://maps.app.goo.gl/...)'
+            );
+            return;
+        }
+        setAuditError('');
         setIsAuditModalOpen(true);
     };
 
@@ -124,27 +146,41 @@ export const OutrichHero: React.FC = () => {
 
                         {/* Audit Form */}
                         <form onSubmit={handleAuditSubmit} className="space-y-4">
-                            <div className="relative">
-                                <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-white/40" size={18} />
-                                <input
-                                    type="text"
-                                    required
-                                    value={auditQuery}
-                                    onChange={(e) => setAuditQuery(e.target.value)}
-                                    placeholder={
-                                        isRu
-                                            ? 'Название компании или ссылка на Google Карты...'
-                                            : 'Business name or Google Maps URL...'
-                                    }
-                                    className="w-full bg-[#14141a] border border-[#ffe600]/40 rounded-xl pl-11 pr-4 py-4 text-xs sm:text-sm text-white placeholder-white/40 focus:border-[#ffe600] focus:ring-2 focus:ring-[#ffe600]/20 outline-none transition-all"
-                                />
+                            <div className="space-y-2">
+                                <div className="relative">
+                                    <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-white/40" size={18} />
+                                    <input
+                                        type="text"
+                                        required
+                                        value={auditQuery}
+                                        onChange={(e) => {
+                                            setAuditQuery(e.target.value);
+                                            if (auditError) setAuditError('');
+                                        }}
+                                        placeholder={
+                                            isRu
+                                                ? 'Ссылка на Google Maps (https://maps.app.goo.gl/...)'
+                                                : 'Google Maps Profile URL (https://maps.app.goo.gl/...)'
+                                        }
+                                        className={`w-full bg-[#14141a] border ${
+                                            auditError ? 'border-red-500 ring-2 ring-red-500/30' : 'border-[#ffe600]/40 focus:border-[#ffe600]'
+                                        } rounded-xl pl-11 pr-4 py-4 text-xs sm:text-sm text-white placeholder-white/40 focus:ring-2 focus:ring-[#ffe600]/20 outline-none transition-all`}
+                                    />
+                                </div>
+
+                                {auditError && (
+                                    <div className="bg-red-500/10 border border-red-500/40 p-3 rounded-xl text-xs font-mono text-red-400 font-bold flex items-start gap-2 text-left">
+                                        <AlertTriangle size={16} className="flex-shrink-0 mt-0.5" />
+                                        <span>{auditError}</span>
+                                    </div>
+                                )}
                             </div>
 
                             <button
                                 type="submit"
                                 className="w-full bg-[#ffe600] hover:bg-[#ffff00] text-black font-bold text-xs sm:text-sm py-4 rounded-xl uppercase tracking-wider shadow-[0_0_20px_rgba(255,230,0,0.35)] transition-all duration-300 hover:scale-[1.02] flex items-center justify-center gap-2 cursor-pointer"
                             >
-                                <span>{isRu ? 'Проверить свой бизнес' : 'Audit My Business'}</span>
+                                <span>{isRu ? 'Проверить ссылку' : 'Verify Maps Link'}</span>
                                 <ArrowRight size={16} className="stroke-[3]" />
                             </button>
                         </form>

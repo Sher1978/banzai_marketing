@@ -536,7 +536,7 @@ export const FounderGuideSection: React.FC = () => {
                             onTouchStart={handleTouchStart}
                             onTouchEnd={handleTouchEnd}
                             onScroll={handleScroll}
-                            className="flex gap-8 overflow-x-auto scrollbar-hide px-4 cursor-grab active:cursor-grabbing py-2"
+                            className="flex gap-4 sm:gap-8 overflow-x-auto scrollbar-hide no-scrollbar [&::-webkit-scrollbar]:hidden px-2 sm:px-4 cursor-grab active:cursor-grabbing py-2"
                         >
                             {[...portfolioCases, ...portfolioCases].map((item, idx) => (
                                 <div
@@ -548,7 +548,7 @@ export const FounderGuideSection: React.FC = () => {
                                         }
                                         setSelectedCase(item);
                                     }}
-                                    className="group flex-shrink-0 w-[340px] sm:w-[440px] bg-[#0d0d12] border-2 border-white/10 hover:border-[#ffe600] rounded-3xl overflow-hidden transition-all duration-300 hover:shadow-[0_0_35px_rgba(255,230,0,0.3)] cursor-pointer flex flex-col justify-between"
+                                    className="group flex-shrink-0 w-[285px] sm:w-[440px] bg-[#0d0d12] border-2 border-white/10 hover:border-[#ffe600] rounded-3xl overflow-hidden transition-all duration-300 hover:shadow-[0_0_35px_rgba(255,230,0,0.3)] cursor-pointer flex flex-col justify-between"
                                 >
                                     {/* Large Preview Image Container */}
                                     <div className="relative w-full h-[220px] sm:h-[280px] overflow-hidden">
