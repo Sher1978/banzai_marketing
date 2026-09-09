@@ -88,10 +88,37 @@ export const OutrichHero: React.FC = () => {
                                 ? 'Мы строим системы, которые приводят клиентов бесплатно через алгоритмы Google, ИИ и прямые продажи.'
                                 : 'We build systems that bring clients organically through Google algorithms, AI, and direct sales.'}
                         </p>
-                        <div className="bg-[#ffe600]/10 border-l-4 border-[#ffe600] p-3 rounded-r-xl text-xs md:text-sm text-white/90 font-medium">
-                            {isRu
-                                ? '⚡ Покупка рекламы съедает прибыль, потому что вы соревнуетесь кошельками с гигантами вроде Coca-Cola.'
-                                : '⚡ Buying ad clicks drains profit because you compete with billion-dollar corporate budgets.'}
+                        <div className="bg-red-500/10 border-l-4 border-red-500 p-4 rounded-r-xl text-xs md:text-sm text-white/90 font-medium space-y-3 shadow-[0_0_20px_rgba(239,68,68,0.15)]">
+                            <div className="font-bold text-red-400 uppercase tracking-wider text-[11px] md:text-xs">
+                                {isRu ? '🚨 Прямая реклама съедает прибыль. Факты 2026 года:' : '🚨 Direct ads eat your margin. The 2026 reality:'}
+                            </div>
+                            <ul className="space-y-2">
+                                <li className="flex gap-2">
+                                    <span className="text-red-500 font-bold">•</span>
+                                    <span className="leading-snug">
+                                        {isRu 
+                                            ? <><strong className="text-white">Google Ads:</strong> Клик подорожал на 12–27%. Из-за ИИ-ответов в поиске обычные сайты теряют трафик.</> 
+                                            : <><strong className="text-white">Google Ads:</strong> Clicks are 12-27% more expensive. Google's AI answers are stealing website traffic.</>}
+                                    </span>
+                                </li>
+                                <li className="flex gap-2">
+                                    <span className="text-red-500 font-bold">•</span>
+                                    <span className="leading-snug">
+                                        {isRu 
+                                            ? <><strong className="text-white">Meta Ads:</strong> Цена показов выросла на 20%. Один лид (CPA) обходится в $35–$65, а в B2B — от $120 до $300+.</> 
+                                            : <><strong className="text-white">Meta Ads:</strong> Ad costs are up 20%. A single client (CPA) now costs $35–$65, and $120–$300+ in B2B.</>}
+                                    </span>
+                                </li>
+                            </ul>
+                            <div className="pt-2 mt-2 border-t border-red-500/20 text-white font-semibold leading-snug">
+                                {isRu 
+                                    ? <span className="text-[#ffe600]">Итог:</span> 
+                                    : <span className="text-[#ffe600]">Result:</span>}
+                                {' '}
+                                {isRu 
+                                    ? 'Покупать клики невыгодно — вся маржа уходит площадкам. Мы приводим клиентов в обход дорогой рекламы.' 
+                                    : 'Buying clicks kills your profit. We acquire clients for you outside of expensive ad networks.'}
+                            </div>
                         </div>
                     </div>
 
