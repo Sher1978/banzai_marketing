@@ -10,7 +10,7 @@ export const AuctionTrapSection: React.FC = () => {
     const isRu = i18n.language === 'ru';
 
     return (
-        <section id="auction-trap" className="relative py-20 md:py-32 px-4 sm:px-6 bg-[#070709] border-b border-white/10 overflow-hidden">
+        <section id="auction-trap" className="relative py-10 md:py-16 px-4 sm:px-6 bg-[#070709] border-b border-white/10 overflow-hidden">
             {/* Background cyber grid */}
             <div className="absolute inset-0 cyber-grid opacity-10 pointer-events-none" />
 

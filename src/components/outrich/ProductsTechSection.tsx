@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MapPin, Bot, Radar, MailCheck, ArrowRight, Sparkles, CheckCircle2, ChevronDown, Star, Zap } from 'lucide-react';
+import { MapPin, Bot, Radar, MailCheck, ArrowRight, Sparkles, CheckCircle2, ChevronDown, Star, Battery, Zap } from 'lucide-react';
 import { openLeadModal } from '../ModalController';
 
 export const ProductsTechSection: React.FC = () => {
@@ -24,7 +24,7 @@ export const ProductsTechSection: React.FC = () => {
     };
 
     return (
-        <section id="products" className="relative py-24 md:py-36 px-4 sm:px-6 bg-[#09090e] border-y-4 border-[#ffe600] overflow-hidden my-12">
+        <section id="products" className="relative py-12 md:py-16 px-4 sm:px-6 bg-[#09090e] border-y-4 border-[#ffe600] overflow-hidden my-6">
             {/* Background Glow */}
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_30%,rgba(255,230,0,0.18)_0%,transparent_70%)] pointer-events-none" />
             <div className="absolute inset-0 cyber-grid opacity-20 pointer-events-none" />
@@ -140,6 +140,13 @@ export const ProductsTechSection: React.FC = () => {
                                                 ? 'Выводим ваш бизнес на первые строчки в картах. Человек ищет услугу рядом — видит вас, приходит к вам.'
                                                 : 'We bring your business to Top-3 on Google Maps. People search nearby services, see you, and visit.'}
                                         </p>
+                                        <button
+                                            onClick={(e) => { e.stopPropagation(); openLeadModal("Google Карты"); }}
+                                            className="mt-4 bg-transparent border border-[#ffe600] hover:bg-[#ffe600] hover:text-black text-[#ffe600] font-bold text-xs px-6 py-2 rounded-full uppercase tracking-wider transition-colors inline-flex items-center gap-2"
+                                        >
+                                            <span>{isRu ? 'Записаться на ДЕМО' : 'Book a DEMO'}</span>
+                                            <ArrowRight size={14} className="stroke-[3]" />
+                                        </button>
                                     </div>
 
                                     {/* 2. Сайты для ИИ (GEO) */}
@@ -153,12 +160,19 @@ export const ProductsTechSection: React.FC = () => {
                                                 ? 'Адаптируем ваш сайт так, чтобы ChatGPT или другие нейросети рекомендовали именно вашу компанию, когда им задают вопрос.'
                                                 : 'We adapt your site so ChatGPT and AI models recommend your exact business when asked.'}
                                         </p>
+                                        <button
+                                            onClick={(e) => { e.stopPropagation(); openLeadModal("Сайты для ИИ (GEO)"); }}
+                                            className="mt-4 bg-transparent border border-[#ffe600] hover:bg-[#ffe600] hover:text-black text-[#ffe600] font-bold text-xs px-6 py-2 rounded-full uppercase tracking-wider transition-colors inline-flex items-center gap-2"
+                                        >
+                                            <span>{isRu ? 'Записаться на ДЕМО' : 'Book a DEMO'}</span>
+                                            <ArrowRight size={14} className="stroke-[3]" />
+                                        </button>
                                     </div>
 
                                     {/* 3. Приложение Revo */}
                                     <div className="bg-[#12121a] border-2 border-[#ffe600]/40 p-6 rounded-2xl space-y-4">
                                         <div className="flex items-center gap-3">
-                                            <Star size={22} className="text-[#ffe600]" />
+                                            <Battery size={22} className="text-[#ffe600]" />
                                             <h4 className="text-lg font-bold text-white uppercase">{isRu ? 'Приложение Revo' : 'Revo Ecosystem'}</h4>
                                         </div>
                                         <p className="text-xs sm:text-sm text-white/90 leading-relaxed font-medium">
@@ -166,6 +180,13 @@ export const ProductsTechSection: React.FC = () => {
                                                 ? 'Оцифровываем ваших клиентов. Они получают бонусы, оставляют вам 5 звезд и возвращаются снова.'
                                                 : 'Digitize your customers. They receive bonuses, leave 5-star reviews, and come back.'}
                                         </p>
+                                        <button
+                                            onClick={(e) => { e.stopPropagation(); openLeadModal("Приложение Revo"); }}
+                                            className="mt-4 bg-transparent border border-[#ffe600] hover:bg-[#ffe600] hover:text-black text-[#ffe600] font-bold text-xs px-6 py-2 rounded-full uppercase tracking-wider transition-colors inline-flex items-center gap-2"
+                                        >
+                                            <span>{isRu ? 'Записаться на ДЕМО' : 'Book a DEMO'}</span>
+                                            <ArrowRight size={14} className="stroke-[3]" />
+                                        </button>
                                     </div>
                                 </div>
                             </motion.div>
@@ -255,6 +276,13 @@ export const ProductsTechSection: React.FC = () => {
                                                 ? 'Наш алгоритм круглосуточно читает городские чаты. Кто-то спросил: «Где найти юриста/ресторан/сервис?» — мы моментально отправляем ему ваше предложение.'
                                                 : 'Our algorithm reads local chats 24/7. When someone asks for a service, we instantly send them your tailored proposal.'}
                                         </p>
+                                        <button
+                                            onClick={(e) => { e.stopPropagation(); openLeadModal("Перехват в чатах (LeadRadar)"); }}
+                                            className="mt-4 bg-transparent border border-[#ffe600] hover:bg-[#ffe600] hover:text-black text-[#ffe600] font-bold text-xs px-6 py-2 rounded-full uppercase tracking-wider transition-colors inline-flex items-center gap-2"
+                                        >
+                                            <span>{isRu ? 'Записаться на ДЕМО' : 'Book a DEMO'}</span>
+                                            <ArrowRight size={14} className="stroke-[3]" />
+                                        </button>
                                     </div>
 
                                     {/* Tool 2.2: Прямые письма директорам */}
@@ -268,6 +296,13 @@ export const ProductsTechSection: React.FC = () => {
                                                 ? 'Находим контакты владельцев бизнеса и директоров, собираем информацию о них и отправляем письмо, на которое хочется ответить. Без спама, строго по делу.'
                                                 : 'We find owner and director contacts, gather intelligence, and send emails that get replies. Zero spam, strictly relevant.'}
                                         </p>
+                                        <button
+                                            onClick={(e) => { e.stopPropagation(); openLeadModal("Прямые письма директорам"); }}
+                                            className="mt-4 bg-transparent border border-[#ffe600] hover:bg-[#ffe600] hover:text-black text-[#ffe600] font-bold text-xs px-6 py-2 rounded-full uppercase tracking-wider transition-colors inline-flex items-center gap-2"
+                                        >
+                                            <span>{isRu ? 'Записаться на ДЕМО' : 'Book a DEMO'}</span>
+                                            <ArrowRight size={14} className="stroke-[3]" />
+                                        </button>
                                     </div>
                                 </div>
                             </motion.div>

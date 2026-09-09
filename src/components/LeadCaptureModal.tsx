@@ -9,9 +9,10 @@ import "@/lib/i18n";
 interface LeadCaptureModalProps {
     isOpen: boolean;
     onClose: () => void;
+    productName?: string;
 }
 
-const LeadCaptureModal: React.FC<LeadCaptureModalProps> = ({ isOpen, onClose }) => {
+const LeadCaptureModal: React.FC<LeadCaptureModalProps> = ({ isOpen, onClose, productName }) => {
     const { t } = useTranslation();
     const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
 
@@ -50,7 +51,7 @@ const LeadCaptureModal: React.FC<LeadCaptureModalProps> = ({ isOpen, onClose }) 
                     name: formData.get("name"),
                     contact: formData.get("email"),
                     message: formData.get("message") || "Не указано",
-                    source: "OutRich Lead Modal"
+                    source: productName ? `OutRich Lead Modal - Продукт: ${productName}` : "OutRich Lead Modal"
                 })
             }).catch(e => console.error(e));
 

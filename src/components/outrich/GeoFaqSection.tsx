@@ -67,7 +67,7 @@ export default function GeoFaqSection() {
   };
 
   return (
-    <section className="relative w-full py-20 sm:py-32 bg-[#050507] overflow-hidden border-t border-white/5" id="faq">
+    <section className="relative w-full py-10 sm:py-16 bg-[#050507] overflow-hidden border-t border-white/5" id="faq">
       {/* Background Gradients */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-[#ffe600]/5 blur-[150px] rounded-[100%] pointer-events-none" />
       

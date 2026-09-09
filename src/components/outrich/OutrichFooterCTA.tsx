@@ -38,7 +38,7 @@ export const OutrichFooterCTA: React.FC = () => {
             <div className="absolute inset-0 cyber-grid opacity-15 pointer-events-none" />
 
             {/* Main CTA Container */}
-            <div className="max-w-[1440px] mx-auto px-4 sm:px-6 py-20 md:py-32 relative z-10 space-y-16">
+            <div className="max-w-[1440px] mx-auto px-4 sm:px-6 py-10 md:py-16 relative z-10 space-y-16">
                 <div className="bg-[#0a0a0d] border-2 border-[#ffe600] rounded-3xl p-6 sm:p-12 md:p-16 shadow-[0_0_60px_rgba(255,230,0,0.25)] relative overflow-hidden grid lg:grid-cols-12 gap-12 items-center">
                     {/* Glowing background accent */}
                     <div className="absolute -top-24 -right-24 w-96 h-96 bg-[#ffe600]/10 rounded-full blur-3xl pointer-events-none" />
