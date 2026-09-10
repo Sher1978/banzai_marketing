@@ -53,11 +53,6 @@ export const OutrichHero: React.FC = () => {
 
                     {/* Subtitle & Value Statement */}
                     <div className="space-y-3 max-w-2xl">
-                        <p className="text-white/90 text-base md:text-lg font-medium leading-relaxed">
-                            {isRu
-                                ? 'Мы строим системы, которые приводят клиентов бесплатно через алгоритмы Google, ИИ и прямые продажи.'
-                                : 'We build systems that bring clients organically through Google algorithms, AI, and direct sales.'}
-                        </p>
                         <div className="bg-red-500/10 border-l-4 border-red-500 p-4 rounded-r-xl text-xs md:text-sm text-white/90 font-medium space-y-3 shadow-[0_0_20px_rgba(239,68,68,0.15)]">
                             <div className="font-bold text-red-400 uppercase tracking-wider text-[11px] md:text-xs">
                                 {isRu ? '🚨 Прямая реклама съедает прибыль. Факты 2026 года:' : '🚨 Direct ads eat your margin. The 2026 reality:'}
