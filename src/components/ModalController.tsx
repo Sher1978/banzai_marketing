@@ -3,9 +3,10 @@
 import React, { useState, useEffect } from 'react';
 import LeadCaptureModal from './LeadCaptureModal';
 
-export const openLeadModal = (productName?: string) => {
+export const openLeadModal = (productName?: string | unknown) => {
+    const name = typeof productName === 'string' ? productName : undefined;
     if (typeof window !== 'undefined') {
-        window.dispatchEvent(new CustomEvent('open-lead-modal', { detail: { productName } }));
+        window.dispatchEvent(new CustomEvent('open-lead-modal', { detail: { productName: name } }));
     }
 };
 

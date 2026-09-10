@@ -25,21 +25,21 @@ export const AuctionTrapSection: React.FC = () => {
                     <h2 className="text-3xl sm:text-5xl font-bold text-white uppercase tracking-tight leading-tight">
                         {isRu ? (
                             <>
-                                Покупать рекламу в интернете <br />
-                                <span className="text-[#ffe600] text-glow-yellow">стало невыгодно.</span>
+                                Можно получать больше клиентов, <br />
+                                <span className="text-[#ffe600] text-glow-yellow">но с нулевыми затратами на рекламу.</span>
                             </>
                         ) : (
                             <>
-                                Buying Ad Clicks <br />
-                                <span className="text-[#ffe600] text-glow-yellow">Is Unprofitable.</span>
+                                You can get more clients, <br />
+                                <span className="text-[#ffe600] text-glow-yellow">with zero ad spend.</span>
                             </>
                         )}
                     </h2>
 
                     <p className="text-white/80 text-base md:text-lg font-medium leading-relaxed max-w-3xl mx-auto">
                         {isRu
-                            ? 'Вы платите столько же, сколько огромные корпорации с безлимитными бюджетами. Покупка рекламы съедает прибыль, потому что вы соревнуетесь кошельками с гигантами вроде Coca-Cola. Единственный выход — находить клиентов там, где нет рекламных торгов.'
-                            : 'You pay as much as corporations with unlimited budgets. Ad spend eats your profit because you compete with giants like Coca-Cola. The only solution is to find clients outside ad auctions.'}
+                            ? 'Вы вынуждены платить за рекламу столько же, сколько огромные корпорации с безлимитными бюджетами. Покупка рекламы съедает прибыль, потому что вы соревнуетесь кошельками с гигантами вроде Coca-Cola. Единственный выход — находить клиентов там, где нет рекламных торгов.'
+                            : 'You are forced to pay as much for ads as corporations with unlimited budgets. Ad spend eats your profit because you compete with giants like Coca-Cola. The only solution is to find clients outside ad auctions.'}
                     </p>
                 </div>
 
