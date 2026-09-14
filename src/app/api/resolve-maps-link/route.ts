@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { calculateProfileScore } from '@/components/outrich/scoreCalculator';
 
 const NICHE_KEYWORDS: { id: string; keywords: string[] }[] = [
   { id: 'horeca', keywords: ['coffee', 'café', 'cafe', 'кофейня', 'кафе', 'ресторан', 'restaurant', 'bar', 'бар', 'bistro', 'бистро', 'pub', 'паб', 'bakery', 'пекарня', 'food', 'пицца', 'pizza', 'sushi', 'суши', 'гостиница', 'hotel', 'отель', 'tea', 'чай', 'cà phê', 'ca phe'] },
@@ -172,8 +173,17 @@ export async function POST(req: NextRequest) {
     const ratingNum = (4.1 + (absHash % 9) * 0.1).toFixed(1);
     // User ratings total between 45 and 480
     const userRatingsTotal = (absHash % 380) + 45;
-    // Health score between 62% and 88%
-    const profileHealthScore = (absHash % 26) + 62;
+    const hasWebsite = (absHash % 2 === 0);
+    const ownerResponseStatus = (absHash % 3 === 0) ? 'Все 5 последних отзывов с ответом' : '2 из 5 отзывов без ответа владельца';
+
+    const scoreRes = calculateProfileScore({
+      rating: parseFloat(ratingNum) || 4.2,
+      reviewsTotal: userRatingsTotal,
+      hasWebsite,
+      ownerResponseOk: (absHash % 3 === 0),
+      hasGeoMeta: false,
+    });
+    const profileHealthScore = scoreRes.score;
 
     return NextResponse.json({
       success: true,
@@ -187,8 +197,8 @@ export async function POST(req: NextRequest) {
       rating: ratingNum,
       userRatingsTotal,
       profileHealthScore,
-      hasWebsite: (absHash % 2 === 0),
-      ownerResponseStatus: (absHash % 3 === 0) ? 'Все 5 последних отзывов с ответом' : '2 из 5 отзывов без ответа владельца'
+      hasWebsite,
+      ownerResponseStatus
     });
   } catch (err: any) {
     console.error('[resolve-maps-link] Server Error:', err);

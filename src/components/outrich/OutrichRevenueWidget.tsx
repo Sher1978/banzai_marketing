@@ -23,6 +23,8 @@ const scanStepsEn = [
     { label: "Checking ChatGPT & Gemini AI indexing...", detail: "Evaluating company presence in LLM answers" }
 ];
 
+import { calculateProfileScore, ScoreDeduction } from './scoreCalculator';
+
 // --- Niche Data & Formula Constants ---
 interface NicheData {
     id: string;
@@ -112,10 +114,10 @@ export const OutrichRevenueWidget: React.FC = () => {
     }, []);
     
     // Google Maps Profile Real-Time Metadata States
-    const [googleRating, setGoogleRating] = useState('4.6');
-    const [googleReviewsTotal, setGoogleReviewsTotal] = useState(148);
-    const [profileHealthScore, setProfileHealthScore] = useState(72);
-    const [hasWebsite, setHasWebsite] = useState(true);
+    const [googleRating, setGoogleRating] = useState('4.2');
+    const [googleReviewsTotal, setGoogleReviewsTotal] = useState(35);
+    const [profileHealthScore, setProfileHealthScore] = useState(23);
+    const [hasWebsite, setHasWebsite] = useState(false);
     const [ownerResponseStatus, setOwnerResponseStatus] = useState('2 из 5 отзывов без ответа владельца');
     
     // Analysis States
@@ -131,6 +133,7 @@ export const OutrichRevenueWidget: React.FC = () => {
         reviews: number;
         healthScore: number;
         visibilityScore: number;
+        deductions: ScoreDeduction[];
     } | null>(null);
 
     // Auto-slider for step 1
@@ -171,7 +174,21 @@ export const OutrichRevenueWidget: React.FC = () => {
             hash = (hash << 5) - hash + str.charCodeAt(i);
             hash |= 0;
         }
-        const visibilityScore = Math.min(62, Math.max(38, (Math.abs(hash) % 25) + 38));
+
+        const numRating = parseFloat(googleRating) || 4.2;
+        const numReviews = typeof googleReviewsTotal === 'number' ? googleReviewsTotal : parseInt(String(googleReviewsTotal)) || 15;
+        const ownerOk = !ownerResponseStatus.toLowerCase().includes('без ответа');
+
+        const scoreRes = calculateProfileScore({
+            rating: numRating,
+            reviewsTotal: numReviews,
+            hasWebsite: hasWebsite,
+            ownerResponseOk: ownerOk,
+            hasGeoMeta: false,
+        });
+
+        const computedHealthScore = scoreRes.score;
+        const visibilityScore = Math.min(62, Math.max(20, computedHealthScore));
 
         setResults({
             monthlyLoss: monthlyRevenueLoss,
@@ -179,10 +196,11 @@ export const OutrichRevenueWidget: React.FC = () => {
             leadsLost: monthlyLeadsLost,
             chartData,
             address: extractedAddress || (isRu ? "Центральный район, главная улица" : "Central District, Main Street"),
-            rating: googleRating || "4.6",
-            reviews: googleReviewsTotal || 148,
-            healthScore: profileHealthScore || 72,
-            visibilityScore
+            rating: googleRating || "4.2",
+            reviews: numReviews,
+            healthScore: computedHealthScore,
+            visibilityScore,
+            deductions: scoreRes.deductions
         });
     };
 
@@ -712,29 +730,79 @@ export const OutrichRevenueWidget: React.FC = () => {
                                             </div>
 
                                             {/* Profile Health Score & Top-3 Visibility Meter */}
-                                            <div className="p-4 rounded-xl bg-[#13131c] border border-orange-500/40 shadow-[0_0_20px_rgba(249,115,22,0.2)] flex flex-col sm:flex-row items-center justify-between gap-4 transition-all duration-300">
-                                                <div className="flex items-baseline gap-2">
-                                                    <span className="text-5xl sm:text-6xl font-black font-mono tracking-tight text-orange-400 transition-colors duration-300">
-                                                        {results.healthScore}%
-                                                    </span>
-                                                    <div className="space-y-0.5">
-                                                        <span className="text-[10px] font-mono text-white/60 block uppercase">
-                                                            {isRu ? 'Индекс полноты карточки Google' : 'Google Profile Health Index'}
-                                                        </span>
-                                                        <span className="inline-block px-2 py-0.5 rounded text-[9px] font-mono font-bold uppercase bg-orange-500/20 text-orange-400 border border-orange-500/30">
-                                                            {isRu ? 'ТРЕБУЕТСЯ ИИ-ОПТИМИЗАЦИЯ' : 'NEEDS AI OPTIMIZATION'}
-                                                        </span>
+                                            {(() => {
+                                                const scoreVal = results.healthScore;
+                                                const theme = scoreVal <= 35 ? {
+                                                    text: 'text-red-400',
+                                                    border: 'border-red-500/50',
+                                                    glow: 'shadow-[0_0_20px_rgba(239,68,68,0.2)]',
+                                                    badgeText: isRu ? 'КРИТИЧЕСКИ НИЗКИЙ РЕЙТИНГ' : 'CRITICAL PROFILE DEFICIT',
+                                                    badgeBg: 'bg-red-500/20 text-red-400 border-red-500/40',
+                                                } : scoreVal <= 65 ? {
+                                                    text: 'text-orange-400',
+                                                    border: 'border-orange-500/50',
+                                                    glow: 'shadow-[0_0_20px_rgba(249,115,22,0.2)]',
+                                                    badgeText: isRu ? 'ТРЕБУЕТСЯ ИИ-ОПТИМИЗАЦИЯ' : 'NEEDS AI OPTIMIZATION',
+                                                    badgeBg: 'bg-orange-500/20 text-orange-400 border-orange-500/40',
+                                                } : scoreVal <= 85 ? {
+                                                    text: 'text-[#ffe600]',
+                                                    border: 'border-[#ffe600]/50',
+                                                    glow: 'shadow-[0_0_20px_rgba(255,230,0,0.2)]',
+                                                    badgeText: isRu ? 'ХОРОШИЙ ПОТЕНЦИАЛ ТОП-3' : 'GOOD TOP-3 POTENTIAL',
+                                                    badgeBg: 'bg-[#ffe600]/20 text-[#ffe600] border-[#ffe600]/40',
+                                                } : {
+                                                    text: 'text-emerald-400',
+                                                    border: 'border-emerald-500/50',
+                                                    glow: 'shadow-[0_0_20px_rgba(16,185,129,0.2)]',
+                                                    badgeText: isRu ? 'ВЫСОКАЯ ОПТИМИЗАЦИЯ' : 'HIGHLY OPTIMIZED',
+                                                    badgeBg: 'bg-emerald-500/20 text-emerald-400 border-emerald-500/40',
+                                                };
+
+                                                return (
+                                                    <div className="space-y-3">
+                                                        <div className={`p-4 rounded-xl bg-[#13131c] border ${theme.border} ${theme.glow} flex flex-col sm:flex-row items-center justify-between gap-4 transition-all duration-300`}>
+                                                            <div className="flex items-baseline gap-2">
+                                                                <span className={`text-5xl sm:text-6xl font-black font-mono tracking-tight ${theme.text} transition-colors duration-300`}>
+                                                                    {results.healthScore}%
+                                                                </span>
+                                                                <div className="space-y-0.5">
+                                                                    <span className="text-[10px] font-mono text-white/60 block uppercase">
+                                                                        {isRu ? 'Индекс полноты карточки Google' : 'Google Profile Health Index'}
+                                                                    </span>
+                                                                    <span className={`inline-block px-2 py-0.5 rounded text-[9px] font-mono font-bold uppercase border ${theme.badgeBg}`}>
+                                                                        {theme.badgeText}
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                            <div className="text-right space-y-0.5 text-[11px] font-mono text-white/70 border-t sm:border-t-0 sm:border-l border-white/10 pt-2 sm:pt-0 sm:pl-4 w-full sm:w-auto">
+                                                                <p className="text-red-400 font-bold">
+                                                                    {isRu ? '🚨 ВНЕ TOP-3 GOOGLE' : '🚨 OUTSIDE TOP-3'}
+                                                                </p>
+                                                                <p className="text-white/50 text-[10px]">
+                                                                    {isRu ? `Потеря кликов категории: ~${100 - results.healthScore}%` : `Lost category clicks: ~${100 - results.healthScore}%`}
+                                                                </p>
+                                                            </div>
+                                                        </div>
+
+                                                        {/* Deduction Breakdown list from 100% base */}
+                                                        {results.deductions && results.deductions.length > 0 && (
+                                                            <div className="bg-[#111118] border border-red-500/20 rounded-xl p-3 space-y-2">
+                                                                <p className="text-[10px] font-mono text-red-400 uppercase tracking-wider font-bold">
+                                                                    {isRu ? '📉 РАСШИФРОВКА СНИЖЕНИЯ РЕЙТИНГА (ШТРАФЫ ОТ 100%):' : '📉 SCORE DEDUCTION BREAKDOWN (PENALTIES FROM 100%):'}
+                                                                </p>
+                                                                <div className="flex flex-wrap gap-1.5">
+                                                                    {results.deductions.map((d, i) => (
+                                                                        <span key={i} className="inline-flex items-center gap-1.5 bg-red-500/10 border border-red-500/30 text-red-300 text-[10px] font-mono px-2.5 py-1 rounded-lg">
+                                                                            <span className="font-bold text-red-400">-{d.points} б.</span>
+                                                                            <span>{isRu ? d.labelRu : d.labelEn}</span>
+                                                                        </span>
+                                                                    ))}
+                                                                </div>
+                                                            </div>
+                                                        )}
                                                     </div>
-                                                </div>
-                                                <div className="text-right space-y-0.5 text-[11px] font-mono text-white/70 border-t sm:border-t-0 sm:border-l border-white/10 pt-2 sm:pt-0 sm:pl-4 w-full sm:w-auto">
-                                                    <p className="text-red-400 font-bold">
-                                                        {isRu ? '🚨 ВНЕ TOP-3 GOOGLE' : '🚨 OUTSIDE TOP-3'}
-                                                    </p>
-                                                    <p className="text-white/50 text-[10px]">
-                                                        {isRu ? `Потеря кликов категории: ~${100 - results.healthScore}%` : `Lost category clicks: ~${100 - results.healthScore}%`}
-                                                    </p>
-                                                </div>
-                                            </div>
+                                                );
+                                            })()}
 
                                              {/* 4 Identified Deficiencies Grid (From Screenshot) */}
                                              <div className="space-y-2 pt-1">

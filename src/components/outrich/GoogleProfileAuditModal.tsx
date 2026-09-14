@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, AlertTriangle, ArrowRight, ShieldCheck, CheckCircle2, XCircle, Search, Sparkles, TrendingUp, Send, Check } from 'lucide-react';
 import { openLeadModal } from '../ModalController';
+import { calculateProfileScore } from './scoreCalculator';
 
 interface GoogleProfileAuditModalProps {
     isOpen: boolean;
@@ -57,9 +58,20 @@ export const GoogleProfileAuditModal: React.FC<GoogleProfileAuditModalProps> = (
             hash = (hash << 5) - hash + str.charCodeAt(i);
             hash |= 0;
         }
-        // Score strictly capped range 38% - 64%
-        const calculated = Math.min(64, Math.max(38, (Math.abs(hash) % 27) + 38));
-        setTargetScore(calculated);
+        const absHash = Math.abs(hash);
+        const rating = 4.1 + (absHash % 8) * 0.1;
+        const reviewsTotal = (absHash % 150) + 10;
+        const hasWebsite = absHash % 2 === 0;
+        const ownerResponseOk = absHash % 3 === 0;
+
+        const scoreRes = calculateProfileScore({
+            rating,
+            reviewsTotal,
+            hasWebsite,
+            ownerResponseOk,
+            hasGeoMeta: false
+        });
+        setTargetScore(scoreRes.score);
         setScanning(true);
         setStep(0);
         setCompletedSteps([]);
