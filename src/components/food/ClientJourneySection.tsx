@@ -56,16 +56,16 @@ export default function ClientJourneySection() {
                 </span>
               </div>
 
-              <div className="h-16 flex items-center mb-3">
-                <h3 className="text-2xl font-black text-white group-hover:text-[#00FF66] transition-colors leading-tight">
+              {/* Fixed Header & Description Container to align Infographic boxes */}
+              <div className="min-h-[180px] flex flex-col justify-start mb-4">
+                <h3 className="text-2xl font-black text-white group-hover:text-[#00FF66] transition-colors leading-tight mb-3">
                   1️⃣ Заявка на бесплатный аудит
                 </h3>
+                <p className="text-gray-300 text-sm leading-relaxed font-normal">
+                  Вы оставляете заявку за 30 секунд. Наш эксперт сканирует ваш профиль в Grab/Foodpanda,
+                  находит точки потери маржи и готовит персональную карту роста для вашего района.
+                </p>
               </div>
-
-              <p className="text-gray-300 text-sm leading-relaxed mb-6 font-normal min-h-[80px]">
-                Вы оставляете заявку за 30 секунд. Наш эксперт сканирует ваш профиль в Grab/Foodpanda,
-                находит точки потери маржи и готовит персональную карту роста для вашего района.
-              </p>
 
               {/* INFOGRAPHIC UI CARD 1: RADAR SCANNER */}
               <div className="bg-gray-950 border border-gray-800 rounded-2xl p-4 mb-4 min-h-[145px] flex flex-col justify-between">
@@ -113,16 +113,16 @@ export default function ClientJourneySection() {
                 </span>
               </div>
 
-              <div className="h-16 flex items-center mb-3">
-                <h3 className="text-2xl font-black text-white group-hover:text-[#00FF66] transition-colors leading-tight">
+              {/* Fixed Header & Description Container to align Infographic boxes */}
+              <div className="min-h-[180px] flex flex-col justify-start mb-4">
+                <h3 className="text-2xl font-black text-white group-hover:text-[#00FF66] transition-colors leading-tight mb-3">
                   2️⃣ Переупаковка и запуск под ключ
                 </h3>
+                <p className="text-gray-300 text-sm leading-relaxed font-normal">
+                  За 3 дня мы полностью пересобираем ваше меню: оцифровываем фото, пишем SEO-тексты на 3
+                  языках, настраиваем комбо-наборы и запускаем математически просчитанные промо-кампании.
+                </p>
               </div>
-
-              <p className="text-gray-300 text-sm leading-relaxed mb-6 font-normal min-h-[80px]">
-                За 3 дня мы полностью пересобираем ваше меню: оцифровываем фото, пишем SEO-тексты на 3
-                языках, настраиваем комбо-наборы и запускаем математически просчитанные промо-кампании.
-              </p>
 
               {/* INFOGRAPHIC UI CARD 2: MENU SETUP MATRIX */}
               <div className="bg-gray-950 border border-gray-800 rounded-2xl p-4 mb-4 min-h-[145px] flex flex-col justify-between">
@@ -178,16 +178,16 @@ export default function ClientJourneySection() {
                 </span>
               </div>
 
-              <div className="h-16 flex items-center mb-3">
-                <h3 className="text-2xl font-black text-white group-hover:text-[#00FF66] transition-colors leading-tight">
+              {/* Fixed Header & Description Container to align Infographic boxes */}
+              <div className="min-h-[180px] flex flex-col justify-start mb-4">
+                <h3 className="text-2xl font-black text-white group-hover:text-[#00FF66] transition-colors leading-tight mb-3">
                   3️⃣ Рост заказов и чистой прибыли
                 </h3>
+                <p className="text-gray-300 text-sm leading-relaxed font-normal">
+                  Вы получаете поток прямых заказов из агрегатора. В конце месяца мы сводим финансовую
+                  аналитику, и вы выплачиваете нам процент только с реально полученного прироста чистой прибыли.
+                </p>
               </div>
-
-              <p className="text-gray-300 text-sm leading-relaxed mb-6 font-normal min-h-[80px]">
-                Вы получаете поток прямых заказов из агрегатора. В конце месяца мы сводим финансовую
-                аналитику, и вы выплачиваете нам процент только с реально полученного прироста чистой прибыли.
-              </p>
 
               {/* INFOGRAPHIC UI CARD 3: GROWTH CHART */}
               <div className="bg-gray-950 border border-gray-800 rounded-2xl p-4 mb-4 min-h-[145px] flex flex-col justify-between">

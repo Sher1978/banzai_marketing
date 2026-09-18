@@ -1,38 +1,20 @@
 "use client";
 
 import React from "react";
-import { AlertTriangle, EyeOff, Layers, Clock, Flame } from "lucide-react";
+import {
+  AlertTriangle,
+  EyeOff,
+  Layers,
+  Clock,
+  Plus,
+  UtensilsCrossed,
+  TrendingDown,
+  Hourglass,
+} from "lucide-react";
 
 export default function ProblemSection() {
-  const problems = [
-    {
-      icon: Layers,
-      num: "01",
-      title: "Нет продуктовой матрицы",
-      description:
-        "Вы продаете те же блюда, что и в зале. Без специальных «Grab-комбо», апселов и правильных групп модификаторов средний чек не растет, а клиент уходит к более продуманным сетам.",
-      badge: "Утечка чека",
-    },
-    {
-      icon: EyeOff,
-      num: "02",
-      title: "Слепые зоны алгоритмов",
-      description:
-        "Отсутствие SEO-ключей в названиях, неправильно настроенные «промо-часы» (Happy Hours) и мертвые акции, сжигающие маржу без реального роста рейтинга.",
-      badge: "Невидимость в ТОПе",
-    },
-    {
-      icon: Clock,
-      num: "03",
-      title: "Это требует ежедневной работы",
-      description:
-        "В Grab нужно играть каждый день — тестировать офферы, управлять ставками рекламы, решать проблемы с курьерами. У вас, как у владельца, на это просто нет времени.",
-      badge: "Дефицит ресурса",
-    },
-  ];
-
   return (
-    <section className="py-20 bg-gray-900 text-white relative overflow-hidden">
+    <section className="py-20 bg-gray-900 text-white relative overflow-hidden border-y border-gray-800">
       {/* Subtle Glow Background */}
       <div className="absolute top-0 right-1/4 w-96 h-96 bg-[#00B14F]/10 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-red-600/10 rounded-full blur-3xl pointer-events-none" />
@@ -58,11 +40,11 @@ export default function ProblemSection() {
           </div>
         </div>
 
-        {/* 3 Problem Cards Grid with Schematic Infographics */}
+        {/* 3 Problem Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* CARD 1 */}
           <div className="bg-gray-800/80 border border-gray-700/80 rounded-3xl p-6 sm:p-8 flex flex-col justify-between hover:border-[#00B14F]/50 transition-all duration-300 group hover:-translate-y-1 shadow-xl relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-red-500/5 rounded-full blur-2xl pointer-events-none" />
+            <div className="absolute top-0 right-0 w-32 h-32 bg-[#00B14F]/5 rounded-full blur-2xl pointer-events-none" />
             
             <div>
               <div className="flex items-center justify-between mb-5">
@@ -87,35 +69,59 @@ export default function ProblemSection() {
               </p>
             </div>
 
-            {/* SCHEMATIC INFOGRAPHIC 1: Product Matrix & Revenue Leak */}
-            <div className="mt-5 p-3.5 bg-gray-950/80 border border-gray-800 rounded-2xl relative overflow-hidden group-hover:border-[#00B14F]/40 transition-colors">
-              <div className="flex items-center justify-between text-[11px] font-mono text-gray-400 mb-2 border-b border-gray-800/80 pb-1.5">
-                <span className="flex items-center gap-1.5 text-red-400 font-bold">
-                  <Flame className="w-3.5 h-3.5" /> Схема матричных потерь
+            {/* SCHEMATIC 1: FOOD COMBO UI (Sandwich + Dessert + Drink) */}
+            <div className="mt-5 p-4 bg-gray-950/90 border border-gray-800 rounded-2xl relative overflow-hidden group-hover:border-[#00B14F]/40 transition-colors">
+              <div className="flex items-center justify-between text-xs font-bold text-gray-300 mb-3 border-b border-gray-800/80 pb-2">
+                <span className="flex items-center gap-1.5 text-[#00FF66]">
+                  <UtensilsCrossed className="w-3.5 h-3.5 text-[#00FF66]" />
+                  Схема Grab Food-Комбо
                 </span>
-                <span className="text-gray-500">Чек: $12 вместо $38</span>
+                <span className="text-[10px] text-[#00FF66] bg-[#00B14F]/20 px-2 py-0.5 rounded-full border border-[#00B14F]/30 font-extrabold">
+                  +35% к чеку
+                </span>
               </div>
-              {/* Vector Node Diagram */}
-              <svg className="w-full h-16 text-gray-600" viewBox="0 0 240 65" fill="none">
-                <path d="M20 32 H70 M70 32 L110 15 M70 32 L110 50 M110 15 H160 M110 50 H160 M160 15 L200 32 M160 50 L200 32" stroke="currentColor" strokeWidth="1.5" strokeDasharray="3 3" />
-                <circle cx="20" cy="32" r="8" fill="#1e293b" stroke="#00B14F" strokeWidth="2" />
-                <text x="20" y="35" textAnchor="middle" fill="#00FF66" fontSize="8" fontWeight="bold">Single</text>
-                
-                <rect x="70" y="8" width="45" height="15" rx="4" fill="#1e1b4b" stroke="#ef4444" strokeWidth="1" />
-                <text x="92" y="19" textAnchor="middle" fill="#ef4444" fontSize="7">Combo Upsell</text>
-                
-                <rect x="70" y="42" width="45" height="15" rx="4" fill="#0f172a" stroke="#64748b" strokeWidth="1" />
-                <text x="92" y="53" textAnchor="middle" fill="#94a3b8" fontSize="7">Add-ons</text>
 
-                <circle cx="200" cy="32" r="10" fill="#450a0a" stroke="#ef4444" strokeWidth="2" className="animate-pulse" />
-                <text x="200" y="35" textAnchor="middle" fill="#f87171" fontSize="9" fontWeight="bold">-65%</text>
-              </svg>
+              <div className="flex items-center justify-between gap-1 sm:gap-2">
+                {/* Item 1: Sandwich */}
+                <div className="flex-1 bg-gray-900 border border-gray-800 rounded-xl p-2 text-center flex flex-col items-center justify-center">
+                  <span className="text-xl mb-1">🥪</span>
+                  <span className="text-[10px] font-bold text-white uppercase">Сэндвич</span>
+                  <span className="text-[9px] text-gray-400">$8.00</span>
+                </div>
+
+                <Plus className="w-3.5 h-3.5 text-gray-500 shrink-0" />
+
+                {/* Item 2: Dessert */}
+                <div className="flex-1 bg-gray-900 border border-gray-800 rounded-xl p-2 text-center flex flex-col items-center justify-center">
+                  <span className="text-xl mb-1">🍰</span>
+                  <span className="text-[10px] font-bold text-white uppercase">Десерт</span>
+                  <span className="text-[9px] text-gray-400">$4.50</span>
+                </div>
+
+                <Plus className="w-3.5 h-3.5 text-gray-500 shrink-0" />
+
+                {/* Item 3: Drink */}
+                <div className="flex-1 bg-gray-900 border border-gray-800 rounded-xl p-2 text-center flex flex-col items-center justify-center">
+                  <span className="text-xl mb-1">🥤</span>
+                  <span className="text-[10px] font-bold text-white uppercase">Напиток</span>
+                  <span className="text-[9px] text-gray-400">$3.50</span>
+                </div>
+              </div>
+
+              {/* Result Banner */}
+              <div className="mt-2.5 pt-2 border-t border-gray-800/80 flex items-center justify-between text-[11px]">
+                <span className="text-gray-400">Итоговый Grab-сет:</span>
+                <span className="text-white font-extrabold flex items-center gap-1">
+                  <span className="line-through text-gray-500 text-[10px]">$16.00</span>
+                  <span className="text-[#00FF66]">$22.50 Combo</span>
+                </span>
+              </div>
             </div>
           </div>
 
           {/* CARD 2 */}
           <div className="bg-gray-800/80 border border-gray-700/80 rounded-3xl p-6 sm:p-8 flex flex-col justify-between hover:border-[#00B14F]/50 transition-all duration-300 group hover:-translate-y-1 shadow-xl relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-[#00B14F]/5 rounded-full blur-2xl pointer-events-none" />
+            <div className="absolute top-0 right-0 w-32 h-32 bg-red-500/5 rounded-full blur-2xl pointer-events-none" />
 
             <div>
               <div className="flex items-center justify-between mb-5">
@@ -140,28 +146,31 @@ export default function ProblemSection() {
               </p>
             </div>
 
-            {/* SCHEMATIC INFOGRAPHIC 2: Blind Zone Radar & Visibility Map */}
-            <div className="mt-5 p-3.5 bg-gray-950/80 border border-gray-800 rounded-2xl relative overflow-hidden group-hover:border-[#00B14F]/40 transition-colors">
-              <div className="flex items-center justify-between text-[11px] font-mono text-gray-400 mb-2 border-b border-gray-800/80 pb-1.5">
+            {/* SCHEMATIC 2: ACCOUNT BALANCE UI (-$123,456) */}
+            <div className="mt-5 p-4 bg-gray-950/90 border border-red-500/30 rounded-2xl relative overflow-hidden group-hover:border-red-500/60 transition-colors">
+              <div className="flex items-center justify-between text-xs font-bold text-gray-300 mb-2 border-b border-gray-800/80 pb-2">
                 <span className="flex items-center gap-1.5 text-red-400 font-bold">
-                  <EyeOff className="w-3.5 h-3.5" /> Схема слепой зоны Grab
+                  <TrendingDown className="w-4 h-4 text-red-400" />
+                  Баланс аккаунта в Grab
                 </span>
-                <span className="text-gray-500">Позиция: #87 в 5 км</span>
+                <span className="text-[10px] text-red-400 bg-red-500/10 px-2 py-0.5 rounded-full border border-red-500/20 font-bold">
+                  Слив маржи
+                </span>
               </div>
-              {/* Vector Radar Diagram */}
-              <svg className="w-full h-16 text-gray-600" viewBox="0 0 240 65" fill="none">
-                <circle cx="120" cy="32" r="28" stroke="#334155" strokeWidth="1" strokeDasharray="2 2" />
-                <circle cx="120" cy="32" r="18" stroke="#334155" strokeWidth="1" />
-                <circle cx="120" cy="32" r="6" fill="#00B14F" />
-                <line x1="80" y1="32" x2="160" y2="32" stroke="#334155" strokeWidth="1" />
-                <line x1="120" y1="5" x2="120" y2="59" stroke="#334155" strokeWidth="1" />
-                
-                <circle cx="148" cy="18" r="5" fill="#ef4444" stroke="#f87171" strokeWidth="1.5" className="animate-ping" />
-                <text x="175" y="20" fill="#ef4444" fontSize="8" fontWeight="bold">Слепая зона</text>
-                <text x="175" y="30" fill="#94a3b8" fontSize="7">0 SEO ключей</text>
 
-                <path d="M120 32 L145 15" stroke="#ef4444" strokeWidth="1.5" strokeDasharray="2 2" />
-              </svg>
+              <div className="my-2 text-center bg-red-950/40 border border-red-500/20 rounded-xl p-3">
+                <div className="text-[10px] uppercase font-bold text-gray-400 tracking-wider mb-0.5">
+                  Потерянный потенциал выручки
+                </div>
+                <div className="text-2xl sm:text-3xl font-black text-red-500 tracking-tight drop-shadow-[0_0_10px_rgba(239,68,68,0.4)] animate-pulse">
+                  -$123,456
+                </div>
+              </div>
+
+              <div className="flex items-center justify-between text-[10px] text-gray-400 pt-1">
+                <span>Причина: Невидимость в поисках</span>
+                <span className="text-red-400 font-semibold">0 SEO ключей</span>
+              </div>
             </div>
           </div>
 
@@ -192,28 +201,39 @@ export default function ProblemSection() {
               </p>
             </div>
 
-            {/* SCHEMATIC INFOGRAPHIC 3: Daily Timeline & Operational Deficit */}
-            <div className="mt-5 p-3.5 bg-gray-950/80 border border-gray-800 rounded-2xl relative overflow-hidden group-hover:border-[#00B14F]/40 transition-colors">
-              <div className="flex items-center justify-between text-[11px] font-mono text-gray-400 mb-2 border-b border-gray-800/80 pb-1.5">
+            {/* SCHEMATIC 3: HOURGLASS & CHARTS UI */}
+            <div className="mt-5 p-4 bg-gray-950/90 border border-gray-800 rounded-2xl relative overflow-hidden group-hover:border-amber-500/50 transition-colors">
+              <div className="flex items-center justify-between text-xs font-bold text-gray-300 mb-3 border-b border-gray-800/80 pb-2">
                 <span className="flex items-center gap-1.5 text-amber-400 font-bold">
-                  <Clock className="w-3.5 h-3.5" /> Операционный дефицит
+                  <Hourglass className="w-4 h-4 text-amber-400" />
+                  Затраты времени владельца
                 </span>
-                <span className="text-gray-500">24/7 ручной контроль</span>
+                <span className="text-[10px] text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded-full border border-amber-500/20 font-bold">
+                  -4.5 ч / день
+                </span>
               </div>
-              {/* Vector Timeline & Overload Diagram */}
-              <svg className="w-full h-16 text-gray-600" viewBox="0 0 240 65" fill="none">
-                <line x1="20" y1="45" x2="220" y2="45" stroke="#334155" strokeWidth="2" />
-                <text x="20" y="58" fill="#64748b" fontSize="7">08:00</text>
-                <text x="70" y="58" fill="#64748b" fontSize="7">12:00</text>
-                <text x="120" y="58" fill="#64748b" fontSize="7">16:00</text>
-                <text x="170" y="58" fill="#64748b" fontSize="7">20:00</text>
-                <text x="215" y="58" fill="#64748b" fontSize="7">23:59</text>
 
-                <path d="M20 45 L50 25 L80 40 L110 10 L140 35 L170 15 L200 42 L220 45" stroke="#eab308" strokeWidth="2" fill="none" />
-                
-                <rect x="95" y="2" width="50" height="15" rx="3" fill="#451a03" stroke="#f59e0b" strokeWidth="1" />
-                <text x="120" y="12" textAnchor="middle" fill="#fbbf24" fontSize="7" fontWeight="bold">Перегрузка 100%</text>
-              </svg>
+              {/* Hourglass & Bar Chart UI */}
+              <div className="flex items-center justify-between gap-3 bg-gray-900 border border-gray-800 rounded-xl p-2.5">
+                <div className="flex items-center gap-2">
+                  <div className="w-9 h-9 rounded-lg bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 shrink-0">
+                    <Hourglass className="w-5 h-5 animate-pulse" />
+                  </div>
+                  <div>
+                    <div className="text-[11px] font-bold text-white">Ручной контроль</div>
+                    <div className="text-[9px] text-gray-400">Ставки, курьеры, отзывы</div>
+                  </div>
+                </div>
+
+                {/* Mini Activity Chart Bars */}
+                <div className="flex items-end gap-1 h-7 px-2 border-l border-gray-800">
+                  <div className="bg-amber-500/40 w-1.5 h-[40%] rounded-sm" />
+                  <div className="bg-amber-500/70 w-1.5 h-[75%] rounded-sm" />
+                  <div className="bg-amber-400 w-1.5 h-[100%] rounded-sm animate-pulse" />
+                  <div className="bg-amber-500/60 w-1.5 h-[60%] rounded-sm" />
+                  <div className="bg-amber-500/80 w-1.5 h-[90%] rounded-sm" />
+                </div>
+              </div>
             </div>
           </div>
         </div>
