@@ -10,11 +10,11 @@ export const ProductsTechSection: React.FC = () => {
     const { i18n } = useTranslation();
     const isRu = i18n.language === 'ru';
 
-    // State for expanded direction cards - all 3 open by default
+    // State for expanded direction cards - all 3 collapsed by default
     const [expandedDirections, setExpandedDirections] = useState<Record<string, boolean>>({
-        dir1: true,
-        dir2: true,
-        dir3: true,
+        dir1: false,
+        dir2: false,
+        dir3: false,
     });
 
     const toggleDirection = (dir: 'dir1' | 'dir2' | 'dir3') => {
