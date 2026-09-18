@@ -45,12 +45,12 @@ export default function ProblemSection() {
         </div>
 
         {/* 3 Problem Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
           {/* CARD 1 */}
-          <div className="bg-gray-800/80 border border-gray-700/80 rounded-3xl p-6 sm:p-8 flex flex-col justify-between hover:border-[#00B14F]/50 transition-all duration-300 group hover:-translate-y-1 shadow-xl relative overflow-hidden">
+          <div className="bg-gray-800/80 border border-gray-700/80 rounded-3xl p-6 sm:p-8 flex flex-col justify-between hover:border-[#00B14F]/50 transition-all duration-300 group hover:-translate-y-1 shadow-xl relative overflow-hidden h-full">
             <div className="absolute top-0 right-0 w-32 h-32 bg-[#00B14F]/5 rounded-full blur-2xl pointer-events-none" />
             
-            <div>
+            <div className="flex-1 flex flex-col">
               <div className="flex items-center justify-between mb-5">
                 <div className="w-12 h-12 rounded-2xl bg-[#00B14F]/10 border border-[#00B14F]/20 flex items-center justify-center text-[#00B14F] group-hover:bg-[#00B14F] group-hover:text-white transition-all">
                   <Layers className="w-6 h-6" />
@@ -60,12 +60,12 @@ export default function ProblemSection() {
                 </span>
               </div>
 
-              <span className="inline-block text-[11px] font-bold uppercase tracking-wider bg-red-500/10 text-red-400 border border-red-500/20 px-2.5 py-1 rounded-md mb-3">
+              <span className="inline-block text-[11px] font-bold uppercase tracking-wider bg-red-500/10 text-red-400 border border-red-500/20 px-2.5 py-1 rounded-md mb-3 self-start">
                 {t.p1Tag}
               </span>
 
-              {/* Fixed Header & Text container to guarantee exact alignment */}
-              <div className="min-h-[170px] flex flex-col justify-start mb-4">
+              {/* Fixed Header & Text container (min-h-[210px] to accommodate 5 lines in EN/RU/UK) */}
+              <div className="min-h-[210px] flex flex-col justify-start mb-4">
                 <h3 className="text-xl font-bold text-white mb-2.5 group-hover:text-[#00B14F] transition-colors">
                   {t.p1Title}
                 </h3>
@@ -77,7 +77,7 @@ export default function ProblemSection() {
             </div>
 
             {/* SCHEMATIC 1: FOOD COMBO UI */}
-            <div className="p-4 bg-gray-950/90 border border-gray-800 rounded-2xl min-h-[160px] flex flex-col justify-between group-hover:border-[#00B14F]/40 transition-colors">
+            <div className="p-4 bg-gray-950/90 border border-gray-800 rounded-2xl h-[165px] min-h-[165px] flex flex-col justify-between group-hover:border-[#00B14F]/40 transition-colors mt-auto">
               <div className="flex items-center justify-between text-xs font-bold text-gray-300 border-b border-gray-800/80 pb-2">
                 <span className="flex items-center gap-1.5 text-[#00FF66]">
                   <UtensilsCrossed className="w-3.5 h-3.5 text-[#00FF66]" />
@@ -127,10 +127,10 @@ export default function ProblemSection() {
           </div>
 
           {/* CARD 2 */}
-          <div className="bg-gray-800/80 border border-gray-700/80 rounded-3xl p-6 sm:p-8 flex flex-col justify-between hover:border-[#00B14F]/50 transition-all duration-300 group hover:-translate-y-1 shadow-xl relative overflow-hidden">
+          <div className="bg-gray-800/80 border border-gray-700/80 rounded-3xl p-6 sm:p-8 flex flex-col justify-between hover:border-[#00B14F]/50 transition-all duration-300 group hover:-translate-y-1 shadow-xl relative overflow-hidden h-full">
             <div className="absolute top-0 right-0 w-32 h-32 bg-red-500/5 rounded-full blur-2xl pointer-events-none" />
 
-            <div>
+            <div className="flex-1 flex flex-col">
               <div className="flex items-center justify-between mb-5">
                 <div className="w-12 h-12 rounded-2xl bg-[#00B14F]/10 border border-[#00B14F]/20 flex items-center justify-center text-[#00B14F] group-hover:bg-[#00B14F] group-hover:text-white transition-all">
                   <EyeOff className="w-6 h-6" />
@@ -140,12 +140,12 @@ export default function ProblemSection() {
                 </span>
               </div>
 
-              <span className="inline-block text-[11px] font-bold uppercase tracking-wider bg-red-500/10 text-red-400 border border-red-500/20 px-2.5 py-1 rounded-md mb-3">
+              <span className="inline-block text-[11px] font-bold uppercase tracking-wider bg-red-500/10 text-red-400 border border-red-500/20 px-2.5 py-1 rounded-md mb-3 self-start">
                 {t.p2Tag}
               </span>
 
-              {/* Fixed Header & Text container to guarantee exact alignment */}
-              <div className="min-h-[170px] flex flex-col justify-start mb-4">
+              {/* Fixed Header & Text container (min-h-[210px] to accommodate 5 lines in EN/RU/UK) */}
+              <div className="min-h-[210px] flex flex-col justify-start mb-4">
                 <h3 className="text-xl font-bold text-white mb-2.5 group-hover:text-[#00B14F] transition-colors">
                   {t.p2Title}
                 </h3>
@@ -157,7 +157,7 @@ export default function ProblemSection() {
             </div>
 
             {/* SCHEMATIC 2: ACCOUNT BALANCE UI */}
-            <div className="p-4 bg-gray-950/90 border border-red-500/30 rounded-2xl min-h-[160px] flex flex-col justify-between group-hover:border-red-500/60 transition-colors">
+            <div className="p-4 bg-gray-950/90 border border-red-500/30 rounded-2xl h-[165px] min-h-[165px] flex flex-col justify-between group-hover:border-red-500/60 transition-colors mt-auto">
               <div className="flex items-center justify-between text-xs font-bold text-gray-300 border-b border-gray-800/80 pb-2">
                 <span className="flex items-center gap-1.5 text-red-400 font-bold">
                   <TrendingDown className="w-4 h-4 text-red-400" />
@@ -185,10 +185,10 @@ export default function ProblemSection() {
           </div>
 
           {/* CARD 3 */}
-          <div className="bg-gray-800/80 border border-gray-700/80 rounded-3xl p-6 sm:p-8 flex flex-col justify-between hover:border-[#00B14F]/50 transition-all duration-300 group hover:-translate-y-1 shadow-xl relative overflow-hidden">
+          <div className="bg-gray-800/80 border border-gray-700/80 rounded-3xl p-6 sm:p-8 flex flex-col justify-between hover:border-[#00B14F]/50 transition-all duration-300 group hover:-translate-y-1 shadow-xl relative overflow-hidden h-full">
             <div className="absolute top-0 right-0 w-32 h-32 bg-amber-500/5 rounded-full blur-2xl pointer-events-none" />
 
-            <div>
+            <div className="flex-1 flex flex-col">
               <div className="flex items-center justify-between mb-5">
                 <div className="w-12 h-12 rounded-2xl bg-[#00B14F]/10 border border-[#00B14F]/20 flex items-center justify-center text-[#00B14F] group-hover:bg-[#00B14F] group-hover:text-white transition-all">
                   <Clock className="w-6 h-6" />
@@ -198,12 +198,12 @@ export default function ProblemSection() {
                 </span>
               </div>
 
-              <span className="inline-block text-[11px] font-bold uppercase tracking-wider bg-red-500/10 text-red-400 border border-red-500/20 px-2.5 py-1 rounded-md mb-3">
+              <span className="inline-block text-[11px] font-bold uppercase tracking-wider bg-red-500/10 text-red-400 border border-red-500/20 px-2.5 py-1 rounded-md mb-3 self-start">
                 {t.p3Tag}
               </span>
 
-              {/* Fixed Header & Text container to guarantee exact alignment */}
-              <div className="min-h-[170px] flex flex-col justify-start mb-4">
+              {/* Fixed Header & Text container (min-h-[210px] to accommodate 5 lines in EN/RU/UK) */}
+              <div className="min-h-[210px] flex flex-col justify-start mb-4">
                 <h3 className="text-xl font-bold text-white mb-2.5 group-hover:text-[#00B14F] transition-colors">
                   {t.p3Title}
                 </h3>
@@ -215,7 +215,7 @@ export default function ProblemSection() {
             </div>
 
             {/* SCHEMATIC 3: HOURGLASS UI */}
-            <div className="p-4 bg-gray-950/90 border border-gray-800 rounded-2xl min-h-[160px] flex flex-col justify-between group-hover:border-amber-500/50 transition-colors">
+            <div className="p-4 bg-gray-950/90 border border-gray-800 rounded-2xl h-[165px] min-h-[165px] flex flex-col justify-between group-hover:border-amber-500/50 transition-colors mt-auto">
               <div className="flex items-center justify-between text-xs font-bold text-gray-300 border-b border-gray-800/80 pb-2">
                 <span className="flex items-center gap-1.5 text-amber-400 font-bold">
                   <Hourglass className="w-4 h-4 text-amber-400" />

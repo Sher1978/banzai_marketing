@@ -60,7 +60,7 @@ export default function ClientJourneySection() {
               </div>
 
               {/* Fixed Header & Description Container */}
-              <div className="min-h-[180px] flex flex-col justify-start mb-4">
+              <div className="min-h-[210px] flex flex-col justify-start mb-4">
                 <h3 className="text-2xl font-black text-white group-hover:text-[#00FF66] transition-colors leading-tight mb-3">
                   {t.cjStep1Title}
                 </h3>
@@ -116,7 +116,7 @@ export default function ClientJourneySection() {
               </div>
 
               {/* Fixed Header & Description Container */}
-              <div className="min-h-[180px] flex flex-col justify-start mb-4">
+              <div className="min-h-[210px] flex flex-col justify-start mb-4">
                 <h3 className="text-2xl font-black text-white group-hover:text-[#00FF66] transition-colors leading-tight mb-3">
                   {t.cjStep2Title}
                 </h3>
@@ -180,7 +180,7 @@ export default function ClientJourneySection() {
               </div>
 
               {/* Fixed Header & Description Container */}
-              <div className="min-h-[180px] flex flex-col justify-start mb-4">
+              <div className="min-h-[210px] flex flex-col justify-start mb-4">
                 <h3 className="text-2xl font-black text-white group-hover:text-[#00FF66] transition-colors leading-tight mb-3">
                   {t.cjStep3Title}
                 </h3>
