@@ -50,30 +50,37 @@ function StorefrontContent() {
     loadVenue();
   }, [slug, setDeliveryFee]);
 
-  // Scroll Spy to highlight active category as user scrolls down
+  // Optimized Scroll Spy using requestAnimationFrame & state diffing (preventing scroll lag)
   useEffect(() => {
     if (loading || !venue.categories || venue.categories.length === 0) return;
 
+    let ticking = false;
     const handleScroll = () => {
-      const scrollPos = window.scrollY + 200;
-      let currentCatId = "all";
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const scrollPos = window.scrollY + 220;
+          let currentCatId = "all";
 
-      for (const cat of venue.categories) {
-        const el = document.getElementById(`category-section-${cat.id}`);
-        if (el) {
-          const top = el.offsetTop;
-          const height = el.offsetHeight;
-          if (scrollPos >= top && scrollPos < top + height) {
-            currentCatId = cat.id;
-            break;
+          for (const cat of venue.categories) {
+            const el = document.getElementById(`category-section-${cat.id}`);
+            if (el) {
+              const top = el.offsetTop;
+              const height = el.offsetHeight;
+              if (scrollPos >= top && scrollPos < top + height) {
+                currentCatId = cat.id;
+                break;
+              }
+            }
           }
-        }
-      }
 
-      if (window.scrollY < 200) {
-        setActiveCategory("all");
-      } else if (currentCatId !== "all") {
-        setActiveCategory(currentCatId);
+          if (window.scrollY < 200) {
+            setActiveCategory((prev) => (prev === "all" ? prev : "all"));
+          } else if (currentCatId !== "all") {
+            setActiveCategory((prev) => (prev === currentCatId ? prev : currentCatId));
+          }
+          ticking = false;
+        });
+        ticking = true;
       }
     };
 
@@ -104,7 +111,7 @@ function StorefrontContent() {
       }}
     >
       {/* ⚡ Revo Battery Timer Bar */}
-      <RevoBatteryHeader settings={revoSettings} primaryColor={primaryColor} />
+      <RevoBatteryHeader settings={revoSettings} primaryColor={primaryColor} venueId={venue.id} />
 
       {/* 🏨 Venue Cover & Header */}
       <VenueHeader branding={branding} />

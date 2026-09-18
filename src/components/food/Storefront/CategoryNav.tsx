@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import { MenuCategory } from "@/lib/food/foodData";
 
 interface Props {
@@ -17,15 +17,6 @@ export const CategoryNav: React.FC<Props> = ({
   primaryColor = "#00FF66"
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
-
-  // Auto-scroll active category pill into center view
-  useEffect(() => {
-    if (!containerRef.current) return;
-    const activeEl = containerRef.current.querySelector(`[data-cat-id="${activeCategoryId}"]`);
-    if (activeEl) {
-      activeEl.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
-    }
-  }, [activeCategoryId]);
 
   const handleCategoryClick = (catId: string) => {
     onSelectCategory(catId);
@@ -45,7 +36,7 @@ export const CategoryNav: React.FC<Props> = ({
     <div className="sticky top-[57px] z-20 bg-[#121212]/95 backdrop-blur-xl border-b border-white/10 py-3 px-4 shadow-md">
       <div
         ref={containerRef}
-        className="max-w-3xl mx-auto flex gap-2 overflow-x-auto scrollbar-none no-scrollbar scroll-smooth"
+        className="max-w-4xl mx-auto flex gap-2 overflow-x-auto scrollbar-none no-scrollbar"
         style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
       >
         <button

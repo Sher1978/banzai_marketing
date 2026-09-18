@@ -21,35 +21,40 @@ export const CategorySectionSlider: React.FC<Props> = ({
 
   if (items.length === 0) return null;
 
-  // Triplicate items only if items > 1 for smooth infinite loop
-  const shouldLoop = items.length > 1;
-  const displayItems = shouldLoop ? [...items, ...items, ...items] : items;
+  // Triplicate items array so there's always a seamless 360° ring in both directions
+  const shouldLoop = items.length > 0;
+  const displayItems = shouldLoop ? [...items, ...items, ...items, ...items] : items;
 
   useEffect(() => {
     if (!shouldLoop) return;
     const el = sliderRef.current;
     if (!el) return;
 
-    // Set initial scroll position to start of middle set once on mount
-    const singleSet = el.scrollWidth / 3;
-    if (singleSet > 0 && el.scrollLeft < 10) {
-      el.scrollLeft = singleSet;
+    // Set initial scroll position in the middle set once on mount
+    const setWidth = el.scrollWidth / 4;
+    if (setWidth > 0 && el.scrollLeft < 10) {
+      el.scrollLeft = setWidth;
     }
 
     let isAdjusting = false;
     const handleInfiniteScroll = () => {
       if (isAdjusting) return;
-      const setWidth = el.scrollWidth / 3;
+      const setWidth = el.scrollWidth / 4;
       if (setWidth <= 0) return;
 
-      if (el.scrollLeft >= setWidth * 2) {
+      const maxScrollLeft = el.scrollWidth - el.clientWidth;
+
+      // Swiping right near the end of container -> jump back by 1 set
+      if (el.scrollLeft >= maxScrollLeft - 20) {
         isAdjusting = true;
         el.scrollLeft -= setWidth;
-        setTimeout(() => { isAdjusting = false; }, 50);
-      } else if (el.scrollLeft <= 5) {
+        setTimeout(() => { isAdjusting = false; }, 40);
+      }
+      // Swiping left near the start of container -> jump forward by 1 set
+      else if (el.scrollLeft <= 10) {
         isAdjusting = true;
         el.scrollLeft += setWidth;
-        setTimeout(() => { isAdjusting = false; }, 50);
+        setTimeout(() => { isAdjusting = false; }, 40);
       }
     };
 
@@ -75,7 +80,7 @@ export const CategorySectionSlider: React.FC<Props> = ({
         </h2>
       </div>
 
-      {/* Horizontal Slider Track - touch-action auto allows vertical page scroll naturally */}
+      {/* 360-Degree Infinite Looping Horizontal Slider */}
       <div
         ref={sliderRef}
         className="flex gap-4 overflow-x-auto scrollbar-none no-scrollbar py-2 -mx-4 px-4"

@@ -29,9 +29,12 @@ export interface VenueBranding {
 }
 
 export interface RevoSettings {
-  maxDiscountPercent: number; // e.g. 20
-  cycleIntervalSeconds: number; // e.g. 30 seconds per decay step
   isEnabled: boolean;
+  maxDiscountPercent: number; // Tier 1 (e.g. 20%)
+  maxDiscountHours: number; // Tier 1 Duration (e.g. 48 hours)
+  mediumDiscountPercent: number; // Tier 2 (e.g. 10%)
+  mediumDiscountHours: number; // Tier 2 Duration (e.g. 24 hours)
+  minDiscountPercent: number; // Tier 3 Baseline (e.g. 5% - no countdown)
 }
 
 export interface VenueData {
@@ -42,6 +45,7 @@ export interface VenueData {
   categories: MenuCategory[];
   items: MenuItem[];
 }
+
 
 export interface MenuItemOption {
   name: string;
@@ -130,9 +134,12 @@ export const DEFAULT_DEMO_VENUE: VenueData = {
     notifyEmail: "orders@banzai.com"
   },
   revoSettings: {
+    isEnabled: true,
     maxDiscountPercent: 20,
-    cycleIntervalSeconds: 45,
-    isEnabled: true
+    maxDiscountHours: 48,
+    mediumDiscountPercent: 10,
+    mediumDiscountHours: 24,
+    minDiscountPercent: 5
   },
   categories: [
     { id: "cat-1", venueId: "demo-burger", name: "🔥 Промо Бандлы Revo", sortOrder: 1 },
