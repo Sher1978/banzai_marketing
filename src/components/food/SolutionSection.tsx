@@ -4,15 +4,20 @@ import React from "react";
 import { CheckCircle2, Zap, TrendingUp } from "lucide-react";
 
 export default function SolutionSection() {
+  const stage1Items = [
+    "Глубокий аудит 5-км радиуса конкурентов в Grab/Foodpanda",
+    "SEO-оптимизация наименований, тегов и категорий",
+    "Сборка маржинальных Grab-сеттингов и продающих комбо",
+    "Профессиональная локализация меню на 3 языка (EN, TH/VN, RU)",
+  ];
+
   const stage2Items = [
     "Постоянное ежедневное ведение и обслуживание профиля",
-    "Маркетинг и управление внутренними рекламными кампаниями",
-    "Аналитика и регулярная оптимизация аккаунта",
-    "Донастройка и улучшение показателей конверсии в процессе работы",
+    "Маркетинг и управление рекламными кампаниями Grab Ads",
+    "Аналитика и регулярная оптимизация конверсии в заказы",
     "Оперативное добавление, удаление и изменение позиций в меню",
-    "Решение технических и организационных вопросов платформы",
-    "Разрешение конфликтных ситуаций, в том числе связанных с водителями/курьерами",
-    "Прямое взаимодействие с официальным саппортом Grab по любым проблемам",
+    "Разрешение конфликтных ситуаций с курьерами и клиентами",
+    "Прямое взаимодействие с официальной поддержкой Grab 24/7",
   ];
 
   return (
@@ -34,69 +39,78 @@ export default function SolutionSection() {
           </p>
         </div>
 
-        {/* 2 STAGES CARDS */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12">
-          {/* STAGE 1 (5 cols) */}
-          <div className="lg:col-span-5 bg-gray-900/90 rounded-3xl p-8 border border-gray-800 shadow-2xl flex flex-col justify-between relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-[#00B14F]/10 rounded-bl-full pointer-events-none" />
-            <div>
-              <div className="inline-block bg-gray-800 text-gray-300 text-xs font-extrabold px-3.5 py-1.5 rounded-xl mb-6 border border-gray-700">
-                ЭТАП 1
+        {/* 2 EQUAL SYMMETRICAL CARDS (50% / 50%) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12 items-stretch">
+          {/* STAGE 1 CARD */}
+          <div className="bg-gray-900/95 rounded-3xl p-8 border-2 border-gray-800 hover:border-[#00B14F] shadow-2xl transition-all duration-300 flex flex-col justify-between relative overflow-hidden group">
+            <div className="absolute -top-12 -right-12 w-56 h-56 bg-[#00B14F]/15 rounded-full blur-3xl pointer-events-none group-hover:bg-[#00B14F]/25 transition-all" />
+            <div className="relative z-10">
+              <div className="flex items-center justify-between mb-6">
+                <div className="inline-block bg-gray-800 text-gray-300 text-xs font-extrabold px-3.5 py-1.5 rounded-xl border border-gray-700">
+                  ЭТАП 1
+                </div>
+                <span className="bg-gray-800 text-gray-300 text-[11px] font-black px-3 py-1 rounded-full border border-gray-700 uppercase tracking-wider">
+                  Разовый Setup
+                </span>
               </div>
-              <h3 className="text-2xl font-black text-white mb-3">
-                Глубокая аналитика и идеальный Setup
-              </h3>
-              <div className="inline-flex items-baseline gap-2 bg-[#00B14F]/10 text-[#00FF66] border border-[#00B14F]/30 px-4 py-2 rounded-2xl mb-6 font-extrabold text-base sm:text-lg">
-                <span>Фиксированная настройка</span>
-                <span className="text-xs text-gray-400 font-semibold">под ключ</span>
-              </div>
-              <p className="text-gray-300 text-sm leading-relaxed mb-6 font-normal">
-                Мы полностью анализируем ваш профиль. Затем переупаковываем его в строгом соответствии с
-                поисковыми алгоритмами Grab и Foodpanda: аппетитные фото, переведенные SEO-тексты на 3
-                языка (английский, тайский/вьетнамский, русский), правильная архитектура меню и комбо.
-              </p>
-            </div>
 
-            <div className="space-y-3 pt-6 border-t border-gray-800">
-              <div className="flex items-center gap-3 text-xs font-bold text-gray-200">
-                <CheckCircle2 className="w-4 h-4 text-[#00FF66]" />
-                <span>SEO-оптимизация наименований и описаний</span>
+              <h3 className="text-2xl font-black text-white mb-3">
+                Глубокая аналитика и Setup
+              </h3>
+
+              <div className="inline-flex items-baseline gap-2 bg-[#00B14F]/20 text-[#00FF66] border border-[#00B14F]/40 px-4 py-2 rounded-2xl mb-6 font-extrabold text-base sm:text-lg shadow-inner">
+                <span>Фиксированная настройка</span>
+                <span className="text-xs text-gray-300 font-semibold">(под ключ)</span>
               </div>
-              <div className="flex items-center gap-3 text-xs font-bold text-gray-200">
-                <CheckCircle2 className="w-4 h-4 text-[#00FF66]" />
-                <span>Сборка продающих Grab-сеттингов и комбо</span>
-              </div>
-              <div className="flex items-center gap-3 text-xs font-bold text-gray-200">
-                <CheckCircle2 className="w-4 h-4 text-[#00FF66]" />
-                <span>Локализация на 3 ключевых языка Азии</span>
+
+              <p className="text-gray-300 text-sm leading-relaxed mb-6 font-normal min-h-[72px]">
+                Мы полностью анализируем ваш профиль. Затем переупаковываем его в строгом соответствии с
+                поисковыми алгоритмами Grab и Foodpanda для максимальной видимости в районе.
+              </p>
+
+              {/* STAGE 1 BULLETS */}
+              <div className="space-y-3.5 pt-6 border-t border-gray-800">
+                {stage1Items.map((item, idx) => (
+                  <div
+                    key={idx}
+                    className="flex items-start gap-3 text-xs sm:text-sm font-semibold text-gray-200"
+                  >
+                    <CheckCircle2 className="w-4.5 h-4.5 text-[#00FF66] shrink-0 mt-0.5" />
+                    <span>{item}</span>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
 
-          {/* STAGE 2 (7 cols) */}
-          <div className="lg:col-span-7 bg-gray-900/90 rounded-3xl p-8 border-2 border-[#00B14F] shadow-2xl shadow-[#00B14F]/10 flex flex-col justify-between relative">
-            <div className="absolute top-4 right-4 bg-[#00B14F] text-white text-[11px] font-black px-3 py-1 rounded-full uppercase tracking-wider">
-              Ежедневный автопилот
-            </div>
-            <div>
-              <div className="inline-block bg-[#00B14F] text-white text-xs font-extrabold px-3.5 py-1.5 rounded-xl mb-6">
-                ЭТАП 2
+          {/* STAGE 2 CARD */}
+          <div className="bg-gray-900/95 rounded-3xl p-8 border-2 border-[#00B14F] shadow-2xl shadow-[#00B14F]/20 transition-all duration-300 flex flex-col justify-between relative overflow-hidden group">
+            <div className="absolute -top-12 -right-12 w-56 h-56 bg-[#00FF66]/20 rounded-full blur-3xl pointer-events-none group-hover:bg-[#00FF66]/30 transition-all" />
+            <div className="relative z-10">
+              <div className="flex items-center justify-between mb-6">
+                <div className="inline-block bg-[#00B14F] text-white text-xs font-extrabold px-3.5 py-1.5 rounded-xl shadow-md shadow-[#00B14F]/30">
+                  ЭТАП 2
+                </div>
+                <span className="bg-[#00B14F] text-white text-[11px] font-black px-3 py-1 rounded-full uppercase tracking-wider shadow-md shadow-[#00B14F]/30">
+                  Ежедневный автопилот
+                </span>
               </div>
+
               <h3 className="text-2xl font-black text-white mb-3">
                 Полное сопровождение и ведение
               </h3>
+
               <div className="inline-flex items-baseline gap-2 bg-[#00B14F]/20 text-[#00FF66] border border-[#00B14F]/40 px-4 py-2 rounded-2xl mb-6 font-extrabold text-base sm:text-lg">
                 <span>Процент от чистой прибыли</span>
-                <span className="text-xs text-gray-300 font-semibold">
-                  (только с нового прироста)
-                </span>
+                <span className="text-xs text-gray-300 font-semibold">(с прироста)</span>
               </div>
-              <p className="text-gray-300 text-sm leading-relaxed mb-6 font-normal">
-                Наша команда профи становится вашим внешним отделом доставки. В нашу ежедневную работу входит:
+
+              <p className="text-gray-300 text-sm leading-relaxed mb-6 font-normal min-h-[72px]">
+                Наша команда профи становится вашим внешним отделом доставки. В нашу ежедневную работу входит полный операционный автопилот вашего ресторана в Grab:
               </p>
 
-              {/* 8 Items Clean List */}
-              <div className="space-y-3.5 pt-4 border-t border-gray-800/80 mb-2">
+              {/* STAGE 2 BULLETS */}
+              <div className="space-y-3.5 pt-6 border-t border-gray-800">
                 {stage2Items.map((item, idx) => (
                   <div
                     key={idx}

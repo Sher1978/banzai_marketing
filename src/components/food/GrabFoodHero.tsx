@@ -16,6 +16,8 @@ import {
   ChevronRight,
 } from "lucide-react";
 
+import Image from "next/image";
+
 export default function GrabFoodHero() {
   // Calculator state: default $10,000
   const [revenue, setRevenue] = useState(10000);
@@ -46,9 +48,11 @@ export default function GrabFoodHero() {
     {
       id: 1,
       icon: Maximize2,
-      badge: "Бесконечный вместимость",
+      badge: "Бесконечная вместимость",
       title: "⚡ Нет потолка по столам.",
       text: "Офлайн вы ограничены 15 столиками. В агрегаторах у вас бесконечный зал на 1000 мест. Ваш ресторан может зарабатывать в разы больше своей физической вместимости.",
+      image: "/assets/food/infinite_hall.png",
+      alt: "Бесконечный зал ресторана",
     },
     {
       id: 2,
@@ -56,6 +60,8 @@ export default function GrabFoodHero() {
       badge: "Поведение туристов в Азии",
       title: "⚡ Туристам плевать на ваши дорогие диваны.",
       text: "Вы вложили $50,000 в ремонт и атмосферу. Но 8 из 10 туристов в курортных городах сейчас открывают приложение, потому что хотят есть «здесь и сейчас». Им важны сочные фото, отзывы и горячая еда, а не ваши люстры.",
+      image: "/assets/food/tourists_grab.png",
+      alt: "Туристы выбирают ресторан в Grab",
     },
     {
       id: 3,
@@ -63,6 +69,8 @@ export default function GrabFoodHero() {
       badge: "Рынок Азии 2026",
       title: "⚡ Диджитал-экспансия Азии.",
       text: "Глобальный рынок доставки в Азии стабильно растет каждый год. Тот, кто не заберет ТОП выдачи агрегатора сегодня, завтра останется с пустым залом.",
+      image: "/assets/food/asia_growth.png",
+      alt: "График роста рынка доставки в Азии",
     },
   ];
 
@@ -220,7 +228,7 @@ export default function GrabFoodHero() {
               </div>
 
               {/* Active Card Content */}
-              <div className="relative min-h-[220px]">
+              <div className="relative min-h-[380px]">
                 {fomoCards.map((card, idx) => {
                   if (idx !== activeFomoIndex) return null;
                   return (
@@ -232,15 +240,36 @@ export default function GrabFoodHero() {
                       transition={{ duration: 0.3 }}
                       className="space-y-4"
                     >
-                      <span className="inline-block bg-[#00B14F]/20 text-[#00FF66] text-xs font-bold px-3 py-1 rounded-full border border-[#00B14F]/30">
-                        {card.badge}
-                      </span>
-                      <h4 className="text-xl font-black text-white leading-snug">
-                        {card.title}
-                      </h4>
-                      <p className="text-sm text-gray-300 leading-relaxed font-normal bg-gray-950/80 p-4 rounded-2xl border border-gray-800">
-                        {card.text}
-                      </p>
+                      {/* Title & Badge ABOVE the image */}
+                      <div>
+                        <span className="inline-block bg-[#00B14F]/20 text-[#00FF66] text-xs font-bold px-3 py-1 rounded-full border border-[#00B14F]/30 mb-2">
+                          {card.badge}
+                        </span>
+                        <h4 className="text-xl font-black text-white leading-snug">
+                          {card.title}
+                        </h4>
+                      </div>
+
+                      {/* Image container with text overlay at the bottom */}
+                      {card.image && (
+                        <div className="relative rounded-2xl overflow-hidden border border-gray-800 h-60 sm:h-64 group shadow-2xl flex flex-col justify-end">
+                          <Image
+                            src={card.image}
+                            alt={card.alt}
+                            fill
+                            className="object-cover transition-transform duration-700 group-hover:scale-105"
+                          />
+                          {/* Dark gradient overlay from dark bottom to transparent top */}
+                          <div className="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-950/70 to-transparent" />
+
+                          {/* Text at the bottom on gradient background */}
+                          <div className="relative z-10 p-4">
+                            <p className="text-xs sm:text-sm text-gray-200 leading-relaxed font-normal drop-shadow-md">
+                              {card.text}
+                            </p>
+                          </div>
+                        </div>
+                      )}
                     </motion.div>
                   );
                 })}

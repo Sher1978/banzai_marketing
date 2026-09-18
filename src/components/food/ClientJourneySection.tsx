@@ -56,36 +56,40 @@ export default function ClientJourneySection() {
                 </span>
               </div>
 
-              <h3 className="text-2xl font-black text-white mb-3 group-hover:text-[#00FF66] transition-colors">
-                1️⃣ Заявка на бесплатный аудит
-              </h3>
+              <div className="h-16 flex items-center mb-3">
+                <h3 className="text-2xl font-black text-white group-hover:text-[#00FF66] transition-colors leading-tight">
+                  1️⃣ Заявка на бесплатный аудит
+                </h3>
+              </div>
 
-              <p className="text-gray-300 text-sm leading-relaxed mb-6 font-normal">
+              <p className="text-gray-300 text-sm leading-relaxed mb-6 font-normal min-h-[80px]">
                 Вы оставляете заявку за 30 секунд. Наш эксперт сканирует ваш профиль в Grab/Foodpanda,
                 находит точки потери маржи и готовит персональную карту роста для вашего района.
               </p>
 
               {/* INFOGRAPHIC UI CARD 1: RADAR SCANNER */}
-              <div className="bg-gray-950 border border-gray-800 rounded-2xl p-4 mb-4 space-y-2.5">
-                <div className="flex items-center justify-between text-xs font-bold border-b border-gray-800 pb-2">
-                  <span className="flex items-center gap-1.5 text-gray-300">
-                    <Search className="w-3.5 h-3.5 text-[#00FF66]" />
-                    Grab AI Scanner
-                  </span>
-                  <span className="text-[#00FF66] animate-pulse text-[11px]">
-                    ● Сканирование 5 км
-                  </span>
-                </div>
-                <div className="flex items-center justify-between text-[11px] text-gray-400">
-                  <span>Сливы выручки:</span>
-                  <span className="text-red-400 font-bold">-28% маржи</span>
-                </div>
-                <div className="flex items-center justify-between text-[11px] text-gray-400">
-                  <span>Квота района:</span>
-                  <span className="text-[#00FF66] font-bold">1 место свободно</span>
+              <div className="bg-gray-950 border border-gray-800 rounded-2xl p-4 mb-4 min-h-[145px] flex flex-col justify-between">
+                <div className="space-y-2.5">
+                  <div className="flex items-center justify-between text-xs font-bold border-b border-gray-800 pb-2">
+                    <span className="flex items-center gap-1.5 text-gray-300">
+                      <Search className="w-3.5 h-3.5 text-[#00FF66]" />
+                      Grab AI Scanner
+                    </span>
+                    <span className="text-[#00FF66] animate-pulse text-[11px]">
+                      ● Сканирование 5 км
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between text-[11px] text-gray-400">
+                    <span>Сливы выручки:</span>
+                    <span className="text-red-400 font-bold">-28% маржи</span>
+                  </div>
+                  <div className="flex items-center justify-between text-[11px] text-gray-400">
+                    <span>Квота района:</span>
+                    <span className="text-[#00FF66] font-bold">1 место свободно</span>
+                  </div>
                 </div>
                 {/* Progress bar visual */}
-                <div className="w-full bg-gray-800 h-2 rounded-full overflow-hidden mt-1">
+                <div className="w-full bg-gray-800 h-2 rounded-full overflow-hidden mt-2">
                   <div className="bg-gradient-to-r from-[#00B14F] to-[#00FF66] h-full w-[78%]" />
                 </div>
               </div>
@@ -109,36 +113,40 @@ export default function ClientJourneySection() {
                 </span>
               </div>
 
-              <h3 className="text-2xl font-black text-white mb-3 group-hover:text-[#00FF66] transition-colors">
-                2️⃣ Переупаковка и запуск под ключ
-              </h3>
+              <div className="h-16 flex items-center mb-3">
+                <h3 className="text-2xl font-black text-white group-hover:text-[#00FF66] transition-colors leading-tight">
+                  2️⃣ Переупаковка и запуск под ключ
+                </h3>
+              </div>
 
-              <p className="text-gray-300 text-sm leading-relaxed mb-6 font-normal">
+              <p className="text-gray-300 text-sm leading-relaxed mb-6 font-normal min-h-[80px]">
                 За 3 дня мы полностью пересобираем ваше меню: оцифровываем фото, пишем SEO-тексты на 3
                 языках, настраиваем комбо-наборы и запускаем математически просчитанные промо-кампании.
               </p>
 
               {/* INFOGRAPHIC UI CARD 2: MENU SETUP MATRIX */}
-              <div className="bg-gray-950 border border-gray-800 rounded-2xl p-4 mb-4 space-y-2.5">
-                <div className="flex items-center justify-between text-xs font-bold border-b border-gray-800 pb-2">
-                  <span className="flex items-center gap-1.5 text-gray-300">
-                    <Settings className="w-3.5 h-3.5 text-blue-400" />
-                    Setup Matrix 100%
-                  </span>
-                  <span className="text-blue-400 font-bold text-[11px]">
-                    3 Языка (EN/TH/RU)
-                  </span>
-                </div>
-                <div className="flex items-center justify-between text-[11px] text-gray-400">
-                  <span>Grab-комбо наборы:</span>
-                  <span className="text-[#00FF66] font-bold">+35% к среднему чеку</span>
-                </div>
-                <div className="flex items-center justify-between text-[11px] text-gray-400">
-                  <span>SEO-индексация ключей:</span>
-                  <span className="text-blue-400 font-bold">Выполнено</span>
+              <div className="bg-gray-950 border border-gray-800 rounded-2xl p-4 mb-4 min-h-[145px] flex flex-col justify-between">
+                <div className="space-y-2.5">
+                  <div className="flex items-center justify-between text-xs font-bold border-b border-gray-800 pb-2">
+                    <span className="flex items-center gap-1.5 text-gray-300">
+                      <Settings className="w-3.5 h-3.5 text-blue-400" />
+                      Setup Matrix 100%
+                    </span>
+                    <span className="text-blue-400 font-bold text-[11px]">
+                      3 Языка (EN/TH/RU)
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between text-[11px] text-gray-400">
+                    <span>Grab-комбо наборы:</span>
+                    <span className="text-[#00FF66] font-bold">+35% к среднему чеку</span>
+                  </div>
+                  <div className="flex items-center justify-between text-[11px] text-gray-400">
+                    <span>SEO-индексация ключей:</span>
+                    <span className="text-blue-400 font-bold">Выполнено</span>
+                  </div>
                 </div>
                 {/* 3 Checkmark badges */}
-                <div className="flex gap-2 pt-1">
+                <div className="flex gap-2 mt-2">
                   <span className="bg-gray-900 border border-gray-800 text-[10px] text-gray-300 px-2 py-0.5 rounded-md flex items-center gap-1">
                     <CheckCircle2 className="w-3 h-3 text-[#00FF66]" /> Фото
                   </span>
@@ -170,37 +178,41 @@ export default function ClientJourneySection() {
                 </span>
               </div>
 
-              <h3 className="text-2xl font-black text-white mb-3 group-hover:text-[#00FF66] transition-colors">
-                3️⃣ Рост заказов и чистой прибыли
-              </h3>
+              <div className="h-16 flex items-center mb-3">
+                <h3 className="text-2xl font-black text-white group-hover:text-[#00FF66] transition-colors leading-tight">
+                  3️⃣ Рост заказов и чистой прибыли
+                </h3>
+              </div>
 
-              <p className="text-gray-300 text-sm leading-relaxed mb-6 font-normal">
+              <p className="text-gray-300 text-sm leading-relaxed mb-6 font-normal min-h-[80px]">
                 Вы получаете поток прямых заказов из агрегатора. В конце месяца мы сводим финансовую
                 аналитику, и вы выплачиваете нам процент только с реально полученного прироста чистой прибыли.
               </p>
 
               {/* INFOGRAPHIC UI CARD 3: GROWTH CHART */}
-              <div className="bg-gray-950 border border-gray-800 rounded-2xl p-4 mb-4 space-y-2.5">
-                <div className="flex items-center justify-between text-xs font-bold border-b border-gray-800 pb-2">
-                  <span className="flex items-center gap-1.5 text-[#00FF66]">
-                    <TrendingUp className="w-3.5 h-3.5 text-[#00FF66]" />
-                    Прирост выручки +340%
-                  </span>
-                  <span className="text-amber-400 font-bold text-[11px]">
-                    Отчет Grabix 2х/мес
-                  </span>
-                </div>
-                <div className="flex items-center justify-between text-[11px] text-gray-400">
-                  <span>Статус заказов:</span>
-                  <span className="text-[#00FF66] font-bold">ТОП-5 в радиусе 4 км</span>
-                </div>
-                <div className="flex items-center justify-between text-[11px] text-gray-400">
-                  <span>Оплата услуг:</span>
-                  <span className="text-[#00FF66] font-bold">% только от нового роста</span>
+              <div className="bg-gray-950 border border-gray-800 rounded-2xl p-4 mb-4 min-h-[145px] flex flex-col justify-between">
+                <div className="space-y-2.5">
+                  <div className="flex items-center justify-between text-xs font-bold border-b border-gray-800 pb-2">
+                    <span className="flex items-center gap-1.5 text-[#00FF66]">
+                      <TrendingUp className="w-3.5 h-3.5 text-[#00FF66]" />
+                      Прирост выручки +340%
+                    </span>
+                    <span className="text-amber-400 font-bold text-[11px]">
+                      Отчет Grabix 2х/мес
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between text-[11px] text-gray-400">
+                    <span>Статус заказов:</span>
+                    <span className="text-[#00FF66] font-bold">ТОП-5 в радиусе 4 км</span>
+                  </div>
+                  <div className="flex items-center justify-between text-[11px] text-gray-400">
+                    <span>Оплата услуг:</span>
+                    <span className="text-[#00FF66] font-bold">% только от нового роста</span>
+                  </div>
                 </div>
 
                 {/* Infographic mini chart bars */}
-                <div className="flex items-end gap-1.5 h-8 pt-2">
+                <div className="flex items-end gap-1.5 h-4 mt-2">
                   <div className="bg-gray-800 w-full h-[25%] rounded-sm" />
                   <div className="bg-gray-800 w-full h-[40%] rounded-sm" />
                   <div className="bg-[#00B14F]/60 w-full h-[65%] rounded-sm" />
