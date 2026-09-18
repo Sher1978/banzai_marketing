@@ -130,7 +130,10 @@
     }
   }
 
-  /* Universal Scrollbar Hide Utilities for horizontal sliders across browsers */
+  /* Universal Scrollbar Hide Utilities across browsers (Horizontal & Vertical) */
+  html::-webkit-scrollbar,
+  body::-webkit-scrollbar,
+  *::-webkit-scrollbar,
   .scrollbar-hide::-webkit-scrollbar,
   .no-scrollbar::-webkit-scrollbar,
   .scrollbar-none::-webkit-scrollbar {
@@ -140,13 +143,15 @@
     background: transparent !important;
   }
 
+  html,
+  body,
+  *,
   .scrollbar-hide,
   .no-scrollbar,
   .scrollbar-none {
     -ms-overflow-style: none !important; /* IE and Edge */
     scrollbar-width: none !important; /* Firefox */
   }
-
 
   /* Strict Mobile Overflow Lock */
   html, body {
@@ -155,6 +160,7 @@
     width: 100% !important;
     position: relative !important;
   }
+
   .text-glow-gold {
     text-shadow: 0 0 10px rgba(197, 168, 128, 0.7), 0 0 20px rgba(140, 113, 76, 0.4);
   }
