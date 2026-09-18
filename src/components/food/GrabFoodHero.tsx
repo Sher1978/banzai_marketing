@@ -10,15 +10,21 @@ import {
   Armchair,
   Globe2,
   ShieldCheck,
-  Zap,
   Sparkles,
   ChevronLeft,
   ChevronRight,
+  Zap,
 } from "lucide-react";
-
 import Image from "next/image";
+import { useTranslation } from "react-i18next";
+import { getFoodT } from "./foodTranslations";
 
 export default function GrabFoodHero() {
+  const { i18n } = useTranslation();
+  const currentLang = i18n.language?.substring(0, 2);
+  const lang = currentLang === "ru" ? "ru" : currentLang === "uk" ? "uk" : "en";
+  const t = getFoodT(lang);
+
   // Calculator state: default $10,000
   const [revenue, setRevenue] = useState(10000);
 
@@ -48,29 +54,29 @@ export default function GrabFoodHero() {
     {
       id: 1,
       icon: Maximize2,
-      badge: "Бесконечная вместимость",
-      title: "⚡ Нет потолка по столам.",
-      text: "Офлайн вы ограничены 15 столиками. В агрегаторах у вас бесконечный зал на 1000 мест. Ваш ресторан может зарабатывать в разы больше своей физической вместимости.",
+      badge: t.fomo1Badge,
+      title: t.fomo1Title,
+      text: t.fomo1Text,
       image: "/assets/food/infinite_hall.png",
-      alt: "Бесконечный зал ресторана",
+      alt: "Infinite restaurant hall",
     },
     {
       id: 2,
       icon: Armchair,
-      badge: "Поведение туристов в Азии",
-      title: "⚡ Туристам плевать на ваши дорогие диваны.",
-      text: "Вы вложили $50,000 в ремонт и атмосферу. Но 8 из 10 туристов в курортных городах сейчас открывают приложение, потому что хотят есть «здесь и сейчас». Им важны сочные фото, отзывы и горячая еда, а не ваши люстры.",
+      badge: t.fomo2Badge,
+      title: t.fomo2Title,
+      text: t.fomo2Text,
       image: "/assets/food/tourists_grab.png",
-      alt: "Туристы выбирают ресторан в Grab",
+      alt: "Tourists choosing restaurant in Grab",
     },
     {
       id: 3,
       icon: Globe2,
-      badge: "Рынок Азии 2026",
-      title: "⚡ Диджитал-экспансия Азии.",
-      text: "Глобальный рынок доставки в Азии стабильно растет каждый год. Тот, кто не заберет ТОП выдачи агрегатора сегодня, завтра останется с пустым залом.",
+      badge: t.fomo3Badge,
+      title: t.fomo3Title,
+      text: t.fomo3Text,
       image: "/assets/food/asia_growth.png",
-      alt: "График роста рынка доставки в Азии",
+      alt: "Asian food delivery market growth chart",
     },
   ];
 
@@ -87,26 +93,24 @@ export default function GrabFoodHero() {
         <div className="flex flex-wrap items-center justify-center gap-2 mb-6">
           <span className="inline-flex items-center gap-1.5 bg-[#00B14F]/20 border border-[#00B14F]/40 text-[#00FF66] text-xs font-bold px-3.5 py-1.5 rounded-full">
             <Sparkles className="w-3.5 h-3.5" />
-            Агентство доставки Grab & Foodpanda по всей Азии
+            {t.heroBadge}
           </span>
           <span className="inline-flex items-center gap-1 bg-gray-900 border border-gray-800 text-gray-300 text-xs font-semibold px-3 py-1.5 rounded-full">
-            🇹🇭 Таиланд • 🇻🇳 Вьетнам • 🇮🇩 Бали • 🇲🇾 Малайзия
+            {t.heroCountries}
           </span>
         </div>
 
         {/* Main Hero Header */}
         <div className="text-center max-w-4xl mx-auto mb-10">
           <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.15] mb-6">
-            Доставка — это ваш основной бизнес, а не подработка. Мы увеличим вашу прибыль из Grab{" "}
+            {t.heroTitlePrefix}
             <span className="text-[#00FF66] underline decoration-[#00B14F]/50 underline-offset-8">
-              в 3 раза.
+              {t.heroTitleHighlight}
             </span>
           </h1>
 
           <p className="text-base sm:text-lg lg:text-xl text-gray-300 leading-relaxed font-normal max-w-3xl mx-auto">
-            Ваши клиенты не пришли к вам сегодня не потому, что у вас невкусно. Они просто ждут,
-            когда еда приедет к ним. Запускаем ваш рост на платформах Grab и Foodpanda по всей Азии.
-            Настраиваем доставку под ключ и берем управление на себя за процент от роста чистой прибыли.
+            {t.heroSub}
           </p>
 
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
@@ -114,13 +118,13 @@ export default function GrabFoodHero() {
               onClick={scrollToCTA}
               className="bg-[#00B14F] hover:bg-[#009643] text-white font-extrabold text-base sm:text-lg px-8 py-4 rounded-2xl shadow-xl shadow-[#00B14F]/40 hover:shadow-2xl hover:shadow-[#00B14F]/50 transition-all transform hover:-translate-y-0.5 active:translate-y-0 flex items-center gap-3"
             >
-              <span>Забронировать аудит заведения</span>
+              <span>{t.heroCta}</span>
               <ArrowRight className="w-5 h-5" />
             </button>
 
             <div className="flex items-center gap-2 text-xs font-semibold text-gray-300 bg-gray-900/90 border border-gray-800 rounded-xl px-4 py-3 shadow-sm">
               <ShieldCheck className="w-4 h-4 text-[#00FF66]" />
-              <span>Оплата только с прироста чистой прибыли</span>
+              <span>{t.heroTrust}</span>
             </div>
           </div>
         </div>
@@ -137,10 +141,10 @@ export default function GrabFoodHero() {
                   </div>
                   <div>
                     <h3 className="text-lg font-extrabold text-white">
-                      Интерактивный Калькулятор
+                      {t.calcTitle}
                     </h3>
                     <p className="text-xs text-gray-400">
-                      Сколько вы теряете прямо сейчас?
+                      {t.calcSub}
                     </p>
                   </div>
                 </div>
@@ -153,7 +157,7 @@ export default function GrabFoodHero() {
               <div className="my-6">
                 <div className="flex justify-between items-center mb-3">
                   <label className="text-sm font-semibold text-gray-300">
-                    Укажите вашу текущую выручку в зале (в месяц):
+                    {t.calcLabel}
                   </label>
                   <span className="text-xl font-extrabold text-[#00FF66] bg-[#00B14F]/10 px-3 py-1 rounded-xl border border-[#00B14F]/30">
                     {formatUsd(revenue)}
@@ -170,9 +174,9 @@ export default function GrabFoodHero() {
                   className="w-full h-3 bg-gray-800 rounded-lg appearance-none cursor-pointer accent-[#00B14F]"
                 />
                 <div className="flex justify-between text-xs text-gray-400 mt-2 font-medium">
-                  <span>$2,000 / мес</span>
-                  <span>$25,000 / мес</span>
-                  <span>$50,000 / мес</span>
+                  <span>$2,000 / mo</span>
+                  <span>$25,000 / mo</span>
+                  <span>$50,000 / mo</span>
                 </div>
               </div>
             </div>
@@ -183,19 +187,17 @@ export default function GrabFoodHero() {
                 <AlertTriangle className="w-6 h-6 text-red-400 shrink-0 mt-0.5" />
                 <div>
                   <div className="text-xs font-bold uppercase tracking-wider text-red-400 mb-1">
-                    Упущенный потенциал доставки
+                    {t.calcLossTag}
                   </div>
                   <div className="text-2xl sm:text-4xl font-black text-white mb-2">
-                    Вы упускаете минимум{" "}
+                    {t.calcLossTextPrefix}
                     <span className="text-red-400 font-black underline decoration-red-500">
                       {formatUsd(missedAmount)}
-                    </span>{" "}
-                    из Grab
+                    </span>
+                    {t.calcLossTextSuffix}
                   </div>
                   <p className="text-xs sm:text-sm text-gray-300 leading-relaxed font-medium">
-                    Если вы думаете, что доставка — это лишь приятный бонус к залу, вы забираете
-                    только <span className="font-bold text-white">30% своего реального потенциала</span> на
-                    азиатском рынке.
+                    {t.calcLossSub}
                   </p>
                 </div>
               </div>
@@ -209,7 +211,7 @@ export default function GrabFoodHero() {
                 <div className="flex items-center gap-2">
                   <Zap className="w-5 h-5 text-[#00FF66]" />
                   <span className="font-extrabold text-sm text-white uppercase tracking-wide">
-                    ЗАЧЕМ ВАМ GRAB?
+                    {t.fomoHeader}
                   </span>
                 </div>
                 <div className="flex items-center gap-1.5">
@@ -240,7 +242,6 @@ export default function GrabFoodHero() {
                       transition={{ duration: 0.3 }}
                       className="space-y-4"
                     >
-                      {/* Title & Badge ABOVE the image */}
                       <div>
                         <span className="inline-block bg-[#00B14F]/20 text-[#00FF66] text-xs font-bold px-3 py-1 rounded-full border border-[#00B14F]/30 mb-2">
                           {card.badge}
@@ -250,7 +251,6 @@ export default function GrabFoodHero() {
                         </h4>
                       </div>
 
-                      {/* Image container - full visual clarity */}
                       {card.image && (
                         <div className="relative rounded-2xl overflow-hidden border border-gray-800 h-44 sm:h-48 group shadow-xl">
                           <Image
@@ -259,12 +259,10 @@ export default function GrabFoodHero() {
                             fill
                             className="object-cover transition-transform duration-700 group-hover:scale-105"
                           />
-                          {/* Subtle 5% bottom shadow fade */}
                           <div className="absolute inset-x-0 bottom-0 h-5 bg-gradient-to-t from-gray-950/80 to-transparent pointer-events-none" />
                         </div>
                       )}
 
-                      {/* Text BELOW the image */}
                       <p className="text-xs sm:text-sm text-gray-300 leading-relaxed font-normal bg-gray-950/90 p-4 rounded-2xl border border-gray-800 shadow-md">
                         {card.text}
                       </p>
@@ -274,7 +272,7 @@ export default function GrabFoodHero() {
               </div>
             </div>
 
-            {/* Navigation Buttons for FOMO cards */}
+            {/* Navigation Buttons */}
             <div className="flex items-center justify-between pt-6 border-t border-gray-800 mt-4">
               <button
                 onClick={() =>
@@ -285,7 +283,7 @@ export default function GrabFoodHero() {
                 <ChevronLeft className="w-5 h-5" />
               </button>
               <span className="text-xs font-bold text-gray-400">
-                {activeFomoIndex + 1} из {fomoCards.length}
+                {activeFomoIndex + 1} / {fomoCards.length}
               </span>
               <button
                 onClick={() =>

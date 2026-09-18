@@ -3,9 +3,16 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { Utensils, Sparkles } from "lucide-react";
+import { useTranslation } from "react-i18next";
+import LanguageSwitcher from "../LanguageSwitcher";
+import { getFoodT } from "./foodTranslations";
 
 export default function FoodHeader() {
   const [scrolled, setScrolled] = useState(false);
+  const { i18n } = useTranslation();
+  const currentLang = i18n.language?.substring(0, 2);
+  const lang = currentLang === "ru" ? "ru" : currentLang === "uk" ? "uk" : "en";
+  const t = getFoodT(lang);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -57,26 +64,19 @@ export default function FoodHeader() {
         <div className="hidden md:flex items-center gap-4 bg-gray-900 border border-gray-800 rounded-full px-4 py-1.5 text-xs text-gray-300 font-medium">
           <span className="flex items-center gap-1.5">
             <span className="w-2 h-2 rounded-full bg-[#00B14F] animate-pulse" />
-            Пхукет
+            {t.cities}
           </span>
-          <span className="text-gray-700">•</span>
-          <span>Нячанг</span>
-          <span className="text-gray-700">•</span>
-          <span>Бали (Чангу)</span>
-          <span className="text-gray-700">•</span>
-          <span>Бангкок</span>
-          <span className="text-gray-700">•</span>
-          <span>Дананг</span>
         </div>
 
-        {/* Right CTA */}
+        {/* Right CTA + Language Switcher */}
         <div className="flex items-center gap-3">
+          <LanguageSwitcher />
           <button
             onClick={scrollToCTA}
             className="bg-[#00B14F] hover:bg-[#009643] text-white font-semibold text-xs sm:text-sm px-4 sm:px-5 py-2.5 rounded-xl shadow-md shadow-[#00B14F]/30 hover:shadow-lg transition-all flex items-center gap-2 active:scale-95"
           >
             <Sparkles className="w-4 h-4" />
-            <span>Забронировать аудит</span>
+            <span>{t.headerAuditBtn}</span>
           </button>
         </div>
       </div>

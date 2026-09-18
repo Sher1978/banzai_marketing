@@ -6,17 +6,21 @@ import {
   Settings,
   TrendingUp,
   ArrowRight,
-  Coffee,
   CheckCircle2,
   Sparkles,
-  Zap,
-  BarChart3,
-  FileCheck2,
-  ShieldAlert,
-  Globe2,
 } from "lucide-react";
+import { useTranslation } from "react-i18next";
+import { getFoodT } from "./foodTranslations";
 
 export default function ClientJourneySection() {
+  const { i18n } = useTranslation();
+  const currentLang = i18n.language?.substring(0, 2);
+  const lang = currentLang === "ru" ? "ru" : currentLang === "uk" ? "uk" : "en";
+  const t = getFoodT(lang);
+
+  const isRu = lang === "ru";
+  const isUk = lang === "uk";
+
   return (
     <section className="py-24 bg-gradient-to-b from-[#0B0F17] via-[#111827] to-[#0B0F17] text-white relative overflow-hidden border-y border-gray-800">
       {/* Background Ambient Glows */}
@@ -28,17 +32,16 @@ export default function ClientJourneySection() {
         <div className="max-w-3xl mx-auto text-center mb-16">
           <span className="inline-flex items-center gap-2 bg-[#00B14F]/20 border border-[#00B14F]/50 text-[#00FF66] text-xs font-black px-4 py-2 rounded-full mb-4 uppercase tracking-widest shadow-lg shadow-[#00B14F]/20">
             <Sparkles className="w-4 h-4" />
-            Главная механика работы (StoryBrand 3-Step Plan)
+            {t.cjBadge}
           </span>
           <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight mb-6 leading-tight">
-            Начать получать X3 заказов из Grab —{" "}
+            {t.cjTitlePrefix}
             <span className="text-[#00FF66] underline decoration-[#00B14F]/60 underline-offset-8">
-              проще, чем заварить кофе
+              {t.cjTitleHighlight}
             </span>
           </h2>
           <p className="text-gray-300 text-base sm:text-xl font-normal leading-relaxed">
-            Вам не нужно разбираться в алгоритмах, нанимать маркетологов или менять процессы на кухне.
-            Мы берем всю техническую и операционную работу на себя.
+            {t.cjSub}
           </p>
         </div>
 
@@ -52,18 +55,17 @@ export default function ClientJourneySection() {
                   01
                 </div>
                 <span className="text-xs font-black px-3.5 py-1.5 rounded-full uppercase tracking-wider bg-[#00B14F]/20 text-[#00FF66] border border-[#00B14F]/40">
-                  Шаг 1 • 30 секунд
+                  {t.cjStep1Tag}
                 </span>
               </div>
 
-              {/* Fixed Header & Description Container to align Infographic boxes */}
+              {/* Fixed Header & Description Container */}
               <div className="min-h-[180px] flex flex-col justify-start mb-4">
                 <h3 className="text-2xl font-black text-white group-hover:text-[#00FF66] transition-colors leading-tight mb-3">
-                  1️⃣ Заявка на бесплатный аудит
+                  {t.cjStep1Title}
                 </h3>
                 <p className="text-gray-300 text-sm leading-relaxed font-normal">
-                  Вы оставляете заявку за 30 секунд. Наш эксперт сканирует ваш профиль в Grab/Foodpanda,
-                  находит точки потери маржи и готовит персональную карту роста для вашего района.
+                  {t.cjStep1Desc}
                 </p>
               </div>
 
@@ -76,16 +78,16 @@ export default function ClientJourneySection() {
                       Grab AI Scanner
                     </span>
                     <span className="text-[#00FF66] animate-pulse text-[11px]">
-                      ● Сканирование 5 км
+                      ● {isRu ? "Сканирование 5 км" : isUk ? "Сканування 5 км" : "5-km radius scan"}
                     </span>
                   </div>
                   <div className="flex items-center justify-between text-[11px] text-gray-400">
-                    <span>Сливы выручки:</span>
-                    <span className="text-red-400 font-bold">-28% маржи</span>
+                    <span>{isRu ? "Сливы выручки:" : isUk ? "Зливи виручки:" : "Margin leaks:"}</span>
+                    <span className="text-red-400 font-bold">-28% {isRu ? "маржи" : isUk ? "маржі" : "margin"}</span>
                   </div>
                   <div className="flex items-center justify-between text-[11px] text-gray-400">
-                    <span>Квота района:</span>
-                    <span className="text-[#00FF66] font-bold">1 место свободно</span>
+                    <span>{isRu ? "Квота района:" : isUk ? "Квота району:" : "District quota:"}</span>
+                    <span className="text-[#00FF66] font-bold">{isRu ? "1 место свободно" : isUk ? "1 місце вільне" : "1 spot open"}</span>
                   </div>
                 </div>
                 {/* Progress bar visual */}
@@ -96,7 +98,7 @@ export default function ClientJourneySection() {
             </div>
 
             <div className="pt-4 border-t border-gray-800 flex items-center justify-between text-xs font-extrabold text-[#00FF66]">
-              <span>Результат: Готовая карта роста</span>
+              <span>{t.cjStep1Result}</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </div>
           </div>
@@ -109,18 +111,17 @@ export default function ClientJourneySection() {
                   02
                 </div>
                 <span className="text-xs font-black px-3.5 py-1.5 rounded-full uppercase tracking-wider bg-blue-500/20 text-blue-400 border border-blue-500/40">
-                  Шаг 2 • За 3 дня
+                  {t.cjStep2Tag}
                 </span>
               </div>
 
-              {/* Fixed Header & Description Container to align Infographic boxes */}
+              {/* Fixed Header & Description Container */}
               <div className="min-h-[180px] flex flex-col justify-start mb-4">
                 <h3 className="text-2xl font-black text-white group-hover:text-[#00FF66] transition-colors leading-tight mb-3">
-                  2️⃣ Переупаковка и запуск под ключ
+                  {t.cjStep2Title}
                 </h3>
                 <p className="text-gray-300 text-sm leading-relaxed font-normal">
-                  За 3 дня мы полностью пересобираем ваше меню: оцифровываем фото, пишем SEO-тексты на 3
-                  языках, настраиваем комбо-наборы и запускаем математически просчитанные промо-кампании.
+                  {t.cjStep2Desc}
                 </p>
               </div>
 
@@ -133,35 +134,35 @@ export default function ClientJourneySection() {
                       Setup Matrix 100%
                     </span>
                     <span className="text-blue-400 font-bold text-[11px]">
-                      3 Языка (EN/TH/RU)
+                      3 {isRu ? "Языка (EN/TH/RU)" : isUk ? "Мови (EN/TH/RU)" : "Languages (EN/TH/RU)"}
                     </span>
                   </div>
                   <div className="flex items-center justify-between text-[11px] text-gray-400">
-                    <span>Grab-комбо наборы:</span>
-                    <span className="text-[#00FF66] font-bold">+35% к среднему чеку</span>
+                    <span>Grab-combo:</span>
+                    <span className="text-[#00FF66] font-bold">+35% order value</span>
                   </div>
                   <div className="flex items-center justify-between text-[11px] text-gray-400">
-                    <span>SEO-индексация ключей:</span>
-                    <span className="text-blue-400 font-bold">Выполнено</span>
+                    <span>SEO index:</span>
+                    <span className="text-blue-400 font-bold">Done</span>
                   </div>
                 </div>
                 {/* 3 Checkmark badges */}
                 <div className="flex gap-2 mt-2">
                   <span className="bg-gray-900 border border-gray-800 text-[10px] text-gray-300 px-2 py-0.5 rounded-md flex items-center gap-1">
-                    <CheckCircle2 className="w-3 h-3 text-[#00FF66]" /> Фото
+                    <CheckCircle2 className="w-3 h-3 text-[#00FF66]" /> Photos
                   </span>
                   <span className="bg-gray-900 border border-gray-800 text-[10px] text-gray-300 px-2 py-0.5 rounded-md flex items-center gap-1">
                     <CheckCircle2 className="w-3 h-3 text-[#00FF66]" /> SEO
                   </span>
                   <span className="bg-gray-900 border border-gray-800 text-[10px] text-gray-300 px-2 py-0.5 rounded-md flex items-center gap-1">
-                    <CheckCircle2 className="w-3 h-3 text-[#00FF66]" /> Комбо
+                    <CheckCircle2 className="w-3 h-3 text-[#00FF66]" /> Combos
                   </span>
                 </div>
               </div>
             </div>
 
             <div className="pt-4 border-t border-gray-800 flex items-center justify-between text-xs font-extrabold text-blue-400">
-              <span>Результат: Полная готовность к ТОП-5</span>
+              <span>{t.cjStep2Result}</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </div>
           </div>
@@ -174,18 +175,17 @@ export default function ClientJourneySection() {
                   03
                 </div>
                 <span className="text-xs font-black px-3.5 py-1.5 rounded-full uppercase tracking-wider bg-amber-500/20 text-amber-300 border border-amber-500/40">
-                  Шаг 3 • Результат
+                  {t.cjStep3Tag}
                 </span>
               </div>
 
-              {/* Fixed Header & Description Container to align Infographic boxes */}
+              {/* Fixed Header & Description Container */}
               <div className="min-h-[180px] flex flex-col justify-start mb-4">
                 <h3 className="text-2xl font-black text-white group-hover:text-[#00FF66] transition-colors leading-tight mb-3">
-                  3️⃣ Рост заказов и чистой прибыли
+                  {t.cjStep3Title}
                 </h3>
                 <p className="text-gray-300 text-sm leading-relaxed font-normal">
-                  Вы получаете поток прямых заказов из агрегатора. В конце месяца мы сводим финансовую
-                  аналитику, и вы выплачиваете нам процент только с реально полученного прироста чистой прибыли.
+                  {t.cjStep3Desc}
                 </p>
               </div>
 
@@ -195,19 +195,19 @@ export default function ClientJourneySection() {
                   <div className="flex items-center justify-between text-xs font-bold border-b border-gray-800 pb-2">
                     <span className="flex items-center gap-1.5 text-[#00FF66]">
                       <TrendingUp className="w-3.5 h-3.5 text-[#00FF66]" />
-                      Прирост выручки +340%
+                      Revenue Growth +340%
                     </span>
                     <span className="text-amber-400 font-bold text-[11px]">
-                      Отчет Grabix 2х/мес
+                      Grabix Report 2x/mo
                     </span>
                   </div>
                   <div className="flex items-center justify-between text-[11px] text-gray-400">
-                    <span>Статус заказов:</span>
-                    <span className="text-[#00FF66] font-bold">ТОП-5 в радиусе 4 км</span>
+                    <span>Rank status:</span>
+                    <span className="text-[#00FF66] font-bold">TOP-5 in 4-km radius</span>
                   </div>
                   <div className="flex items-center justify-between text-[11px] text-gray-400">
-                    <span>Оплата услуг:</span>
-                    <span className="text-[#00FF66] font-bold">% только от нового роста</span>
+                    <span>Service fee:</span>
+                    <span className="text-[#00FF66] font-bold">% from new growth only</span>
                   </div>
                 </div>
 
@@ -223,7 +223,7 @@ export default function ClientJourneySection() {
             </div>
 
             <div className="pt-4 border-t border-gray-800 flex items-center justify-between text-xs font-extrabold text-[#00FF66]">
-              <span>Результат: Оплата за чистый прирост</span>
+              <span>{t.cjStep3Result}</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </div>
           </div>
