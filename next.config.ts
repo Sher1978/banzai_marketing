@@ -11,14 +11,6 @@ const nextConfig: NextConfig = {
   async rewrites() {
     return [
       {
-        source: '/maps',
-        destination: 'https://bot-lab-21910.web.app/maps',
-      },
-      {
-        source: '/outreach-v2',
-        destination: 'https://bot-lab-21910.web.app/outreach-v2',
-      },
-      {
         source: '/',
         has: [
           {

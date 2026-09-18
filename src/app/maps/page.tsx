@@ -1,21 +1,24 @@
-"use client";
+import React from "react";
+import type { Metadata } from "next";
 
-import React, { useEffect } from "react";
+export const metadata: Metadata = {
+  title: "OutRich.Dubai — Google Maps Local Pack Dominance 2026",
+  description: "Automated AI systems for Google Maps Local Pack dominance & client retention.",
+  alternates: {
+    canonical: "https://outrich.online/maps",
+  },
+};
 
 export default function MapsPage() {
-  useEffect(() => {
-    // Ensure smooth client-side redirect if not rewritten at edge
-    if (typeof window !== "undefined") {
-      window.location.replace("https://bot-lab-21910.web.app/maps");
-    }
-  }, []);
-
   return (
-    <div className="min-h-screen bg-[#121212] text-white flex flex-col items-center justify-center p-4">
-      <div className="w-12 h-12 border-4 border-[#00FF66]/20 border-t-[#00FF66] rounded-full animate-spin mb-4" />
-      <p className="text-sm font-mono text-[#00FF66] uppercase tracking-widest animate-pulse">
-        Loading Google Maps Local Pack Dominance System...
-      </p>
-    </div>
+    <main className="w-full h-screen bg-[#121212] overflow-hidden m-0 p-0">
+      <iframe
+        src="https://bot-lab-21910.web.app/maps"
+        className="w-full h-full border-none m-0 p-0 block"
+        style={{ width: "100vw", height: "100vh", border: "none" }}
+        title="OutRich Google Maps Local Pack Dominance System"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      />
+    </main>
   );
 }

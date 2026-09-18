@@ -9,19 +9,19 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "BanzAI Marketing - Cyber-Samurai AI Agency",
-  description: "Production by AI. Strategy by Experts. Results for the Bold. Unleash your marketing potential with BanzAI.",
-  keywords: ["AI Marketing", "Marketing Automation", "Cyber-Samurai", "Dubai Marketing Agency", "BanzAI"],
+  title: "OutRich.Dubai Agency — Autonomous AI Lead Generation Systems 2026",
+  description: "Predictable client acquisition without expensive ad addiction. Autonomous AI Lead Generation Systems & Google Maps Local Domination.",
+  keywords: ["OutRich.Dubai", "AI Lead Generation Dubai", "Map Outreach", "Google Maps Local Pack", "Revo Ecosystem", "OutRich"],
   openGraph: {
-    title: "BanzAI Marketing - Cyber-Samurai AI Agency",
-    description: "Production by AI. Strategy by Experts. Results for the Bold.",
+    title: "OutRich.Dubai Agency — Autonomous AI Lead Generation Systems 2026",
+    description: "Predictable client acquisition without expensive ad addiction. Autonomous AI Lead Generation Systems.",
     type: "website",
-    url: "https://www.banzaimarketing.tech",
+    url: "https://outrich.online",
   },
   twitter: {
     card: "summary_large_image",
-    title: "BanzAI Marketing",
-    description: "Production by AI. Strategy by Experts. Results for the Bold.",
+    title: "OutRich.Dubai Agency",
+    description: "Predictable client acquisition without expensive ad addiction.",
   },
 };
 
