@@ -250,26 +250,24 @@ export default function GrabFoodHero() {
                         </h4>
                       </div>
 
-                      {/* Image container with text overlay at the bottom */}
+                      {/* Image container - full visual clarity */}
                       {card.image && (
-                        <div className="relative rounded-2xl overflow-hidden border border-gray-800 h-60 sm:h-64 group shadow-2xl flex flex-col justify-end">
+                        <div className="relative rounded-2xl overflow-hidden border border-gray-800 h-44 sm:h-48 group shadow-xl">
                           <Image
                             src={card.image}
                             alt={card.alt}
                             fill
                             className="object-cover transition-transform duration-700 group-hover:scale-105"
                           />
-                          {/* Dark gradient overlay from dark bottom to transparent top */}
-                          <div className="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-950/70 to-transparent" />
-
-                          {/* Text at the bottom on gradient background */}
-                          <div className="relative z-10 p-4">
-                            <p className="text-xs sm:text-sm text-gray-200 leading-relaxed font-normal drop-shadow-md">
-                              {card.text}
-                            </p>
-                          </div>
+                          {/* Subtle 5% bottom shadow fade */}
+                          <div className="absolute inset-x-0 bottom-0 h-5 bg-gradient-to-t from-gray-950/80 to-transparent pointer-events-none" />
                         </div>
                       )}
+
+                      {/* Text BELOW the image */}
+                      <p className="text-xs sm:text-sm text-gray-300 leading-relaxed font-normal bg-gray-950/90 p-4 rounded-2xl border border-gray-800 shadow-md">
+                        {card.text}
+                      </p>
                     </motion.div>
                   );
                 })}
