@@ -110,22 +110,27 @@ export const ProductsTechSection: React.FC = () => {
                                 className="space-y-8 pt-6 border-t border-[#ffe600]/30 overflow-hidden"
                             >
                                 {/* Banner graphic */}
-                                <div className="relative aspect-video md:aspect-[21/9] rounded-2xl overflow-hidden border-2 border-[#ffe600]/60 shadow-2xl">
+                                <a 
+                                    href="https://outrich.online/maps" 
+                                    target="_blank" 
+                                    rel="noopener noreferrer" 
+                                    className="block relative aspect-video md:aspect-[21/9] rounded-2xl overflow-hidden border-2 border-[#ffe600]/60 shadow-2xl group cursor-pointer hover:border-[#ffe600] transition-all"
+                                >
                                     <img
                                         src="/assets/map_outreach_revo_banner.png"
                                         alt="Map Outreach + Revo Banner"
-                                        className="w-full h-full object-cover"
+                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                                     />
                                     <div className="absolute inset-0 bg-gradient-to-t from-[#09090e] via-transparent to-transparent opacity-85" />
                                     <div className="absolute bottom-6 left-6 right-6 flex flex-wrap items-center justify-between gap-4">
                                         <span className="neon-yellow-badge text-[10px] shadow-[0_0_20px_rgba(255,230,0,0.6)]">
                                             MAPOUTRICH + REVO // GEO & AIO OPTIMIZATION
                                         </span>
-                                        <span className="text-xs font-mono text-[#ffe600] font-bold bg-black/90 px-3 py-1 rounded-full border border-[#ffe600]/40">
-                                            Первые строчки Google: АКТИВНО
+                                        <span className="text-xs font-mono text-[#ffe600] font-bold bg-black/90 px-3 py-1 rounded-full border border-[#ffe600]/40 group-hover:bg-[#ffe600] group-hover:text-black transition-colors">
+                                            Первые строчки Google: АКТИВНО ⚡
                                         </span>
                                     </div>
-                                </div>
+                                </a>
 
                                 {/* Sub-Products Grid: 3 Direct Tools */}
                                 <div className="grid md:grid-cols-3 gap-6">
@@ -141,10 +146,10 @@ export const ProductsTechSection: React.FC = () => {
                                                 : 'We bring your business to Top-3 on Google Maps. People search nearby services, see you, and visit.'}
                                         </p>
                                         <button
-                                            onClick={(e) => { e.stopPropagation(); openLeadModal("Google Карты"); }}
-                                            className="mt-4 bg-transparent border border-[#ffe600] hover:bg-[#ffe600] hover:text-black text-[#ffe600] font-bold text-xs px-6 py-2 rounded-full uppercase tracking-wider transition-colors inline-flex items-center gap-2"
+                                            onClick={(e) => { e.stopPropagation(); window.open('https://outrich.online/maps', '_blank'); }}
+                                            className="mt-4 bg-transparent border border-[#ffe600] hover:bg-[#ffe600] hover:text-black text-[#ffe600] font-bold text-xs px-6 py-2 rounded-full uppercase tracking-wider transition-colors inline-flex items-center gap-2 cursor-pointer"
                                         >
-                                            <span>{isRu ? 'Записаться на ДЕМО' : 'Book a DEMO'}</span>
+                                            <span>{isRu ? 'Узнать больше (Лендинг)' : 'Learn More (Landing)'}</span>
                                             <ArrowRight size={14} className="stroke-[3]" />
                                         </button>
                                     </div>
@@ -161,10 +166,10 @@ export const ProductsTechSection: React.FC = () => {
                                                 : 'We adapt your site so ChatGPT and AI models recommend your exact business when asked.'}
                                         </p>
                                         <button
-                                            onClick={(e) => { e.stopPropagation(); openLeadModal("Сайты для ИИ (GEO)"); }}
-                                            className="mt-4 bg-transparent border border-[#ffe600] hover:bg-[#ffe600] hover:text-black text-[#ffe600] font-bold text-xs px-6 py-2 rounded-full uppercase tracking-wider transition-colors inline-flex items-center gap-2"
+                                            onClick={(e) => { e.stopPropagation(); window.open('https://outrich.online/maps', '_blank'); }}
+                                            className="mt-4 bg-transparent border border-[#ffe600] hover:bg-[#ffe600] hover:text-black text-[#ffe600] font-bold text-xs px-6 py-2 rounded-full uppercase tracking-wider transition-colors inline-flex items-center gap-2 cursor-pointer"
                                         >
-                                            <span>{isRu ? 'Записаться на ДЕМО' : 'Book a DEMO'}</span>
+                                            <span>{isRu ? 'Узнать больше (Лендинг)' : 'Learn More (Landing)'}</span>
                                             <ArrowRight size={14} className="stroke-[3]" />
                                         </button>
                                     </div>
@@ -181,10 +186,10 @@ export const ProductsTechSection: React.FC = () => {
                                                 : 'Digitize your customers. They receive bonuses, leave 5-star reviews, and come back.'}
                                         </p>
                                         <button
-                                            onClick={(e) => { e.stopPropagation(); openLeadModal("Приложение Revo"); }}
-                                            className="mt-4 bg-transparent border border-[#ffe600] hover:bg-[#ffe600] hover:text-black text-[#ffe600] font-bold text-xs px-6 py-2 rounded-full uppercase tracking-wider transition-colors inline-flex items-center gap-2"
+                                            onClick={(e) => { e.stopPropagation(); window.open('https://outrich.online/maps', '_blank'); }}
+                                            className="mt-4 bg-transparent border border-[#ffe600] hover:bg-[#ffe600] hover:text-black text-[#ffe600] font-bold text-xs px-6 py-2 rounded-full uppercase tracking-wider transition-colors inline-flex items-center gap-2 cursor-pointer"
                                         >
-                                            <span>{isRu ? 'Записаться на ДЕМО' : 'Book a DEMO'}</span>
+                                            <span>{isRu ? 'Узнать больше (Лендинг)' : 'Learn More (Landing)'}</span>
                                             <ArrowRight size={14} className="stroke-[3]" />
                                         </button>
                                     </div>
