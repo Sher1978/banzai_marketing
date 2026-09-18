@@ -14,9 +14,9 @@ import FoodFooter from "./FoodFooter";
 
 export default function FoodLandingPage() {
   return (
-    <div className="min-h-screen bg-[#E5E8EC] font-sans text-gray-900 antialiased selection:bg-[#00B14F] selection:text-white">
+    <div className="min-h-screen bg-[#121212] font-sans text-white antialiased selection:bg-[#00B14F] selection:text-white">
       <FoodHeader />
-      <main className="bg-[#E5E8EC]">
+      <main className="bg-[#121212]">
         <GrabFoodHero />
         <ProblemSection />
         <SolutionSection />

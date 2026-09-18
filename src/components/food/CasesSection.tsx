@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { Star, TrendingUp, Award, MapPin, CheckCircle, ExternalLink, X, ZoomIn } from "lucide-react";
+import { Star, TrendingUp, Award, MapPin, X, ZoomIn } from "lucide-react";
 
 export default function CasesSection() {
   const [selectedReport, setSelectedReport] = useState<string | null>(null);
@@ -13,7 +13,7 @@ export default function CasesSection() {
       title: "🥩 Стейк-хаус & Гриль",
       district: "Европейский квартал",
       rating: "4.8",
-      was: "Владелец вложился в интерьер, зал был полон только вечером, доставка приносила $500 в месяц.",
+      was: "Владелец вложился в интерьер, зал был полон только вечером, доставка приносила минимальную выручку.",
       became:
         "Мы ввели «Мясные боксы на двоих» и настроили рекламу на отели первой линии. Доставка сейчас делает столько же выручки, сколько посадка в зале.",
       metrics: "Доставка = 50% общей выручки ресторана",
@@ -71,18 +71,18 @@ export default function CasesSection() {
   ];
 
   return (
-    <section className="py-20 bg-[#E5E8EC] relative">
+    <section className="py-20 bg-[#121212] text-white border-b border-gray-800 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="max-w-3xl mx-auto text-center mb-16">
-          <span className="inline-flex items-center gap-2 bg-[#00B14F]/10 border border-[#00B14F]/30 text-[#00B14F] text-xs font-bold px-4 py-1.5 rounded-full mb-4">
+          <span className="inline-flex items-center gap-2 bg-[#00B14F]/20 border border-[#00B14F]/40 text-[#00FF66] text-xs font-bold px-4 py-1.5 rounded-full mb-4">
             <Award className="w-4 h-4" />
             Портфель из 23 заведений по всей Азии
           </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-gray-900 tracking-tight mb-6">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight mb-6">
             23 заведения по всей Азии уже работают с нами.
           </h2>
-          <p className="text-gray-600 text-base sm:text-lg leading-relaxed">
+          <p className="text-gray-300 text-base sm:text-lg leading-relaxed font-normal">
             Мы успешно запускаем проекты от Таиланда до Индонезии. Вот несколько свежих примеров из
             туристической столицы Вьетнама (Нячанг), где мы уже заняли лидирующие позиции:
           </p>
@@ -93,36 +93,36 @@ export default function CasesSection() {
           {cases.map((item) => (
             <div
               key={item.id}
-              className="bg-gray-50 border border-gray-200/80 rounded-3xl p-6 flex flex-col justify-between hover:shadow-xl transition-all duration-300"
+              className="bg-gray-900/90 border border-gray-800 rounded-3xl p-6 flex flex-col justify-between shadow-2xl hover:border-[#00B14F] transition-all duration-300"
             >
               <div>
                 <div className="flex items-center justify-between mb-4">
                   <span className="bg-[#00B14F] text-white text-xs font-extrabold px-3 py-1 rounded-full">
                     {item.tag}
                   </span>
-                  <div className="flex items-center gap-1 text-xs font-bold text-amber-500 bg-amber-50 px-2.5 py-1 rounded-full border border-amber-200">
+                  <div className="flex items-center gap-1 text-xs font-bold text-amber-400 bg-amber-500/10 px-2.5 py-1 rounded-full border border-amber-500/30">
                     <Star className="w-3.5 h-3.5 fill-amber-400" />
                     <span>{item.rating}</span>
                   </div>
                 </div>
 
-                <h3 className="text-xl font-black text-gray-900 mb-1">
+                <h3 className="text-xl font-black text-white mb-1">
                   {item.title}
                 </h3>
-                <div className="flex items-center gap-1.5 text-xs text-gray-500 mb-4 font-medium">
+                <div className="flex items-center gap-1.5 text-xs text-gray-400 mb-4 font-medium">
                   <MapPin className="w-3.5 h-3.5 text-gray-400" />
                   <span>{item.district}</span>
                 </div>
 
                 <div className="space-y-3 text-xs mb-6">
-                  <div className="bg-red-50/70 border border-red-100 p-3.5 rounded-2xl text-gray-700">
-                    <span className="font-bold text-[#E72929] block mb-0.5">
+                  <div className="bg-red-500/10 border border-red-500/20 p-3.5 rounded-2xl text-gray-300">
+                    <span className="font-bold text-red-400 block mb-0.5">
                       Было:
                     </span>
                     {item.was}
                   </div>
-                  <div className="bg-emerald-50/70 border border-emerald-100 p-3.5 rounded-2xl text-gray-800">
-                    <span className="font-bold text-[#00B14F] block mb-0.5">
+                  <div className="bg-[#00B14F]/10 border border-[#00B14F]/30 p-3.5 rounded-2xl text-gray-200">
+                    <span className="font-bold text-[#00FF66] block mb-0.5">
                       Стало:
                     </span>
                     {item.became}
@@ -130,8 +130,8 @@ export default function CasesSection() {
                 </div>
               </div>
 
-              <div className="pt-4 border-t border-gray-200/60 flex items-center justify-between text-xs font-bold text-gray-900">
-                <span className="text-[#00B14F] flex items-center gap-1">
+              <div className="pt-4 border-t border-gray-800 flex items-center justify-between text-xs font-bold text-white">
+                <span className="text-[#00FF66] flex items-center gap-1">
                   <TrendingUp className="w-4 h-4" />
                   {item.metrics}
                 </span>
@@ -141,15 +141,15 @@ export default function CasesSection() {
         </div>
 
         {/* REAL SYSTEM REPORTS GALLERY */}
-        <div className="bg-gray-900 rounded-3xl p-8 sm:p-10 text-white relative overflow-hidden">
+        <div className="bg-gray-950 rounded-3xl p-8 sm:p-10 text-white relative overflow-hidden border border-gray-800 shadow-2xl">
           <div className="max-w-3xl mb-8">
             <span className="bg-[#00B14F] text-white text-[11px] font-black px-3 py-1 rounded-full uppercase tracking-wider mb-3 inline-block">
               Прозрачная отчетность Grabix
             </span>
-            <h3 className="text-2xl sm:text-3xl font-black mb-3">
+            <h3 className="text-2xl sm:text-3xl font-black mb-3 text-white">
               Реальные отчеты нашей системы для клиентов
             </h3>
-            <p className="text-gray-300 text-sm">
+            <p className="text-gray-300 text-sm font-normal">
               Мы предоставляем клиентам детальный финотчет 2 раза в месяц. Каждая цифра подкреплена
               выписками из кабинета Grab Food.
             </p>
@@ -161,9 +161,9 @@ export default function CasesSection() {
               <div
                 key={rep.id}
                 onClick={() => setSelectedReport(rep.img)}
-                className="group relative bg-gray-800 rounded-2xl overflow-hidden border border-gray-700 hover:border-[#00B14F] cursor-pointer transition-all hover:scale-[1.02]"
+                className="group relative bg-gray-900 rounded-2xl overflow-hidden border border-gray-800 hover:border-[#00B14F] cursor-pointer transition-all hover:scale-[1.02]"
               >
-                <div className="relative aspect-[9/16] w-full bg-gray-950">
+                <div className="relative aspect-[9/16] w-full bg-black">
                   <Image
                     src={rep.img}
                     alt={rep.title}
@@ -177,14 +177,14 @@ export default function CasesSection() {
                     </div>
                   </div>
                 </div>
-                <div className="p-4 bg-gray-800/90 border-t border-gray-700">
+                <div className="p-4 bg-gray-900 border-t border-gray-800">
                   <div className="flex justify-between items-center text-xs font-bold mb-1">
                     <span className="text-white">{rep.title}</span>
                     <span className="text-amber-400">{rep.rating}</span>
                   </div>
                   <div className="text-[11px] text-gray-400 flex justify-between">
                     <span>Выручка: {rep.sales}</span>
-                    <span className="text-[#00B14F] font-bold">На счет: {rep.net}</span>
+                    <span className="text-[#00FF66] font-bold">На счет: {rep.net}</span>
                   </div>
                 </div>
               </div>
