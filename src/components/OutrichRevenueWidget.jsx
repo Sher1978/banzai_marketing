@@ -532,7 +532,7 @@ const OutrichRevenueWidget = () => {
                         </div>
                         <div>
                             <h3 className="font-bold text-white uppercase tracking-wider text-sm sm:text-base">
-                                1. FIND BUSINESS (ПОИСК БИЗНЕСА)
+                                1. ПРОВЕРЬТЕ ВАШ БИЗНЕС СЕЙЧАС:
                             </h3>
                             {activeStep > 1 && (
                                 <p className="text-xs text-white/80 truncate max-w-xs">

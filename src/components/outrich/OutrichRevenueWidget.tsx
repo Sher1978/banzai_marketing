@@ -351,7 +351,7 @@ export const OutrichRevenueWidget: React.FC = () => {
                         </div>
                         <div>
                             <h3 className="font-bold text-white uppercase tracking-wider text-sm md:text-base">
-                                {isRu ? 'Поиск бизнеса' : 'Find Business'}
+                                {isRu ? 'ПРОВЕРЬТЕ ВАШ БИЗНЕС СЕЙЧАС:' : 'CHECK YOUR BUSINESS NOW:'}
                             </h3>
                             {activeStep > 1 && (
                                 <p className="text-xs text-white/50 truncate max-w-[200px] sm:max-w-xs">
