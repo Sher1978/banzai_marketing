@@ -153,12 +153,16 @@
     scrollbar-width: none !important; /* Firefox */
   }
 
-  /* Strict Mobile Overflow Lock */
-  html, body {
-    overflow-x: hidden !important;
-    max-width: 100vw !important;
-    width: 100% !important;
-    position: relative !important;
+  /* Strict Mobile Horizontal Overflow Containment */
+  html {
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+  body {
+    overflow-x: hidden;
+    max-width: 100vw;
+    width: 100%;
+    position: relative;
   }
 
   .text-glow-gold {

@@ -59,16 +59,21 @@ function StorefrontContent() {
       if (!ticking) {
         window.requestAnimationFrame(() => {
           const scrollPos = window.scrollY + 220;
+          const isAtBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 60;
           let currentCatId = "all";
 
-          for (const cat of venue.categories) {
-            const el = document.getElementById(`category-section-${cat.id}`);
-            if (el) {
-              const top = el.offsetTop;
-              const height = el.offsetHeight;
-              if (scrollPos >= top && scrollPos < top + height) {
-                currentCatId = cat.id;
-                break;
+          if (isAtBottom && venue.categories.length > 0) {
+            currentCatId = venue.categories[venue.categories.length - 1].id;
+          } else {
+            for (const cat of venue.categories) {
+              const el = document.getElementById(`category-section-${cat.id}`);
+              if (el) {
+                const top = el.offsetTop;
+                const height = el.offsetHeight;
+                if (scrollPos >= top && scrollPos < top + height) {
+                  currentCatId = cat.id;
+                  break;
+                }
               }
             }
           }
@@ -104,7 +109,7 @@ function StorefrontContent() {
 
   return (
     <div
-      className="min-h-screen text-white font-sans selection:bg-[#00FF66]/30 pb-28"
+      className="min-h-screen text-white font-sans selection:bg-[#00FF66]/30 pb-36"
       style={{
         backgroundColor: branding.backgroundColor || "#121212",
         fontFamily: branding.fontFamily ? `'${branding.fontFamily}', sans-serif` : "sans-serif"
@@ -125,7 +130,7 @@ function StorefrontContent() {
       />
 
       {/* 🍔 Menu Sections List (Vertical) with Space-Optimized Carousels */}
-      <main className="max-w-5xl mx-auto px-4 pt-6 space-y-8">
+      <main className="max-w-5xl mx-auto px-4 pt-6 space-y-10">
         {categories.map((cat) => {
           const catItems = items.filter((i) => i.categoryId === cat.id);
           return (
@@ -138,6 +143,13 @@ function StorefrontContent() {
             />
           );
         })}
+
+        {/* 🏢 Storefront Footer */}
+        <footer className="pt-10 pb-12 border-t border-white/10 text-center space-y-3 text-white/50 text-xs">
+          <p className="font-bold text-white/80">{branding.title}</p>
+          <p>{branding.address || "ул. Гастрономическая, 1"}</p>
+          <p className="font-mono text-[11px] text-[#00FF66]/80">⚡ Работаем на платформе Banzai Food x REVO</p>
+        </footer>
       </main>
 
       {/* 🛒 Floating Bottom Cart Bar */}

@@ -1,10 +1,10 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { MenuItem, CartItemOption } from "@/lib/food/foodData";
 import { useCart } from "@/lib/food/CartContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimes, faPlus, faMinus, faCheck } from "@fortawesome/free-solid-svg-icons";
+import { faTimes, faPlus, faMinus, faCheck, faUtensils } from "@fortawesome/free-solid-svg-icons";
 
 interface Props {
   dish: MenuItem;
@@ -16,6 +16,19 @@ export const DishDetailModal: React.FC<Props> = ({ dish, onClose, primaryColor =
   const { addItem } = useCart();
   const [quantity, setQuantity] = useState(1);
   const [selectedOptions, setSelectedOptions] = useState<CartItemOption[]>([]);
+  const [imgError, setImgError] = useState(false);
+
+  // Lock background body scrolling when modal is open
+  useEffect(() => {
+    const prevBodyOverflow = document.body.style.overflow;
+    const prevHtmlOverflow = document.documentElement.style.overflow;
+    document.body.style.overflow = "hidden";
+    document.documentElement.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prevBodyOverflow;
+      document.documentElement.style.overflow = prevHtmlOverflow;
+    };
+  }, []);
 
   const handleOptionToggle = (groupTitle: string, optionName: string, extraPrice: number) => {
     setSelectedOptions((prev) => {
@@ -37,27 +50,54 @@ export const DishDetailModal: React.FC<Props> = ({ dish, onClose, primaryColor =
   };
 
   return (
-    <div className="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 animate-in fade-in duration-200">
-      <div className="bg-[#1C1E22] border border-white/20 rounded-t-3xl sm:rounded-3xl max-w-lg w-full max-h-[90vh] overflow-y-auto flex flex-col justify-between shadow-2xl relative">
-        {/* Close Button */}
+    <div
+      onClick={onClose}
+      onTouchMove={(e) => {
+        if (e.target === e.currentTarget) {
+          e.preventDefault();
+        }
+      }}
+      className="fixed inset-0 bg-black/85 backdrop-blur-md z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 animate-in fade-in duration-200"
+    >
+      <div
+        onClick={(e) => e.stopPropagation()}
+        onTouchMove={(e) => e.stopPropagation()}
+        className="bg-[#1C1E22] border border-white/20 rounded-t-3xl sm:rounded-3xl max-w-lg w-full max-h-[90vh] flex flex-col shadow-2xl relative overflow-hidden"
+      >
+        {/* Floating Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 z-20 w-8 h-8 rounded-full bg-black/60 text-white flex items-center justify-center text-sm border border-white/20 hover:bg-black"
+          className="absolute top-3 right-3 z-30 w-9 h-9 rounded-full bg-black/70 text-white flex items-center justify-center text-base border border-white/30 hover:bg-black transition-all shadow-lg cursor-pointer"
         >
           <FontAwesomeIcon icon={faTimes} />
         </button>
 
-        <div>
-          {/* Dish Big Cover Image */}
-          <div className="w-full h-56 sm:h-64 bg-black relative">
-            <img src={dish.imageUrl} alt={dish.name} className="w-full h-full object-cover" />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#1C1E22] via-transparent to-transparent" />
+        {/* Scrollable Modal Content (Image + Details + Modifiers) */}
+        <div
+          className="flex-1 overflow-y-auto overscroll-contain"
+          style={{ WebkitOverflowScrolling: "touch", touchAction: "pan-y" }}
+        >
+          {/* Dish Big Cover Image - Full Uncropped View (object-contain) */}
+          <div className="w-full bg-black relative p-2 flex items-center justify-center min-h-[220px] max-h-[340px] overflow-hidden rounded-t-3xl border-b border-white/10">
+            {!imgError && dish.imageUrl ? (
+              <img
+                src={dish.imageUrl}
+                alt={dish.name}
+                onError={() => setImgError(true)}
+                className="w-full max-h-[320px] object-contain rounded-2xl"
+              />
+            ) : (
+              <div className="w-full h-56 bg-zinc-900 rounded-2xl flex flex-col items-center justify-center text-white/40 space-y-2">
+                <FontAwesomeIcon icon={faUtensils} className="text-4xl text-[#00FF66]/50" />
+                <span className="text-xs font-mono">Banzai Food</span>
+              </div>
+            )}
           </div>
 
           {/* Dish Details */}
-          <div className="p-6 space-y-4 -mt-6 relative z-10">
+          <div className="p-6 space-y-4">
             <h2 className="text-2xl font-black text-white">{dish.name}</h2>
-            <p className="text-sm text-white/70 leading-relaxed">{dish.description}</p>
+            <p className="text-sm text-white/80 leading-relaxed">{dish.description}</p>
 
             {/* Modifiers List */}
             {dish.modifiers && dish.modifiers.length > 0 && (
@@ -92,7 +132,7 @@ export const DishDetailModal: React.FC<Props> = ({ dish, onClose, primaryColor =
                               </span>
                               {opt.name}
                             </span>
-                            <span className="text-xs font-mono">
+                            <span className="text-xs font-mono font-bold text-[#00FF66]">
                               {opt.extraPrice > 0 ? `+${opt.extraPrice} ₽` : "Бесплатно"}
                             </span>
                           </div>
@@ -106,8 +146,8 @@ export const DishDetailModal: React.FC<Props> = ({ dish, onClose, primaryColor =
           </div>
         </div>
 
-        {/* Footer Actions */}
-        <div className="p-6 bg-[#121212] border-t border-white/10 flex items-center justify-between gap-4 sticky bottom-0 z-20">
+        {/* Fixed Footer Actions */}
+        <div className="p-4 sm:p-6 bg-[#121212] border-t border-white/10 flex items-center justify-between gap-4 shrink-0 z-20">
           <div className="flex items-center gap-3 bg-black/80 border border-white/20 rounded-full px-3 py-1.5">
             <button
               onClick={() => setQuantity((q) => Math.max(1, q - 1))}

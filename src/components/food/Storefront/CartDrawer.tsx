@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useCart } from "@/lib/food/CartContext";
 import { VenueBranding } from "@/lib/food/foodData";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -32,6 +32,18 @@ export const CartDrawer: React.FC<Props> = ({ branding, venueId, onClose, primar
   const [comment, setComment] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [orderSuccessId, setOrderSuccessId] = useState<string | null>(null);
+
+  // Lock background body scrolling while cart drawer is active
+  useEffect(() => {
+    const prevBodyOverflow = document.body.style.overflow;
+    const prevHtmlOverflow = document.documentElement.style.overflow;
+    document.body.style.overflow = "hidden";
+    document.documentElement.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prevBodyOverflow;
+      document.documentElement.style.overflow = prevHtmlOverflow;
+    };
+  }, []);
 
   const handleSubmitOrder = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -103,23 +115,38 @@ export const CartDrawer: React.FC<Props> = ({ branding, venueId, onClose, primar
   }
 
   return (
-    <div className="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-end justify-center p-0 sm:p-4">
-      <div className="bg-[#1C1E22] border border-white/20 rounded-t-3xl sm:rounded-3xl max-w-xl w-full max-h-[92vh] overflow-y-auto flex flex-col justify-between shadow-2xl relative">
+    <div
+      onClick={onClose}
+      onTouchMove={(e) => {
+        if (e.target === e.currentTarget) {
+          e.preventDefault();
+        }
+      }}
+      className="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-end justify-center p-0 sm:p-4 animate-in fade-in duration-200"
+    >
+      <div
+        onClick={(e) => e.stopPropagation()}
+        onTouchMove={(e) => e.stopPropagation()}
+        className="bg-[#1C1E22] border border-white/20 rounded-t-3xl sm:rounded-3xl max-w-xl w-full max-h-[92vh] flex flex-col shadow-2xl relative overflow-hidden"
+      >
         {/* Header */}
-        <div className="p-5 bg-[#121212] border-b border-white/10 flex justify-between items-center sticky top-0 z-20">
+        <div className="p-5 bg-[#121212] border-b border-white/10 flex justify-between items-center shrink-0 z-20">
           <div className="flex items-center gap-2">
             <h3 className="font-black text-white text-lg">Ваш заказ</h3>
             <span className="text-xs font-mono text-white/60 bg-white/10 px-2 py-0.5 rounded-full">
-              {items.length} позоз.
+              {items.length} поз.
             </span>
           </div>
-          <button onClick={onClose} className="text-white/60 hover:text-white p-2">
+          <button onClick={onClose} className="text-white/60 hover:text-white p-2 cursor-pointer">
             <FontAwesomeIcon icon={faTimes} className="text-xl" />
           </button>
         </div>
 
-        {/* Content */}
-        <div className="p-6 space-y-6">
+        {/* Scrollable Content area */}
+        <div
+          className="p-6 space-y-6 flex-1 overflow-y-auto overscroll-contain"
+          style={{ WebkitOverflowScrolling: "touch", touchAction: "pan-y" }}
+        >
           {items.length === 0 ? (
             <div className="text-center py-12 text-white/50 font-mono text-sm">
               Ваша корзина пока пуста. Добавьте блюда из меню!

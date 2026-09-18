@@ -132,7 +132,7 @@ export const RevoSettingsTab: React.FC<Props> = ({ settings, onChange, onSave, i
           <div className="flex items-center justify-between gap-4 bg-[#121212] p-4 rounded-xl border border-white/10">
             <div>
               <span className="text-sm font-bold text-white block">Скидка Revo при чекауте:</span>
-              <span className="text-xs text-white/60 block">Оформи заказ до сгорания таймера!</span>
+              <span className="text-xs text-white/60 block">Чаще возвращаешься - выше скидка!</span>
             </div>
             <div className="flex items-center gap-3">
               <div className="bg-black/80 border border-[#00FF66]/50 px-3 py-1.5 rounded-xl text-[#00FF66] font-mono text-xs font-bold">

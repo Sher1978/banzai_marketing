@@ -129,7 +129,7 @@ export const RevoBatteryHeader: React.FC<Props> = ({
             </div>
             <span className="text-[11px] text-white/70 block">
               {tierState.hasTimer
-                ? "Оформи заказ до сгорания таймера часов!"
+                ? "Чаще возвращаешься - выше скидка!"
                 : "Базовая постоянная скидка Revo"}
             </span>
           </div>
