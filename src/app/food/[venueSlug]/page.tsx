@@ -117,8 +117,8 @@ function StorefrontContent() {
         primaryColor={primaryColor}
       />
 
-      {/* 🍔 Menu Sections List (Vertical) with Horizontal Carousels per Category */}
-      <main className="max-w-4xl mx-auto px-4 pt-6 space-y-10">
+      {/* 🍔 Menu Sections List (Vertical) with Space-Optimized Carousels */}
+      <main className="max-w-5xl mx-auto px-4 pt-6 space-y-8">
         {categories.map((cat) => {
           const catItems = items.filter((i) => i.categoryId === cat.id);
           return (

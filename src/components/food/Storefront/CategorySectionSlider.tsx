@@ -21,7 +21,7 @@ export const CategorySectionSlider: React.FC<Props> = ({
 
   if (items.length === 0) return null;
 
-  // Triplicate items array so there is always a predecessor and successor set for 360° infinite looping
+  // Triplicate items array for seamless 360° infinite looping
   const displayItems = [...items, ...items, ...items];
 
   useEffect(() => {
@@ -42,7 +42,7 @@ export const CategorySectionSlider: React.FC<Props> = ({
       if (el.scrollLeft >= singleSet * 2) {
         el.scrollLeft -= singleSet;
       }
-      // If user scrolls backwards to the start of 1st set, jump forward to 2nd set
+      // If user scrolls backwards to start of 1st set, jump forward to 2nd set
       else if (el.scrollLeft <= 10) {
         el.scrollLeft += singleSet;
       }
@@ -55,16 +55,16 @@ export const CategorySectionSlider: React.FC<Props> = ({
   return (
     <section
       id={`category-section-${category.id}`}
-      className="space-y-4 scroll-mt-28 relative group/section"
+      className="space-y-3 scroll-mt-28 relative group/section"
     >
-      {/* Category Header */}
-      <div className="flex justify-between items-center">
+      {/* Category Title Header */}
+      <div className="flex justify-between items-center px-1">
         <h2
-          className="text-xl font-black text-white flex items-center gap-2 border-l-4 pl-3"
+          className="text-lg sm:text-xl font-black text-white flex items-center gap-2 border-l-4 pl-3"
           style={{ borderColor: primaryColor }}
         >
           {category.name}
-          <span className="text-xs font-mono font-normal text-white/50 bg-white/10 px-2 py-0.5 rounded-full">
+          <span className="text-[11px] font-mono font-normal text-white/50 bg-white/10 px-2 py-0.5 rounded-full">
             {items.length}
           </span>
         </h2>
@@ -73,13 +73,13 @@ export const CategorySectionSlider: React.FC<Props> = ({
       {/* Infinite Ring Horizontal Carousel Track */}
       <div
         ref={sliderRef}
-        className="flex gap-4 overflow-x-auto scrollbar-none no-scrollbar py-2 -mx-4 px-4 touch-pan-x"
+        className="flex gap-3 overflow-x-auto scrollbar-none no-scrollbar py-1 -mx-4 px-4 touch-pan-x"
         style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
       >
         {displayItems.map((dish, idx) => (
           <div
             key={`${dish.id}-${idx}`}
-            className="w-[280px] sm:w-[320px] flex-shrink-0"
+            className="w-[170px] xs:w-[195px] sm:w-[220px] md:w-[240px] flex-shrink-0"
           >
             <DishCard
               dish={dish}

@@ -48,78 +48,85 @@ export const DishCard: React.FC<Props> = ({ dish, onOpenModal, primaryColor = "#
   return (
     <div
       onClick={() => onOpenModal(dish)}
-      className="bg-[#1E2024]/90 hover:bg-[#25282D] rounded-3xl border border-white/10 p-3.5 flex gap-4 cursor-pointer transition-all duration-200 hover:scale-[1.01] active:scale-[0.99] relative group overflow-hidden"
+      className="bg-[#1E2024]/95 hover:bg-[#25282D] rounded-3xl border border-white/10 p-3 flex flex-col justify-between cursor-pointer transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] shadow-lg relative group h-full w-full"
     >
-      {/* Photo Box with Image Error Fallback */}
-      <div className="w-28 h-28 sm:w-32 sm:h-32 rounded-2xl bg-black border border-white/10 overflow-hidden flex-shrink-0 relative flex items-center justify-center">
-        {!imgError && dish.imageUrl ? (
-          <img
-            src={dish.imageUrl}
-            alt=""
-            onError={() => setImgError(true)}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-          />
-        ) : (
-          <div className="w-full h-full bg-gradient-to-br from-zinc-800 to-zinc-950 flex flex-col items-center justify-center text-white/30 space-y-1">
-            <FontAwesomeIcon icon={faUtensils} className="text-2xl text-[#00FF66]/50" />
-            <span className="text-[9px] font-mono">Banzai Food</span>
-          </div>
-        )}
-
-        {dish.isBundle && (
-          <span className="absolute top-1.5 left-1.5 bg-[#FF385C] text-white font-black text-[9px] uppercase px-1.5 py-0.5 rounded flex items-center gap-0.5 shadow z-10">
-            <FontAwesomeIcon icon={faBolt} /> Бандл
-          </span>
-        )}
-        {dish.isHit && !dish.isBundle && (
-          <span className="absolute top-1.5 left-1.5 bg-[#F59E0B] text-black font-black text-[9px] uppercase px-1.5 py-0.5 rounded flex items-center gap-0.5 shadow z-10">
-            <FontAwesomeIcon icon={faFire} /> Хит
-          </span>
-        )}
-      </div>
-
-      {/* Info Box */}
-      <div className="flex-1 flex flex-col justify-between py-1 min-w-0">
-        <div>
-          <h3 className="font-bold text-white text-base leading-snug truncate">{dish.name}</h3>
-          <p className="text-xs text-white/60 line-clamp-2 mt-1 leading-relaxed">{dish.description}</p>
-        </div>
-
-        <div className="flex items-center justify-between mt-3 pt-2 border-t border-white/5">
-          <span className="text-base sm:text-lg font-black font-mono text-white">
-            {dish.price} ₽
-          </span>
-
-          {totalCountInCart > 0 ? (
-            <div
-              onClick={(e) => e.stopPropagation()}
-              className="flex items-center gap-2 bg-black/80 rounded-full px-2 py-1 border border-white/20"
-            >
-              <button
-                onClick={handleDecrement}
-                className="w-6 h-6 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center text-xs font-bold transition-all"
-              >
-                <FontAwesomeIcon icon={faMinus} />
-              </button>
-              <span className="font-mono font-bold text-white text-sm px-1">{totalCountInCart}</span>
-              <button
-                onClick={handleIncrement}
-                className="w-6 h-6 rounded-full text-black flex items-center justify-center text-xs font-bold transition-all"
-                style={{ backgroundColor: primaryColor }}
-              >
-                <FontAwesomeIcon icon={faPlus} />
-              </button>
-            </div>
+      <div>
+        {/* Top Image Box - Full Width, No wasted margins */}
+        <div className="w-full h-36 sm:h-40 rounded-2xl bg-black border border-white/10 overflow-hidden relative flex items-center justify-center">
+          {!imgError && dish.imageUrl ? (
+            <img
+              src={dish.imageUrl}
+              alt=""
+              onError={() => setImgError(true)}
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+            />
           ) : (
-            <button
-              onClick={handleAddClick}
-              className="px-3.5 py-1.5 rounded-full text-black font-black text-xs uppercase tracking-wider transition-all shadow-md hover:scale-105 active:scale-95 flex items-center gap-1 cursor-pointer flex-shrink-0"
-              style={{ backgroundColor: primaryColor }}
-            >
-              <FontAwesomeIcon icon={faPlus} /> Добавить
-            </button>
+            <div className="w-full h-full bg-gradient-to-br from-zinc-800 to-zinc-950 flex flex-col items-center justify-center text-white/30 space-y-1">
+              <FontAwesomeIcon icon={faUtensils} className="text-3xl text-[#00FF66]/50" />
+              <span className="text-[10px] font-mono font-bold text-white/40">Banzai Food</span>
+            </div>
+          )}
+
+          {/* Badges */}
+          {dish.isBundle && (
+            <span className="absolute top-2 left-2 bg-[#FF385C] text-white font-black text-[9px] uppercase px-2 py-0.5 rounded-md flex items-center gap-1 shadow-md z-10">
+              <FontAwesomeIcon icon={faBolt} /> Бандл
+            </span>
+          )}
+          {dish.isHit && !dish.isBundle && (
+            <span className="absolute top-2 left-2 bg-[#F59E0B] text-black font-black text-[9px] uppercase px-2 py-0.5 rounded-md flex items-center gap-1 shadow-md z-10">
+              <FontAwesomeIcon icon={faFire} /> Хит
+            </span>
           )}
         </div>
+
+        {/* Text Details */}
+        <div className="mt-2.5 space-y-1">
+          <h3 className="font-bold text-white text-sm sm:text-base leading-tight truncate" title={dish.name}>
+            {dish.name}
+          </h3>
+          <p className="text-[11px] text-white/60 line-clamp-2 leading-tight">
+            {dish.description}
+          </p>
+        </div>
+      </div>
+
+      {/* Action Row - Price + Add Button */}
+      <div className="flex items-center justify-between mt-3 pt-2 border-t border-white/5">
+        <span className="text-sm sm:text-base font-black font-mono text-white">
+          {dish.price} ₽
+        </span>
+
+        {totalCountInCart > 0 ? (
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="flex items-center gap-1.5 bg-black/80 rounded-full px-1.5 py-0.5 border border-white/20"
+          >
+            <button
+              onClick={handleDecrement}
+              className="w-5 h-5 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center text-[10px] font-bold"
+            >
+              <FontAwesomeIcon icon={faMinus} />
+            </button>
+            <span className="font-mono font-bold text-white text-xs px-1">{totalCountInCart}</span>
+            <button
+              onClick={handleIncrement}
+              className="w-5 h-5 rounded-full text-black flex items-center justify-center text-[10px] font-bold"
+              style={{ backgroundColor: primaryColor }}
+            >
+              <FontAwesomeIcon icon={faPlus} />
+            </button>
+          </div>
+        ) : (
+          <button
+            onClick={handleAddClick}
+            className="px-3 py-1.5 rounded-full text-black font-black text-xs uppercase tracking-wider transition-all shadow-md hover:scale-105 active:scale-95 flex items-center gap-1 cursor-pointer flex-shrink-0"
+            style={{ backgroundColor: primaryColor }}
+          >
+            <FontAwesomeIcon icon={faPlus} />
+            <span className="hidden xs:inline">Добавить</span>
+          </button>
+        )}
       </div>
     </div>
   );
