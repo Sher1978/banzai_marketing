@@ -135,6 +135,17 @@ export const BrandingTab: React.FC<Props> = ({ branding, onChange, onSave, isSav
               className="w-full bg-black/60 border border-white/20 rounded-xl px-4 py-2.5 text-white focus:outline-none focus:border-[#00FF66]"
             />
           </div>
+
+          <div>
+            <label className="text-xs text-white/70 block mb-1">Ссылка на основной сайт заведения</label>
+            <input
+              type="url"
+              placeholder="https://..."
+              value={branding.websiteUrl || ""}
+              onChange={(e) => onChange({ ...branding, websiteUrl: e.target.value })}
+              className="w-full bg-black/60 border border-white/20 rounded-xl px-4 py-2.5 text-white focus:outline-none focus:border-[#00FF66]"
+            />
+          </div>
         </div>
       </div>
 

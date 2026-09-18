@@ -149,6 +149,11 @@ function StorefrontContent() {
           <p className="font-bold text-white/80">{branding.title}</p>
           <p>{branding.address || "ул. Гастрономическая, 1"}</p>
           <p className="font-mono text-[11px] text-[#00FF66]/80">⚡ Работаем на платформе Banzai Food x REVO</p>
+          {branding.websiteUrl && (
+            <p className="font-mono text-[11px] text-white/40 mt-4">
+              Узнать больше на <a href={branding.websiteUrl} target="_blank" rel="noopener noreferrer" className="text-[#00FF66] underline hover:text-white transition-colors">сайте</a>
+            </p>
+          )}
         </footer>
       </main>
 

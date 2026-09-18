@@ -26,6 +26,7 @@ export interface VenueBranding {
   deliveryFee: number;
   telegramChatId?: string;
   notifyEmail?: string;
+  websiteUrl?: string;
 }
 
 export interface RevoSettings {
