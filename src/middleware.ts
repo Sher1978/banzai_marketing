@@ -4,16 +4,23 @@ import type { NextRequest } from 'next/server';
 export function middleware(request: NextRequest) {
   const host = request.headers.get('host') || '';
   const url = request.nextUrl.clone();
+  const path = url.pathname.toLowerCase();
 
-  // If request hits outrich.online or outrich alias at root '/'
-  if (host.toLowerCase().includes('outrich') && url.pathname === '/') {
-    url.pathname = '/outrich-dubai';
-    return NextResponse.rewrite(url);
+  // Handle outrich.online domain multi-tenant routing
+  if (host.toLowerCase().includes('outrich')) {
+    if (path === '/') {
+      url.pathname = '/outrich-dubai';
+      return NextResponse.rewrite(url);
+    }
+    if (path === '/maps' || path === '/maps/') {
+      url.pathname = '/maps';
+      return NextResponse.rewrite(url);
+    }
   }
 
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: ['/'],
+  matcher: ['/((?!api|_next/static|_next/image|favicon.ico|.*\\..*).*)'],
 };

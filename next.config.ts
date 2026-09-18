@@ -20,6 +20,16 @@ const nextConfig: NextConfig = {
         ],
         destination: '/outrich-dubai',
       },
+      {
+        source: '/maps',
+        has: [
+          {
+            type: 'host',
+            value: '(.*outrich\\.online|.*outrich-dubai)',
+          },
+        ],
+        destination: '/maps',
+      },
     ];
   },
   async headers() {
