@@ -6,6 +6,7 @@ import GrabFoodHero from "./GrabFoodHero";
 import ProblemSection from "./ProblemSection";
 import SolutionSection from "./SolutionSection";
 import HowItWorksSection from "./HowItWorksSection";
+import ClientJourneySection from "./ClientJourneySection";
 import CasesSection from "./CasesSection";
 import StoryBrandSection from "./StoryBrandSection";
 import FinalCTASection from "./FinalCTASection";
@@ -20,6 +21,7 @@ export default function FoodLandingPage() {
         <ProblemSection />
         <SolutionSection />
         <HowItWorksSection />
+        <ClientJourneySection />
         <CasesSection />
         <StoryBrandSection />
         <FinalCTASection />

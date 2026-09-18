@@ -109,8 +109,7 @@ export default function GrabFoodHero() {
           <p className="text-base sm:text-lg lg:text-xl text-gray-600 leading-relaxed font-normal max-w-3xl mx-auto">
             Ваши клиенты не пришли к вам сегодня не потому, что у вас невкусно. Они просто ждут,
             когда еда приедет к ним. Запускаем ваш рост на платформах Grab и Foodpanda по всей Азии.
-            Настраиваем доставку под ключ за <span className="font-bold text-gray-900">$500</span> и
-            берем управление на себя за <span className="font-bold text-[#00B14F]">10% от чистой прибыли</span>.
+            Настраиваем доставку под ключ и берем управление на себя за процент от роста чистой прибыли.
           </p>
 
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
@@ -124,7 +123,7 @@ export default function GrabFoodHero() {
 
             <div className="flex items-center gap-2 text-xs font-semibold text-gray-500 bg-white/80 border border-gray-200 rounded-xl px-4 py-3 shadow-sm">
               <ShieldCheck className="w-4 h-4 text-[#00B14F]" />
-              <span>Оплата 10% только с прироста чистой прибыли</span>
+              <span>Оплата только с прироста чистой прибыли</span>
             </div>
           </div>
         </div>

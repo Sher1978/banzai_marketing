@@ -5,7 +5,7 @@ import { Flame, Trophy, AlertTriangle, CheckCircle2, ArrowRight } from "lucide-r
 
 export default function StoryBrandSection() {
   return (
-    <section className="py-20 bg-gray-50 border-t border-gray-200/80">
+    <section className="py-20 bg-[#E5E8EC] border-t border-gray-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="max-w-3xl mx-auto text-center mb-16">
@@ -105,7 +105,7 @@ export default function StoryBrandSection() {
                 </li>
                 <li className="flex items-center gap-2">
                   <CheckCircle2 className="w-4 h-4 text-[#00B14F]" />
-                  10% агентская комиссия платится ТОЛЬКО с новой чистой прибыли
+                  Агентская комиссия платится ТОЛЬКО с новой чистой прибыли
                 </li>
               </ul>
             </div>
