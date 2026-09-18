@@ -7,11 +7,11 @@ import { CartProvider, useCart } from "@/lib/food/CartContext";
 import { RevoBatteryHeader } from "@/components/food/Storefront/RevoBatteryHeader";
 import { VenueHeader } from "@/components/food/Storefront/VenueHeader";
 import { CategoryNav } from "@/components/food/Storefront/CategoryNav";
-import { DishCard } from "@/components/food/Storefront/DishCard";
+import { CategorySectionSlider } from "@/components/food/Storefront/CategorySectionSlider";
 import { DishDetailModal } from "@/components/food/Storefront/DishDetailModal";
 import { CartDrawer } from "@/components/food/Storefront/CartDrawer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faShoppingBag, faSpinner, faBolt } from "@fortawesome/free-solid-svg-icons";
+import { faSpinner, faBolt } from "@fortawesome/free-solid-svg-icons";
 
 function StorefrontContent() {
   const params = useParams();
@@ -55,7 +55,7 @@ function StorefrontContent() {
     if (loading || !venue.categories || venue.categories.length === 0) return;
 
     const handleScroll = () => {
-      const scrollPos = window.scrollY + 180;
+      const scrollPos = window.scrollY + 200;
       let currentCatId = "all";
 
       for (const cat of venue.categories) {
@@ -109,7 +109,7 @@ function StorefrontContent() {
       {/* 🏨 Venue Cover & Header */}
       <VenueHeader branding={branding} />
 
-      {/* 📁 Sticky Category Tabs */}
+      {/* 📁 Sticky Category Tabs Navigation */}
       <CategoryNav
         categories={categories}
         activeCategoryId={activeCategory}
@@ -117,34 +117,18 @@ function StorefrontContent() {
         primaryColor={primaryColor}
       />
 
-      {/* 🍔 Menu Items Grid - All Categories Scrollable */}
-      <main className="max-w-3xl mx-auto px-4 pt-6 space-y-10">
+      {/* 🍔 Menu Sections List (Vertical) with Horizontal Carousels per Category */}
+      <main className="max-w-4xl mx-auto px-4 pt-6 space-y-10">
         {categories.map((cat) => {
           const catItems = items.filter((i) => i.categoryId === cat.id);
-          if (catItems.length === 0) return null;
           return (
-            <section
+            <CategorySectionSlider
               key={cat.id}
-              id={`category-section-${cat.id}`}
-              className="space-y-4 scroll-mt-28"
-            >
-              <h2
-                className="text-xl font-black text-white flex items-center gap-2 border-l-4 pl-3"
-                style={{ borderColor: primaryColor }}
-              >
-                {cat.name}
-              </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {catItems.map((dish) => (
-                  <DishCard
-                    key={dish.id}
-                    dish={dish}
-                    onOpenModal={setSelectedDishModal}
-                    primaryColor={primaryColor}
-                  />
-                ))}
-              </div>
-            </section>
+              category={cat}
+              items={catItems}
+              onOpenModal={setSelectedDishModal}
+              primaryColor={primaryColor}
+            />
           );
         })}
       </main>
