@@ -50,6 +50,37 @@ function StorefrontContent() {
     loadVenue();
   }, [slug, setDeliveryFee]);
 
+  // Scroll Spy to highlight active category as user scrolls down
+  useEffect(() => {
+    if (loading || !venue.categories || venue.categories.length === 0) return;
+
+    const handleScroll = () => {
+      const scrollPos = window.scrollY + 180;
+      let currentCatId = "all";
+
+      for (const cat of venue.categories) {
+        const el = document.getElementById(`category-section-${cat.id}`);
+        if (el) {
+          const top = el.offsetTop;
+          const height = el.offsetHeight;
+          if (scrollPos >= top && scrollPos < top + height) {
+            currentCatId = cat.id;
+            break;
+          }
+        }
+      }
+
+      if (window.scrollY < 200) {
+        setActiveCategory("all");
+      } else if (currentCatId !== "all") {
+        setActiveCategory(currentCatId);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [loading, venue]);
+
   if (loading) {
     return (
       <div className="min-h-screen bg-[#121212] text-white flex items-center justify-center font-sans">
@@ -63,10 +94,6 @@ function StorefrontContent() {
 
   const { branding, revoSettings, categories, items } = venue;
   const primaryColor = branding.primaryColor || "#00FF66";
-
-  const filteredItems = activeCategory === "all"
-    ? items
-    : items.filter((i) => i.categoryId === activeCategory);
 
   return (
     <div
@@ -90,47 +117,36 @@ function StorefrontContent() {
         primaryColor={primaryColor}
       />
 
-      {/* 🍔 Menu Items Grid */}
-      <main className="max-w-3xl mx-auto px-4 pt-6 space-y-8">
-        {activeCategory === "all" ? (
-          categories.map((cat) => {
-            const catItems = items.filter((i) => i.categoryId === cat.id);
-            if (catItems.length === 0) return null;
-            return (
-              <section key={cat.id} className="space-y-4">
-                <h2 className="text-xl font-black text-white flex items-center gap-2 border-l-4 pl-3" style={{ borderColor: primaryColor }}>
-                  {cat.name}
-                </h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {catItems.map((dish) => (
-                    <DishCard
-                      key={dish.id}
-                      dish={dish}
-                      onOpenModal={setSelectedDishModal}
-                      primaryColor={primaryColor}
-                    />
-                  ))}
-                </div>
-              </section>
-            );
-          })
-        ) : (
-          <section className="space-y-4">
-            <h2 className="text-xl font-black text-white border-l-4 pl-3" style={{ borderColor: primaryColor }}>
-              {categories.find((c) => c.id === activeCategory)?.name || "Категория"}
-            </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {filteredItems.map((dish) => (
-                <DishCard
-                  key={dish.id}
-                  dish={dish}
-                  onOpenModal={setSelectedDishModal}
-                  primaryColor={primaryColor}
-                />
-              ))}
-            </div>
-          </section>
-        )}
+      {/* 🍔 Menu Items Grid - All Categories Scrollable */}
+      <main className="max-w-3xl mx-auto px-4 pt-6 space-y-10">
+        {categories.map((cat) => {
+          const catItems = items.filter((i) => i.categoryId === cat.id);
+          if (catItems.length === 0) return null;
+          return (
+            <section
+              key={cat.id}
+              id={`category-section-${cat.id}`}
+              className="space-y-4 scroll-mt-28"
+            >
+              <h2
+                className="text-xl font-black text-white flex items-center gap-2 border-l-4 pl-3"
+                style={{ borderColor: primaryColor }}
+              >
+                {cat.name}
+              </h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {catItems.map((dish) => (
+                  <DishCard
+                    key={dish.id}
+                    dish={dish}
+                    onOpenModal={setSelectedDishModal}
+                    primaryColor={primaryColor}
+                  />
+                ))}
+              </div>
+            </section>
+          );
+        })}
       </main>
 
       {/* 🛒 Floating Bottom Cart Bar */}

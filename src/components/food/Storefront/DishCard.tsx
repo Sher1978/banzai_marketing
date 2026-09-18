@@ -1,10 +1,10 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { MenuItem } from "@/lib/food/foodData";
 import { useCart } from "@/lib/food/CartContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus, faMinus, faBolt, faFire } from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faMinus, faBolt, faFire, faUtensils } from "@fortawesome/free-solid-svg-icons";
 
 interface Props {
   dish: MenuItem;
@@ -14,6 +14,7 @@ interface Props {
 
 export const DishCard: React.FC<Props> = ({ dish, onOpenModal, primaryColor = "#00FF66" }) => {
   const { items, addItem, updateQuantity } = useCart();
+  const [imgError, setImgError] = useState(false);
 
   // Find total count of this dish in cart
   const cartItemsOfDish = items.filter((i) => i.menuItemId === dish.id);
@@ -49,30 +50,38 @@ export const DishCard: React.FC<Props> = ({ dish, onOpenModal, primaryColor = "#
       onClick={() => onOpenModal(dish)}
       className="bg-[#1E2024]/90 hover:bg-[#25282D] rounded-3xl border border-white/10 p-3.5 flex gap-4 cursor-pointer transition-all duration-200 hover:scale-[1.01] active:scale-[0.99] relative group overflow-hidden"
     >
-      {/* Photo Box */}
-      <div className="w-28 h-28 sm:w-32 sm:h-32 rounded-2xl bg-black border border-white/10 overflow-hidden flex-shrink-0 relative">
-        <img
-          src={dish.imageUrl}
-          alt={dish.name}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-        />
+      {/* Photo Box with Image Error Fallback */}
+      <div className="w-28 h-28 sm:w-32 sm:h-32 rounded-2xl bg-black border border-white/10 overflow-hidden flex-shrink-0 relative flex items-center justify-center">
+        {!imgError && dish.imageUrl ? (
+          <img
+            src={dish.imageUrl}
+            alt=""
+            onError={() => setImgError(true)}
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+          />
+        ) : (
+          <div className="w-full h-full bg-gradient-to-br from-zinc-800 to-zinc-950 flex flex-col items-center justify-center text-white/30 space-y-1">
+            <FontAwesomeIcon icon={faUtensils} className="text-2xl text-[#00FF66]/50" />
+            <span className="text-[9px] font-mono">Banzai Food</span>
+          </div>
+        )}
 
         {dish.isBundle && (
-          <span className="absolute top-1.5 left-1.5 bg-[#FF385C] text-white font-black text-[9px] uppercase px-1.5 py-0.5 rounded flex items-center gap-0.5 shadow">
+          <span className="absolute top-1.5 left-1.5 bg-[#FF385C] text-white font-black text-[9px] uppercase px-1.5 py-0.5 rounded flex items-center gap-0.5 shadow z-10">
             <FontAwesomeIcon icon={faBolt} /> Бандл
           </span>
         )}
         {dish.isHit && !dish.isBundle && (
-          <span className="absolute top-1.5 left-1.5 bg-[#F59E0B] text-black font-black text-[9px] uppercase px-1.5 py-0.5 rounded flex items-center gap-0.5 shadow">
+          <span className="absolute top-1.5 left-1.5 bg-[#F59E0B] text-black font-black text-[9px] uppercase px-1.5 py-0.5 rounded flex items-center gap-0.5 shadow z-10">
             <FontAwesomeIcon icon={faFire} /> Хит
           </span>
         )}
       </div>
 
       {/* Info Box */}
-      <div className="flex-1 flex flex-col justify-between py-1">
+      <div className="flex-1 flex flex-col justify-between py-1 min-w-0">
         <div>
-          <h3 className="font-bold text-white text-base leading-snug line-clamp-1">{dish.name}</h3>
+          <h3 className="font-bold text-white text-base leading-snug truncate">{dish.name}</h3>
           <p className="text-xs text-white/60 line-clamp-2 mt-1 leading-relaxed">{dish.description}</p>
         </div>
 
@@ -104,7 +113,7 @@ export const DishCard: React.FC<Props> = ({ dish, onOpenModal, primaryColor = "#
           ) : (
             <button
               onClick={handleAddClick}
-              className="px-3.5 py-1.5 rounded-full text-black font-black text-xs uppercase tracking-wider transition-all shadow-md hover:scale-105 active:scale-95 flex items-center gap-1 cursor-pointer"
+              className="px-3.5 py-1.5 rounded-full text-black font-black text-xs uppercase tracking-wider transition-all shadow-md hover:scale-105 active:scale-95 flex items-center gap-1 cursor-pointer flex-shrink-0"
               style={{ backgroundColor: primaryColor }}
             >
               <FontAwesomeIcon icon={faPlus} /> Добавить
