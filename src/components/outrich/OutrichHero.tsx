@@ -40,13 +40,13 @@ export const OutrichHero: React.FC = () => {
                     <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-[1.15] uppercase tracking-tight">
                         {isRu ? (
                             <>
-                                Перестаньте платить <br className="hidden sm:block" />
-                                <span className="text-[#ffe600] text-glow-yellow">за каждый клик</span> по рекламе.
+                                Снимаем бизнес <br className="hidden sm:block" />
+                                <span className="text-[#ffe600] text-glow-yellow">с рекламной иглы</span>.
                             </>
                         ) : (
                             <>
-                                Stop Paying <br className="hidden sm:block" />
-                                <span className="text-[#ffe600] text-glow-yellow">For Every Click</span> On Ads.
+                                Weaning Business <br className="hidden sm:block" />
+                                <span className="text-[#ffe600] text-glow-yellow">Off The Ad Needle</span>.
                             </>
                         )}
                     </h1>
