@@ -1,100 +1,220 @@
 "use client";
 
 import React from "react";
-import { Search, Settings, TrendingUp, ArrowRight, Coffee } from "lucide-react";
+import {
+  Search,
+  Settings,
+  TrendingUp,
+  ArrowRight,
+  Coffee,
+  CheckCircle2,
+  Sparkles,
+  Zap,
+  BarChart3,
+  FileCheck2,
+  ShieldAlert,
+  Globe2,
+} from "lucide-react";
 
 export default function ClientJourneySection() {
-  const steps = [
-    {
-      step: "01",
-      icon: Search,
-      badge: "Шаг 1 • 30 секунд",
-      title: "1️⃣ Заявка на бесплатный аудит",
-      text: "Вы оставляете заявку за 30 секунд. Наш эксперт сканирует ваш профиль в Grab/Foodpanda, находит точки потери маржи и готовит персональную карту роста для вашего района.",
-      tag: "Бесплатно",
-      bgBadge: "bg-[#00B14F]/20 text-[#00FF66] border border-[#00B14F]/40",
-    },
-    {
-      step: "02",
-      icon: Settings,
-      badge: "Шаг 2 • За 3 дня",
-      title: "2️⃣ Переупаковка и запуск под ключ",
-      text: "За 3 дня мы полностью пересобираем ваше меню: оцифровываем фото, пишем SEO-тексты на 3 языках, настраиваем комбо-наборы и запускаем математически просчитанные промо-кампании.",
-      tag: "Настройка",
-      bgBadge: "bg-blue-500/20 text-blue-400 border border-blue-500/40",
-    },
-    {
-      step: "03",
-      icon: TrendingUp,
-      badge: "Шаг 3 • Результат",
-      title: "3️⃣ Рост заказов и чистой прибыли",
-      text: "Вы получаете поток прямых заказов из агрегатора. В конце месяца мы сводим финансовую аналитику, и вы выплачиваете нам процент только с реально полученного прироста чистой прибыли.",
-      tag: "Комиссия за прирост",
-      bgBadge: "bg-amber-500/20 text-amber-300 border border-amber-500/40",
-    },
-  ];
-
   return (
-    <section className="py-20 bg-[#121212] text-white border-b border-gray-800 relative overflow-hidden">
+    <section className="py-24 bg-gradient-to-b from-[#0B0F17] via-[#111827] to-[#0B0F17] text-white relative overflow-hidden border-y border-gray-800">
+      {/* Background Ambient Glows */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-[#00B14F]/10 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <div className="max-w-3xl mx-auto text-center mb-16">
-          <span className="inline-flex items-center gap-2 bg-[#00B14F]/20 border border-[#00B14F]/40 text-[#00FF66] text-xs font-black px-4 py-1.5 rounded-full mb-4 uppercase tracking-wider">
-            <Coffee className="w-4 h-4" />
-            Простой путь клиента (3-Step Plan)
+          <span className="inline-flex items-center gap-2 bg-[#00B14F]/20 border border-[#00B14F]/50 text-[#00FF66] text-xs font-black px-4 py-2 rounded-full mb-4 uppercase tracking-widest shadow-lg shadow-[#00B14F]/20">
+            <Sparkles className="w-4 h-4" />
+            Главная механика работы (StoryBrand 3-Step Plan)
           </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight mb-4">
-            Начать получать X3 заказов из Grab — проще, чем заварить кофе
+          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight mb-6 leading-tight">
+            Начать получать X3 заказов из Grab —{" "}
+            <span className="text-[#00FF66] underline decoration-[#00B14F]/60 underline-offset-8">
+              проще, чем заварить кофе
+            </span>
           </h2>
-          <p className="text-gray-300 text-base sm:text-lg font-normal leading-relaxed">
+          <p className="text-gray-300 text-base sm:text-xl font-normal leading-relaxed">
             Вам не нужно разбираться в алгоритмах, нанимать маркетологов или менять процессы на кухне.
             Мы берем всю техническую и операционную работу на себя.
           </p>
         </div>
 
-        {/* 3 STEPS HORIZONTAL TRACKING CARDS */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
-          {/* Grab Delivery Tracking Progress Line (Desktop) */}
-          <div className="hidden md:block absolute top-1/2 left-1/6 right-1/6 h-1 bg-gradient-to-r from-[#00B14F] via-blue-500 to-[#00B14F] -translate-y-8 z-0 opacity-40" />
-
-          {steps.map((st) => {
-            const Icon = st.icon;
-            return (
-              <div
-                key={st.step}
-                className="bg-gray-900/90 border border-gray-800 rounded-3xl p-8 flex flex-col justify-between shadow-2xl hover:border-[#00B14F] transition-all duration-300 relative z-10 group hover:-translate-y-1"
-              >
-                <div>
-                  <div className="flex items-center justify-between mb-6">
-                    <div className="w-14 h-14 rounded-2xl bg-[#00B14F] text-white flex items-center justify-center font-bold shadow-lg shadow-[#00B14F]/40 group-hover:scale-110 transition-transform">
-                      <Icon className="w-7 h-7" />
-                    </div>
-                    <span className="text-xs font-black px-3 py-1 rounded-full uppercase tracking-wider bg-gray-800 border border-gray-700 text-gray-300">
-                      {st.badge}
-                    </span>
-                  </div>
-
-                  <h3 className="text-xl font-black text-white mb-3 group-hover:text-[#00FF66] transition-colors">
-                    {st.title}
-                  </h3>
-
-                  <p className="text-gray-300 text-sm leading-relaxed font-normal bg-gray-950 p-4 rounded-2xl border border-gray-800">
-                    {st.text}
-                  </p>
+        {/* 3 STEPS CARDS WITH INFOGRAPHICS */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 relative">
+          {/* STEP 1 */}
+          <div className="bg-gradient-to-b from-gray-900/95 to-gray-950/95 border-2 border-[#00B14F]/40 hover:border-[#00FF66] rounded-3xl p-8 flex flex-col justify-between shadow-2xl shadow-[#00B14F]/10 hover:shadow-[#00B14F]/25 transition-all duration-300 relative group transform hover:-translate-y-1.5">
+            <div>
+              <div className="flex items-center justify-between mb-6">
+                <div className="w-16 h-16 rounded-2xl bg-[#00B14F] text-white flex items-center justify-center font-black text-xl shadow-lg shadow-[#00B14F]/40 group-hover:scale-105 transition-transform">
+                  01
                 </div>
+                <span className="text-xs font-black px-3.5 py-1.5 rounded-full uppercase tracking-wider bg-[#00B14F]/20 text-[#00FF66] border border-[#00B14F]/40">
+                  Шаг 1 • 30 секунд
+                </span>
+              </div>
 
-                <div className="mt-6 pt-4 border-t border-gray-800 flex items-center justify-between text-xs font-extrabold">
-                  <span className={`px-2.5 py-1 rounded-lg ${st.bgBadge}`}>
-                    {st.tag}
+              <h3 className="text-2xl font-black text-white mb-3 group-hover:text-[#00FF66] transition-colors">
+                1️⃣ Заявка на бесплатный аудит
+              </h3>
+
+              <p className="text-gray-300 text-sm leading-relaxed mb-6 font-normal">
+                Вы оставляете заявку за 30 секунд. Наш эксперт сканирует ваш профиль в Grab/Foodpanda,
+                находит точки потери маржи и готовит персональную карту роста для вашего района.
+              </p>
+
+              {/* INFOGRAPHIC UI CARD 1: RADAR SCANNER */}
+              <div className="bg-gray-950 border border-gray-800 rounded-2xl p-4 mb-4 space-y-2.5">
+                <div className="flex items-center justify-between text-xs font-bold border-b border-gray-800 pb-2">
+                  <span className="flex items-center gap-1.5 text-gray-300">
+                    <Search className="w-3.5 h-3.5 text-[#00FF66]" />
+                    Grab AI Scanner
                   </span>
-                  <div className="flex items-center gap-1 text-[#00FF66]">
-                    <span>Далее</span>
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                  </div>
+                  <span className="text-[#00FF66] animate-pulse text-[11px]">
+                    ● Сканирование 5 км
+                  </span>
+                </div>
+                <div className="flex items-center justify-between text-[11px] text-gray-400">
+                  <span>Сливы выручки:</span>
+                  <span className="text-red-400 font-bold">-28% маржи</span>
+                </div>
+                <div className="flex items-center justify-between text-[11px] text-gray-400">
+                  <span>Квота района:</span>
+                  <span className="text-[#00FF66] font-bold">1 место свободно</span>
+                </div>
+                {/* Progress bar visual */}
+                <div className="w-full bg-gray-800 h-2 rounded-full overflow-hidden mt-1">
+                  <div className="bg-gradient-to-r from-[#00B14F] to-[#00FF66] h-full w-[78%]" />
                 </div>
               </div>
-            );
-          })}
+            </div>
+
+            <div className="pt-4 border-t border-gray-800 flex items-center justify-between text-xs font-extrabold text-[#00FF66]">
+              <span>Результат: Готовая карта роста</span>
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </div>
+          </div>
+
+          {/* STEP 2 */}
+          <div className="bg-gradient-to-b from-gray-900/95 to-gray-950/95 border-2 border-[#00B14F]/60 hover:border-[#00FF66] rounded-3xl p-8 flex flex-col justify-between shadow-2xl shadow-[#00B14F]/15 hover:shadow-[#00B14F]/30 transition-all duration-300 relative group transform hover:-translate-y-1.5">
+            <div>
+              <div className="flex items-center justify-between mb-6">
+                <div className="w-16 h-16 rounded-2xl bg-[#00B14F] text-white flex items-center justify-center font-black text-xl shadow-lg shadow-[#00B14F]/40 group-hover:scale-105 transition-transform">
+                  02
+                </div>
+                <span className="text-xs font-black px-3.5 py-1.5 rounded-full uppercase tracking-wider bg-blue-500/20 text-blue-400 border border-blue-500/40">
+                  Шаг 2 • За 3 дня
+                </span>
+              </div>
+
+              <h3 className="text-2xl font-black text-white mb-3 group-hover:text-[#00FF66] transition-colors">
+                2️⃣ Переупаковка и запуск под ключ
+              </h3>
+
+              <p className="text-gray-300 text-sm leading-relaxed mb-6 font-normal">
+                За 3 дня мы полностью пересобираем ваше меню: оцифровываем фото, пишем SEO-тексты на 3
+                языках, настраиваем комбо-наборы и запускаем математически просчитанные промо-кампании.
+              </p>
+
+              {/* INFOGRAPHIC UI CARD 2: MENU SETUP MATRIX */}
+              <div className="bg-gray-950 border border-gray-800 rounded-2xl p-4 mb-4 space-y-2.5">
+                <div className="flex items-center justify-between text-xs font-bold border-b border-gray-800 pb-2">
+                  <span className="flex items-center gap-1.5 text-gray-300">
+                    <Settings className="w-3.5 h-3.5 text-blue-400" />
+                    Setup Matrix 100%
+                  </span>
+                  <span className="text-blue-400 font-bold text-[11px]">
+                    3 Языка (EN/TH/RU)
+                  </span>
+                </div>
+                <div className="flex items-center justify-between text-[11px] text-gray-400">
+                  <span>Grab-комбо наборы:</span>
+                  <span className="text-[#00FF66] font-bold">+35% к среднему чеку</span>
+                </div>
+                <div className="flex items-center justify-between text-[11px] text-gray-400">
+                  <span>SEO-индексация ключей:</span>
+                  <span className="text-blue-400 font-bold">Выполнено</span>
+                </div>
+                {/* 3 Checkmark badges */}
+                <div className="flex gap-2 pt-1">
+                  <span className="bg-gray-900 border border-gray-800 text-[10px] text-gray-300 px-2 py-0.5 rounded-md flex items-center gap-1">
+                    <CheckCircle2 className="w-3 h-3 text-[#00FF66]" /> Фото
+                  </span>
+                  <span className="bg-gray-900 border border-gray-800 text-[10px] text-gray-300 px-2 py-0.5 rounded-md flex items-center gap-1">
+                    <CheckCircle2 className="w-3 h-3 text-[#00FF66]" /> SEO
+                  </span>
+                  <span className="bg-gray-900 border border-gray-800 text-[10px] text-gray-300 px-2 py-0.5 rounded-md flex items-center gap-1">
+                    <CheckCircle2 className="w-3 h-3 text-[#00FF66]" /> Комбо
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div className="pt-4 border-t border-gray-800 flex items-center justify-between text-xs font-extrabold text-blue-400">
+              <span>Результат: Полная готовность к ТОП-5</span>
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </div>
+          </div>
+
+          {/* STEP 3 */}
+          <div className="bg-gradient-to-b from-gray-900/95 to-gray-950/95 border-2 border-[#00B14F] hover:border-[#00FF66] rounded-3xl p-8 flex flex-col justify-between shadow-2xl shadow-[#00B14F]/20 hover:shadow-[#00B14F]/40 transition-all duration-300 relative group transform hover:-translate-y-1.5">
+            <div>
+              <div className="flex items-center justify-between mb-6">
+                <div className="w-16 h-16 rounded-2xl bg-[#00B14F] text-white flex items-center justify-center font-black text-xl shadow-lg shadow-[#00B14F]/40 group-hover:scale-105 transition-transform">
+                  03
+                </div>
+                <span className="text-xs font-black px-3.5 py-1.5 rounded-full uppercase tracking-wider bg-amber-500/20 text-amber-300 border border-amber-500/40">
+                  Шаг 3 • Результат
+                </span>
+              </div>
+
+              <h3 className="text-2xl font-black text-white mb-3 group-hover:text-[#00FF66] transition-colors">
+                3️⃣ Рост заказов и чистой прибыли
+              </h3>
+
+              <p className="text-gray-300 text-sm leading-relaxed mb-6 font-normal">
+                Вы получаете поток прямых заказов из агрегатора. В конце месяца мы сводим финансовую
+                аналитику, и вы выплачиваете нам процент только с реально полученного прироста чистой прибыли.
+              </p>
+
+              {/* INFOGRAPHIC UI CARD 3: GROWTH CHART */}
+              <div className="bg-gray-950 border border-gray-800 rounded-2xl p-4 mb-4 space-y-2.5">
+                <div className="flex items-center justify-between text-xs font-bold border-b border-gray-800 pb-2">
+                  <span className="flex items-center gap-1.5 text-[#00FF66]">
+                    <TrendingUp className="w-3.5 h-3.5 text-[#00FF66]" />
+                    Прирост выручки +340%
+                  </span>
+                  <span className="text-amber-400 font-bold text-[11px]">
+                    Отчет Grabix 2х/мес
+                  </span>
+                </div>
+                <div className="flex items-center justify-between text-[11px] text-gray-400">
+                  <span>Статус заказов:</span>
+                  <span className="text-[#00FF66] font-bold">ТОП-5 в радиусе 4 км</span>
+                </div>
+                <div className="flex items-center justify-between text-[11px] text-gray-400">
+                  <span>Оплата услуг:</span>
+                  <span className="text-[#00FF66] font-bold">% только от нового роста</span>
+                </div>
+
+                {/* Infographic mini chart bars */}
+                <div className="flex items-end gap-1.5 h-8 pt-2">
+                  <div className="bg-gray-800 w-full h-[25%] rounded-sm" />
+                  <div className="bg-gray-800 w-full h-[40%] rounded-sm" />
+                  <div className="bg-[#00B14F]/60 w-full h-[65%] rounded-sm" />
+                  <div className="bg-[#00B14F] w-full h-[85%] rounded-sm" />
+                  <div className="bg-[#00FF66] w-full h-[100%] rounded-sm" />
+                </div>
+              </div>
+            </div>
+
+            <div className="pt-4 border-t border-gray-800 flex items-center justify-between text-xs font-extrabold text-[#00FF66]">
+              <span>Результат: Оплата за чистый прирост</span>
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </div>
+          </div>
         </div>
       </div>
     </section>

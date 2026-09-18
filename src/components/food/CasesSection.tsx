@@ -1,11 +1,14 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import { Star, TrendingUp, Award, MapPin, X, ZoomIn } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Star, TrendingUp, Award, MapPin, X, ZoomIn, ChevronLeft, ChevronRight, Play, Pause } from "lucide-react";
 
 export default function CasesSection() {
   const [selectedReport, setSelectedReport] = useState<string | null>(null);
+  const [activeCaseIndex, setActiveCaseIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
 
   const cases = [
     {
@@ -70,6 +73,15 @@ export default function CasesSection() {
     },
   ];
 
+  // Auto-scroll cases slider every 4.5 seconds
+  useEffect(() => {
+    if (isPaused) return;
+    const interval = setInterval(() => {
+      setActiveCaseIndex((prev) => (prev + 1) % cases.length);
+    }, 4500);
+    return () => clearInterval(interval);
+  }, [isPaused, cases.length]);
+
   return (
     <section className="py-20 bg-[#121212] text-white border-b border-gray-800 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -88,56 +100,129 @@ export default function CasesSection() {
           </p>
         </div>
 
-        {/* 3 CASE CARDS GRID */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
-          {cases.map((item) => (
-            <div
-              key={item.id}
-              className="bg-gray-900/90 border border-gray-800 rounded-3xl p-6 flex flex-col justify-between shadow-2xl hover:border-[#00B14F] transition-all duration-300"
-            >
-              <div>
-                <div className="flex items-center justify-between mb-4">
-                  <span className="bg-[#00B14F] text-white text-xs font-extrabold px-3 py-1 rounded-full">
-                    {item.tag}
-                  </span>
-                  <div className="flex items-center gap-1 text-xs font-bold text-amber-400 bg-amber-500/10 px-2.5 py-1 rounded-full border border-amber-500/30">
-                    <Star className="w-3.5 h-3.5 fill-amber-400" />
-                    <span>{item.rating}</span>
-                  </div>
-                </div>
+        {/* 🌟 AUTO-SCROLLING CASES SLIDER 🌟 */}
+        <div
+          className="mb-20 relative"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+        >
+          {/* Slider Header Controls */}
+          <div className="flex items-center justify-between mb-6 bg-gray-900/80 border border-gray-800 rounded-2xl p-4 backdrop-blur-md">
+            <div className="flex items-center gap-3">
+              <span className="w-2.5 h-2.5 rounded-full bg-[#00FF66] animate-pulse" />
+              <span className="text-xs font-black uppercase tracking-wider text-gray-300">
+                Интерактивные кейсы клиентов ({activeCaseIndex + 1} из {cases.length})
+              </span>
+            </div>
 
-                <h3 className="text-xl font-black text-white mb-1">
-                  {item.title}
-                </h3>
-                <div className="flex items-center gap-1.5 text-xs text-gray-400 mb-4 font-medium">
-                  <MapPin className="w-3.5 h-3.5 text-gray-400" />
-                  <span>{item.district}</span>
-                </div>
-
-                <div className="space-y-3 text-xs mb-6">
-                  <div className="bg-red-500/10 border border-red-500/20 p-3.5 rounded-2xl text-gray-300">
-                    <span className="font-bold text-red-400 block mb-0.5">
-                      Было:
-                    </span>
-                    {item.was}
-                  </div>
-                  <div className="bg-[#00B14F]/10 border border-[#00B14F]/30 p-3.5 rounded-2xl text-gray-200">
-                    <span className="font-bold text-[#00FF66] block mb-0.5">
-                      Стало:
-                    </span>
-                    {item.became}
-                  </div>
-                </div>
+            {/* Slider Dots & Navigation */}
+            <div className="flex items-center gap-4">
+              <div className="flex items-center gap-1.5">
+                {cases.map((_, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => setActiveCaseIndex(idx)}
+                    className={`h-2 rounded-full transition-all duration-300 ${
+                      activeCaseIndex === idx
+                        ? "w-8 bg-[#00FF66]"
+                        : "w-2 bg-gray-700 hover:bg-gray-600"
+                    }`}
+                  />
+                ))}
               </div>
 
-              <div className="pt-4 border-t border-gray-800 flex items-center justify-between text-xs font-bold text-white">
-                <span className="text-[#00FF66] flex items-center gap-1">
-                  <TrendingUp className="w-4 h-4" />
-                  {item.metrics}
-                </span>
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() =>
+                    setActiveCaseIndex((prev) => (prev > 0 ? prev - 1 : cases.length - 1))
+                  }
+                  className="p-2 rounded-xl bg-gray-800 border border-gray-700 text-gray-300 hover:bg-gray-700 hover:text-white transition-colors"
+                  title="Предыдущий кейс"
+                >
+                  <ChevronLeft className="w-4 h-4" />
+                </button>
+                <button
+                  onClick={() =>
+                    setActiveCaseIndex((prev) => (prev + 1) % cases.length)
+                  }
+                  className="p-2 rounded-xl bg-gray-800 border border-gray-700 text-gray-300 hover:bg-gray-700 hover:text-white transition-colors"
+                  title="Следующий кейс"
+                >
+                  <ChevronRight className="w-4 h-4" />
+                </button>
               </div>
             </div>
-          ))}
+          </div>
+
+          {/* ACTIVE CASE SLIDE */}
+          <div className="relative overflow-hidden min-h-[340px]">
+            <AnimatePresence mode="wait">
+              {cases.map((item, idx) => {
+                if (idx !== activeCaseIndex) return null;
+                return (
+                  <motion.div
+                    key={item.id}
+                    initial={{ opacity: 0, x: 50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -50 }}
+                    transition={{ duration: 0.4 }}
+                    className="bg-gradient-to-b from-gray-900 to-gray-950 border-2 border-[#00B14F] rounded-3xl p-8 shadow-2xl shadow-[#00B14F]/15 flex flex-col justify-between"
+                  >
+                    <div>
+                      <div className="flex items-center justify-between mb-4">
+                        <div className="flex items-center gap-3">
+                          <span className="bg-[#00B14F] text-white text-xs font-black px-3.5 py-1.5 rounded-full shadow-md shadow-[#00B14F]/30">
+                            {item.tag}
+                          </span>
+                          <div className="flex items-center gap-1 text-xs font-bold text-amber-400 bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/30">
+                            <Star className="w-3.5 h-3.5 fill-amber-400" />
+                            <span>{item.rating}</span>
+                          </div>
+                        </div>
+
+                        <span className="text-xs text-gray-400 font-semibold">
+                          Авто-слайдер • Наведите мышкой для паузы
+                        </span>
+                      </div>
+
+                      <h3 className="text-2xl sm:text-3xl font-black text-white mb-2">
+                        {item.title}
+                      </h3>
+                      <div className="flex items-center gap-1.5 text-xs text-gray-400 mb-6 font-medium">
+                        <MapPin className="w-3.5 h-3.5 text-gray-400" />
+                        <span>{item.district}</span>
+                      </div>
+
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs sm:text-sm mb-6">
+                        <div className="bg-red-500/10 border border-red-500/25 p-4 rounded-2xl text-gray-300">
+                          <span className="font-bold text-red-400 block mb-1">
+                            Было:
+                          </span>
+                          {item.was}
+                        </div>
+                        <div className="bg-[#00B14F]/10 border border-[#00B14F]/30 p-4 rounded-2xl text-gray-200">
+                          <span className="font-bold text-[#00FF66] block mb-1">
+                            Стало:
+                          </span>
+                          {item.became}
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="pt-4 border-t border-gray-800 flex items-center justify-between text-xs sm:text-sm font-extrabold text-white">
+                      <span className="text-[#00FF66] flex items-center gap-2">
+                        <TrendingUp className="w-5 h-5 text-[#00FF66]" />
+                        {item.metrics}
+                      </span>
+                      <span className="text-gray-400 text-xs font-medium">
+                        Отчет системы подтвержден
+                      </span>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </AnimatePresence>
+          </div>
         </div>
 
         {/* REAL SYSTEM REPORTS GALLERY */}

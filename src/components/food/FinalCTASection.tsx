@@ -58,22 +58,25 @@ export default function FinalCTASection() {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#00B14F]/15 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* DISTRICT LIMIT WARNING BOX */}
-        <div className="bg-amber-500/10 border-2 border-amber-500/40 rounded-3xl p-6 sm:p-8 mb-12 backdrop-blur-md">
-          <div className="flex items-start gap-4">
-            <div className="w-10 h-10 rounded-2xl bg-amber-500/20 flex items-center justify-center text-amber-400 shrink-0 mt-0.5">
-              <AlertCircle className="w-6 h-6" />
-            </div>
-            <div>
-              <span className="text-xs font-black uppercase tracking-wider text-amber-400 mb-1 block">
-                ⚠️ Ограничение по локальной квоте
-              </span>
-              <h4 className="text-lg font-bold text-white mb-2">
-                Лимит на эксклюзивность районов в Азии
-              </h4>
-              <p className="text-sm text-gray-300 leading-relaxed font-normal">
-                Мы берем в работу <span className="text-amber-400 font-bold">максимум 2 ресторана одной кухни в одном районе</span> на весь город (например, только 2 бургерных в районе Патонга или Чангу), чтобы не конкурировать с самими собой. Если квота вашего района закрыта — мы не сможем взять вас в работу.
-              </p>
+        {/* DISTRICT LIMIT WARNING BOX WITH PULSING AMBER BACKLIGHT */}
+        <div className="relative mb-12 group">
+          <div className="absolute -inset-1 bg-gradient-to-r from-amber-500/60 via-amber-400/80 to-amber-500/60 rounded-3xl opacity-75 blur-xl animate-pulse group-hover:opacity-100 transition-opacity" />
+          <div className="relative bg-gray-900/95 border-2 border-amber-400 rounded-3xl p-6 sm:p-8 backdrop-blur-md shadow-2xl shadow-amber-500/20">
+            <div className="flex items-start gap-4">
+              <div className="w-10 h-10 rounded-2xl bg-amber-500/20 border border-amber-400/40 flex items-center justify-center text-amber-400 shrink-0 mt-0.5 shadow-md shadow-amber-500/20">
+                <AlertCircle className="w-6 h-6" />
+              </div>
+              <div>
+                <span className="text-xs font-black uppercase tracking-wider text-amber-400 mb-1 block">
+                  ⚠️ Ограничение по локальной квоте
+                </span>
+                <h4 className="text-lg font-bold text-white mb-2">
+                  Лимит на эксклюзивность районов в Азии
+                </h4>
+                <p className="text-sm text-gray-300 leading-relaxed font-normal">
+                  Мы берем в работу <span className="text-amber-400 font-bold">максимум 2 ресторана одной кухни в одном районе</span> на весь город (например, только 2 бургерных в районе Патонга или Чангу), чтобы не конкурировать с самими собой. Если квота вашего района закрыта — мы не сможем взять вас в работу.
+                </p>
+              </div>
             </div>
           </div>
         </div>

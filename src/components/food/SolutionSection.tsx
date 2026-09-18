@@ -95,14 +95,14 @@ export default function SolutionSection() {
                 Наша команда профи становится вашим внешним отделом доставки. В нашу ежедневную работу входит:
               </p>
 
-              {/* 8 Items Grid */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
+              {/* 8 Items Clean List */}
+              <div className="space-y-3.5 pt-4 border-t border-gray-800/80 mb-2">
                 {stage2Items.map((item, idx) => (
                   <div
                     key={idx}
-                    className="flex items-start gap-2.5 p-3 rounded-xl bg-gray-950 border border-gray-800 text-xs font-bold text-gray-200"
+                    className="flex items-start gap-3 text-xs sm:text-sm font-semibold text-gray-200"
                   >
-                    <CheckCircle2 className="w-4 h-4 text-[#00FF66] shrink-0 mt-0.5" />
+                    <CheckCircle2 className="w-4.5 h-4.5 text-[#00FF66] shrink-0 mt-0.5" />
                     <span>{item}</span>
                   </div>
                 ))}

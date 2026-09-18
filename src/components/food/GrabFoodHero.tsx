@@ -201,7 +201,7 @@ export default function GrabFoodHero() {
                 <div className="flex items-center gap-2">
                   <Zap className="w-5 h-5 text-[#00FF66]" />
                   <span className="font-extrabold text-sm text-white uppercase tracking-wide">
-                    Killer Arguments
+                    ЗАЧЕМ ВАМ GRAB?
                   </span>
                 </div>
                 <div className="flex items-center gap-1.5">

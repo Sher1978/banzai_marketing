@@ -107,28 +107,31 @@ export default function HowItWorksSection() {
           })}
         </div>
 
-        {/* FINANCIAL GUARANTEE BOX */}
-        <div className="bg-gray-900/90 border-2 border-[#00B14F] rounded-3xl p-8 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="flex items-start gap-4">
-            <div className="w-12 h-12 rounded-2xl bg-[#00B14F]/20 border border-[#00B14F]/40 flex items-center justify-center text-[#00FF66] shrink-0 mt-1">
-              <ShieldCheck className="w-7 h-7" />
+        {/* FINANCIAL GUARANTEE BOX WITH PULSING GREEN BACKLIGHT */}
+        <div className="relative group">
+          <div className="absolute -inset-1 bg-gradient-to-r from-[#00B14F] via-[#00FF66] to-[#00B14F] rounded-3xl opacity-70 blur-lg animate-pulse group-hover:opacity-100 transition-opacity" />
+          <div className="relative bg-gray-900 border-2 border-[#00FF66] rounded-3xl p-8 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="flex items-start gap-4">
+              <div className="w-12 h-12 rounded-2xl bg-[#00B14F]/20 border border-[#00FF66]/40 flex items-center justify-center text-[#00FF66] shrink-0 mt-1 shadow-md shadow-[#00B14F]/30">
+                <ShieldCheck className="w-7 h-7" />
+              </div>
+              <div>
+                <h4 className="text-xl font-black text-white mb-1">
+                  Главный принцип нашего бизнеса: Нет прироста — нет оплаты
+                </h4>
+                <p className="text-gray-300 text-sm font-normal">
+                  Наша агентская комиссия рассчитывается исключительно от нового дельта-роста вашей
+                  чистой прибыли. Мы замотивированы выжать максимум из каждого квадратного километра вашей доставки.
+                </p>
+              </div>
             </div>
-            <div>
-              <h4 className="text-xl font-black text-white mb-1">
-                Главный принцип нашего бизнеса: Нет прироста — нет оплаты
-              </h4>
-              <p className="text-gray-300 text-sm font-normal">
-                Наша агентская комиссия рассчитывается исключительно от нового дельта-роста вашей
-                чистой прибыли. Мы замотивированы выжать максимум из каждого квадратного километра вашей доставки.
-              </p>
-            </div>
+            <a
+              href="#audit-form"
+              className="bg-[#00B14F] hover:bg-[#009643] text-white font-extrabold text-sm px-6 py-4 rounded-2xl whitespace-nowrap shadow-xl shadow-[#00B14F]/40 hover:shadow-2xl transition-all"
+            >
+              Получить аудит вашего меню
+            </a>
           </div>
-          <a
-            href="#audit-form"
-            className="bg-[#00B14F] hover:bg-[#009643] text-white font-extrabold text-sm px-6 py-4 rounded-2xl whitespace-nowrap shadow-md shadow-[#00B14F]/30 hover:shadow-lg transition-all"
-          >
-            Получить аудит вашего меню
-          </a>
         </div>
       </div>
     </section>
