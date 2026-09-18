@@ -45,68 +45,69 @@ import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 // 🌍 Multi-language Dictionary Helper for RevoAlternativeLanding (/maps)
 const getT = (lang = 'ru') => {
   const isEn = lang === 'en';
+  const isUk = lang === 'uk';
   const isVi = lang === 'vi';
   const isTr = lang === 'tr';
   const isAr = lang === 'ar';
-  const isUk = lang === 'uk';
   const isKa = lang === 'ka';
 
   const t = {
     // Ad Independence Index Widget
-    indexBadge: isEn ? "⚡ OUTRICH PROPRIETARY METRIC" : isVi ? "⚡ CHỈ SỐ ĐỘC LẬP OUTRICH" : isTr ? "⚡ OUTRICH ÖZEL METRİK" : "⚡ ФИРМЕННАЯ МЕТРИКА OUTRICH",
-    indexTitle: isEn ? "Business Ad Independence Index" : isVi ? "Chỉ số độc lập quảng cáo doanh nghiệp" : isTr ? "İşletme Reklam Bağımsızlık Endeksi" : "Индекс рекламной независимости бизнеса",
-    indexDesc: isEn ? "Shows the percentage of clients coming on autopilot without target or PPC ad spend. With Outrich, your business elevates this index from 0% to 100%." : isVi ? "Hiển thị tỷ lệ khách hàng đến tự động mà không cần chi tiêu quảng cáo target/PPC. Với Outrich, doanh nghiệp tăng chỉ số từ 0% lên 100%." : "Показывает долю клиентов, приходящих на автопилоте без вливаний в таргет и контекст. С Outrich ваш бизнес повышает этот индекс с 0% до 100%.",
-    currIndex: isEn ? "Current Index:" : isVi ? "Chỉ số hiện tại:" : "Текущий индекс:",
-    organicsVsAds: isEn ? "Organic vs Paid Ads" : isVi ? "Tự nhiên vs Quảng cáo" : "Органика vs Реклама",
-    scale0: isEn ? "0% — Ad Addiction (Risk)" : isVi ? "0% — Phụ thuộc quảng cáo" : "0% — Рекламная игла (Риск)",
-    scale50: isEn ? "50% — Transition Phase" : isVi ? "50% — Giai đoạn chuyển tiếp" : "50% — Переходный этап",
-    scale100: isEn ? "100% — Full Google Maps Autopilot" : isVi ? "100% — Tự động hóa Google Maps" : "100% — Полный автопилот Google Maps",
-    status0Title: isEn ? "Index 0% (Before Outrich Activation):" : isVi ? "Chỉ số 0% (Trước khi kích hoạt):" : "Индекс 0% (До активации Outrich):",
-    status0Desc: isEn ? "You are completely dependent on daily ad budgets or unpredictable word of mouth. Turn off ads — leads drop to zero." : isVi ? "Bạn phụ thuộc hoàn toàn vào ngân sách quảng cáo hàng ngày. Tắt quảng cáo — khách hàng giảm về 0." : "Вы полностью зависимы от ежедневного бюджета на рекламу или случайного сарафана. Выключили таргет — заявки рухнули до нуля.",
-    status100Title: isEn ? "Index 100% (After Outrich Activation):" : isVi ? "Chỉ số 100% (Sau khi kích hoạt Outrich):" : "Индекс 100% (После активации Outrich):",
-    status100Desc: isEn ? "Your profile in TOP-3 Local Pack captures hot neighborhood demand 24/7 on autopilot without paying a single cent for clicks." : isVi ? "Hồ sơ TOP-3 Local Pack của bạn thu hút nhu cầu nóng 24/7 tự động mà không tốn 1 xu chi phí click." : "Профиль в ТОП-3 Local Pack забирает горячий спрос в районе. Клиенты идут 24/7 на автопилоте без единого цента расходов на клики.",
+    indexBadge: isEn ? "⚡ OUTRICH PROPRIETARY METRIC" : isUk ? "⚡ ФІРМОВА МЕТРИКА OUTRICH" : isVi ? "⚡ CHỈ SỐ ĐỘC LẬP OUTRICH" : isTr ? "⚡ OUTRICH ÖZEL METRİK" : "⚡ ФИРМЕННАЯ МЕТРИКА OUTRICH",
+    indexTitle: isEn ? "Business Ad Independence Index" : isUk ? "Індекс рекламної незалежності бізнесу" : isVi ? "Chỉ số độc lập quảng cáo doanh nghiệp" : isTr ? "İşletme Reklam Bağımsızlık Endeksi" : "Индекс рекламной независимости бизнеса",
+    indexDesc: isEn ? "Shows the percentage of clients coming on autopilot without target or PPC ad spend. With Outrich, your business elevates this index from 0% to 100%." : isUk ? "Показує частку клієнтів, які приходять на автопілоті без вливань у таргет та контекст. З Outrich ваш бізнес підвищує цей індекс з 0% до 100%." : isVi ? "Hiển thị tỷ lệ khách hàng đến tự động mà không cần chi tiêu quảng cáo target/PPC. Với Outrich, doanh nghiệp tăng chỉ số từ 0% lên 100%." : "Показывает долю клиентов, приходящих на автопилоте без вливаний в таргет и контекст. С Outrich ваш бизнес повышает этот индекс с 0% до 100%.",
+    currIndex: isEn ? "Current Index:" : isUk ? "Поточний індекс:" : isVi ? "Chỉ số hiện tại:" : "Текущий индекс:",
+    organicsVsAds: isEn ? "Organic vs Paid Ads" : isUk ? "Органіка vs Реклама" : isVi ? "Tự nhiên vs Quảng cáo" : "Органика vs Реклама",
+    scale0: isEn ? "0% — Ad Addiction (Risk)" : isUk ? "0% — Рекламна голка (Ризик)" : isVi ? "0% — Phụ thuộc quảng cáo" : "0% — Рекламная игла (Риск)",
+    scale50: isEn ? "50% — Transition Phase" : isUk ? "50% — Перехідний етап" : isVi ? "50% — Giai đoạn chuyển tiếp" : "50% — Переходный этап",
+    scale100: isEn ? "100% — Full Google Maps Autopilot" : isUk ? "100% — Повний автопілот Google Maps" : isVi ? "100% — Tự động hóa Google Maps" : "100% — Полный автопилот Google Maps",
+    status0Title: isEn ? "Index 0% (Before Outrich Activation):" : isUk ? "Індекс 0% (До активації Outrich):" : isVi ? "Chỉ số 0% (Trước khi kích hoạt):" : "Индекс 0% (До активации Outrich):",
+    status0Desc: isEn ? "You are completely dependent on daily ad budgets or unpredictable word of mouth. Turn off ads — leads drop to zero." : isUk ? "Ви повністю залежні від щоденного бюджету на рекламу або випадкового сарафана. Вимкнули таргет — заявки впали до нуля." : isVi ? "Bạn phụ thuộc hoàn toàn vào ngân sách quảng cáo hàng ngày. Tắt quảng cáo — khách hàng giảm về 0." : "Вы полностью зависимы от ежедневного бюджета на рекламу или случайного сарафана. Выключили таргет — заявки рухнули до нуля.",
+    status100Title: isEn ? "Index 100% (After Outrich Activation):" : isUk ? "Індекс 100% (Після активації Outrich):" : isVi ? "Chỉ số 100% (Sau khi kích hoạt Outrich):" : "Индекс 100% (После активации Outrich):",
+    status100Desc: isEn ? "Your profile in TOP-3 Local Pack captures hot neighborhood demand 24/7 on autopilot without paying a single cent for clicks." : isUk ? "Профіль у ТОП-3 Local Pack забирає гарячий попит у районі. Клієнти йдуть 24/7 на автопілоті без жодного цента витрат на кліки." : isVi ? "Hồ sơ TOP-3 Local Pack của bạn thu hút nhu cầu nóng 24/7 tự động mà không tốn 1 xu chi phí click." : "Профиль в ТОП-3 Local Pack забирает горячий спрос в районе. Клиенты идут 24/7 на автопилоте без единого цента расходов на клики.",
 
     // Nav Bar
-    auditBtn: isEn ? "FREE AI-AUDIT" : isVi ? "AUDIT AI MIỄN PHÍ" : isTr ? "ÜCRETSİZ AI-DENETİMİ" : "БЕСПЛАТНЫЙ AI-АУДИТ",
+    auditBtn: isEn ? "FREE AI-AUDIT" : isUk ? "БЕЗОПЛАТНИЙ AI-АУДИТ" : isVi ? "AUDIT AI MIỄN PHÍ" : isTr ? "ÜCRETSİZ AI-DENETİMİ" : "БЕСПЛАТНЫЙ AI-АУДИТ",
     
     // Hero Section
-    fomoQuestion: isEn ? "How many leads will your business get if you turn off ads tomorrow?" : isVi ? "Doanh nghiệp của bạn nhận bao nhiêu khách nếu tắt quảng cáo vào ngày mai?" : "Сколько заявок получит Ваш бизнес, если завтра отключить рекламу?",
-    fomoSub: isEn ? "For 90% of entrepreneurs, the answer is 0 leads, because they rely on ad addiction or word of mouth. Google Maps brings clients on autopilot without ad spend." : isVi ? "Đối với 90% chủ doanh nghiệp, câu trả lời là 0 khách. Google Maps mang lại khách hàng tự động mà không cần ngân sách quảng cáo." : "Для 90% предпринимателей ответ — 0 заявок, потому что они сидят на «игле» платного трафика или надеются на непредсказуемый «сарафан». Google Maps приносит клиентов на автопилоте без вложений в рекламу.",
-    heroCta: isEn ? "⚡ RUN FREE AI AUDIT" : isVi ? "⚡ CHẠY AUDIT AI MIỄN PHÍ" : isTr ? "⚡ ÜCRETSİZ AI AUDIT BAŞLAT" : "⚡ ЗАПУСТИТЬ AI-АУДИТ БЕСПЛАТНО",
+    fomoQuestion: isEn ? "How many leads will your business get if you turn off ads tomorrow?" : isUk ? "Скільки заявок отримає Ваш бізнес, якщо завтра вимкнути рекламу?" : isVi ? "Doanh nghiệp của bạn nhận bao nhiêu khách nếu tắt quảng cáo vào ngày mai?" : "Сколько заявок получит Ваш бизнес, если завтра отключить рекламу?",
+    fomoSub: isEn ? "For 90% of entrepreneurs, the answer is 0 leads, because they rely on ad addiction or word of mouth. Google Maps brings clients on autopilot without ad spend." : isUk ? "Для 90% підприємців відповідь — 0 заявок, тому що вони сидять на «голці» платного трафіку або сподіваються на непередбачуваний «сарафан». Google Maps приносить клієнтів на автопілоті без вкладень у рекламу." : isVi ? "Đối với 90% chủ doanh nghiệp, câu trả lời là 0 khách. Google Maps mang lại khách hàng tự động mà không cần ngân sách quảng cáo." : "Для 90% предпринимателей ответ — 0 заявок, потому что они сидят на «игле» платного трафика или надеются на непредсказуемый «сарафан». Google Maps приносит клиентов на автопилоте без вложений в рекламу.",
+    heroCta: isEn ? "⚡ RUN FREE AI AUDIT" : isUk ? "⚡ ЗАПУСТИТИ AI-АУДИТ БЕЗОПЛАТНО" : isVi ? "⚡ CHẠY AUDIT AI MIỄN PHÍ" : isTr ? "⚡ ÜCRETSİZ AI AUDIT BAŞLAT" : "⚡ ЗАПУСТИТЬ AI-АУДИТ БЕСПЛАТНО",
 
     // Block 2 (iPhone)
-    mobileHeader: isEn ? "NEW ERA OF LOCAL MARKETING" : isVi ? "KỶ NGUYÊN MỚI MARKETING ĐỊA PHƯƠNG" : "НОВАЯ ЭРА ЛОКАЛЬНОГО МАРКЕТИНГА",
-    mobileTitle: isEn ? "Forget traditional social media. Google Maps is your primary sales engine." : isVi ? "Quên mạng xã hội đi. Google Maps là cỗ máy bán hàng chính của bạn." : "Забудьте про соцсети. Google Maps — это ваш главный продающий Instagram.",
-    mod1Title: isEn ? "AI Auto-Posting every 48h" : isVi ? "Tự động đăng bài AI mỗi 48h" : "AI-Автопостинг каждые 48ч",
-    mod1Sub: isEn ? "100% EXIF-GPS tagged photos & menu" : isVi ? "100% ảnh & thực đơn gắn thẻ EXIF-GPS" : "100% EXIF-GPS гео-метки и меню",
-    mod2Title: isEn ? "Smart AI Review Replies 24/7" : isVi ? "Trả lời đánh giá AI thông minh 24/7" : "Умные автоответы на отзывы",
-    mod2Sub: isEn ? "Automatic SEO keywords injection" : isVi ? "Tự động chèn từ khóa SEO" : "Вшивание SEO-ключей 24/7",
-    mod3Title: isEn ? "AI Reputation Shield" : isVi ? "Lá chắn uy tín AI" : "ИИ-Щит Репутации",
-    mod3Sub: isEn ? "Negative feedback intercept & 1★ removal" : isVi ? "Chặn phản hồi xấu & Gỡ 1★ giả" : "Перехват негатива & Снос 1★ фейков",
+    mobileHeader: isEn ? "NEW ERA OF LOCAL MARKETING" : isUk ? "НОВА ЕРА ЛОКАЛЬНОГО МАРКЕТИНГУ" : isVi ? "KỶ NGUYÊN MỚI MARKETING ĐỊA PHƯƠNG" : "НОВАЯ ЭРА ЛОКАЛЬНОГО МАРКЕТИНГА",
+    mobileTitle: isEn ? "Forget traditional social media. Google Maps is your primary sales engine." : isUk ? "Забудьте про соцмережі. Google Maps — це ваш головний продаючий Instagram." : isVi ? "Quên mạng xã hội đi. Google Maps là cỗ máy bán hàng chính của bạn." : "Забудьте про соцсети. Google Maps — это ваш главный продающий Instagram.",
+    mod1Title: isEn ? "AI Auto-Posting every 48h" : isUk ? "AI-Автопостинг кожні 48год" : isVi ? "Tự động đăng bài AI mỗi 48h" : "AI-Автопостинг каждые 48ч",
+    mod1Sub: isEn ? "100% EXIF-GPS tagged photos & menu" : isUk ? "100% EXIF-GPS гео-мітки та меню" : isVi ? "100% ảnh & thực đơn gắn thẻ EXIF-GPS" : "100% EXIF-GPS гео-метки и меню",
+    mod2Title: isEn ? "Smart AI Review Replies 24/7" : isUk ? "Розумні автовідповіді на відгуки" : isVi ? "Trả lời đánh giá AI thông minh 24/7" : "Умные автоответы на отзывы",
+    mod2Sub: isEn ? "Automatic SEO keywords injection" : isUk ? "Вшивання SEO-ключів 24/7" : isVi ? "Tự động chèn từ khóa SEO" : "Вшивание SEO-ключей 24/7",
+    mod3Title: isEn ? "AI Reputation Shield" : isUk ? "ШІ-Щит Репутації" : isVi ? "Lá chắn uy tín AI" : "ИИ-Щит Репутации",
+    mod3Sub: isEn ? "Negative feedback intercept & 1★ removal" : isUk ? "Перехоплення негативу & Знесення 1★ фейків" : isVi ? "Chặn phản hồi xấu & Gỡ 1★ giả" : "Перехват негатива & Снос 1★ фейков",
 
     // Takeaway Banner
-    takeawayTitle: isEn ? "⚡ KEY ANALYTICS TAKEAWAY:" : isVi ? "⚡ KẾT LUẬN PHÂN TÍCH CHÍNH:" : "⚡ КЛЮЧЕВОЙ ВЫВОД АНАЛИТИКИ:",
-    takeawayText: isEn ? "Google Maps users have already decided to buy. You don't need to hard sell — just welcome them to your venue!" : isVi ? "Người dùng Google Maps đã quyết định mua hàng. Bạn không cần bán hàng — chỉ cần đón tiếp họ!" : "Пользователи Google Maps уже приняли решение о покупке. Им не нужно «продавать» — их нужно просто принять в вашем заведении!",
-    takeawayBadge: isEn ? "🚀 70X HIGHER REVENUE" : isVi ? "🚀 DOANH THU CAO GẤP 70 LẦN" : "🚀 70X ВЫШЕ ВЫРУЧКА",
+    takeawayTitle: isEn ? "⚡ KEY ANALYTICS TAKEAWAY:" : isUk ? "⚡ КЛЮЧОВИЙ ВИСНОВОК АНАЛІТИКИ:" : isVi ? "⚡ KẾT LUẬN PHÂN TÍCH CHÍNH:" : "⚡ КЛЮЧЕВОЙ ВЫВОД АНАЛИТИКИ:",
+    takeawayText: isEn ? "Google Maps users have already decided to buy. You don't need to hard sell — just welcome them to your venue!" : isUk ? "Користувачі Google Maps вже прийняли рішення про покупку. Їм не потрібно «продавати» — їх потрібно просто прийняти у вашому закладі!" : isVi ? "Người dùng Google Maps đã quyết định mua hàng. Bạn không cần bán hàng — chỉ cần đón tiếp họ!" : "Пользователи Google Maps уже приняли решение о покупке. Им не нужно «продавать» — их нужно просто принять в вашем заведении!",
+    takeawayBadge: isEn ? "🚀 70X HIGHER REVENUE" : isUk ? "🚀 70X ВИЩА ВИРУЧКА" : isVi ? "🚀 DOANH THU CAO GẤP 70 LẦN" : "🚀 70X ВЫШЕ ВЫРУЧКА",
 
     // Why Now / Urgency Block
-    whyNowBadge: isEn ? "⚡ BEAT COMPETITORS: WINDOW OF OPPORTUNITY" : isVi ? "⚡ VƯỢT ĐỐI THỦ: CƠ HỘI VÀNG" : "⚡ ОПЕРЕДИТЕ КОНКУРЕНТОВ: ОКНО ВОЗМОЖНОСТЕЙ",
-    whyNowTitle: isEn ? "Why NOW is the time to lock in TOP-3 in your area while competitors sleep?" : isVi ? "Tại sao BÂY GIỜ là lúc chiếm TOP-3 khu vực khi đối thủ đang ngủ?" : "Почему именно СЕЙЧАС нужно забрать ТОП-3 района, пока конкуренты спят?",
-    whyNowSub: isEn ? "While 90% of venues in your district drain ad budgets, Google algorithms are redistributing local search market share right now." : isVi ? "Trong khi 90% địa điểm lãng phí ngân sách, thuật toán Google đang phân chia lại thị phần địa phương ngay bây giờ." : "Пока 90% заведений в вашем районе надеются на старый сарафан или сливают бюджеты в рекламу, алгоритмы Google заново делят локальный рынок.",
+    whyNowBadge: isEn ? "⚡ BEAT COMPETITORS: WINDOW OF OPPORTUNITY" : isUk ? "⚡ ОПЕРЕДІТЬ КОНКУРЕНТІВ: ВІКНО МОЖЛИВОСТЕЙ" : isVi ? "⚡ VƯỢT ĐỐI THỦ: CƠ HỘI VÀNG" : "⚡ ОПЕРЕДИТЕ КОНКУРЕНТОВ: ОКНО ВОЗМОЖНОСТЕЙ",
+    whyNowTitle: isEn ? "Why NOW is the time to lock in TOP-3 in your area while competitors sleep?" : isUk ? "Чому саме ЗАРАЗ потрібно забрати ТОП-3 району, поки конкуренти сплять?" : isVi ? "Tại sao BÂY GIỜ là lúc chiếm TOP-3 khu vực khi đối thủ đang ngủ?" : "Почему именно СЕЙЧАС нужно забрать ТОП-3 района, пока конкуренты спят?",
+    whyNowSub: isEn ? "While 90% of venues in your district drain ad budgets, Google algorithms are redistributing local search market share right now." : isUk ? "Поки 90% закладів у вашому районі сподіваються на старий сарафан або зливають бюджети в рекламу, алгоритми Google заново ділять локальний ринок." : isVi ? "Trong khi 90% địa điểm lãng phí ngân sách, thuật toán Google đang phân chia lại thị phần địa phương ngay bây giờ." : "Пока 90% заведений в вашем районе надеются на старый сарафан или сливают бюджеты в рекламу, алгоритмы Google заново делят локальный рынок.",
 
     // Market Facts
-    fact1Title: isEn ? "Purchase without website click" : isVi ? "Mua hàng không qua website" : "Покупка без перехода на сайт",
-    fact1Desc: isEn ? "68% of local searchers make calls or visits directly from Google Maps cards without opening websites." : isVi ? "68% người tìm kiếm địa phương gọi điện hoặc đến trực tiếp từ Google Maps." : "По данным исследований Google, 68% локальных клиентов совершают звонок или визит прямо из карточки Google Maps.",
-    fact2Title: isEn ? "AI Recommendations 2026" : isVi ? "Khuyến nghị AI 2026" : "ИИ-Рекомендации 2026",
-    fact2Desc: isEn ? "ChatGPT and Gemini draw recommendations strictly from active TOP-3 Google Maps profiles." : isVi ? "ChatGPT và Gemini chỉ đề xuất các hồ sơ TOP-3 Google Maps đang hoạt động." : "ИИ-ассистенты вытягивают рекомендации ТОЛЬКО из профилей ТОП-3 Google Maps, имеющих регулярную активность.",
-    fact3Title: isEn ? "Monopoly Barrier Effect" : isVi ? "Hiệu ứng rào cản độc quyền" : "Монопольный барьер",
-    fact3Desc: isEn ? "Early AI-autopilot adopters build cumulative Google ranking signals that competitors cannot catch up to for years." : isVi ? "Các doanh nghiệp tiên phong tích lũy xếp hạng Google mà đối thủ khó vượt qua." : "Заведения, первые включившие ИИ-автопилот, накапливают историю поведенческих факторов Google."
+    fact1Title: isEn ? "Purchase without website click" : isUk ? "Покупка без переходу на сайт" : isVi ? "Mua hàng không qua website" : "Покупка без перехода на сайт",
+    fact1Desc: isEn ? "68% of local searchers make calls or visits directly from Google Maps cards without opening websites." : isUk ? "За даними досліджень Google, 68% локальних клієнтів здійснюють дзвінок або візит прямо з картки Google Maps." : isVi ? "68% người tìm kiếm địa phương gọi điện hoặc đến trực tiếp từ Google Maps." : "По данным исследований Google, 68% локальных клиентов совершают звонок или визит прямо из карточки Google Maps.",
+    fact2Title: isEn ? "AI Recommendations 2026" : isUk ? "ШІ-Рекомендації 2026" : isVi ? "Khuyến nghị AI 2026" : "ИИ-Рекомендации 2026",
+    fact2Desc: isEn ? "ChatGPT and Gemini draw recommendations strictly from active TOP-3 Google Maps profiles." : isUk ? "ШІ-асистенти витягують рекомендації ТІЛЬКИ з профілів ТОП-3 Google Maps, що мають регулярну активність." : isVi ? "ChatGPT và Gemini chỉ đề xuất các hồ sơ TOP-3 Google Maps đang hoạt động." : "ИИ-ассистенты вытягивают рекомендации ТОЛЬКО из профилей ТОП-3 Google Maps, имеющих регулярную активность.",
+    fact3Title: isEn ? "Monopoly Barrier Effect" : isUk ? "Монопольний бар'єр" : isVi ? "Hiệu ứng rào cản độc quyền" : "Монопольный барьер",
+    fact3Desc: isEn ? "Early AI-autopilot adopters build cumulative Google ranking signals that competitors cannot catch up to for years." : isUk ? "Заклади, які першими увімкнули ШІ-автопілот, накопичують історію поведінкових факторів Google." : isVi ? "Các doanh nghiệp tiên phong tích lũy xếp hạng Google mà đối thủ khó vượt qua." : "Заведения, первые включившие ИИ-автопилот, накапливают историю поведенческих факторов Google."
   };
 
   return t;
 };
 
-const AdIndependenceIndexWidget = () => {
+const AdIndependenceIndexWidget = ({ lang = 'ru' }) => {
+  const t = getT(lang);
   const [val, setVal] = useState(0);
   const widgetRef = useRef(null);
   const [hasStarted, setHasStarted] = useState(false);
@@ -249,6 +250,7 @@ const AdIndependenceIndexWidget = () => {
 const RevoAlternativeLanding = () => {
   const { i18n } = useTranslation();
   const lang = i18n.language?.substring(0, 2) || 'ru';
+  const t = getT(lang);
   const navigate = useNavigate();
   
   // Navigation & Modal States
@@ -318,53 +320,55 @@ const RevoAlternativeLanding = () => {
   }, []);
 
   // Niche Cards data for Hero Slider (1 featured slide per view)
+  const isEn = lang === 'en';
+  const isUk = lang === 'uk';
   const nicheCards = [
     {
       id: 'restaurants',
       icon: faUtensils,
-      title: '🍽 Рестораны & Кафе',
-      stat: '92% людей',
-      statLabel: 'ищут еду через локальные гео-запросы',
-      text: 'Пользователи вбивают «сырники рядом» или «стейкхаус». Это самый высокий транзакционный интент в общепите. Если вас нет в ТОП-3 Local Pack — вы теряете до 80% всех горячих чеков района.',
-      badge: 'Высокий чек',
+      title: isEn ? '🍽 Restaurants & Cafes' : isUk ? "🍽 Ресторани та Кав'ярні" : '🍽 Рестораны & Кафе',
+      stat: isEn ? '92% of people' : isUk ? '92% людей' : '92% людей',
+      statLabel: isEn ? 'search food via local geo-queries' : isUk ? 'шукають їжу через локальні гео-запити' : 'ищут еду через локальные гео-запросы',
+      text: isEn ? 'Users search "syrniki nearby" or "steakhouse". Highest transactional intent in F&B. If not in TOP-3 Local Pack — you lose up to 80% of district orders.' : isUk ? "Користувачі шукають «сирники поруч» або «стейкхаус». Це найвищий транзакційний інтенцій у громадському харчуванні. Якщо вас немає у ТОП-3 Local Pack — ви втрачаєте до 80% всіх гарячих чеків району." : 'Пользователи вбивают «сырники рядом» или «стейкхаус». Это самый высокий транзакционный интент в общепите. Если вас нет в ТОП-3 Local Pack — вы теряете до 80% всех горячих чеков района.',
+      badge: isEn ? 'High Check' : isUk ? 'Високий чек' : 'Высокий чек',
       metricPercent: 92,
-      metricLabel: 'Поисковый интент гостей',
+      metricLabel: isEn ? 'Guest search intent' : isUk ? 'Пошуковий інтенцій гостей' : 'Поисковый интент гостей',
       color: '#00FF66'
     },
     {
       id: 'barbershops',
       icon: faCut,
-      title: '✂️ Барбершопы & Салоны',
-      stat: 'До 40 клиентов',
-      statLabel: 'в неделю отдаются соседям из-за отсутствия в выдаче',
-      text: 'Клиент ищет услугу «на сегодня в радиусе 2 км». Если карточка не в ТОП-3 Google — кресла остаются пустыми в середине недели. Сгорающая скидка ⚡ Revo мгновенно закрывает "тихие часы".',
-      badge: 'Локальный пик',
+      title: isEn ? '✂️ Barbershops & Salons' : isUk ? '✂️ Барбершопи та Салони' : '✂️ Барбершопы & Салоны',
+      stat: isEn ? 'Up to 40 clients' : isUk ? 'До 40 клієнтів' : 'До 40 клиентов',
+      statLabel: isEn ? 'per week lost to neighbors due to lack of visibility' : isUk ? 'на тиждень віддаються сусідам через відсутність у видачі' : 'в неделю отдаются соседям из-за отсутствия в выдаче',
+      text: isEn ? 'Clients look for services "today within 2km". If not in Google TOP-3, seats stay empty. Revo expiring discount closes quiet hours instantly.' : isUk ? "Клієнт шукає послугу «на сьогодні в радіусі 2 км». Якщо картка не в ТОП-3 Google — крісла залишаються порожніми. Згораюча знижка ⚡ Revo миттєво закриває 'тихі години'." : 'Клиент ищет услугу «на сегодня в радиусе 2 км». Если карточка не в ТОП-3 Google — кресла остаются пустыми в середине недели. Сгорающая скидка ⚡ Revo мгновенно закрывает "тихие часы".',
+      badge: isEn ? 'Local Peak' : isUk ? 'Локальний пік' : 'Локальный пик',
       metricPercent: 85,
-      metricLabel: 'Загрузка "тихих часов"',
+      metricLabel: isEn ? 'Quiet hours load' : isUk ? 'Завантаження "тихих годин"' : 'Загрузка "тихих часов"',
       color: '#4285F4'
     },
     {
       id: 'clinics',
       icon: faStethoscope,
-      title: '🩺 Клиники & Стоматологии',
-      stat: 'Рейтинг 4.9+',
-      statLabel: 'формирует 95% первичных онлайн-записей',
-      text: 'Первичный прием формируется из Поиска. Люди ищут решение конкретной боли и выбирают профили с топовыми позициями и свежими положительными отзывами.',
-      badge: 'Макс. LTV',
+      title: isEn ? '🩺 Clinics & Dentistry' : isUk ? '🩺 Клініки та Стоматології' : '🩺 Клиники & Стоматологии',
+      stat: isEn ? '4.9+ Rating' : isUk ? 'Рейтинг 4.9+' : 'Рейтинг 4.9+',
+      statLabel: isEn ? 'drives 95% of primary online bookings' : isUk ? 'формує 95% первинних онлайн-записів' : 'формирует 95% первичных онлайн-записей',
+      text: isEn ? 'Patients search solutions for specific pain points and choose TOP-3 profiles with top positions and fresh reviews.' : isUk ? "Первинний прийом формується з Пошуку. Люди шукають рішення конкретного болю і обирають профілі з топовими позиціями та свіжими позитивними відгуками." : 'Первичный прием формируется из Поиска. Люди ищут решение конкретной боли и выбирают профили с топовыми позициями и свежими положительными отзывами.',
+      badge: isEn ? 'Max LTV' : isUk ? 'Макс. LTV' : 'Макс. LTV',
       metricPercent: 95,
-      metricLabel: 'Доверие пациентов к ТОП-3',
+      metricLabel: isEn ? 'Patient trust in TOP-3' : isUk ? 'Довіра пацієнтів до ТОП-3' : 'Доверие пациентов к ТОП-3',
       color: '#FBBC05'
     },
     {
       id: 'masters',
       icon: faSpa,
-      title: '💆‍♂️ Выездные мастера & СПА',
-      stat: '0$ За веб-сайт',
-      statLabel: '100% автономный сайт на базе профиля Google',
-      text: 'Google Business Profile — это ваш автономный сайт, который индексируется алгоритмами без необходимости тратить тысячи долларов на программистов.',
-      badge: '100% Автономность',
+      title: isEn ? '💆‍♂️ Mobile Pros & Spa' : isUk ? '💆‍♂️ Виїзні майстри та СПА' : '💆‍♂️ Выездные мастера & СПА',
+      stat: isEn ? '$0 For Website' : isUk ? '0$ За веб-сайт' : '0$ За веб-сайт',
+      statLabel: isEn ? '100% autonomous site built from Google profile' : isUk ? '100% автономний сайт на базі профілю Google' : '100% автономный сайт на базе профиля Google',
+      text: isEn ? 'Google Business Profile is your autonomous website indexed by algorithms without spending thousands on coders.' : isUk ? "Google Business Profile — це ваш автономний сайт, який індексується алгоритмами без потреби витрачати тисячі доларів на програмістів." : 'Google Business Profile — это ваш автономный сайт, который индексируется алгоритмами без необходимости тратить тысячи долларов на программистов.',
+      badge: isEn ? '100% Autonomy' : isUk ? '100% Автономність' : '100% Автономность',
       metricPercent: 100,
-      metricLabel: 'Органический охват локации',
+      metricLabel: isEn ? 'Organic location reach' : isUk ? 'Органічне охоплення локації' : 'Органический охват локации',
       color: '#10B981'
     }
   ];
@@ -1311,7 +1315,7 @@ const RevoAlternativeLanding = () => {
           </motion.div>
 
           {/* Индекса рекламной независимости Widget */}
-          <AdIndependenceIndexWidget />
+          <AdIndependenceIndexWidget lang={lang} />
 
           {/* Side-by-Side Comparison: Paid Ads Addiction vs. Google Maps Asset */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 text-left">
