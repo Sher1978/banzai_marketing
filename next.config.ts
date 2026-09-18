@@ -28,7 +28,7 @@ const nextConfig: NextConfig = {
             value: '(.*outrich\\.online|.*outrich-dubai)',
           },
         ],
-        destination: '/maps',
+        destination: '/outrich-dubai/maps',
       },
     ];
   },

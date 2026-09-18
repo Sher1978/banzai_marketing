@@ -13,7 +13,7 @@ export function middleware(request: NextRequest) {
       return NextResponse.rewrite(url);
     }
     if (path === '/maps' || path === '/maps/') {
-      url.pathname = '/maps';
+      url.pathname = '/outrich-dubai/maps';
       return NextResponse.rewrite(url);
     }
   }
