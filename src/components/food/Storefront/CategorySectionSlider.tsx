@@ -1,10 +1,8 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import { MenuItem, MenuCategory } from "@/lib/food/foodData";
 import { DishCard } from "@/components/food/Storefront/DishCard";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
 
 interface Props {
   category: MenuCategory;
@@ -21,29 +19,45 @@ export const CategorySectionSlider: React.FC<Props> = ({
 }) => {
   const sliderRef = useRef<HTMLDivElement>(null);
 
-  const handleScrollLeft = () => {
-    if (sliderRef.current) {
-      sliderRef.current.scrollBy({ left: -300, behavior: "smooth" });
-    }
-  };
-
-  const handleScrollRight = () => {
-    if (sliderRef.current) {
-      sliderRef.current.scrollBy({ left: 300, behavior: "smooth" });
-    }
-  };
-
   if (items.length === 0) return null;
 
-  // Duplicate items array if length is small to create loop feel
-  const displayItems = items.length < 4 ? [...items, ...items] : items;
+  // Triplicate items array so there is always a predecessor and successor set for 360° infinite looping
+  const displayItems = [...items, ...items, ...items];
+
+  useEffect(() => {
+    const el = sliderRef.current;
+    if (!el) return;
+
+    // Set initial scroll position to start of the middle set
+    const singleSetWidth = el.scrollWidth / 3;
+    if (el.scrollLeft === 0) {
+      el.scrollLeft = singleSetWidth;
+    }
+
+    const handleInfiniteScroll = () => {
+      const singleSet = el.scrollWidth / 3;
+      if (singleSet <= 0) return;
+
+      // If user reaches end of 2nd set, silently jump back to 1st set equivalent position
+      if (el.scrollLeft >= singleSet * 2) {
+        el.scrollLeft -= singleSet;
+      }
+      // If user scrolls backwards to the start of 1st set, jump forward to 2nd set
+      else if (el.scrollLeft <= 10) {
+        el.scrollLeft += singleSet;
+      }
+    };
+
+    el.addEventListener("scroll", handleInfiniteScroll, { passive: true });
+    return () => el.removeEventListener("scroll", handleInfiniteScroll);
+  }, [items]);
 
   return (
     <section
       id={`category-section-${category.id}`}
       className="space-y-4 scroll-mt-28 relative group/section"
     >
-      {/* Category Header with Scroll Buttons */}
+      {/* Category Header */}
       <div className="flex justify-between items-center">
         <h2
           className="text-xl font-black text-white flex items-center gap-2 border-l-4 pl-3"
@@ -54,36 +68,18 @@ export const CategorySectionSlider: React.FC<Props> = ({
             {items.length}
           </span>
         </h2>
-
-        {/* Scroll Control Arrows */}
-        <div className="flex items-center gap-2">
-          <button
-            onClick={handleScrollLeft}
-            className="w-8 h-8 rounded-full bg-black/60 border border-white/20 hover:border-white text-white/80 hover:text-white flex items-center justify-center text-xs transition-all shadow-md active:scale-95 cursor-pointer"
-            title="Прокрутить назад"
-          >
-            <FontAwesomeIcon icon={faChevronLeft} />
-          </button>
-          <button
-            onClick={handleScrollRight}
-            className="w-8 h-8 rounded-full bg-black/60 border border-white/20 hover:border-white text-white/80 hover:text-white flex items-center justify-center text-xs transition-all shadow-md active:scale-95 cursor-pointer"
-            title="Прокрутить вперед"
-          >
-            <FontAwesomeIcon icon={faChevronRight} />
-          </button>
-        </div>
       </div>
 
-      {/* Horizontal Carousel Track */}
+      {/* Infinite Ring Horizontal Carousel Track */}
       <div
         ref={sliderRef}
-        className="flex gap-4 overflow-x-auto scrollbar-none no-scrollbar scroll-smooth snap-x snap-mandatory py-2 -mx-4 px-4 touch-pan-x"
+        className="flex gap-4 overflow-x-auto scrollbar-none no-scrollbar py-2 -mx-4 px-4 touch-pan-x"
         style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
       >
         {displayItems.map((dish, idx) => (
           <div
             key={`${dish.id}-${idx}`}
-            className="w-[280px] sm:w-[320px] flex-shrink-0 snap-start"
+            className="w-[280px] sm:w-[320px] flex-shrink-0"
           >
             <DishCard
               dish={dish}
