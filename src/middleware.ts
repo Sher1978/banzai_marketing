@@ -16,6 +16,10 @@ export function middleware(request: NextRequest) {
       url.pathname = '/outrich-dubai/maps';
       return NextResponse.rewrite(url);
     }
+    if (path === '/food' || path === '/food/') {
+      url.pathname = '/outrich-dubai/food';
+      return NextResponse.rewrite(url);
+    }
   }
 
   return NextResponse.next();
