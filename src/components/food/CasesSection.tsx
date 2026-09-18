@@ -71,7 +71,7 @@ export default function CasesSection() {
   ];
 
   return (
-    <section className="py-20 bg-white relative">
+    <section className="py-20 bg-[#E5E8EC] relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="max-w-3xl mx-auto text-center mb-16">

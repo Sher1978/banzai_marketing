@@ -16,7 +16,7 @@ export default function SolutionSection() {
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-b from-gray-50 via-white to-emerald-50/30 relative">
+    <section className="py-20 bg-gradient-to-b from-[#E5E8EC] via-[#EAEFF4] to-[#E5E8EC] relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="max-w-3xl mx-auto text-center mb-16">

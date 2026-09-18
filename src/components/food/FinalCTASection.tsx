@@ -84,9 +84,8 @@ export default function FinalCTASection() {
             <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight mb-4">
               Перестаньте кормить конкурентов. Заберите ТОП-5 выдачи прямо сейчас.
             </h2>
-            <p className="text-gray-300 text-sm sm:text-base">
-              Заполните короткую форму ниже. Наш эксперт по алгоритмам Grab проведет экспресс-аудит
-              вашего района и свяжется с вами в течение 15 минут.
+            <p className="text-gray-300 text-sm sm:text-base leading-relaxed font-medium">
+              Если данные заполнены правильно, то мы сразу пришлем детальный аудит слепых зон и потенциала роста Вашего бизнеса с оценкой роста доходности.
             </p>
           </div>
 

@@ -80,7 +80,7 @@ export default function GrabFoodHero() {
   const [activeFomoIndex, setActiveFomoIndex] = useState(0);
 
   return (
-    <section className="relative pt-28 pb-16 md:pt-36 md:pb-24 bg-gradient-to-b from-emerald-50/40 via-white to-gray-50 overflow-hidden">
+    <section className="relative pt-28 pb-16 md:pt-36 md:pb-24 bg-gradient-to-b from-[#E2E6EA] via-[#E8EDF2] to-[#E2E6EA] overflow-hidden">
       {/* Background Decorative Accents */}
       <div className="absolute top-0 right-0 -mr-24 -mt-24 w-96 h-96 bg-[#00B14F]/10 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute top-1/2 left-0 -ml-24 w-80 h-80 bg-emerald-400/10 rounded-full blur-3xl pointer-events-none" />
