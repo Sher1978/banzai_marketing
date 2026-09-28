@@ -1408,7 +1408,7 @@ const RevoAlternativeLanding = () => {
             <div className="bg-[#1E2024] border border-white/10 p-6 rounded-3xl text-left relative overflow-hidden group hover:border-[#00FF66]/50 transition-colors">
               <div className="text-3xl font-black text-[#00FF66] mb-3">01</div>
               <h4 className="font-bold text-white text-lg mb-2">AI Instagram-Mode & SEO</h4>
-              <p className="text-xs text-white/80 leading-relaxed mb-4">Публикация акций, новостей, меню и гео-фото на автопилоте каждые 48 часов.</p>
+              <p className="text-xs text-white/80 leading-relaxed mb-4">Публикация акций, новостей, меню и гео-фото прямо на картах Гугл для продвижения в выдаче Гугл</p>
               <div className="text-xs font-mono text-[#00FF66] bg-[#00FF66]/10 px-2.5 py-1 rounded inline-block">Захват Поиска</div>
             </div>
 
