@@ -1225,7 +1225,7 @@ const RevoAlternativeLanding = () => {
           {/* Visual Leaky Revenue Funnel Diagram Infographic */}
           <div className="mt-8 p-6 rounded-3xl bg-[#1E2024] border border-[#EA4335]/30 space-y-3 text-left">
             <h4 className="text-sm sm:text-base font-extrabold uppercase text-[#00FF66] tracking-wider mb-3 flex items-center gap-2">
-              <FontAwesomeIcon icon={faExclamationTriangle} className="text-[#EA4335]" /> ПОЧЕМУ ВСЕ ЗАЯВКИ ПОЛУЧАЮТ ЛИДЕРЫ ТОП 3:
+              <FontAwesomeIcon icon={faExclamationTriangle} className="text-[#EA4335]" /> ПОЧЕМУ ВСЕ ЗАЯВКИ ПОЛУЧАЮТ ЛИДЕРЫ ТОП 3, А НЕ ВЫ:
             </h4>
             
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
