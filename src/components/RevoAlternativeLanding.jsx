@@ -1422,7 +1422,7 @@ const RevoAlternativeLanding = () => {
             <div className="bg-[#1E2024] border border-white/10 p-6 rounded-3xl text-left relative overflow-hidden group hover:border-[#00FF66]/50 transition-colors">
               <div className="text-3xl font-black text-[#00FF66] mb-3">03</div>
               <h4 className="font-bold text-white text-lg mb-2">Direct Sales & Retention</h4>
-              <p className="text-xs text-white/80 leading-relaxed mb-4">Прямой расчет без комиссий + Возврат клиента на следующий день.</p>
+              <p className="text-xs text-white/80 leading-relaxed mb-4">Клиент возвращается завтра прямо к вам без комиссий агрегаторам еды и услуг</p>
               <div className="text-xs font-mono text-[#00FF66] bg-[#00FF66]/10 px-2.5 py-1 rounded inline-block">100% Выручка</div>
             </div>
           </div>
