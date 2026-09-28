@@ -76,7 +76,7 @@ const getT = (lang = 'ru') => {
 
     // Block 2 (iPhone)
     mobileHeader: isEn ? "NEW ERA OF LOCAL MARKETING" : isUk ? "НОВА ЕРА ЛОКАЛЬНОГО МАРКЕТИНГУ" : isVi ? "KỶ NGUYÊN MỚI MARKETING ĐỊA PHƯƠNG" : "НОВАЯ ЭРА ЛОКАЛЬНОГО МАРКЕТИНГА",
-    mobileTitle: isEn ? "Forget traditional social media. Google Maps is your primary sales engine." : isUk ? "Забудьте про соцмережі. Google Maps — це ваш головний продаючий Instagram." : isVi ? "Quên mạng xã hội đi. Google Maps là cỗ máy bán hàng chính của bạn." : "Забудьте про соцсети. Google Maps — это ваш главный продающий Instagram.",
+    mobileTitle: isEn ? "Forget traditional social media. Google Maps is your primary sales engine." : isUk ? "Забудьте про соцмережі. Google Maps — це ваш головний продаючий Instagram." : isVi ? "Quên mạng xã hội đi. Google Maps là cỗ máy bán hàng chính của bạn." : "Забудьте про соцсети. В 2027 Google Maps — это ваш главный продающий Instagram.",
     mod1Title: isEn ? "AI Auto-Posting every 48h" : isUk ? "AI-Автопостинг кожні 48год" : isVi ? "Tự động đăng bài AI mỗi 48h" : "AI-Автопостинг каждые 48ч",
     mod1Sub: isEn ? "100% EXIF-GPS tagged photos & menu" : isUk ? "100% EXIF-GPS гео-мітки та меню" : isVi ? "100% ảnh & thực đơn gắn thẻ EXIF-GPS" : "100% EXIF-GPS гео-метки и меню",
     mod2Title: isEn ? "Smart AI Review Replies 24/7" : isUk ? "Розумні автовідповіді на відгуки" : isVi ? "Trả lời đánh giá AI thông minh 24/7" : "Умные автоответы на отзывы",
@@ -1003,7 +1003,7 @@ const RevoAlternativeLanding = () => {
               </div>
 
               <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight leading-tight">
-                Забудьте про соцсети. Google Maps — это ваш главный продающий Instagram.
+                Забудьте про соцсети. В 2027 Google Maps — это ваш главный продающий Instagram.
               </h2>
 
               <p className="text-white/70 text-base leading-relaxed font-medium">

@@ -688,10 +688,11 @@ const OutrichRevenueWidget = () => {
                                 </button>
                             </div>
 
-                            <div id="google-map-picker-canvas" className="w-full h-72 rounded-2xl border border-white/10 overflow-hidden relative bg-black/40">
+                            <div className="w-full h-72 rounded-2xl border border-white/10 overflow-hidden relative bg-black/40">
                                 <div className="absolute inset-0 flex items-center justify-center text-white/70 text-xs font-mono">
                                     Загрузка интерактивной карты Google Maps...
                                 </div>
+                                <div id="google-map-picker-canvas" className="absolute inset-0 w-full h-full z-10"></div>
                             </div>
 
                             <div className="space-y-2">
