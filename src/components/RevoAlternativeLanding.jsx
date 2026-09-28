@@ -36,7 +36,7 @@ import PngBattery from './PngBattery';
 import B2BContactModal from './B2BContactModal';
 import LanguageSwitcher from './LanguageSwitcher';
 import ProfitCalculator from './ProfitCalculator';
-import OutrichRevenueWidget from './OutrichRevenueWidget';
+import OutrichRevenueWidget from './outrich/OutrichRevenueWidget';
 import { db } from './firebase';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 
