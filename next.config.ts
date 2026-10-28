@@ -2,6 +2,9 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   /* config options here */
+  experimental: {
+    turbopackUseSystemTlsCerts: true,
+  },
   reactCompiler: true,
   compress: true,
   images: {
@@ -39,6 +42,26 @@ const nextConfig: NextConfig = {
           },
         ],
         destination: '/outrich-dubai/food',
+      },
+      {
+        source: '/cis',
+        has: [
+          {
+            type: 'host',
+            value: '(.*outrich\\.online|.*outrich-dubai)',
+          },
+        ],
+        destination: '/cis',
+      },
+      {
+        source: '/mind-ambush',
+        has: [
+          {
+            type: 'host',
+            value: '(.*outrich\\.online|.*outrich-dubai)',
+          },
+        ],
+        destination: '/cis',
       },
     ];
   },

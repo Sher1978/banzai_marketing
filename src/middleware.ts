@@ -20,6 +20,14 @@ export function middleware(request: NextRequest) {
       url.pathname = '/outrich-dubai/food';
       return NextResponse.rewrite(url);
     }
+    if (path === '/cis' || path === '/cis/' || path === '/mind-ambush' || path === '/mind-ambush/') {
+      url.pathname = '/cis';
+      return NextResponse.rewrite(url);
+    }
+    if (host.startsWith('cis.') || host.startsWith('mindambush.')) {
+      url.pathname = '/cis';
+      return NextResponse.rewrite(url);
+    }
   }
 
   return NextResponse.next();
